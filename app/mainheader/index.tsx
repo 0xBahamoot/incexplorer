@@ -8,6 +8,7 @@ import { Popover, Badge, Text } from '@mantine/core';
 function MainHeader() {
   const [subMenuBC, setSubMenuBC] = useState(false);
   const [subMenuNetwork, setSubMenuNetwork] = useState(false);
+  const [subMenuChart, setSubMenuChart] = useState(false);
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const dark = colorScheme === 'dark';
 
@@ -43,6 +44,33 @@ function MainHeader() {
       <Button variant="subtle" color={"dark"} compact  component={Link} to="/txs">Transactions</Button>
       <Button variant="subtle" color={"dark"} compact  component={Link} to="/ptokens">pTokens</Button>
       <Button variant="subtle" color={"dark"} compact  component={Link} to="/validators">Validators</Button>
+    </Stack>
+    </Popover>
+    <Popover
+      opened={subMenuChart}
+      onClose={() => setSubMenuChart(false)}
+      position="bottom"
+      placement="center"
+      withArrow
+      trapFocus={false}
+      closeOnEscape={false}
+      onMouseEnter={() => setSubMenuChart(true)} 
+      onMouseLeave={() => setSubMenuChart(false)}
+      // transition="pop-top-left"
+      // width={180}
+      target={   
+      <Button  variant="subtle" color="dark" size="md" compact rightIcon={<ChevronDown
+        size={15}
+        strokeWidth={3}
+        // color={'black'}
+      />} 
+      onMouseEnter={() => setSubMenuChart(true)} onMouseLeave={() => setSubMenuChart(false)}>Charts</Button>
+      }
+    >
+      <Stack align="flex-start" justify="flex-start">
+      <Button variant="subtle" color={"dark"} compact  component={Link} to="/blockexplorer">Markets</Button>
+      <Button variant="subtle" color={"dark"} compact  component={Link} to="/txs">Liquidity</Button>
+      <Button variant="subtle" color={"dark"} compact  component={Link} to="/ptokens">Shielding Volume</Button>
     </Stack>
     </Popover>
       {/* <Button  variant="subtle" color="dark" size="md" compact rightIcon={<ChevronDown
