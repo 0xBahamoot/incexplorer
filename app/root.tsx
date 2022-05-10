@@ -7,12 +7,13 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import { AppShell, Header } from '@mantine/core';
+import { AppShell, Header, Footer } from '@mantine/core';
 import { MantineProvider, ColorSchemeProvider, ColorScheme } from '@mantine/core';
 import { useHotkeys, useLocalStorage } from '@mantine/hooks';
 import MainHeader from '~/mainheader';
 import { Outlet } from "@remix-run/react";
-
+import MainFooter from "./mainfooter";
+import { useEffect, useState } from "react";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -21,6 +22,8 @@ export const meta: MetaFunction = () => ({
 });
 
 export default function App() {
+  const [contentHeight, setContentHeight] = useState(0);
+  const [fixedFooter, setFixedFooter] = useState(false);
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
     key: 'mantine-color-scheme',
     defaultValue: 'dark',
@@ -31,6 +34,16 @@ export default function App() {
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 
   useHotkeys([['mod+J', () => toggleColorScheme()]]);
+  function checkHeight() {
+    if (window.innerHeight - 120 > contentHeight) {
+      setFixedFooter(true);
+    } else {
+      setFixedFooter(false);
+    }
+  }
+  useEffect(() => {
+    checkHeight()
+  }, [])
 
   return (
     <html lang="en">
@@ -43,12 +56,15 @@ export default function App() {
           <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
             <AppShell
               padding="md"
-              header={<Header height={60} p="xs">{<MainHeader />}</Header>}
-              // styles={(theme) => ({
-              //   main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : "#fff" },
-              // })}
+              style={{ paddingTop: '60px' }}
+              header={<Header fixed={true} height={60} p="xs">{<MainHeader />}</Header>}
+              footer={<Footer height={60} p="xs" fixed={fixedFooter}>{<MainFooter />} </Footer>}
+            // styles={(theme) => ({
+            //   main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : "#fff" },
+            // })}
             >
-              <Outlet />
+              <div ref={(divElement) => { checkHeight(); setContentHeight((divElement)?divElement?.clientHeight:0) }}> <Outlet /></div>
+
             </AppShell>
           </MantineProvider>
         </ColorSchemeProvider>

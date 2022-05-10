@@ -1,7 +1,7 @@
-import { Button} from '@mantine/core';
+import { Title} from '@mantine/core';
 
 function Txs() {
-    return <> <Button  variant="light" size="md" compact>Transaction</Button></>
+    return <><Title order={4}>Transaction</Title></>
 }
 
 export default Txs;
