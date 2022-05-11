@@ -1,4 +1,4 @@
-import { ActionIcon, useMantineColorScheme ,Group,Button,TextInput,Image,Stack,Divider} from '@mantine/core';
+import { ActionIcon, useMantineColorScheme ,Group,Button,TextInput,Image,Center,Divider, Title} from '@mantine/core';
 import { Sun, MoonStars,Search,ChevronDown } from 'tabler-icons-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -14,7 +14,9 @@ function MainFooter() {
     <>
      <Group position="apart" grow>
      <Group position="left">
-     <Image src="/logo.png" alt="it's me"  style={{filter: dark? "invert(100%)":""}} height={30}/>
+     <Center style={{ width: 150, height: 60 }}>
+       <Title order={5}>© 2022 Incognito</Title>
+      </Center>
     </Group>
     </Group>
     </>

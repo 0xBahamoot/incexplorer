@@ -7,7 +7,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import { AppShell, Header, Footer } from '@mantine/core';
+import { AppShell, Header, Footer,Container } from '@mantine/core';
 import { MantineProvider, ColorSchemeProvider, ColorScheme } from '@mantine/core';
 import { useHotkeys, useLocalStorage } from '@mantine/hooks';
 import MainHeader from '~/mainheader';
@@ -23,7 +23,9 @@ export const meta: MetaFunction = () => ({
 
 export default function App() {
   const [contentHeight, setContentHeight] = useState(0);
+  const [bodyHeight, setBodyHeight] = useState(0);
   const [fixedFooter, setFixedFooter] = useState(false);
+
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
     key: 'mantine-color-scheme',
     defaultValue: 'dark',
@@ -35,6 +37,7 @@ export default function App() {
 
   useHotkeys([['mod+J', () => toggleColorScheme()]]);
   function checkHeight() {
+    setBodyHeight(window.innerHeight - 120)
     if (window.innerHeight - 120 > contentHeight) {
       setFixedFooter(true);
     } else {
@@ -58,13 +61,14 @@ export default function App() {
               padding="md"
               style={{ paddingTop: '60px' }}
               header={<Header fixed={true} height={60} p="xs">{<MainHeader />}</Header>}
-              footer={<Footer height={60} p="xs" fixed={fixedFooter}>{<MainFooter />} </Footer>}
-            // styles={(theme) => ({
-            //   main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : "#fff" },
-            // })}
+              footer={<Footer height={60} p={0} fixed={fixedFooter}>{<MainFooter />} </Footer>}
+            styles={(theme) => ({
+              main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : "#fff",height: bodyHeight },
+            })}
             >
-              <div ref={(divElement) => { checkHeight(); setContentHeight((divElement)?divElement?.clientHeight:0) }}> <Outlet /></div>
-
+            <Container size='xl' px={0}>
+              <div ref={(divElement) => { checkHeight(); setContentHeight((divElement)?divElement?.clientHeight:0) }}><Outlet /></div>
+</Container>
             </AppShell>
           </MantineProvider>
         </ColorSchemeProvider>
