@@ -1,20 +1,18 @@
-import { Grid,Space} from '@mantine/core';
-import SummaryCard from '~/components/summarycard/summarycard';
+import { Title, Space } from '@mantine/core';
+import SummaryCard from '~/components/summarybox/summarybox';
 import TxListCard from '~/components/txlistcard/txlistcard';
-import BlockListCard from '~/components/blocklistcard/blocklistcard';
 function Home() {
 
   return (
     <>
-    <SummaryCard></SummaryCard>
-    <Space h="md" />
-    <Grid grow>
-      <Grid.Col span={4}> <BlockListCard title={"Latest Blocks"}></BlockListCard></Grid.Col>
-      <Grid.Col span={4}> <TxListCard title={"Latest Transactions"}></TxListCard></Grid.Col>
-    </Grid>
-  
+      <Title order={3} style={{ color: '#fff', letterSpacing: "0.01em", fontStyle: 'normal' }}>Overview</Title>
+      <SummaryCard></SummaryCard>
+      <Space h="md" />
+      <Title order={3} style={{ color: '#fff' }}>Transaction</Title>
+      <Space h="md" />
+      <TxListCard title={"Latest Transactions"}></TxListCard>
     </>
-    
+
   );
 }
 

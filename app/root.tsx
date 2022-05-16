@@ -6,15 +6,16 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import { ArrowNarrowUp } from 'tabler-icons-react';
 
-import { AppShell, Header, Footer,Container } from '@mantine/core';
-import { MantineProvider, ColorSchemeProvider, ColorScheme } from '@mantine/core';
+import { useWindowScroll } from '@mantine/hooks';
+import { AppShell, Header, Footer, MantineProvider, ColorSchemeProvider, ColorScheme, Container, Navbar, Affix, ActionIcon, Transition } from '@mantine/core';
 import { useHotkeys, useLocalStorage } from '@mantine/hooks';
 import MainHeader from '~/mainheader';
 import { Outlet } from "@remix-run/react";
 import MainFooter from "./mainfooter";
 import { useEffect, useState } from "react";
-
+import MainNavbar from "./mainnavbar";
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
   title: "Incognito Explorer",
@@ -22,10 +23,10 @@ export const meta: MetaFunction = () => ({
 });
 
 export default function App() {
+  const [openedNavBar, setOpenedNavBar] = useState(false);
   const [contentHeight, setContentHeight] = useState(0);
-  const [bodyHeight, setBodyHeight] = useState(0);
   const [fixedFooter, setFixedFooter] = useState(false);
-
+  const [scroll, scrollTo] = useWindowScroll();
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
     key: 'mantine-color-scheme',
     defaultValue: 'dark',
@@ -37,7 +38,6 @@ export default function App() {
 
   useHotkeys([['mod+J', () => toggleColorScheme()]]);
   function checkHeight() {
-    setBodyHeight(window.innerHeight - 120)
     if (window.innerHeight - 120 > contentHeight) {
       setFixedFooter(true);
     } else {
@@ -53,22 +53,64 @@ export default function App() {
       <head>
         <Meta />
         <Links />
+        <link href="/stylesheet.css" rel="stylesheet"></link>
       </head>
       <body>
+        {/* <Global
+          styles={[
+            {
+              '@font-face': {
+                fontFamily: 'Inter',
+                src: `url('assets/fonts/static/') format("opentype")`,
+              },
+            },
+          ]}
+        /> */}
         <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-          <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
+          <MantineProvider theme={{
+            colorScheme,
+            fontFamily: "Inter",
+            headings: { fontFamily: "Inter" },
+          }} withGlobalStyles withNormalizeCSS defaultProps={{
+            Container: {
+              sizes: {
+                xs: 540,
+                sm: 720,
+                md: 960,
+                lg: 1140,
+                xl: 1500,
+              },
+            },
+          }}>
             <AppShell
               padding="md"
-              style={{ paddingTop: '60px' }}
-              header={<Header fixed={true} height={60} p="xs">{<MainHeader />}</Header>}
+              navbarOffsetBreakpoint="lg"
+              fixed
+              navbar={
+                <Navbar p="md" hiddenBreakpoint="lg" hidden={!openedNavBar} width={{ sm: 200, lg: 300 }}>
+                  <MainNavbar />
+                </Navbar>
+              }
+              header={<Header fixed={true} height={60} p="xs">
+                <MainHeader />
+              </Header>}
               footer={<Footer height={60} p={0} fixed={fixedFooter}>{<MainFooter />} </Footer>}
-            styles={(theme) => ({
-              main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : "#fff",height: bodyHeight },
-            })}
+              styles={(theme) => ({
+                main: { backgroundColor: theme.colorScheme === 'dark' ? '#1A1A1A' : "#fff" },
+              })}
             >
-            <Container size='xl' px={0}>
-              <div ref={(divElement) => { checkHeight(); setContentHeight((divElement)?divElement?.clientHeight:0) }}><Outlet /></div>
-</Container>
+              <Container size='xl' px={0}>
+                <div ref={(divElement) => { checkHeight(); setContentHeight((divElement) ? divElement?.clientHeight : 0) }}><Outlet /></div>
+              </Container>
+              <Affix position={{ bottom: 70, right: 20 }}>
+                <Transition transition="slide-up" mounted={scroll.y > 0}>
+                  {(transitionStyles) => (
+                    <ActionIcon radius="xl" variant="filled" style={transitionStyles} onClick={() => scrollTo({ y: 0 })}>
+                      < ArrowNarrowUp />
+                    </ActionIcon>
+                  )}
+                </Transition>
+              </Affix>
             </AppShell>
           </MantineProvider>
         </ColorSchemeProvider>
@@ -77,6 +119,6 @@ export default function App() {
         <Scripts />
         <LiveReload />
       </body>
-    </html>
+    </html >
   );
 }

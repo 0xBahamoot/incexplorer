@@ -1,8 +1,8 @@
-import { ActionIcon, useMantineColorScheme ,Group,Button,TextInput,Image,Center,Divider, Title} from '@mantine/core';
-import { Sun, MoonStars,Search,ChevronDown } from 'tabler-icons-react';
+import { ActionIcon, useMantineColorScheme, Group, Button, TextInput, Image, Center, Divider, Title } from '@mantine/core';
+import { Sun, MoonStars, Search, ChevronDown } from 'tabler-icons-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import TokenPriceChip from '~/components/tokenpricechip/tokenpricechip';
 import { Popover, Badge, Text } from '@mantine/core';
 
 function MainFooter() {
@@ -12,15 +12,21 @@ function MainFooter() {
 
   return (
     <>
-     <Group position="apart" grow>
-     <Group position="left">
-     <Center style={{ width: 150, height: 60 }}>
-       <Title order={5}>© 2022 Incognito</Title>
-      </Center>
-    </Group>
-    </Group>
+      <Group position="apart" grow>
+        <Group position="left">
+          <Center style={{ width: 150, height: 60 }}>
+            <Title order={5}>© 2022 Incognito</Title>
+          </Center>
+        </Group>
+        <Group position="right" style={{ paddingRight: 10 }}>
+          <TokenPriceChip tokenid='0000004' />
+          <Button variant="subtle" color="dark" size="md" compact component="a" target={"_blank"} href="https://incognito.org/apps">Media kit</Button>
+          <Button variant="subtle" color="dark" size="md" compact component="a" target={"_blank"} href="https://incognito.org/apps">Telegram</Button>
+          <Button variant="subtle" color="dark" size="md" compact component="a" target={"_blank"} href="https://incognito.org/apps">Twitter</Button>
+        </Group>
+      </Group>
     </>
-    
+
   );
 }
 

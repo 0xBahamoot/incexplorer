@@ -1,13 +1,15 @@
-import { Button,Divider} from '@mantine/core';
-
+import Chart from "./chart.client";
+import { ClientOnly } from "~/components/clientonly/clientonly";
 function LiquidityTVL() {
+    return (
+        <>
+            <ClientOnly>
+                <Chart />
+            </ClientOnly>
 
-  return (
-    <>
-   <Button  variant="light" size="md" compact>LiquidityTVL</Button>
-    </>
-    
-  );
+        </>
+
+    );
 }
 
 export default LiquidityTVL;

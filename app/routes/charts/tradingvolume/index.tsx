@@ -1,12 +1,12 @@
-import { Button,Divider} from '@mantine/core';
+import { Button, Divider } from '@mantine/core';
 
 function TradingVolume() {
 
   return (
     <>
-   <Button  variant="light" size="md" compact>TradingVolume</Button>
+      <Button variant="light" size="md" compact>Trading Volume</Button>
     </>
-    
+
   );
 }
 

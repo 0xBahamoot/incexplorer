@@ -1,22 +1,27 @@
-import { Button,Grid,Paper,Text} from '@mantine/core';
+import { Paper, Text } from '@mantine/core';
+import React, { FunctionComponent } from 'react'
+import useStyles from './styles'
+import format from '~/utils/format';
+type Props = {
+    title: string,
+    content: number,
+    subtext: string,
+    currencyFormat: boolean,
+    type: number,
+}
 
-function SummaryCard() {
+const SummaryCard: FunctionComponent<Props> = ({ title, content, currencyFormat, type, subtext }) => {
+    const { classes } = useStyles();
+    return (
+        <>
+            <Paper shadow="sm" radius="md" p="xl" withBorder className={classes.paper}>
+                <p className={classes.title}>{title.toLowerCase()}</p>
+                <Text className={classes.content}>{currencyFormat ? "$" : ""}{format.formatAmount({ humanAmount: content, decimals: 4 })}</Text>
+                {/* <Text size="sm">{subtext}</Text> */}
+            </Paper>
+        </>
 
-  return (
-    <>
-   {/* <Button  variant="light" size="md" compact>SummaryCard</Button> */}
-   <Paper shadow="sm" radius="md" p="sm" withBorder>
-   <Grid grow gutter="sm">
-      <Grid.Col span={4}>1</Grid.Col>
-      <Grid.Col span={4}>2</Grid.Col>
-      <Grid.Col span={4}>3</Grid.Col>
-      <Grid.Col span={4}>4</Grid.Col>
-      <Grid.Col span={4}>5</Grid.Col>
-    </Grid>
-    </Paper>
-    </>
-    
-  );
+    );
 }
 
 export default SummaryCard;
