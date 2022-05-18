@@ -53,7 +53,7 @@ function MainHeader() {
 
             <MediaQuery smallerThan={450} styles={{ display: 'none' }}>
               <a href="/">
-                <Image src="/assets/images/logo.png" alt="logo" style={{ filter: dark ? "invert(100%)" : "" }} height={30} />
+                <Image alt="logo" src={dark ? "/assets/images/logo_h_white.svg" : "/assets/images/logo_h_dark.svg"} height={30} />
               </a>
             </MediaQuery>
           </Group>
@@ -73,7 +73,7 @@ function MainHeader() {
         <Group position="apart">
           <Group position="left">
             <a href="/">
-              <Image src="/assets/images/logo.png" alt="logo" style={{ filter: dark ? "invert(100%)" : "" }} height={30} />
+              <Image alt="logo" src={dark ? "/assets/images/logo_h_white.svg" : "/assets/images/logo_h_dark.svg"} height={30} />
             </a>
             {/* <Popover
               opened={subMenuBC}
@@ -173,7 +173,7 @@ function MainHeader() {
               radius="md"
               // color={dark ? 'yellow' : 'blue'}
               onClick={() => toggleColorScheme()}
-              title="Toggle color scheme"
+              title=""
             >
               {dark ? <Sun size={24} /> : <MoonStars size={24} />}
             </ActionIcon>

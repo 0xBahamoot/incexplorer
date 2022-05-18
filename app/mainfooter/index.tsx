@@ -20,9 +20,9 @@ function MainFooter() {
         </Group>
         <Group position="right" style={{ paddingRight: 10 }}>
           <TokenPriceChip tokenid='0000004' />
-          <Button variant="subtle" color="dark" size="md" compact component="a" target={"_blank"} href="https://incognito.org/apps">Media kit</Button>
-          <Button variant="subtle" color="dark" size="md" compact component="a" target={"_blank"} href="https://incognito.org/apps">Telegram</Button>
-          <Button variant="subtle" color="dark" size="md" compact component="a" target={"_blank"} href="https://incognito.org/apps">Twitter</Button>
+          <Button variant="subtle" color="dark" size="md" compact component="a" target={"_blank"} href="https://incognito.org/mediakit">Media kit</Button>
+          <Button variant="subtle" color="dark" size="md" compact component="a" target={"_blank"} href="https://t.me/incognitochain">Telegram</Button>
+          <Button variant="subtle" color="dark" size="md" compact component="a" target={"_blank"} href="https://twitter.com/IncognitoChain">Twitter</Button>
         </Group>
       </Group>
     </>

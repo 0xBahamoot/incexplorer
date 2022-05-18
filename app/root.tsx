@@ -87,14 +87,14 @@ export default function App() {
               navbarOffsetBreakpoint="lg"
               fixed
               navbar={
-                <Navbar p="md" hiddenBreakpoint="lg" hidden={!openedNavBar} width={{ sm: 200, lg: 300 }}>
+                <Navbar p="md" hiddenBreakpoint="lg" hidden={!openedNavBar} width={{ sm: 200, lg: 300 }} style={{ backgroundColor: '#1A1A1A' }}>
                   <MainNavbar />
                 </Navbar>
               }
-              header={<Header fixed={true} height={60} p="xs">
+              header={<Header fixed={true} height={60} p="xs" style={{ backgroundColor: '#1A1A1A' }}>
                 <MainHeader />
               </Header>}
-              footer={<Footer height={60} p={0} fixed={fixedFooter}>{<MainFooter />} </Footer>}
+              footer={<Footer height={60} p={0} fixed={fixedFooter} style={{ backgroundColor: '#1A1A1A' }}>{<MainFooter />} </Footer>}
               styles={(theme) => ({
                 main: { backgroundColor: theme.colorScheme === 'dark' ? '#1A1A1A' : "#fff" },
               })}
@@ -102,10 +102,10 @@ export default function App() {
               <Container size='xl' px={0}>
                 <div ref={(divElement) => { checkHeight(); setContentHeight((divElement) ? divElement?.clientHeight : 0) }}><Outlet /></div>
               </Container>
-              <Affix position={{ bottom: 70, right: 20 }}>
+              <Affix position={{ bottom: 70, right: 10 }}>
                 <Transition transition="slide-up" mounted={scroll.y > 0}>
                   {(transitionStyles) => (
-                    <ActionIcon radius="xl" variant="filled" style={transitionStyles} onClick={() => scrollTo({ y: 0 })}>
+                    <ActionIcon p={2} radius="xl" variant="filled" style={transitionStyles} onClick={() => scrollTo({ y: 0 })}>
                       < ArrowNarrowUp />
                     </ActionIcon>
                   )}

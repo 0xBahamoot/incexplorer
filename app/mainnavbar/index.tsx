@@ -24,10 +24,11 @@ function BlockChainSection() {
     return (
         <>
             <Stack justify="flex-start">
-                <NavbarBtn text='Overview'></NavbarBtn>
-                <NavbarBtn text='Beacon chain'></NavbarBtn>
-                <NavbarBtn text='Shards chain'></NavbarBtn>
-                <NavbarBtn text='Transaction'></NavbarBtn>
+                <NavbarBtn text='Overview' link='/'></NavbarBtn>
+                <NavbarBtn text='Beacon chain' link='/chain/beacon'></NavbarBtn>
+                <NavbarBtn text='Shards chain' link='/chain/shards'></NavbarBtn>
+                <NavbarBtn text='Transaction' link='/txs'></NavbarBtn>
+                <NavbarBtn text='Pending txs' link='/pendingtxs'></NavbarBtn>
             </Stack>
         </>
     )
@@ -37,8 +38,8 @@ function ExchangeSection() {
     return (
         <>
             <Stack justify="flex-start">
-                <NavbarBtn text='Market'></NavbarBtn>
-                <NavbarBtn text='Liquidity'></NavbarBtn>
+                <NavbarBtn text='Market' link='/'></NavbarBtn>
+                <NavbarBtn text='Liquidity' link='/'></NavbarBtn>
             </Stack>
         </>
     )
@@ -48,8 +49,8 @@ function ShieldedSection() {
     return (
         <>
             <Stack justify="flex-start">
-                <NavbarBtn text='TVL'></NavbarBtn>
-                <NavbarBtn text='Shield Volume'></NavbarBtn>
+                <NavbarBtn text='TVL' link='/'></NavbarBtn>
+                <NavbarBtn text='Shield Volume' link='/'></NavbarBtn>
             </Stack>
         </>
     )
@@ -59,7 +60,7 @@ function NetworkSection() {
     return (
         <>
             <Stack justify="flex-start">
-                <NavbarBtn text='Validators'></NavbarBtn>
+                <NavbarBtn text='Validators' link='/validators'></NavbarBtn>
             </Stack>
         </>
     )
@@ -69,7 +70,7 @@ function GetStartedSection() {
     return (
         <>
             <Stack justify="flex-start">
-                <NavbarBtn text='Download'></NavbarBtn>
+                <NavbarBtn text='Download' link='/'></NavbarBtn>
             </Stack>
         </>
     )

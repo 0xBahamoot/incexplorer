@@ -1,12 +1,12 @@
-import { Button,Divider} from '@mantine/core';
+import { Text } from '@mantine/core';
 
 function BeaconDetail() {
 
   return (
     <>
-   <Button  variant="light" size="md" compact>BeaconDetail</Button>
+      <Text size="md">Beacon Chain | Total blocks: </Text>
     </>
-    
+
   );
 }
 
