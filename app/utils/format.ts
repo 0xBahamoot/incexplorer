@@ -120,7 +120,10 @@ const formatAmount = (payload: IAmount) => {
     return formatedAmount;
 };
 
-const formatUnixDateTime = (dateTime: moment.MomentInput, formatPattern = 'DD MMM HH:mm:ss') =>
+const formatUnixDateTime = (dateTime: number, formatPattern = 'DD MMM HH:mm:ss') =>
+    moment.unix(dateTime).format(formatPattern);
+  
+    const formatDateTime = (dateTime: string, formatPattern = 'DD MMM HH:mm:ss') =>
     moment(dateTime).format(formatPattern);
 
 const number = (num: number) => {
@@ -179,6 +182,7 @@ export const getTagTxTypeColor = (typeid: string) => {
 const format = {
     formatAmount,
     formatUnixDateTime,
+    formatDateTime,
     number,
     toFixed,
     formatTime,

@@ -24,6 +24,18 @@ const useStyles = createStyles((theme) => ({
         letterSpacing: '0.01em',
         margin: 0,
         color: '#fff'
+    },
+    propTitle: {
+        color: '#757575',
+        fontSize: 14,
+    },
+    propData: {
+        color: '#fff',
+        fontSize: 16,
+        marginTop: -10,
+        textOverflow: 'ellipsis',
+        overflow: 'hidden',
+        maxWidth: '100%'
     }
 }));
 

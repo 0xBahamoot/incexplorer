@@ -36,3 +36,14 @@ export type BlockData = {
     Instrustions: any[],
     ShardStates: any,
 }
+
+export type ChainInfo = {
+    BlockProducer: string,
+    Epoch: number,
+    EpochBlock: number,
+    Hash: string,
+    Height: number,
+    RemainingBlockEpoch: number,
+    Time: number,
+    TotalTxs: number,
+}

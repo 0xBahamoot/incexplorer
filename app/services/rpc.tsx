@@ -41,7 +41,7 @@ function CreateRPCInstance(endpoint: string) {
 }
 
 
-function CreateRPCBody(method: string, params: any) {
+function CreateRPCBody(method: string, params?: any) {
     return {
         jsonrpc: '1.0',
         method,

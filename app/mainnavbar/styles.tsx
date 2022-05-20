@@ -8,7 +8,7 @@ const accordionLabelStyle = createStyles((theme, _params, getRef) => ({
         color: theme.colorScheme === 'dark' ? theme.white : theme.black,
 
         '&:hover': {
-            backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
+            backgroundColor: theme.colorScheme === 'dark' ? '#303030' : theme.colors.gray[1],
             opacity: 1,
         },
     },

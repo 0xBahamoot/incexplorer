@@ -7,3 +7,9 @@ export const getBlocks = async (chainId: number) => {
         chainId
     ]));
 };
+
+
+export const getBlockchainInfo = async () => {
+    const inst = CreateRPCInstance('')
+    return inst.post('', CreateRPCBody('getblockchaininfo'));
+};

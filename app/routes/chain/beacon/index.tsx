@@ -60,6 +60,8 @@ function BeaconDetail() {
         </Grid>
       </Paper>
       <Space h="md" />
+      <Group><Text size="xl" color={"#fff"} style={{ fontWeight: 'bold' }}>Most recent blocks</Text> </Group>
+      <Space h="md" />
       <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
         <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
       </Group>

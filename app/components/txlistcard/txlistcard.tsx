@@ -19,14 +19,14 @@ const TxListCard: FunctionComponent<Props> = ({ txlist }) => {
     return (
 
       <tr key={element.tx_hash} style={{ cursor: 'pointer' }}>
-        <td>{format.formatUnixDateTime(element.lock_time)}</td>
+        <td>{format.formatDateTime(element.lock_time)}</td>
         <td>{element.tx_hash}</td>
         <td>{element.block_height}</td>
         <td>{element.shard_id}</td>
         <td>
           <Box
             sx={(theme) => ({
-              backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+              backgroundColor: theme.colorScheme === 'dark' ? '#303030' : theme.colors.gray[0],
               textAlign: 'center',
               paddingLeft: 15,
               paddingRight: 15,
@@ -34,7 +34,8 @@ const TxListCard: FunctionComponent<Props> = ({ txlist }) => {
               paddingBottom: 5,
               width: 'auto',
               display: 'inline-block',
-              borderRadius: 12,
+              borderRadius: 6,
+              fontSize: 12
             })}
           >{element.meta_type_name}
           </Box>

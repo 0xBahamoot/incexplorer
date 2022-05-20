@@ -21,14 +21,15 @@ const NavbarBtn: FunctionComponent<Props> = ({ text, link }) => {
                     textAlign: 'left',
                     padding: theme.spacing.sm,
                     borderRadius: 8,
-                    fontWeight: 'bold',
+                    fontWeight: 500,
+                    letterSpacing: "0.01em",
                     paddingLeft: 30,
                     color: theme.colorScheme === 'dark' ? '#fff' : '#000',
                     cursor: 'pointer',
                     textDecoration: 'none',
                     '&:hover': {
                         backgroundColor:
-                            theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
+                            theme.colorScheme === 'dark' ? '#303030' : theme.colors.gray[1],
                     },
                 })}
             >
