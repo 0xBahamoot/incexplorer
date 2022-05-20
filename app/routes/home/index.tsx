@@ -28,32 +28,32 @@ function Home() {
     await data.map((item: any) => {
       switch (item.Name) {
         case "TRADING VOLUME":
-          networkList.push(item)
+          pdexList.push(item)
           break;
         case "LIQUIDITY":
-          networkList.push(item)
+          pdexList.push(item)
           break;
         case "24H TRADING VOLUME":
-          networkList.push(item)
+          pdexList.push(item)
           break;
 
         case "SHIELDED":
-          pdexList.push(item)
+          networkList.push(item)
           break;
         case "TRANSACTIONS":
-          pdexList.push(item)
+          networkList.push(item)
           break;
         case "24H TX COUNT":
-          pdexList.push(item)
+          networkList.push(item)
           break;
         case "ACTIVE VALIDATORS":
-          pdexList.push(item)
+          networkList.push(item)
           break;
         case "BEACON HEIGHT":
-          pdexList.push(item)
+          networkList.push(item)
           break;
         case "1H TX COUNT":
-          pdexList.push(item)
+          networkList.push(item)
           break;
 
         case "PRV PRICE":
