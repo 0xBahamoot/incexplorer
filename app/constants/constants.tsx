@@ -6,5 +6,5 @@ export const TestnetConfig = {
 export const MainnetConfig = {
     AnalyticsEndpoint: "https://api-explorer.incognito.org/",
     CoinserviceEndpoint: "",
-    FullnodeEndpoint: "",
+    FullnodeEndpoint: "https://community-fullnode.incognito.org/fullnode",
 }

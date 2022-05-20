@@ -132,11 +132,7 @@ function MainHeader() {
                 <Button variant="subtle" color={"dark"} compact component={Link} to="/charts/shieldvolume">Shielding Volume</Button>
                 <Button variant="subtle" color={"dark"} compact component={Link} to="/charts">View all</Button>
               </Stack>
-            </Popover> */}
-            <Button variant="subtle" color="dark" size="md" compact component={Link} to="/">Explore</Button>
-            <Button variant="subtle" color="dark" size="md" compact component="a" target={"_blank"} href="https://incognito.org/apps">About us</Button>
-            <Button variant="subtle" color="dark" size="md" compact component="a" target={"_blank"} href="https://we.incognito.org/">Community</Button>
-          </Group>
+            </Popover> */} </Group>
 
           <Group position="right">
             <TextInput
@@ -145,7 +141,11 @@ function MainHeader() {
               radius="md"
               icon={<Search size={14} />} style={{ width: 300 }}
             />
-            <Popover
+            <Button variant="subtle" color="dark" size="md" compact component={Link} to="/">Explore</Button>
+            <Button variant="subtle" color="dark" size="md" compact component="a" target={"_blank"} href="https://incognito.org/apps">About us</Button>
+            <Button variant="subtle" color="dark" size="md" compact component="a" target={"_blank"} href="https://we.incognito.org/">Community</Button>
+
+            {/* <Popover
               opened={subMenuNetwork}
               onClose={() => setSubMenuNetwork(false)}
               position="bottom"
@@ -166,8 +166,8 @@ function MainHeader() {
                 <Button variant="subtle" color={"dark"} compact onClick={() => { switchNetwork("mainnet") }}>Incognito Mainnet</Button>
                 <Button variant="subtle" color={"dark"} compact onClick={() => { switchNetwork("testnet") }}>Incognito Testnet</Button>
               </Stack>
-            </Popover>
-            <ActionIcon
+            </Popover> */}
+            {/* <ActionIcon
               variant="light"
               size="lg"
               radius="md"
@@ -176,7 +176,7 @@ function MainHeader() {
               title=""
             >
               {dark ? <Sun size={24} /> : <MoonStars size={24} />}
-            </ActionIcon>
+            </ActionIcon> */}
           </Group>
         </Group>
       </MediaQuery>

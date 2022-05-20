@@ -11,8 +11,6 @@ type Props = {
 
 const TxListCard: FunctionComponent<Props> = ({ txlist }) => {
   const { classes } = useStyles();
-
-  // let elements: any[] = [{ hash: "sdfsd", date: "123123", blockheight: "DCV", shardid: 2, metatype: 'normal' }, { hash: "sdfsd", date: "123123", blockheight: "DCV", shardid: 2, metatype: 'normal' }, { hash: "sdfsd", date: "123123", blockheight: "DCV", shardid: 2, metatype: 'normal' }, { hash: "sdfsd", date: "123123", blockheight: "DCV", shardid: 2, metatype: 'normal' }, { hash: "sdfsd", date: "123123", blockheight: "DCV", shardid: 2, metatype: 'normal' }, { hash: "sdfsd", date: "123123", blockheight: "DCV", shardid: 2, metatype: 'normal' }, { hash: "sdfsd", date: "123123", blockheight: "DCV", shardid: 2, metatype: 'normal' }, { hash: "sdfsd", date: "123123", blockheight: "DCV", shardid: 2, metatype: 'normal' }, { hash: "sdfsd", date: "123123", blockheight: "DCV", shardid: 2, metatype: 'normal' }, { hash: "sdfsd", date: "123123", blockheight: "DCV", shardid: 2, metatype: 'normal' }]
   const rows = txlist?.map((element, idx) => {
     if (idx >= 15) {
       return null

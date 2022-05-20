@@ -1,5 +1,5 @@
 import { Title, Space, Button, Loader, Group } from '@mantine/core';
-import SummaryCard from '~/components/summarybox/summarybox';
+import SummaryBox from '~/components/summarybox/summarybox';
 import TxListCard from '~/components/txlistcard/txlistcard';
 import { useState, useEffect } from 'react';
 import { getNormalTx } from '~/services/transactions';
@@ -21,7 +21,7 @@ function Home() {
   return (
     <>
       <Title order={3} style={{ color: '#fff', letterSpacing: "0.01em", fontStyle: 'normal' }}>Overview</Title>
-      <SummaryCard></SummaryCard>
+      <SummaryBox></SummaryBox>
       <Space h="md" />
       <Title order={3} style={{ color: '#fff' }}>Transaction</Title>
       <Space h="md" />
