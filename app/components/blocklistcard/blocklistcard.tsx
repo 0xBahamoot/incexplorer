@@ -1,5 +1,7 @@
 import { Button, Card, Table, Paper, Text } from '@mantine/core';
 
+import { Link } from 'react-router-dom';
+
 import React, { FunctionComponent } from 'react'
 import { BlockData } from '~/types/types';
 import useStyles from './styles'
@@ -21,7 +23,7 @@ const BlockListCard: FunctionComponent<Props> = ({ blocklist, blockType }) => {
     return (
       <tr key={element.Hash} style={{ cursor: 'pointer' }}>
         <td>{element.Height}</td>
-        <td>{element.Hash}</td>
+        <td><Text variant="link" component={Link} to={"/tx/" + element.Hash}>{element.Hash}</Text></td>
         <td style={{ textOverflow: 'ellipsis', maxWidth: 300, overflow: 'hidden' }}>{element.BlockProducer}</td>
         <td>{format.formatUnixDateTime(element.Time)}</td>
         <td>{element.Time}</td>

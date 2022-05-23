@@ -1,12 +1,14 @@
 import { ActionIcon, useMantineColorScheme, Group, Button, TextInput, Image, Stack, MediaQuery, Burger, Drawer, useMantineTheme } from '@mantine/core';
 import { Sun, MoonStars, Search } from 'tabler-icons-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocalStorage } from '@mantine/hooks';
 import { Link } from 'react-router-dom';
 
-import { Popover, Badge, Text } from '@mantine/core';
+// import { useLocation } from 'react-router-dom';
 
 function MainHeader() {
+  // let location = useLocation();
+
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const [opened, setOpened] = useState(false);
 
@@ -23,6 +25,12 @@ function MainHeader() {
     setChainNetwork(network);
     window.location.reload();
   }
+
+  // useEffect(() => {
+  //   if (location.pathname === '/') {
+  //     setOpened(false);
+  //   }
+  // }, [location])
 
   return (
     <>
@@ -74,9 +82,9 @@ function MainHeader() {
             </a></Group>
 
           <Group position='center'>
-            <Button variant="subtle" color="dark" size="md" compact component={Link} to="/">Explore</Button>
-            <Button variant="subtle" color="dark" size="md" compact component="a" target={"_blank"} href="https://incognito.org/apps">About us</Button>
-            <Button variant="subtle" color="dark" size="md" compact component="a" target={"_blank"} href="https://we.incognito.org/">Community</Button>
+            <Button variant="subtle" color="gray" size="md" compact component={Link} to="/">Explore</Button>
+            <Button variant="subtle" color="gray" size="md" compact component="a" target={"_blank"} href="https://incognito.org/apps">About us</Button>
+            <Button variant="subtle" color="gray" size="md" compact component="a" target={"_blank"} href="https://we.incognito.org/">Community</Button>
           </Group>
           <Group position="right">
             <TextInput

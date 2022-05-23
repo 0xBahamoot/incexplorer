@@ -7,7 +7,71 @@ export type TxData = {
     meta_type_name: string,
 }
 
+export type TxDetail = {
+    Hash: string,
+    LockTime: string,
+    Fee: number,
+    BlockHeight: number,
+    BlockHash: string,
+    IsInBlock: boolean,
+    CustomTokenData: string,
+    Index: number,
+    Info: string,
+    InputCoinPubKey: string,
+    IsInMempool: boolean,
+    IsPrivacy: boolean,
+    MetaTypeId: number,
+    Metadata: string,
+    PrivacyCustomTokenData: string,
+    PrivacyCustomTokenFee: number,
+    PrivacyCustomTokenID: string,
+    PrivacyCustomTokenIsPrivacy: boolean,
+    PrivacyCustomTokenName: string,
+    PrivacyCustomTokenProofDetail: { InputCoins: CoinData[], OutputCoins: CoinData[] }
+    PrivacyCustomTokenSymbol: string,
+    Proof: string,
+    ProofDetail: { InputCoins: CoinData[], OutputCoins: CoinData[] }
+    RawLockTime: number,
+    RawSigPubKey: string,
+    ShardID: number,
+    Sig: string,
+    SigPubKey: string,
+    TransactionData: TxAdditionalData,
+    TxSize: number,
+    Type: string,
+    Version: number,
+}
 
+export type TxAdditionalData = {
+    amount1: number,
+    amount2: number,
+    meta_type_group: string,
+    meta_type_id: string,
+    meta_type_name: string,
+    pair_token: string,
+    status: string,
+    token1_id: string,
+    token1_pdecimal: number,
+    token1_symbol: string,
+    token2_id: string,
+    token2_pdecimal: number,
+    token2_symbol: string,
+    trading_fee: string,
+    tx_fee: string,
+    tx_hash_request: string,
+}
+
+export type CoinData = {
+    Commitment: string,
+    Index: number,
+    Info: string,
+    KeyImage: string,
+    PublicKey: string,
+    Randomness: string,
+    TxRandom: string,
+    Value: string,
+    Version: number,
+}
 export type BlockData = {
     Time: number,
     Hash: string,

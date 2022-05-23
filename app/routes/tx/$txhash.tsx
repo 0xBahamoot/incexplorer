@@ -1,23 +1,31 @@
-import { Paper, Grid, Text, createStyles } from '@mantine/core';
+import { Paper, Grid, Text, createStyles, Space } from '@mantine/core';
 import { useState } from 'react';
-const useStyles = createStyles((theme, _params, getRef) => ({
-  wrapper: {
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
-    borderColor: "#eee",
-    borderBottomWidth: 1,
-    borderBottomStyle: "solid",
-    marginBottom: 15
-  },
-}));
+import type { LoaderFunction } from "@remix-run/node";
+import { TxDetail } from '~/types/types';
+import { useLoaderData } from "@remix-run/react";
+import { getDetailTx } from '~/services/transactions';
+import SectionTitle from '~/components/sectiontitle/sectiontitle';
+import useStyles from './styles'
 
-function TxDetail() {
 
-  const [txLoaded, setTxLoaded] = useState(false);
+export const loader: LoaderFunction = async ({ params }) => {
+  let txdetail: TxDetail[];
+  var txhash: any = params.txhash;
+  const { Result, Error } = (await getDetailTx(txhash)) as any;
+  txdetail = Result;
+  return txdetail
+};
+
+
+function Tx() {
+  const loaderData = useLoaderData();
   const { classes } = useStyles();
 
   return (
     <>
-      <Paper shadow="sm" radius="md" p="sm" withBorder>
+      <SectionTitle text={"Transaction " + loaderData.Hash} />
+      <Space h="md" />
+      <Paper shadow="sm" radius="md" p="xl" withBorder className={classes.container}>
         <Grid columns={24} className={classes.wrapper}>
           {/* Common block info*/}
           <Grid.Col span={4}>
@@ -122,4 +130,4 @@ function TxDetail() {
   );
 }
 
-export default TxDetail;
+export default Tx;

@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { MainnetConfig } from '~/constants/constants';
+import { MainnetConfig, TestnetConfig } from '~/constants/constants';
 
 const TIMEOUT = 20000;
 
 const HEADERS = { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' };
-function CreateRPCInstance(endpoint: string) {
+function CreateRPCInstance(network: string) {
     const instance = axios.create({
         timeout: TIMEOUT,
     });

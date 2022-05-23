@@ -1,4 +1,4 @@
-import { Text, Group, Space, Loader, Title, Box, Grid, Paper, Card, Table } from '@mantine/core';
+import { Text, Group, Space, Loader, Box, Grid, Paper, Card, Table } from '@mantine/core';
 import SummaryCard from '~/components/summarycard/summarycard';
 import type { LoaderFunction } from "@remix-run/node";
 import { useLoaderData, useFetcher } from "@remix-run/react";
@@ -8,6 +8,8 @@ import { getBlockchainInfo } from '~/services/chains';
 import format from '~/utils/format';
 import useStyles from './styles'
 import SectionTitle from '~/components/sectiontitle/sectiontitle';
+import { Link } from 'react-router-dom';
+
 
 export const loader: LoaderFunction = async () => {
     let shardsInfo: ChainInfo[] = []
@@ -86,7 +88,7 @@ function ShardsOverview() {
 
         return (
             <tr key={element.Hash} style={{ cursor: 'pointer' }}>
-                <td>{element.Hash}</td>
+                <td><Text variant="link" component={Link} to={"/block/" + element.Hash}>{element.Hash}</Text></td>
                 <td>{format.formatUnixDateTime(element.Time)}</td>
                 <td>{idx}</td>
                 <td>{format.formatAmount({ humanAmount: element.Height, decimals: 4 })}</td>
@@ -129,7 +131,7 @@ function ShardsOverview() {
                             </thead>
                             <tbody>
                                 <tr style={{ cursor: 'pointer' }}>
-                                    <td>{data.beaconInfo.Hash}</td>
+                                    <td><Text variant="link" component={Link} to={"/block/" + data.beaconInfo.Hash}>{data.beaconInfo.Hash}</Text></td>
                                     <td>{format.formatUnixDateTime(data.beaconInfo.Time)}</td>
                                     <td>{format.formatAmount({ humanAmount: data.beaconInfo.Height, decimals: 4 })}</td>
                                 </tr>
