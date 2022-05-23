@@ -1,10 +1,10 @@
 import Chart from "./chart.client";
 import { ClientOnly } from "~/components/clientonly/clientonly";
 import SectionTitle from "~/components/sectiontitle/sectiontitle";
-function ShieldVolumeChart() {
+function MarketChart() {
     return (
         <>
-            <SectionTitle text="Shield Volume" />
+            <SectionTitle text="Market" />
             <ClientOnly>
                 <Chart />
             </ClientOnly>
@@ -14,4 +14,4 @@ function ShieldVolumeChart() {
     );
 }
 
-export default ShieldVolumeChart;
+export default MarketChart;

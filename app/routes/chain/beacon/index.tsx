@@ -5,6 +5,7 @@ import type { LoaderFunction } from "@remix-run/node";
 import { useLoaderData, useFetcher } from "@remix-run/react";
 import { BlockData } from '~/types/types';
 import { useState, useEffect } from 'react';
+import SectionTitle from '~/components/sectiontitle/sectiontitle';
 
 export const loader: LoaderFunction = async () => {
   let blockList: BlockData[];
@@ -51,7 +52,7 @@ function BeaconDetail() {
 
   return (
     <>
-      <Group><Text size="xl" color={"#fff"} style={{ fontWeight: 'bold' }}>Beacon Chain</Text> <Text>|</Text> <Text>Total blocks: {currentHeight}</Text></Group>
+      <Group><SectionTitle text="Beacon Chain" /> <Text>|</Text> <Text>Total blocks: {currentHeight}</Text></Group>
       <Space h="md" />
       <Paper radius={12} withBorder style={{ backgroundColor: '#303030', padding: 20 }}>
         <Grid columns={18}>
@@ -60,7 +61,7 @@ function BeaconDetail() {
         </Grid>
       </Paper>
       <Space h="md" />
-      <Group><Text size="xl" color={"#fff"} style={{ fontWeight: 'bold' }}>Most recent blocks</Text> </Group>
+      <Group><SectionTitle text="Most recent blocks" /> </Group>
       <Space h="md" />
       <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
         <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />

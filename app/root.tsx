@@ -71,6 +71,13 @@ export default function App() {
             colorScheme,
             fontFamily: "Inter",
             headings: { fontFamily: "Inter" },
+            breakpoints: {
+              xs: 500,
+              sm: 800,
+              md: 1000,
+              lg: 1275,
+              xl: 1440,
+            },
           }} withGlobalStyles withNormalizeCSS defaultProps={{
             Container: {
               sizes: {

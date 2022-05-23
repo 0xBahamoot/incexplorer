@@ -5,6 +5,8 @@ import { ChainInfo } from '~/types/types';
 import moment from 'moment';
 import { ArrowUpRight } from 'tabler-icons-react';
 
+import { Link } from 'react-router-dom';
+
 type Props = {
     chainId: number
     chainInfo: ChainInfo
@@ -17,7 +19,7 @@ const ShardOverviewCard: FunctionComponent<Props> = ({ chainInfo, chainId }) => 
             <Paper radius={12} withBorder className={classes.paper}>
                 <Group position="apart" style={{ borderBottom: '1px solid #404040', padding: '10px 20px' }}>
                     <Text style={{ fontSize: 20, color: '#fff' }}>Shard {chainId}</Text>
-                    <ActionIcon size="lg" radius="xl">
+                    <ActionIcon size="lg" radius="xl" component={Link} to={"/chain/shard/" + chainId}>
                         <ArrowUpRight />
                     </ActionIcon>
                 </Group>

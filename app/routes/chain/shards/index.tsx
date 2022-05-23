@@ -1,10 +1,11 @@
-import { Text, Group, Space, Loader, Paper, Grid } from '@mantine/core';
+import { Title, Group, Space, Loader, Paper, Grid } from '@mantine/core';
 import type { LoaderFunction } from "@remix-run/node";
 import { useLoaderData, useFetcher } from "@remix-run/react";
 import { BlockData, ChainInfo } from '~/types/types';
 import { useState, useEffect } from 'react';
 import ShardOverviewCard from '~/components/shardoverviewcard/shardoverviewcard';
 import { getBlockchainInfo } from '~/services/chains';
+import SectionTitle from '~/components/sectiontitle/sectiontitle';
 
 export const loader: LoaderFunction = async ({ params }) => {
   let blockchainInfo: ChainInfo[] = []
@@ -55,7 +56,8 @@ function ShardsOverview() {
 
   return (
     <>
-      <Group><Text size="xl" color={"#fff"} style={{ fontWeight: 'bold' }}>Shard List</Text></Group>
+      <Group>
+        <SectionTitle text="Shard list" /></Group>
       <Space h="md" />
       <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
         <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />

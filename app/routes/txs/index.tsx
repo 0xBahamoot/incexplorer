@@ -2,6 +2,7 @@ import { Title, Space, TextInput, Pagination, Group, Text, Loader, } from '@mant
 import TxListCard from '~/components/txlistcard/txlistcard';
 import { useState, useEffect } from 'react';
 import { getNormalTx } from '~/services/transactions';
+import SectionTitle from '~/components/sectiontitle/sectiontitle';
 
 function Txs() {
     const [txListData, setTxListData] = useState<any>([]);
@@ -23,7 +24,7 @@ function Txs() {
     }, []);
 
     return <>
-        <Title order={4}>Transaction</Title>
+        <SectionTitle text="Transactions" />
         <Space h="md" />
         <Group position="center" spacing="lg">
             <Group position="center">

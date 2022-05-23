@@ -1,8 +1,10 @@
 import Chart from "./chart.client";
 import { ClientOnly } from "~/components/clientonly/clientonly";
-function LiquidityTVL() {
+import SectionTitle from "~/components/sectiontitle/sectiontitle";
+function LiquidityTVLChart() {
     return (
         <>
+            <SectionTitle text="Liquidity TVL" />
             <ClientOnly>
                 <Chart />
             </ClientOnly>
@@ -12,4 +14,4 @@ function LiquidityTVL() {
     );
 }
 
-export default LiquidityTVL;
+export default LiquidityTVLChart;

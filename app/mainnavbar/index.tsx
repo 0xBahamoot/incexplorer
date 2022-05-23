@@ -38,7 +38,7 @@ function ExchangeSection() {
     return (
         <>
             <Stack justify="flex-start">
-                <NavbarBtn text='Market' link='/'></NavbarBtn>
+                <NavbarBtn text='Market' link='/charts/market'></NavbarBtn>
                 <NavbarBtn text='Liquidity' link='/'></NavbarBtn>
             </Stack>
         </>
@@ -49,8 +49,8 @@ function ShieldedSection() {
     return (
         <>
             <Stack justify="flex-start">
-                <NavbarBtn text='TVL' link='/'></NavbarBtn>
-                <NavbarBtn text='Shield Volume' link='/'></NavbarBtn>
+                <NavbarBtn text='TVL' link='/charts/liquiditytvl'></NavbarBtn>
+                <NavbarBtn text='Shield Volume' link='/charts/shieldvolume'></NavbarBtn>
             </Stack>
         </>
     )

@@ -7,6 +7,7 @@ import { BlockData } from '~/types/types';
 import { useState, useEffect } from 'react';
 
 import { useParams } from "@remix-run/react";
+import SectionTitle from '~/components/sectiontitle/sectiontitle';
 
 export const loader: LoaderFunction = async ({ params }) => {
   let blockList: BlockData[];
@@ -56,7 +57,7 @@ function ShardDetail() {
 
   return (
     <>
-      <Group><Text size="xl" color={"#fff"} style={{ fontWeight: 'bold' }}>Shard {chainID}</Text> <Text>|</Text> <Text>Total blocks: {currentHeight}</Text></Group>
+      <Group><SectionTitle text={"Shard " + chainID} /><Text>|</Text> <Text>Total blocks: {currentHeight}</Text></Group>
       <Space h="md" />
       <Paper radius={12} withBorder style={{ backgroundColor: '#303030', padding: 20 }}>
         <Grid columns={18}>

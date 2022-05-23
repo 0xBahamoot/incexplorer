@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { getBlockchainInfo } from '~/services/chains';
 import format from '~/utils/format';
 import useStyles from './styles'
+import SectionTitle from '~/components/sectiontitle/sectiontitle';
 
 export const loader: LoaderFunction = async () => {
     let shardsInfo: ChainInfo[] = []
@@ -96,7 +97,7 @@ function ShardsOverview() {
 
     return (
         <>
-            <Title order={3} style={{ color: '#fff', letterSpacing: "0.01em", fontStyle: 'normal', fontWeight: 500 }}>Overview</Title>
+            <SectionTitle text="Overview" />
             <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
                 <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
             </Group>
@@ -113,8 +114,7 @@ function ShardsOverview() {
                 </Box>
             </div>
             <Space h="md" />
-            <Title order={3} style={{ color: '#fff', letterSpacing: "0.01em", fontStyle: 'normal', fontWeight: 500 }}>Beacon Chain</Title>
-
+            <SectionTitle text="Beacon Chain" />
             <Space h="sm" />
             <Paper radius={12} withBorder className={classes.container}>
                 <Card className={classes.container} radius={12} >
@@ -140,7 +140,7 @@ function ShardsOverview() {
             </Paper>
             <Space h="md" />
 
-            <Title order={3} style={{ color: '#fff', letterSpacing: "0.01em", fontStyle: 'normal', fontWeight: 500 }}>Most recent blocks</Title>
+            <SectionTitle text="Most recent blocks" />
             <Space h="sm" />
             <Paper radius={12} withBorder className={classes.container}>
                 <Card className={classes.container} radius={12} >
