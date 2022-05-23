@@ -62,6 +62,9 @@ function Home() {
         case "PRV CIRCULATING SUPPLY":
           prvList.push(item)
           break;
+        case "MARKET CAP":
+          prvList.push(item)
+          break;
 
         default:
           break;

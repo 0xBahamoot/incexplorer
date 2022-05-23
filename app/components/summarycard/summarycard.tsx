@@ -1,17 +1,21 @@
 import { Paper, Text, ActionIcon, Tooltip } from '@mantine/core';
-import { InfoCircle } from 'tabler-icons-react';
+// import { InfoCircle } from 'tabler-icons-react';
 import React, { FunctionComponent } from 'react'
 import useStyles from './styles'
 import format from '~/utils/format';
+import moment from 'moment';
+import { CaretUp, CaretDown } from 'tabler-icons-react';
+
 type Props = {
     title: string,
-    content: number,
-    description: string,
+    content: any,
+    changePercent?: number,
     currencyFormat: boolean,
     type: number,
 }
 
-const SummaryCard: FunctionComponent<Props> = ({ title, content, currencyFormat, type, description }) => {
+
+const SummaryCard: FunctionComponent<Props> = ({ title, content, currencyFormat, type, changePercent }) => {
     const { classes } = useStyles();
     return (
         <>
@@ -38,7 +42,25 @@ const SummaryCard: FunctionComponent<Props> = ({ title, content, currencyFormat,
 
 
                 </p>
-                <Text className={classes.content}>{currencyFormat ? "$" : ""}{format.formatAmount({ humanAmount: content, decimals: 4 })}</Text>
+                {(typeof content === 'string' || content instanceof String) ? <Text className={classes.content}>{content}</Text> :
+                    <Text className={classes.content}>
+                        {currencyFormat ? "$" : ""}{format.formatAmount({ humanAmount: content, decimals: 4 })}</Text>
+                }
+                {
+                    (changePercent !== undefined) ? <Text className={classes.subcontent} >{changePercent >= 0 ?
+                        <CaretUp
+                            size={18}
+                            strokeWidth={1}
+                            fill={'#0ECB81'}
+                            color={'#0ECB81'}
+                        /> :
+                        <CaretDown
+                            size={18}
+                            strokeWidth={1}
+                            fill={'#F6465D'}
+                            color={'#F6465D'}
+                        />}{changePercent}%</Text> : <Text>{moment().format('MM/DD/YYYY')}</Text>
+                }
             </Paper>
         </>
 

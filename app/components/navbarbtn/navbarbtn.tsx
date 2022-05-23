@@ -23,7 +23,7 @@ const NavbarBtn: FunctionComponent<Props> = ({ text, link }) => {
                     borderRadius: 8,
                     fontWeight: 500,
                     letterSpacing: "0.01em",
-                    paddingLeft: 30,
+                    paddingLeft: 55,
                     color: theme.colorScheme === 'dark' ? '#fff' : '#000',
                     cursor: 'pointer',
                     textDecoration: 'none',

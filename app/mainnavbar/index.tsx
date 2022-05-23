@@ -24,7 +24,7 @@ function BlockChainSection() {
     return (
         <>
             <Stack justify="flex-start">
-                <NavbarBtn text='Overview' link='/'></NavbarBtn>
+                <NavbarBtn text='Overview' link='/chain'></NavbarBtn>
                 <NavbarBtn text='Beacon chain' link='/chain/beacon'></NavbarBtn>
                 <NavbarBtn text='Shards chain' link='/chain/shards'></NavbarBtn>
                 <NavbarBtn text='Transaction' link='/txs'></NavbarBtn>

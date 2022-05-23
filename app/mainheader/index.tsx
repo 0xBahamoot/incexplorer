@@ -73,7 +73,7 @@ function MainHeader() {
         <Group position="apart">
           <Group position="left">
             <a href="/">
-              <Image alt="logo" src={dark ? "/assets/images/logo_h_white.svg" : "/assets/images/logo_h_dark.svg"} height={30} />
+              <Image alt="logo" src={dark ? "/assets/images/logo_h_white.svg" : "/assets/images/logo_h_dark.svg"} style={{ marginLeft: 25 }} height={30} />
             </a>
             {/* <Popover
               opened={subMenuBC}

@@ -8,7 +8,7 @@ const useStyles = createStyles((theme) => ({
     title: {
         fontStyle: 'normal',
         fontWeight: 500,
-        fontSize: 14,
+        fontSize: 18,
         innerHeight: '140%',
         letterSpacing: '0.005em',
         margin: '0 0 10px 0',
@@ -19,11 +19,16 @@ const useStyles = createStyles((theme) => ({
     content: {
         fontStyle: 'normal',
         fontWeight: 500,
-        fontSize: 24,
+        fontSize: 26,
         innerHeight: '140%',
         letterSpacing: '0.01em',
         margin: 0,
         color: '#fff'
+    },
+    subcontent: {
+        fontSize: 18,
+        display: 'flex',
+        alignItems: 'center',
     }
 }));
 

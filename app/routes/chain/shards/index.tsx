@@ -38,11 +38,11 @@ function ShardsOverview() {
 
   const fetcher = useFetcher();
 
-  // Get fresh data every 5 seconds.
+  // Get fresh data every 15 seconds.
   useEffect(() => {
     const interval = setInterval(() => {
       fetcher.load("/chain/shards?index");
-    }, 15 * 10000);
+    }, 15 * 1000);
     return () => clearInterval(interval);
   }, []);
   useEffect(() => {

@@ -16,7 +16,7 @@ const SummaryBox: FunctionComponent<Props> = ({ items }) => {
         <Grid gutter="lg" columns={15}>
           {items.map((item: any) => (
             <Grid.Col span={3} key={item.Name}>
-              <SummaryCard title={item.Name} content={item.Total} type={item.Type} currencyFormat={item.CurrencyFormat} description='exchanged in the last 24h' />
+              <SummaryCard title={item.Name} content={item.Total} type={item.Type} currencyFormat={item.CurrencyFormat} />
             </Grid.Col>
           ))}
         </Grid>
