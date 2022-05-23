@@ -91,7 +91,7 @@ function MainHeader() {
               placeholder="search transaction / block / token"
               variant="filled"
               radius="md"
-              icon={<Search size={14} />} style={{ width: 300 }}
+              icon={<Search size={14} />} style={{ width: 300, backgroundColor: '#303030', borderRadius: 12 }}
             />
 
             {/* <Popover

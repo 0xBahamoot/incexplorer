@@ -25,8 +25,8 @@ const BlockListCard: FunctionComponent<Props> = ({ blocklist, blockType }) => {
         <td>{element.Height}</td>
         <td><Text variant="link" component={Link} to={"/tx/" + element.Hash}>{element.Hash}</Text></td>
         <td style={{ textOverflow: 'ellipsis', maxWidth: 300, overflow: 'hidden' }}>{element.BlockProducer}</td>
+        <td>{element.Txs.length}</td>
         <td>{format.formatUnixDateTime(element.Time)}</td>
-        <td>{element.Time}</td>
       </tr>
     )
   });
