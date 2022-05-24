@@ -27,7 +27,7 @@ function BlockChainSection() {
                 <NavbarBtn text='Overview' link='/chain'></NavbarBtn>
                 <NavbarBtn text='Beacon chain' link='/chain/beacon'></NavbarBtn>
                 <NavbarBtn text='Shards chain' link='/chain/shards'></NavbarBtn>
-                <NavbarBtn text='Transaction' link='/txs'></NavbarBtn>
+                <NavbarBtn text='Transactions' link='/txs'></NavbarBtn>
                 <NavbarBtn text='Pending txs' link='/pendingtxs'></NavbarBtn>
             </Stack>
         </>
@@ -38,7 +38,7 @@ function ExchangeSection() {
     return (
         <>
             <Stack justify="flex-start" spacing="xs">
-                <NavbarBtn text='Market' link='/charts/market'></NavbarBtn>
+                <NavbarBtn text='Markets' link='/charts/market'></NavbarBtn>
                 <NavbarBtn text='Liquidity' link='/'></NavbarBtn>
             </Stack>
         </>

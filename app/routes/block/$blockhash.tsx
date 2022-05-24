@@ -6,6 +6,7 @@ import { useLoaderData } from "@remix-run/react";
 import { getBlock } from '~/services/chains';
 import SectionTitle from '~/components/sectiontitle/sectiontitle';
 import format from '~/utils/format';
+import { useLocation } from 'react-router-dom';
 
 import { Link } from 'react-router-dom';
 import { BlockData } from '~/types/types';
@@ -23,7 +24,9 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 };
 
 function BlockDetail() {
-  let blk: BlockData
+  let location = useLocation();
+
+  const isbeacon = location.search.includes("beacon");
   const { classes } = useStyles();
   const loaderData = useLoaderData();
   const [data, setData] = useState(loaderData);
@@ -127,13 +130,18 @@ function BlockDetail() {
           </Grid.Col>
           <Grid.Col span={20}>{data.Instruction}</Grid.Col>
         </Grid>
+        {
+          (isbeacon) ?
+            <></>
+            :
+            <Grid columns={24} className={classes.wrapper}>
+              <Grid.Col span={4}>
+                <Text color="gray">Merkle TxS root</Text>
+              </Grid.Col>
+              <Grid.Col span={20}>{data.NextBlockHash}</Grid.Col>
+            </Grid>
+        }
 
-        <Grid columns={24} className={classes.wrapper}>
-          <Grid.Col span={4}>
-            <Text color="gray">Merkle TxS root</Text>
-          </Grid.Col>
-          <Grid.Col span={20}>{data.NextBlockHash}</Grid.Col>
-        </Grid>
       </Paper>
     </>
   );

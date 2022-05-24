@@ -46,7 +46,7 @@ const SummaryCard: FunctionComponent<Props> = ({ title, content, currencyFormat,
                     <Text className={classes.content}>
                         {currencyFormat ? "$" : ""}{format.formatAmount({ humanAmount: content, decimals: 4 })}</Text>
                 }
-                {
+                {/* {
                     (changePercent !== undefined) ? <Text className={classes.subcontent} >{changePercent >= 0 ?
                         <CaretUp
                             size={18}
@@ -60,7 +60,7 @@ const SummaryCard: FunctionComponent<Props> = ({ title, content, currencyFormat,
                             fill={'#F6465D'}
                             color={'#F6465D'}
                         />}{changePercent}%</Text> : <Text>{moment().format('MM/DD/YYYY')}</Text>
-                }
+                } */}
             </Paper>
         </>
 

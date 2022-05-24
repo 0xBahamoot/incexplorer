@@ -1,4 +1,4 @@
-import { Title, Space, Button, Loader, Group } from '@mantine/core';
+import { Title, Space, Button, Loader, Group, ScrollArea } from '@mantine/core';
 import SummaryBox from '~/components/summarybox/summarybox';
 import TxListCard from '~/components/txlistcard/txlistcard';
 import { useState, useEffect } from 'react';
@@ -123,10 +123,10 @@ function Home() {
       <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
         <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
       </Group>
-
-      <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
+      <ScrollArea style={{ height: loaded ? 'auto' : 0, borderRadius: 12, paddingRight: 10 }} >
         <TxListCard txlist={txListData}></TxListCard>
-      </div>
+      </ScrollArea>
+
       <Space h="sm" />
       <Button color='gray' variant="subtle" radius="xl" compact style={{ display: 'table', margin: '0 auto' }} component={Link} to="/txs">
         view all

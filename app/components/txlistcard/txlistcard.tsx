@@ -51,9 +51,9 @@ const TxListCard: FunctionComponent<Props> = ({ txlist }) => {
           <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
             <thead className={classes.tableThead}>
               <tr>
-                <th>Date</th>
+                <th>Time</th>
                 <th>Hash</th>
-                <th>Block height</th>
+                <th style={{ wordWrap: 'normal' }}>Block height</th>
                 <th>Shard</th>
                 <th>Metatype</th>
                 {/* <th></th> */}

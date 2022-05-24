@@ -36,29 +36,18 @@ export type TxDetail = {
     ShardID: number,
     Sig: string,
     SigPubKey: string,
-    TransactionData: TxAdditionalData | TxShieldData,
+    TransactionData: TxAdditionalData,
     TxSize: number,
     Type: string,
     Version: number,
 }
 
 
-
-
-
-export type TxShieldData = {
-    // meta_type_id: '261',
-    // meta_type_group: 'shield',
-    // meta_type_name: 'Shielded Coins V4 Response',
-    // tx_hash_request: '0cc618389c491e5627aed68a1d2766389b5841f253d44230900d7805755dfbe7',
-    // token_id: 'b832e5d3b1f01a4f0623f7fe91d6673461e1f5d37d91fe78c5c2e6183ff39696',
-    // token_symbol: 'pBTC',
-    // token_pdecimal: 9,
-    // amount: 0.1126703,
-    // status: 'Mined',
-    // tx_fee: '0'
-}
 export type TxAdditionalData = {
+    token_id: string,
+    token_symbol: string,
+    token_pdecimal: number,
+    amount: number,
     amount1: number,
     amount2: number,
     meta_type_group: string,

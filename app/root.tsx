@@ -94,7 +94,7 @@ export default function App() {
               navbarOffsetBreakpoint="lg"
               fixed
               navbar={
-                <Navbar p="md" hiddenBreakpoint="lg" hidden={!openedNavBar} width={{ sm: 200, lg: 300 }} style={{ backgroundColor: '#1A1A1A' }}>
+                <Navbar p="md" hiddenBreakpoint="lg" hidden={!openedNavBar} width={{ sm: 300, lg: 300 }} style={{ backgroundColor: '#1A1A1A' }}>
                   <MainNavbar />
                 </Navbar>
               }

@@ -1,4 +1,4 @@
-import { Paper, Grid, Text, createStyles, Space, ScrollArea } from '@mantine/core';
+import { Paper, Grid, Text, Space, ScrollArea } from '@mantine/core';
 import { useState } from 'react';
 import type { LoaderFunction } from "@remix-run/node";
 import { TxDetail } from '~/types/types';
@@ -30,6 +30,12 @@ function Tx() {
       <SectionTitle text={"Transaction Detail"} />
       <Space h="md" />
 
+      {/* <Paper shadow="sm" radius="md" p="xl" withBorder className={classes.container}>
+
+      </Paper>
+
+      <Space h="md" /> */}
+
       <Paper shadow="sm" radius="md" p="xl" withBorder className={classes.container}>
         <Grid columns={24} className={classes.wrapper}>
           <Grid.Col span={4}>
@@ -37,11 +43,20 @@ function Tx() {
           </Grid.Col>
           <Grid.Col span={20}>{loaderData.IsInBlock ? "Success" : "Pending"}</Grid.Col>
         </Grid>
-      </Paper>
 
-      <Space h="md" />
+        <Grid columns={24} className={classes.wrapper}>
+          <Grid.Col span={4}>
+            <Text color="gray">TxHash</Text>
+          </Grid.Col>
+          <Grid.Col span={20}>{loaderData.Hash}</Grid.Col>
+        </Grid>
 
-      <Paper shadow="sm" radius="md" p="xl" withBorder className={classes.container}>
+        <Grid columns={24} className={classes.wrapper}>
+          <Grid.Col span={4}>
+            <Text color="gray">ShardID</Text>
+          </Grid.Col>
+          <Grid.Col span={20}>{loaderData.ShardID}</Grid.Col>
+        </Grid>
 
         <Grid columns={24} className={classes.wrapper}>
           <Grid.Col span={4}>
@@ -59,7 +74,7 @@ function Tx() {
 
         <Grid columns={24} className={classes.wrapper}>
           <Grid.Col span={4}>
-            <Text color="gray">Fee</Text>
+            <Text color="gray">Network Fee</Text>
           </Grid.Col>
           <Grid.Col span={20}>{loaderData.Fee} PRV</Grid.Col>
         </Grid>
@@ -73,18 +88,45 @@ function Tx() {
 
         <Grid columns={24} className={classes.wrapper}>
           <Grid.Col span={4}>
-            <Text color="gray">Confirmations</Text>
-          </Grid.Col>
-          <Grid.Col span={20}></Grid.Col>
-        </Grid>
-
-        <Grid columns={24} className={classes.wrapper}>
-          <Grid.Col span={4}>
             <Text color="gray">Timestamp</Text>
           </Grid.Col>
           <Grid.Col span={20}>{loaderData.LockTime}</Grid.Col>
         </Grid>
 
+        <Grid columns={24} className={classes.wrapper}>
+          <Grid.Col span={4}>
+            <Text color="gray">Type</Text>
+          </Grid.Col>
+          <Grid.Col span={20}>{loaderData.TransactionData.meta_type_name}</Grid.Col>
+        </Grid>
+
+        <Grid columns={24} className={classes.wrapper}>
+          <Grid.Col span={4}>
+            <Text color="gray">Memo</Text>
+          </Grid.Col>
+          <Grid.Col span={20}>{loaderData.Info}</Grid.Col>
+        </Grid>
+
+      </Paper>
+
+      <Space h="md" />
+
+      <Paper shadow="sm" radius="md" p="xl" withBorder className={classes.container}>
+
+        <Grid columns={24} className={classes.wrapper}>
+          <Grid.Col span={4}>
+            <Text color="gray">Metadata</Text>
+          </Grid.Col>
+          <Grid.Col span={20}>
+            <ScrollArea style={{ height: 250 }}>
+              <PrettyPrintJson data={JSON.parse(loaderData.Metadata)}></PrettyPrintJson>
+            </ScrollArea>
+          </Grid.Col>
+        </Grid>
+      </Paper>
+      <Space h="md" />
+
+      <Paper shadow="sm" radius="md" p="xl" withBorder className={classes.container}>
 
         <Grid columns={24} className={classes.wrapper}>
           <Grid.Col span={4}>
@@ -95,15 +137,12 @@ function Tx() {
           </Grid.Col>
         </Grid>
 
-
-
         <Grid columns={24} className={classes.wrapper}>
           <Grid.Col span={4}>
             <Text color="gray">Sig</Text>
           </Grid.Col>
           <Grid.Col span={20}>{loaderData.Sig}</Grid.Col>
         </Grid>
-
 
 
         <Grid columns={24} className={classes.wrapper}>
@@ -129,19 +168,6 @@ function Tx() {
           </Grid.Col>
         </Grid>
 
-
-        <Grid columns={24} className={classes.wrapper}>
-          <Grid.Col span={4}>
-            <Text color="gray">Metadata</Text>
-          </Grid.Col>
-          <Grid.Col span={20}>
-            <ScrollArea style={{ height: 250 }}>
-              <PrettyPrintJson data={JSON.parse(loaderData.Metadata)}></PrettyPrintJson>
-            </ScrollArea>
-          </Grid.Col>
-        </Grid>
-
-
         <Grid columns={24} className={classes.wrapper}>
           <Grid.Col span={4}>
             <Text color="gray">Transacted privacy coin</Text>
@@ -164,6 +190,7 @@ function Tx() {
           </Grid.Col>
         </Grid>
       </Paper>
+
     </>
   );
 }
