@@ -86,6 +86,7 @@ function Home() {
     <>
       <Title order={3} style={{ color: '#fff', letterSpacing: "0.01em", fontStyle: 'normal', fontWeight: 500 }}>Network</Title>
 
+      <Space h="sm" />
       <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
         <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
       </Group>
@@ -93,9 +94,10 @@ function Home() {
       <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
         <SummaryBox items={networkData}></SummaryBox>
       </div>
-      <Space h="md" />
+      <Space h={40} />
       <Title order={3} style={{ color: '#fff', letterSpacing: "0.01em", fontStyle: 'normal', fontWeight: 500 }}>Privacy Exchange</Title>
 
+      <Space h="sm" />
       <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
         <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
       </Group>
@@ -103,9 +105,10 @@ function Home() {
       <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
         <SummaryBox items={pdexData}></SummaryBox>
       </div>
-      <Space h="md" />
+      <Space h={40} />
       <Title order={3} style={{ color: '#fff', letterSpacing: "0.01em", fontStyle: 'normal', fontWeight: 500 }}>PRV</Title>
 
+      <Space h="sm" />
       <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
         <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
       </Group>
@@ -114,7 +117,7 @@ function Home() {
         <SummaryBox items={prvData}></SummaryBox>
       </div>
 
-      <Space h="md" />
+      <Space h={40} />
       <Title order={3} style={{ color: '#fff', letterSpacing: "0.01em", fontStyle: 'normal', fontWeight: 500 }}>Transaction</Title>
       <Space h="md" />
       <Group position="center" style={{ height: !loaded ? 200 : 0 }}>

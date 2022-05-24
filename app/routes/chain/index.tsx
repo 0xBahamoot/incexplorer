@@ -100,12 +100,13 @@ function ShardsOverview() {
     return (
         <>
             <SectionTitle text="Overview" />
+            <Space h='md' />
             <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
                 <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
             </Group>
 
             <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
-                <Box p="sm">
+                <Box p={0}>
                     <Grid gutter="lg" columns={15}>
                         {overviewData.map((item: any) => (
                             <Grid.Col span={3} key={item.Title}>
@@ -115,7 +116,7 @@ function ShardsOverview() {
                     </Grid>
                 </Box>
             </div>
-            <Space h="md" />
+            <Space h={40} />
             <SectionTitle text="Beacon Chain" />
             <Space h="sm" />
             <Paper radius={12} withBorder className={classes.container}>
@@ -131,7 +132,7 @@ function ShardsOverview() {
                             </thead>
                             <tbody>
                                 <tr style={{ cursor: 'pointer' }}>
-                                    <td><Text variant="link" component={Link} to={"/block/" + data.beaconInfo.Hash}>{data.beaconInfo.Hash}</Text></td>
+                                    <td><Text variant="link" component={Link} to={"/block/" + data.beaconInfo.Hash + '?beacon=true'}>{data.beaconInfo.Hash}</Text></td>
                                     <td>{format.formatUnixDateTime(data.beaconInfo.Time)}</td>
                                     <td>{format.formatAmount({ humanAmount: data.beaconInfo.Height, decimals: 4 })}</td>
                                 </tr>
@@ -140,7 +141,7 @@ function ShardsOverview() {
                     </Card.Section>
                 </Card>
             </Paper>
-            <Space h="md" />
+            <Space h={40} />
 
             <SectionTitle text="Most recent blocks" />
             <Space h="sm" />

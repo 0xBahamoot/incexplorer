@@ -23,7 +23,7 @@ function AccordionLabel({ label, icon }: AccordionLabelProps) {
 function BlockChainSection() {
     return (
         <>
-            <Stack justify="flex-start">
+            <Stack justify="flex-start" spacing="xs">
                 <NavbarBtn text='Overview' link='/chain'></NavbarBtn>
                 <NavbarBtn text='Beacon chain' link='/chain/beacon'></NavbarBtn>
                 <NavbarBtn text='Shards chain' link='/chain/shards'></NavbarBtn>
@@ -37,7 +37,7 @@ function BlockChainSection() {
 function ExchangeSection() {
     return (
         <>
-            <Stack justify="flex-start">
+            <Stack justify="flex-start" spacing="xs">
                 <NavbarBtn text='Market' link='/charts/market'></NavbarBtn>
                 <NavbarBtn text='Liquidity' link='/'></NavbarBtn>
             </Stack>
@@ -48,7 +48,7 @@ function ExchangeSection() {
 function ShieldedSection() {
     return (
         <>
-            <Stack justify="flex-start">
+            <Stack justify="flex-start" spacing="xs">
                 <NavbarBtn text='TVL' link='/charts/liquiditytvl'></NavbarBtn>
                 <NavbarBtn text='Shield Volume' link='/charts/shieldvolume'></NavbarBtn>
             </Stack>
@@ -59,7 +59,7 @@ function ShieldedSection() {
 function NetworkSection() {
     return (
         <>
-            <Stack justify="flex-start">
+            <Stack justify="flex-start" spacing="xs">
                 <NavbarBtn text='Validators' link='/validators'></NavbarBtn>
             </Stack>
         </>
@@ -69,7 +69,7 @@ function NetworkSection() {
 function GetStartedSection() {
     return (
         <>
-            <Stack justify="flex-start">
+            <Stack justify="flex-start" spacing="xs">
                 <NavbarBtn text='Download' link='/'></NavbarBtn>
             </Stack>
         </>

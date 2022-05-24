@@ -23,9 +23,9 @@ const BlockListCard: FunctionComponent<Props> = ({ blocklist, blockType }) => {
     return (
       <tr key={element.Hash} style={{ cursor: 'pointer' }}>
         <td>{element.Height}</td>
-        <td><Text variant="link" component={Link} to={"/tx/" + element.Hash}>{element.Hash}</Text></td>
+        <td><Text variant="link" component={Link} to={"/block/" + element.Hash + (blockType == 'shardblk') ? '' : '?beacon=true'}>{element.Hash}</Text></td>
         <td style={{ textOverflow: 'ellipsis', maxWidth: 300, overflow: 'hidden' }}>{element.BlockProducer}</td>
-        <td>{element.Txs.length}</td>
+        {(blockType == 'shardblk') ? <td>{element.Txs.length}</td> : ''}
         <td>{format.formatUnixDateTime(element.Time)}</td>
       </tr>
     )
@@ -41,7 +41,7 @@ const BlockListCard: FunctionComponent<Props> = ({ blocklist, blockType }) => {
                 <th>Height</th>
                 <th>Hash</th>
                 <th>Producer</th>
-                <th>Txn</th>
+                {(blockType == 'shardblk') ? <th>Txn</th> : ''}
                 <th>Time created</th>
               </tr>
             </thead>

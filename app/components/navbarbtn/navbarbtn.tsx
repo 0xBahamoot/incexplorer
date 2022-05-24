@@ -16,7 +16,6 @@ const NavbarBtn: FunctionComponent<Props> = ({ text, link }) => {
             <Box
                 component={Link} to={link}
                 sx={(theme) => ({
-                    height: 'auto',
                     // backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
                     textAlign: 'left',
                     padding: theme.spacing.sm,
@@ -24,12 +23,15 @@ const NavbarBtn: FunctionComponent<Props> = ({ text, link }) => {
                     fontWeight: 500,
                     letterSpacing: "0.01em",
                     paddingLeft: 55,
-                    color: theme.colorScheme === 'dark' ? '#fff' : '#000',
+                    color: theme.colorScheme === 'dark' ? '#757575' : '#000',
                     cursor: 'pointer',
                     textDecoration: 'none',
+                    height: 40,
+                    lineHeight: '16px',
                     '&:hover': {
                         backgroundColor:
                             theme.colorScheme === 'dark' ? '#303030' : theme.colors.gray[1],
+                        color: theme.colorScheme === 'dark' ? '#fff' : '#000',
                     },
                 })}
             >

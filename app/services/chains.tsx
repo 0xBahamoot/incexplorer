@@ -20,3 +20,17 @@ export const getMempoolInfo = async (network?: string) => {
     return inst.post('', CreateRPCBody('getmempoolinfo'));
 
 }
+
+export const getBlock = async (blockhash: string, isBeacon: boolean, network?: string) => {
+    const inst = CreateRPCInstance((network || 'mainnet'))
+    if (isBeacon) {
+        return inst.post('', CreateRPCBody('retrievebeaconblock', [
+            blockhash,
+            '2'
+        ]));
+    }
+    return inst.post('', CreateRPCBody('retrieveblock', [
+        blockhash,
+        '2'
+    ]));
+}

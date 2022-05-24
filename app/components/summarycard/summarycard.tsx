@@ -19,7 +19,7 @@ const SummaryCard: FunctionComponent<Props> = ({ title, content, currencyFormat,
     const { classes } = useStyles();
     return (
         <>
-            <Paper shadow="sm" radius="md" p="lg" withBorder className={classes.paper}>
+            <Paper shadow="sm" radius="md" p={18} withBorder className={classes.paper}>
                 <p className={classes.title}>{title.toLowerCase()}
                     {/* <Tooltip
                         label={description}

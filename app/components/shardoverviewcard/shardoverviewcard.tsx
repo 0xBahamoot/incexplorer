@@ -17,13 +17,13 @@ const ShardOverviewCard: FunctionComponent<Props> = ({ chainInfo, chainId }) => 
     return (
         <>
             <Paper radius={12} withBorder className={classes.paper}>
-                <Group position="apart" style={{ borderBottom: '1px solid #404040', padding: '10px 20px' }}>
-                    <Text style={{ fontSize: 20, color: '#fff' }}>Shard {chainId}</Text>
+                <Group position="apart" style={{ borderBottom: '1px solid #404040', padding: '10px 24px' }}>
+                    <Text style={{ fontSize: 20, color: '#fff', fontWeight: 500 }}>Shard {chainId}</Text>
                     <ActionIcon size="lg" radius="xl" component={Link} to={"/chain/shard/" + chainId}>
                         <ArrowUpRight />
                     </ActionIcon>
                 </Group>
-                <Grid gutter="lg" columns={6} style={{ padding: '10px 20px' }}>
+                <Grid gutter="lg" columns={6} style={{ padding: '18px 24px' }}>
                     <Grid.Col span={4} >
                         <Stack align="flex-start" justify="flex-start" spacing="xs">
                             <Text className={classes.propTitle}>Height</Text>

@@ -12,7 +12,7 @@ type Props = {
 const SummaryBox: FunctionComponent<Props> = ({ items }) => {
   return (
     <>
-      <Box p="sm">
+      <Box p={0}>
         <Grid gutter="lg" columns={15} >
           {items.map((item: any) => (
             <Grid.Col sm={7} md={4} lg={4} xl={3} key={item.Name}>

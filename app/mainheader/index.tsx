@@ -79,19 +79,21 @@ function MainHeader() {
           <Group position="left">
             <a href="/">
               <Image alt="logo" src={dark ? "/assets/images/logo_h_white.svg" : "/assets/images/logo_h_dark.svg"} style={{ marginLeft: 25 }} height={30} />
-            </a></Group>
-
-          <Group position='center'>
-            <Button variant="subtle" color="gray" size="md" compact component={Link} to="/">Explore</Button>
-            <Button variant="subtle" color="gray" size="md" compact component="a" target={"_blank"} href="https://incognito.org/apps">About us</Button>
-            <Button variant="subtle" color="gray" size="md" compact component="a" target={"_blank"} href="https://we.incognito.org/">Community</Button>
+            </a>
+            <Group position='left' style={{ paddingLeft: 10 }}>
+              <Button variant="subtle" color="gray" size="md" compact component={Link} to="/">Explore</Button>
+              <Button variant="subtle" color="gray" size="md" compact component="a" target={"_blank"} href="https://incognito.org/apps">About us</Button>
+              <Button variant="subtle" color="gray" size="md" compact component="a" target={"_blank"} href="https://we.incognito.org/">Community</Button>
+            </Group>
           </Group>
+
+
           <Group position="right">
             <TextInput
               placeholder="search transaction / block / token"
               variant="filled"
               radius="md"
-              icon={<Search size={14} />} style={{ width: 300, backgroundColor: '#303030', borderRadius: 12 }}
+              icon={<Search size={14} color={"#fff"} />} style={{ width: 280, backgroundColor: '#303030', borderRadius: 12 }}
             />
 
             {/* <Popover

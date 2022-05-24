@@ -9,9 +9,9 @@ const useStyles = createStyles((theme) => ({
         fontStyle: 'normal',
         fontWeight: 500,
         fontSize: 18,
-        innerHeight: '140%',
+        lineHeight: 1,
         letterSpacing: '0.005em',
-        margin: '0 0 10px 0',
+        margin: 0,
         textTransform: 'capitalize',
         display: 'flex',
         alignItems: 'center'
@@ -20,9 +20,9 @@ const useStyles = createStyles((theme) => ({
         fontStyle: 'normal',
         fontWeight: 500,
         fontSize: 26,
-        innerHeight: '140%',
+        lineHeight: '36.4px',
         letterSpacing: '0.01em',
-        margin: 0,
+        margin: '12px 0',
         color: '#fff'
     },
     subcontent: {

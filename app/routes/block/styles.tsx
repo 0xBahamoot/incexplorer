@@ -14,8 +14,8 @@ const useStyles = createStyles((theme) => ({
         borderBottomStyle: "solid",
         marginBottom: 15,
         paddingBottom: 10,
+        overflow: 'hidden',
         '&:last-child': {
-
             borderBottomWidth: 0
         }
     },
