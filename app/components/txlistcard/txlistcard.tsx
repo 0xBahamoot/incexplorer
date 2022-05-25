@@ -46,23 +46,19 @@ const TxListCard: FunctionComponent<Props> = ({ txlist }) => {
 
   return (
     <Paper radius={12} withBorder className={classes.container}>
-      <Card className={classes.container} radius={12} >
-        <Card.Section>
-          <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
-            <thead className={classes.tableThead}>
-              <tr>
-                <th>Time</th>
-                <th>Hash</th>
-                <th style={{ wordWrap: 'normal' }}>Block height</th>
-                <th>Shard</th>
-                <th>Metatype</th>
-                {/* <th></th> */}
-              </tr>
-            </thead>
-            <tbody>{rows}</tbody>
-          </Table>
-        </Card.Section>
-      </Card>
+      <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
+        <thead className={classes.tableThead}>
+          <tr>
+            <th>Time</th>
+            <th>Hash</th>
+            <th style={{ wordWrap: 'normal' }}>Block height</th>
+            <th>Shard</th>
+            <th>Metatype</th>
+            {/* <th></th> */}
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </Table>
     </Paper>
   );
 }

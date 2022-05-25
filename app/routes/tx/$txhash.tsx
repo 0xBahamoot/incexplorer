@@ -30,12 +30,6 @@ function Tx() {
       <SectionTitle text={"Transaction Detail"} />
       <Space h="md" />
 
-      {/* <Paper shadow="sm" radius="md" p="xl" withBorder className={classes.container}>
-
-      </Paper>
-
-      <Space h="md" /> */}
-
       <Paper shadow="sm" radius="md" p="xl" withBorder className={classes.container}>
         <Grid columns={24} className={classes.wrapper}>
           <Grid.Col span={4}>

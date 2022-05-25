@@ -1,4 +1,4 @@
-import { Paper, Grid, Text, ScrollArea, Space } from '@mantine/core';
+import { Paper, Grid, Text, ScrollArea, Space, Table } from '@mantine/core';
 import { useState } from 'react';
 import useStyles from './styles'
 import type { LoaderFunction } from "@remix-run/node";
@@ -9,7 +9,7 @@ import format from '~/utils/format';
 import { useLocation } from 'react-router-dom';
 
 import { Link } from 'react-router-dom';
-import { BlockData } from '~/types/types';
+import { BlockData, TxInBlock } from '~/types/types';
 const PrettyPrintJson = (data: any) => (<div><pre style={{ wordWrap: "normal", whiteSpace: 'pre-wrap' }}>{JSON.stringify(data, null, 2)}</pre></div>);
 
 export const loader: LoaderFunction = async ({ params, request }) => {
@@ -23,12 +23,29 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   return Result
 };
 
+const GenTxRow = (txlist: TxInBlock[]) => {
+  const result = txlist?.map((element, idx) => {
+    if (idx >= 15) {
+      return null
+    }
+
+    return (
+      <tr key={element.Hash} style={{ cursor: 'pointer' }} >
+        <td>{format.formatUnixDateTime(element.Locktime)}</td>
+        <td><Text variant="link" component={Link} to={"/tx/" + element.Hash}>{element.Hash}</Text></td>
+      </tr>
+    )
+  });
+  return result
+}
+
+
 function BlockDetail() {
   let location = useLocation();
 
   const isbeacon = location.search.includes("beacon");
   const { classes } = useStyles();
-  const loaderData = useLoaderData();
+  const loaderData: BlockData = useLoaderData();
   const [data, setData] = useState(loaderData);
 
   return (
@@ -61,7 +78,7 @@ function BlockDetail() {
           <Grid.Col span={4}>
             <Text color="gray">Confirmations</Text>
           </Grid.Col>
-          <Grid.Col span={20}>{data.Confirmations}</Grid.Col>
+          <Grid.Col span={20}>{(data.FinalityHeight > 0) ? data.Height - data.FinalityHeight : 'not finality yet'}</Grid.Col>
         </Grid>
 
         <Grid columns={24} className={classes.wrapper}>
@@ -124,25 +141,87 @@ function BlockDetail() {
           </Grid.Col>
         </Grid>
 
-        <Grid columns={24} className={classes.wrapper}>
-          <Grid.Col span={4}>
-            <Text color="gray">Instructions</Text>
-          </Grid.Col>
-          <Grid.Col span={20}>{data.Instruction}</Grid.Col>
-        </Grid>
         {
           (isbeacon) ?
-            <></>
+            <>
+              <Grid columns={24} className={classes.wrapper}>
+                <Grid.Col span={4}>
+                  <Text color="gray">Root Hashes</Text>
+                </Grid.Col>
+                <Grid.Col span={20}>
+                  <ScrollArea style={{ height: 250 }}>
+                    <PrettyPrintJson data={data.RootHash} />
+                  </ScrollArea>
+                </Grid.Col>
+              </Grid>
+
+            </>
             :
-            <Grid columns={24} className={classes.wrapper}>
-              <Grid.Col span={4}>
-                <Text color="gray">Merkle TxS root</Text>
-              </Grid.Col>
-              <Grid.Col span={20}>{data.NextBlockHash}</Grid.Col>
-            </Grid>
+            <>
+              <Grid columns={24} className={classes.wrapper}>
+                <Grid.Col span={4}>
+                  <Text color="gray">Tx Root</Text>
+                </Grid.Col>
+                <Grid.Col span={20}>{data.TxRoot}</Grid.Col>
+              </Grid>
+            </>
         }
 
       </Paper>
+      <Space h="md" />
+      <Paper shadow="sm" radius="md" p="xl" withBorder className={classes.container}>
+
+        {
+          (isbeacon) ?
+            <>
+              <Grid columns={24} className={classes.wrapper}>
+                <Grid.Col span={4}>
+                  <Text color="gray">Instructions</Text>
+                </Grid.Col>
+                <Grid.Col span={20}>
+                  <ScrollArea style={{ height: 250 }}>
+                    <PrettyPrintJson data={data.Instructions} />
+                  </ScrollArea>
+                </Grid.Col>
+              </Grid>
+            </>
+            :
+            <>
+              <Grid columns={24} className={classes.wrapper}>
+                <Grid.Col span={4}>
+                  <Text color="gray">Instructions</Text>
+                </Grid.Col>
+                <Grid.Col span={20}>
+                  <ScrollArea style={{ height: 250 }}>
+                    <PrettyPrintJson data={data.Instruction} />
+                  </ScrollArea>
+                </Grid.Col>
+              </Grid>
+
+            </>
+        }
+      </Paper>
+      {
+        (isbeacon) ?
+          <></> :
+          <>
+            <Space h="md" />
+            <SectionTitle text={"Transactions in block"} />
+            <Space h="xl" />
+
+            <Paper radius={12} withBorder className={classes.container}>
+              <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
+                <thead className={classes.tableThead}>
+                  <tr>
+                    <th>Time</th>
+                    <th>Hash</th>
+                  </tr>
+                </thead>
+                <tbody>{GenTxRow(data.Txs)}</tbody>
+              </Table>
+            </Paper>
+          </>}
+
     </>
   );
 }

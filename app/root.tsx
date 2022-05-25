@@ -5,6 +5,7 @@ import {
   Meta,
   Scripts,
   ScrollRestoration,
+  useCatch,
 } from "@remix-run/react";
 import { ArrowNarrowUp } from 'tabler-icons-react';
 
@@ -117,5 +118,42 @@ export default function App() {
         <LiveReload />
       </body>
     </html >
+  );
+}
+
+export function CatchBoundary() {
+  const caught = useCatch();
+  return (
+    <html>
+      <head>
+        <title>Oops!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <h1>
+          {caught.status} {caught.statusText}
+        </h1>
+        <Scripts />
+      </body>
+    </html>
+  );
+}
+
+
+export function ErrorBoundary(error: any) {
+  console.error(error);
+  return (
+    <html>
+      <head>
+        <title>Oh no!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        {/* add the UI you want your users to see */}
+        <Scripts />
+      </body>
+    </html>
   );
 }

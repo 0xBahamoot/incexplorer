@@ -87,7 +87,8 @@ export type BlockData = {
     ProposeTime: number,
     FinalityHeight: number,
     Size: number,
-    Txs: TxData[],
+    TxRoot: string,
+    Txs: any[],
     Epoch: number,
     Round: number,
     ConsensusType: string,
@@ -102,7 +103,8 @@ export type BlockData = {
     },
     PreviousBlockHash: string,
     NextBlockHash: string,
-    Instrustions: any[],
+    Instructions: any,
+    Instruction: any,
     ShardStates: any,
 }
 
@@ -115,4 +117,10 @@ export type ChainInfo = {
     RemainingBlockEpoch: number,
     Time: number,
     TotalTxs: number,
+}
+
+export type TxInBlock = {
+    Hash: String,
+    Locktime: number,
+    HexData: string,
 }

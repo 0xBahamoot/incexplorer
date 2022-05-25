@@ -9,7 +9,6 @@ export const loader: LoaderFunction = async ({ params }) => {
         console.log(Result, Error);
         return Result
     } catch (error) {
-        console.log(error);
         return "not found"
     }
 };
