@@ -50,7 +50,7 @@ function BlockDetail() {
 
   return (
     <>
-      <SectionTitle text={"Block Detail"} />
+      <SectionTitle text={"Block Details"} />
       <Space h="xl" />
       <Paper shadow="sm" radius="md" p="xl" withBorder className={classes.container}>
         <Grid columns={24} className={classes.wrapper}>

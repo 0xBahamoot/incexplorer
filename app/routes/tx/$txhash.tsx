@@ -27,7 +27,7 @@ function Tx() {
 
   return (
     <>
-      <SectionTitle text={"Transaction Detail"} />
+      <SectionTitle text={"Transaction Details"} />
       <Space h="md" />
 
       <Paper shadow="sm" radius="md" p="xl" withBorder className={classes.container}>
