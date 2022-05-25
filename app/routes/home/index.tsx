@@ -117,7 +117,12 @@ function Home() {
       </div>
 
       <Space h={40} />
-      <SectionTitle text='Transaction' />
+      <Group position='apart'>
+        <SectionTitle text='Transaction' />
+        <Button color='gray' variant="subtle" radius="xl" compact component={Link} to="/txs" style={{ marginRight: 10 }}>
+          view all
+        </Button>
+      </Group>
       <Space h="md" />
       <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
         <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
@@ -127,9 +132,6 @@ function Home() {
       </ScrollArea>
 
       <Space h="sm" />
-      <Button color='gray' variant="subtle" radius="xl" compact style={{ display: 'table', margin: '0 auto' }} component={Link} to="/txs">
-        view all
-      </Button>
       <Space h="md" />
     </>
 
