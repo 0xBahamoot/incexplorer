@@ -49,8 +49,8 @@ function ShieldedSection() {
     return (
         <>
             <Stack justify="flex-start" spacing="xs">
-                <NavbarBtn text='TVL' link='/charts/liquiditytvl'></NavbarBtn>
-                <NavbarBtn text='Shield Volume' link='/charts/shieldvolume'></NavbarBtn>
+                {/* <NavbarBtn text='TVL' link='/charts/liquiditytvl'></NavbarBtn> */}
+                {/* <NavbarBtn text='Shield Volume' link='/charts/shieldvolume'></NavbarBtn> */}
                 <NavbarBtn text='Shield Txs' link='/shieldtxs'></NavbarBtn>
             </Stack>
         </>
@@ -86,17 +86,17 @@ function MainNavbar() {
                         <BlockChainSection />
                     </Accordion.Item>
 
-                    <Accordion.Item label={<AccordionLabel label='Privacy Exchange' icon='/assets/images/icons/navbar-exchange.svg' />} classNames={classes}>
+                    {/* <Accordion.Item label={<AccordionLabel label='Privacy Exchange' icon='/assets/images/icons/navbar-exchange.svg' />} classNames={classes}>
                         <ExchangeSection />
-                    </Accordion.Item>
+                    </Accordion.Item> */}
 
                     <Accordion.Item label={<AccordionLabel label='Shielded coins' icon='/assets/images/icons/navbar-shielded.svg' />} classNames={classes}>
                         <ShieldedSection />
                     </Accordion.Item>
 
-                    <Accordion.Item label={<AccordionLabel label='Network' icon='/assets/images/icons/navbar-network.svg' />} classNames={classes}>
+                    {/* <Accordion.Item label={<AccordionLabel label='Network' icon='/assets/images/icons/navbar-network.svg' />} classNames={classes}>
                         <NetworkSection />
-                    </Accordion.Item>
+                    </Accordion.Item> */}
 
                     <Accordion.Item label={<AccordionLabel label='Get started' icon='/assets/images/icons/navbar-getstarted.svg' />} classNames={classes}>
                         <GetStartedSection />
