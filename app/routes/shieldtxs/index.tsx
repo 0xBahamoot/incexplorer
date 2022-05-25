@@ -1,8 +1,9 @@
 import { Title, Space, TextInput, Pagination, Group, Text, Loader, } from '@mantine/core';
 import TxListCard from '~/components/txlistcard/txlistcard';
 import { useState, useEffect } from 'react';
-import { getNormalTx } from '~/services/transactions';
+import { getNormalTx, getShieldTxs } from '~/services/transactions';
 import SectionTitle from '~/components/sectiontitle/sectiontitle';
+import ShieldListCard from '~/components/shieldlistcard/shieldlistcard';
 
 function ShieldTxs() {
     const [txListData, setTxListData] = useState<any>([]);
@@ -13,7 +14,7 @@ function ShieldTxs() {
     const handleFetchData = async (page: number) => {
         setLoaded(false);
         setPage(page);
-        const { Result } = (await getNormalTx(page)) as any;
+        const { Result } = (await getShieldTxs(page)) as any;
         console.log("data", Result);
         setTxListData(Result.Data);
         setTotalPage(Result.Paging.Total);
@@ -25,6 +26,13 @@ function ShieldTxs() {
 
     return <>
         <SectionTitle text="Shielded" />
+        <Space h="md" />
+        <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
+            <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
+        </Group>
+        <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
+            <ShieldListCard txlist={txListData}></ShieldListCard>
+        </div>
         <Space h="md" />
         <Group position="center" spacing="lg">
             <Group position="center">
@@ -40,13 +48,6 @@ function ShieldTxs() {
             </Group>
             <Pagination page={activePage} onChange={handleFetchData} siblings={1} boundaries={1} total={totalPage} radius="xl" />
         </Group>
-        <Space h="md" />
-        <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
-            <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
-        </Group>
-        <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
-            <TxListCard txlist={txListData}></TxListCard>
-        </div>
         <Space h="sm" />
 
 

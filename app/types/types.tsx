@@ -5,6 +5,9 @@ export type TxData = {
     shard_id: string,
     meta_type_id: string,
     meta_type_name: string,
+    amount: number,
+    token_id: string,
+    token_symbol: string,
 }
 
 export type TxDetail = {
@@ -88,6 +91,7 @@ export type BlockData = {
     FinalityHeight: number,
     Size: number,
     TxRoot: string,
+    TxHashes: string[],
     Txs: any[],
     Epoch: number,
     Round: number,

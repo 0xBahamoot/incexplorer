@@ -1,4 +1,4 @@
-import { Button, Card, Table, Paper, Text } from '@mantine/core';
+import { Card, Table, Paper, Text } from '@mantine/core';
 
 import { Link } from 'react-router-dom';
 
@@ -23,9 +23,9 @@ const BlockListCard: FunctionComponent<Props> = ({ blocklist, blockType }) => {
     return (
       <tr key={element.Hash} style={{ cursor: 'pointer' }}>
         <td>{element.Height}</td>
-        <td><Text variant="link" component={Link} to={"/block/" + element.Hash + (blockType == 'shardblk') ? '' : '?beacon=true'}>{element.Hash}</Text></td>
+        <td><Text variant="link" component={Link} to={'/block/' + element.Hash + ((blockType == 'shardblk') ? '' : '?beacon=true')}>{element.Hash}</Text></td>
         <td style={{ textOverflow: 'ellipsis', maxWidth: 300, overflow: 'hidden' }}>{element.BlockProducer}</td>
-        {(blockType == 'shardblk') ? <td>{element.Txs.length}</td> : ''}
+        {(blockType == 'shardblk') ? <td>{element.TxHashes.length}</td> : null}
         <td>{format.formatUnixDateTime(element.Time)}</td>
       </tr>
     )
@@ -38,11 +38,11 @@ const BlockListCard: FunctionComponent<Props> = ({ blocklist, blockType }) => {
           <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
             <thead className={classes.tableThead}>
               <tr>
-                <th>Height</th>
-                <th>Hash</th>
-                <th>Producer</th>
-                {(blockType == 'shardblk') ? <th>Txn</th> : ''}
-                <th>Time created</th>
+                <th><Text className={classes.tableTheadText}>Height</Text></th>
+                <th><Text className={classes.tableTheadText}>Hash</Text></th>
+                <th><Text className={classes.tableTheadText}>Producer</Text></th>
+                {(blockType == 'shardblk') ? <th><Text className={classes.tableTheadText}>Txn</Text></th> : null}
+                <th><Text className={classes.tableTheadText}>Time created</Text></th>
               </tr>
             </thead>
             <tbody>{rows}</tbody>

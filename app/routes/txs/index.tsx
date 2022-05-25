@@ -26,6 +26,13 @@ function Txs() {
     return <>
         <SectionTitle text="Transactions" />
         <Space h="md" />
+        <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
+            <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
+        </Group>
+        <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
+            <TxListCard txlist={txListData}></TxListCard>
+        </div>
+        <Space h="md" />
         <Group position="center" spacing="lg">
             <Group position="center">
                 <Text size="sm">Go to</Text>
@@ -40,13 +47,6 @@ function Txs() {
             </Group>
             <Pagination page={activePage} onChange={handleFetchData} siblings={1} boundaries={1} total={totalPage} radius="xl" />
         </Group>
-        <Space h="md" />
-        <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
-            <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
-        </Group>
-        <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
-            <TxListCard txlist={txListData}></TxListCard>
-        </div>
         <Space h="sm" />
 
 

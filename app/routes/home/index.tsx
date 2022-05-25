@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { getNormalTx } from '~/services/transactions';
 import { Link } from 'react-router-dom';
 import { getDashboard, getSummary } from '~/services/summary';
+import SectionTitle from '~/components/sectiontitle/sectiontitle';
 function Home() {
 
   const [txListData, setTxListData] = useState<any>([]);
@@ -84,7 +85,7 @@ function Home() {
   }, []);
   return (
     <>
-      <Title order={3} style={{ color: '#fff', letterSpacing: "0.01em", fontStyle: 'normal', fontWeight: 500 }}>Network</Title>
+      <SectionTitle text='Network' />
 
       <Space h="sm" />
       <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
@@ -95,8 +96,7 @@ function Home() {
         <SummaryBox items={networkData}></SummaryBox>
       </div>
       <Space h={40} />
-      <Title order={3} style={{ color: '#fff', letterSpacing: "0.01em", fontStyle: 'normal', fontWeight: 500 }}>Privacy Exchange</Title>
-
+      <SectionTitle text='Privacy Exchange' />
       <Space h="sm" />
       <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
         <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
@@ -106,8 +106,7 @@ function Home() {
         <SummaryBox items={pdexData}></SummaryBox>
       </div>
       <Space h={40} />
-      <Title order={3} style={{ color: '#fff', letterSpacing: "0.01em", fontStyle: 'normal', fontWeight: 500 }}>PRV</Title>
-
+      <SectionTitle text='PRV' />
       <Space h="sm" />
       <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
         <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
@@ -118,7 +117,7 @@ function Home() {
       </div>
 
       <Space h={40} />
-      <Title order={3} style={{ color: '#fff', letterSpacing: "0.01em", fontStyle: 'normal', fontWeight: 500 }}>Transaction</Title>
+      <SectionTitle text='Transaction' />
       <Space h="md" />
       <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
         <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />

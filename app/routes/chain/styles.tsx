@@ -6,6 +6,10 @@ const useStyles = createStyles((theme) => ({
     },
     tableThead: {
         backgroundColor: '#303030', color: '#9C9C9C'
+    },
+    tableTheadText: {
+        color: '#9C9C9C !important',
+        fontWeight: 500
     }
 }));
 

@@ -14,6 +14,7 @@ export const loader: LoaderFunction = async ({ params }) => {
   var id: any = params.shardid;
   var chainID: number = parseInt(id);
   const { Result, Error } = (await getBlocks(chainID)) as any;
+  console.log(Result);
   blockList = Result;
   return blockList
 };
@@ -70,7 +71,7 @@ function ShardDetail() {
         <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
       </Group>
       <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
-        <BlockListCard blocklist={data}></BlockListCard>
+        <BlockListCard blocklist={data} blockType='shardblk'></BlockListCard>
       </div>
       <Space h="sm" />
     </>

@@ -30,7 +30,7 @@ const GenTxRow = (txlist: TxInBlock[]) => {
     }
 
     return (
-      <tr key={element.Hash} style={{ cursor: 'pointer' }} >
+      <tr key={element.Locktime} style={{ cursor: 'pointer' }} >
         <td>{format.formatUnixDateTime(element.Locktime)}</td>
         <td><Text variant="link" component={Link} to={"/tx/" + element.Hash}>{element.Hash}</Text></td>
       </tr>

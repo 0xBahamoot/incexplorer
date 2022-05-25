@@ -125,9 +125,9 @@ function ShardsOverview() {
                         <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
                             <thead className={classes.tableThead}>
                                 <tr>
-                                    <th>Hash</th>
-                                    <th>Time created</th>
-                                    <th>Height</th>
+                                    <th><Text className={classes.tableTheadText}>Hash</Text></th>
+                                    <th><Text className={classes.tableTheadText}>Time created</Text></th>
+                                    <th><Text className={classes.tableTheadText}>Height</Text></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -151,11 +151,11 @@ function ShardsOverview() {
                         <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
                             <thead className={classes.tableThead}>
                                 <tr>
-                                    <th>Hash</th>
-                                    <th>Time created</th>
-                                    <th>No. of shards</th>
-                                    <th>Height</th>
-                                    <th>Total txs</th>
+                                    <th><Text className={classes.tableTheadText}>Hash</Text></th>
+                                    <th><Text className={classes.tableTheadText}>Time created</Text></th>
+                                    <th><Text className={classes.tableTheadText}>No. of shards</Text></th>
+                                    <th><Text className={classes.tableTheadText}>Height</Text></th>
+                                    <th><Text className={classes.tableTheadText}>Total txs</Text></th>
                                 </tr>
                             </thead>
                             <tbody>{shardRows}</tbody>

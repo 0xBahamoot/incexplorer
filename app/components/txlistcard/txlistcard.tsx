@@ -1,4 +1,4 @@
-import { Text, Card, Table, Paper, Box } from '@mantine/core';
+import { Text, Card, Table, Paper, Box, ScrollArea } from '@mantine/core';
 
 import React, { FunctionComponent } from 'react'
 import { TxData } from '~/types/types';
@@ -14,10 +14,6 @@ type Props = {
 const TxListCard: FunctionComponent<Props> = ({ txlist }) => {
   const { classes } = useStyles();
   const rows = txlist?.map((element, idx) => {
-    if (idx >= 15) {
-      return null
-    }
-
     return (
 
       <tr key={element.tx_hash} style={{ cursor: 'pointer' }} >
@@ -46,19 +42,21 @@ const TxListCard: FunctionComponent<Props> = ({ txlist }) => {
 
   return (
     <Paper radius={12} withBorder className={classes.container}>
-      <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
-        <thead className={classes.tableThead}>
-          <tr>
-            <th>Time</th>
-            <th>Hash</th>
-            <th style={{ wordWrap: 'normal' }}>Block height</th>
-            <th>Shard</th>
-            <th>Metatype</th>
-            {/* <th></th> */}
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </Table>
+      <ScrollArea>
+        <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
+          <thead className={classes.tableThead}>
+            <tr>
+              <th><Text className={classes.tableTheadText}>Time</Text></th>
+              <th><Text className={classes.tableTheadText}>Hash</Text></th>
+              <th style={{ wordWrap: 'normal' }}><Text className={classes.tableTheadText}>Block height</Text></th>
+              <th><Text className={classes.tableTheadText}>Shard</Text></th>
+              <th><Text className={classes.tableTheadText}>Metatype</Text></th>
+              {/* <th></th> */}
+            </tr>
+          </thead>
+          <tbody>{rows}</tbody>
+        </Table>
+      </ScrollArea>
     </Paper>
   );
 }
