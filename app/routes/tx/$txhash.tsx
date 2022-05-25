@@ -113,7 +113,7 @@ function Tx() {
           </Grid.Col>
           <Grid.Col span={20}>
             <ScrollArea style={{ height: 250 }}>
-              <PrettyPrintJson data={JSON.parse(loaderData.Metadata)}></PrettyPrintJson>
+              <PrettyPrintJson data={(loaderData.Metadata != '') ? JSON.parse(loaderData.Metadata) : null}></PrettyPrintJson>
             </ScrollArea>
           </Grid.Col>
         </Grid>
