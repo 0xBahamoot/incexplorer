@@ -30,7 +30,10 @@ const ShieldListCard: FunctionComponent<Props> = ({ txlist }) => {
         <td><Text variant="link" component={Link} to={"/tx/" + element.tx_hash}>{element.tx_hash}</Text></td>
         <td>
           <Center inline>
-            <Text style={{ fontSize: 18, display: 'inline-block' }}>{element.amount}</Text> <Text style={{ backgroundColor: '#303030', padding: '1.5px 8px', borderRadius: 6, display: 'inline-block', fontSize: 14, marginLeft: 8 }}>{element.token_symbol}</Text>
+            <Text style={{ fontSize: 18, display: 'inline-block' }}>
+              {format.formatAmount({ humanAmount: element.amount, decimals: 4 })}</Text>
+
+            <Text style={{ backgroundColor: '#303030', padding: '1.5px 8px', borderRadius: 6, display: 'inline-block', fontSize: 14, marginLeft: 8 }}>{element.token_symbol}</Text>
 
           </Center>
         </td>
