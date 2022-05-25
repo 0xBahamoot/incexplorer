@@ -1,8 +1,10 @@
-import { ActionIcon, useMantineColorScheme, Group, Button, TextInput, Image, Stack, MediaQuery, Burger, Drawer, useMantineTheme } from '@mantine/core';
+import { ActionIcon, useMantineColorScheme, Group, Button, TextInput, Image, Stack, MediaQuery, Burger, Drawer, useMantineTheme, Loader } from '@mantine/core';
 import { Sun, MoonStars, Search } from 'tabler-icons-react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocalStorage } from '@mantine/hooks';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { useFetcher } from "@remix-run/react";
 
 // import { useLocation } from 'react-router-dom';
 
@@ -11,9 +13,12 @@ function MainHeader() {
 
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const [opened, setOpened] = useState(false);
-
+  const [searching, setSearching] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
+  const fetcher = useFetcher();
   const theme = useMantineTheme();
   const dark = colorScheme === 'dark';
+  let navigate = useNavigate();
 
   const [chainNetwork, setChainNetwork] = useLocalStorage({
     key: 'chainnetwork',
@@ -25,6 +30,39 @@ function MainHeader() {
     setChainNetwork(network);
     window.location.reload();
   }
+
+  function search(event: React.KeyboardEvent<HTMLInputElement>) {
+    if ((event.key === "Enter") && (searchValue.length > 0)) {
+      setSearching(true)
+      fetcher.load(`/search/${searchValue}`);
+    }
+
+  }
+
+  useEffect(() => {
+    setSearching(false)
+    const result = fetcher.data;
+    if (result) {
+      console.log(result);
+      if (result.IsBeaconBlock) {
+        navigate(`/block/${searchValue}?beacon=true`, { replace: true });
+        return
+      }
+
+      if (result.IsBlock) {
+        navigate(`/block/${searchValue}`, { replace: true });
+        return
+      }
+
+      if (result.IsTransaction) {
+        navigate(`/tx/${searchValue}`, { replace: true });
+        return
+      }
+
+    } else {
+      console.log('no data');
+    }
+  }, [fetcher.data]);
 
   // useEffect(() => {
   //   if (location.pathname === '/') {
@@ -53,7 +91,6 @@ function MainHeader() {
               onClick={() => setOpened((o) => !o)}
               size="sm"
               color={theme.colors.gray[6]}
-            // mr="xl"
             />
 
             <MediaQuery smallerThan={450} styles={{ display: 'none' }}>
@@ -65,10 +102,12 @@ function MainHeader() {
 
           <Group position="right">
             <TextInput
-              placeholder="search tx / block / token"
+              placeholder="search anything"
               variant="filled"
               radius="md"
-              icon={<Search size={14} />} style={{ width: 240 }}
+              icon={(searching) ? <Loader size="xs" /> : <Search size={14} color={"#fff"} />} style={{ width: 240 }}
+              onChange={(event) => setSearchValue(event.target.value)}
+              onKeyUp={(event) => search(event)}
             />
           </Group>
         </Group>
@@ -90,10 +129,12 @@ function MainHeader() {
 
           <Group position="right">
             <TextInput
-              placeholder="search transaction / block / token"
+              placeholder="search anything"
               variant="filled"
               radius="md"
-              icon={<Search size={14} color={"#fff"} />} style={{ width: 280, backgroundColor: '#303030', borderRadius: 12 }}
+              icon={(searching) ? <Loader size="xs" /> : <Search size={14} color={"#fff"} />} style={{ width: 280, backgroundColor: '#303030', borderRadius: 12 }}
+              onChange={(event) => setSearchValue(event.target.value)}
+              onKeyUp={(event) => search(event)}
             />
 
             {/* <Popover

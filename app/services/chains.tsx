@@ -34,3 +34,9 @@ export const getBlock = async (blockhash: string, isBeacon: boolean, network?: s
         '2'
     ]));
 }
+
+export const checkHashValue = async (value: string, network?: string) => {
+    const inst = CreateRPCInstance((network || 'mainnet'))
+    return inst.post('', CreateRPCBody('checkhashvalue', [value]));
+
+}

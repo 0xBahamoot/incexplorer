@@ -56,16 +56,6 @@ export default function App() {
         <link href="/stylesheet.css" rel="stylesheet"></link>
       </head>
       <body>
-        {/* <Global
-          styles={[
-            {
-              '@font-face': {
-                fontFamily: 'Inter',
-                src: `url('assets/fonts/static/') format("opentype")`,
-              },
-            },
-          ]}
-        /> */}
         <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
           <MantineProvider theme={{
             colorScheme,

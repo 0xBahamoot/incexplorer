@@ -35,7 +35,7 @@ function BlockDetail() {
     <>
       <SectionTitle text={"Block Detail"} />
       <Space h="xl" />
-      <Paper shadow="sm" radius="md" p="xl" withBorder>
+      <Paper shadow="sm" radius="md" p="xl" withBorder className={classes.container}>
         <Grid columns={24} className={classes.wrapper}>
           <Grid.Col span={4}>
             <Text color="gray">Hash</Text>

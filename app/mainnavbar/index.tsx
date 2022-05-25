@@ -51,6 +51,7 @@ function ShieldedSection() {
             <Stack justify="flex-start" spacing="xs">
                 <NavbarBtn text='TVL' link='/charts/liquiditytvl'></NavbarBtn>
                 <NavbarBtn text='Shield Volume' link='/charts/shieldvolume'></NavbarBtn>
+                <NavbarBtn text='Shield Txs' link='/shieldtxs'></NavbarBtn>
             </Stack>
         </>
     )
