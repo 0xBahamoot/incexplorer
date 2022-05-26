@@ -76,7 +76,7 @@ function Home() {
     setPdexData(pdexList);
     setPRVData(prvList);
     const { Result } = (await getNormalTx(1)) as any;
-    setTxListData(Result.Data);
+    setTxListData(Result.Data.slice(0, 10));
     setLoaded(true);
   }
 

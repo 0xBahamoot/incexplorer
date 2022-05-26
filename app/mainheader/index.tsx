@@ -5,6 +5,8 @@ import { useLocalStorage } from '@mantine/hooks';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useFetcher } from "@remix-run/react";
+import { showNotification } from '@mantine/notifications';
+import { NotificationsProvider } from '@mantine/notifications';
 
 // import { useLocation } from 'react-router-dom';
 
@@ -40,10 +42,9 @@ function MainHeader() {
   }
 
   useEffect(() => {
-    setSearching(false)
     const result = fetcher.data;
     if (result) {
-      console.log(result);
+      console.log("result", result);
       if (result.IsBeaconBlock) {
         navigate(`/block/${searchValue}?beacon=true`, { replace: true });
         return
@@ -59,8 +60,13 @@ function MainHeader() {
         return
       }
 
-    } else {
-      console.log('no data');
+      showNotification({
+        autoClose: 5000,
+        title: 'Search result',
+        message: 'Hash not found!',
+        color: 'red',
+        radius: 'md'
+      })
     }
   }, [fetcher.data]);
 
@@ -82,6 +88,9 @@ function MainHeader() {
       >
         {/* Drawer content */}
       </Drawer>
+
+      <NotificationsProvider position="top-right" zIndex={2077}>
+      </NotificationsProvider>
       <MediaQuery largerThan={1200} styles={{ display: 'none' }}>
 
         <Group position="apart">

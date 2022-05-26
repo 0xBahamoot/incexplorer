@@ -8,6 +8,10 @@ const useStyles = createStyles((theme) => ({
     tableThead: {
         backgroundColor: '#303030', color: '#9C9C9C'
     },
+    tableTheadText: {
+        color: '#9C9C9C !important',
+        fontWeight: 500
+    },
     wrapper: {
         backgroundColor: theme.colorScheme === 'dark' ? '#1A1A1A' : theme.white,
         borderColor: "#303030",

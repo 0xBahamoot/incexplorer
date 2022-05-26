@@ -25,13 +25,9 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 
 const GenTxRow = (txlist: TxInBlock[]) => {
   const result = txlist?.map((element, idx) => {
-    if (idx >= 15) {
-      return null
-    }
-
     return (
-      <tr key={element.Locktime} style={{ cursor: 'pointer' }} >
-        <td>{format.formatUnixDateTime(element.Locktime)}</td>
+      <tr key={idx} style={{ cursor: 'pointer' }} >
+        <td>{idx + 1}</td>
         <td><Text variant="link" component={Link} to={"/tx/" + element.Hash}>{element.Hash}</Text></td>
       </tr>
     )
@@ -47,6 +43,8 @@ function BlockDetail() {
   const { classes } = useStyles();
   const loaderData: BlockData = useLoaderData();
   const [data, setData] = useState(loaderData);
+
+  console.log(data);
 
   return (
     <>
@@ -213,8 +211,8 @@ function BlockDetail() {
               <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
                 <thead className={classes.tableThead}>
                   <tr>
-                    <th>Time</th>
-                    <th>Hash</th>
+                    <th><Text className={classes.tableTheadText}>No.</Text></th>
+                    <th><Text className={classes.tableTheadText}>Hash</Text></th>
                   </tr>
                 </thead>
                 <tbody>{GenTxRow(data.Txs)}</tbody>

@@ -9,8 +9,11 @@ import {
 } from "@remix-run/react";
 import { ArrowNarrowUp } from 'tabler-icons-react';
 
+import { useNavigate } from 'react-router-dom';
+
+import { Link } from 'react-router-dom';
 import { useWindowScroll } from '@mantine/hooks';
-import { AppShell, Header, Footer, MantineProvider, ColorSchemeProvider, ColorScheme, Container, Navbar, Affix, ActionIcon, Transition } from '@mantine/core';
+import { AppShell, Header, Footer, MantineProvider, ColorSchemeProvider, ColorScheme, Container, Navbar, Affix, ActionIcon, Transition, Center, Space, Box, Text, Button } from '@mantine/core';
 import { useHotkeys, useLocalStorage } from '@mantine/hooks';
 import MainHeader from '~/mainheader';
 import { Outlet } from "@remix-run/react";
@@ -37,7 +40,7 @@ export default function App() {
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 
-  useHotkeys([['mod+J', () => toggleColorScheme()]]);
+  // useHotkeys([['mod+J', () => toggleColorScheme()]]);
   function checkHeight() {
     if (window.innerHeight - 120 > contentHeight) {
       setFixedFooter(true);
@@ -80,6 +83,7 @@ export default function App() {
               },
             },
           }}>
+
             <AppShell
               padding="md"
               navbarOffsetBreakpoint="lg"
@@ -142,16 +146,47 @@ export function CatchBoundary() {
 
 
 export function ErrorBoundary(error: any) {
+  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+    key: 'mantine-color-scheme',
+    defaultValue: 'dark',
+    getInitialValueInEffect: true,
+  });
+  const toggleColorScheme = (value?: ColorScheme) => { };
+
+  let navigate = useNavigate();
+
   console.error(error);
   return (
     <html>
       <head>
-        <title>Oh no!</title>
+        <title>Oh no! 404</title>
         <Meta />
         <Links />
+        <link href="/stylesheet.css" rel="stylesheet"></link>
       </head>
       <body>
-        {/* add the UI you want your users to see */}
+        <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+          <MantineProvider theme={{
+            colorScheme,
+            fontFamily: "Inter",
+            headings: { fontFamily: "Inter" },
+
+          }} withGlobalStyles withNormalizeCSS>
+            <Center style={{ width: '100%', height: '95vh' }}>
+              <Box>
+                <Text style={{ fontWeight: 500, fontSize: 36, display: 'block', color: '#fff' }}>Oh no! 404</Text>
+                <Space h='xl' />
+                <Button variant="light" style={{ display: 'table', margin: '0 auto' }} onClick={() => {
+                  navigate(`/`, { replace: true });
+                  window.location.reload();
+                  return
+                }}>
+                  Go Home
+                </Button>
+              </Box>
+            </Center>
+          </MantineProvider>
+        </ColorSchemeProvider>
         <Scripts />
       </body>
     </html>
