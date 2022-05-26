@@ -107,6 +107,8 @@ function MainHeader() {
                   display: 'inline-block',
                   marginLeft: 12,
                   borderRadius: 6,
+                  color: '#fff',
+                  fontWeight: 500
                 })}>Beta</Text>
               </Center>
             </MediaQuery>
@@ -140,6 +142,8 @@ function MainHeader() {
                 marginLeft: 12,
                 display: 'inline-block',
                 borderRadius: 6,
+                color: '#fff',
+                fontWeight: 500
               })}>Beta</Text>
             </Center>
             <Group position='left' style={{ paddingLeft: 10 }}>
