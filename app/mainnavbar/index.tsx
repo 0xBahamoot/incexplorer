@@ -71,7 +71,7 @@ function GetStartedSection() {
     return (
         <>
             <Stack justify="flex-start" spacing="xs">
-                <NavbarBtn text='Download' link='/'></NavbarBtn>
+                <NavbarBtn text='Download' link='https://incognito.org/' external></NavbarBtn>
             </Stack>
         </>
     )

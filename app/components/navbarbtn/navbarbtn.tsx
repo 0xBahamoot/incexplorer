@@ -1,20 +1,29 @@
 import { Box } from '@mantine/core';
 import React, { FunctionComponent } from 'react'
 
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 type Props = {
     text: string
     link: string
+    external?: boolean
 }
 
-const NavbarBtn: FunctionComponent<Props> = ({ text, link }) => {
+const NavbarBtn: FunctionComponent<Props> = ({ text, link, external }) => {
+
+    let navigate = useNavigate();
 
     return (
         <>
             <Box
-                component={Link} to={link}
+                onClick={() => {
+                    if (external) {
+                        window.open(link, '_blank');
+                    } else {
+                        navigate(link, { replace: true });
+                    }
+                }}
                 sx={(theme) => ({
                     // backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
                     textAlign: 'left',
