@@ -17,7 +17,7 @@ function ShieldTxs() {
         const { Result } = (await getShieldTxs(page)) as any;
         console.log("data", Result);
         setTxListData(Result.Data);
-        setTotalPage(Result.Paging.Total);
+        setTotalPage(Math.floor(Result.Paging.Total / Result.Paging.Limit));
         setLoaded(true);
     }
     useEffect(() => {

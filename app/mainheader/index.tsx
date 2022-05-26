@@ -1,4 +1,4 @@
-import { ActionIcon, useMantineColorScheme, Group, Button, TextInput, Image, Stack, MediaQuery, Burger, Drawer, useMantineTheme, Loader } from '@mantine/core';
+import { ActionIcon, useMantineColorScheme, Group, Button, TextInput, Image, Text, Center, MediaQuery, Burger, Drawer, useMantineTheme, Loader } from '@mantine/core';
 import { Sun, MoonStars, Search } from 'tabler-icons-react';
 import React, { useEffect, useState } from 'react';
 import { useLocalStorage } from '@mantine/hooks';
@@ -94,12 +94,23 @@ function MainHeader() {
             />
 
             <MediaQuery smallerThan={450} styles={{ display: 'none' }}>
-              <a href="/">
-                <Image alt="logo" src={dark ? "/assets/images/logo_h_white.svg" : "/assets/images/logo_h_dark.svg"} height={30} />
-              </a>
+              <Center>
+                <a href="/">
+                  <Image alt="logo" src={dark ? "/assets/images/logo_h_white.svg" : "/assets/images/logo_h_dark.svg"} height={30} />
+                </a>
+
+                <Text sx={(theme) => ({
+                  backgroundColor: theme.colorScheme === 'dark' ? '#303030' : theme.colors.gray[0],
+                  width: 'auto',
+                  fontSize: 16, textAlign: 'center',
+                  padding: '1px 8px',
+                  display: 'inline-block',
+                  marginLeft: 12,
+                  borderRadius: 6,
+                })}>Beta</Text>
+              </Center>
             </MediaQuery>
           </Group>
-
           <Group position="right">
             <TextInput
               placeholder="search anything"
@@ -116,9 +127,21 @@ function MainHeader() {
       <MediaQuery smallerThan={1200} styles={{ display: 'none' }}>
         <Group position="apart" grow>
           <Group position="left">
-            <a href="/">
-              <Image alt="logo" src={dark ? "/assets/images/logo_h_white.svg" : "/assets/images/logo_h_dark.svg"} style={{ marginLeft: 25 }} height={30} />
-            </a>
+            <Center>
+              <a href="/">
+                <Image alt="logo" src={dark ? "/assets/images/logo_h_white.svg" : "/assets/images/logo_h_dark.svg"} style={{ marginLeft: 25 }} height={30} />
+              </a>
+
+              <Text sx={(theme) => ({
+                backgroundColor: theme.colorScheme === 'dark' ? '#303030' : theme.colors.gray[0],
+                width: 'auto',
+                fontSize: 16, textAlign: 'center',
+                padding: '1px 8px',
+                marginLeft: 12,
+                display: 'inline-block',
+                borderRadius: 6,
+              })}>Beta</Text>
+            </Center>
             <Group position='left' style={{ paddingLeft: 10 }}>
               <Button variant="subtle" color="gray" size="md" compact component={Link} to="/">Explore</Button>
               <Button variant="subtle" color="gray" size="md" compact component="a" target={"_blank"} href="https://incognito.org/apps">About us</Button>
