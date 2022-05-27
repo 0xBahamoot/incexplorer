@@ -162,7 +162,7 @@ function MainHeader() {
                 fontWeight: 500
               })}>Beta</Text>
             </Center>
-            <Group position='left' style={{ paddingLeft: 10 }}>
+            <Group position='left' style={{ paddingLeft: 30 }}>
               <Button variant="subtle" color="gray" size="md" compact component={Link} to="/">Explore</Button>
               <Button variant="subtle" color="gray" size="md" compact component="a" target={"_blank"} href="https://incognito.org">About us</Button>
               <Button variant="subtle" color="gray" size="md" compact component="a" target={"_blank"} href="https://we.incognito.org/">Community</Button>

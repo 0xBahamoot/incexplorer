@@ -120,49 +120,41 @@ function ShardsOverview() {
             <Space h={40} />
             <SectionTitle text="Beacon Chain" />
             <Space h="sm" />
-            <Paper radius={12} withBorder className={classes.container}>
-                <Card className={classes.container} radius={12} >
-                    <Card.Section>
-                        <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
-                            <thead className={classes.tableThead}>
-                                <tr>
-                                    <th><Text className={classes.tableTheadText}>Hash</Text></th>
-                                    <th><Text className={classes.tableTheadText}>Time created</Text></th>
-                                    <th><Text className={classes.tableTheadText}>Height</Text></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr style={{ cursor: 'pointer' }}>
-                                    <td><Text variant="link" component={Link} to={"/block/" + data.beaconInfo.Hash + '?beacon=true'}>{data.beaconInfo.Hash}</Text></td>
-                                    <td>{format.formatUnixDateTime(data.beaconInfo.Time)}</td>
-                                    <td>{format.formatAmount({ humanAmount: data.beaconInfo.Height, decimals: 4 })}</td>
-                                </tr>
-                            </tbody>
-                        </Table>
-                    </Card.Section>
-                </Card>
+            <Paper radius={12} className={classes.container}>
+                <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
+                    <thead className={classes.tableThead}>
+                        <tr>
+                            <th><Text className={classes.tableTheadText}>Hash</Text></th>
+                            <th><Text className={classes.tableTheadText}>Time created</Text></th>
+                            <th><Text className={classes.tableTheadText}>Height</Text></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style={{ cursor: 'pointer' }}>
+                            <td><Text variant="link" component={Link} to={"/block/" + data.beaconInfo.Hash + '?beacon=true'}>{data.beaconInfo.Hash}</Text></td>
+                            <td>{format.formatUnixDateTime(data.beaconInfo.Time)}</td>
+                            <td>{format.formatAmount({ humanAmount: data.beaconInfo.Height, decimals: 4 })}</td>
+                        </tr>
+                    </tbody>
+                </Table>
             </Paper>
             <Space h={40} />
 
             <SectionTitle text="Most recent blocks" />
             <Space h="sm" />
-            <Paper radius={12} withBorder className={classes.container}>
-                <Card className={classes.container} radius={12} >
-                    <Card.Section>
-                        <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
-                            <thead className={classes.tableThead}>
-                                <tr>
-                                    <th><Text className={classes.tableTheadText}>Hash</Text></th>
-                                    <th><Text className={classes.tableTheadText}>Time created</Text></th>
-                                    <th><Text className={classes.tableTheadText}>No. of shards</Text></th>
-                                    <th><Text className={classes.tableTheadText}>Height</Text></th>
-                                    <th><Text className={classes.tableTheadText}>Total txs</Text></th>
-                                </tr>
-                            </thead>
-                            <tbody>{shardRows}</tbody>
-                        </Table>
-                    </Card.Section>
-                </Card>
+            <Paper radius={12} className={classes.container}>
+                <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
+                    <thead className={classes.tableThead}>
+                        <tr>
+                            <th><Text className={classes.tableTheadText}>Hash</Text></th>
+                            <th><Text className={classes.tableTheadText}>Time created</Text></th>
+                            <th><Text className={classes.tableTheadText}>No. of shards</Text></th>
+                            <th><Text className={classes.tableTheadText}>Height</Text></th>
+                            <th><Text className={classes.tableTheadText}>Total txs</Text></th>
+                        </tr>
+                    </thead>
+                    <tbody>{shardRows}</tbody>
+                </Table>
             </Paper>
         </>
 

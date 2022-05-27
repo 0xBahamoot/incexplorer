@@ -1,4 +1,4 @@
-import { Title, Space, TextInput, Pagination, Group, Text, Loader, } from '@mantine/core';
+import { Title, Space, TextInput, Pagination, Group, Text, Loader, ScrollArea } from '@mantine/core';
 import TxListCard from '~/components/txlistcard/txlistcard';
 import { useState, useEffect } from 'react';
 import { getNormalTx, getShieldTxs } from '~/services/transactions';
@@ -32,7 +32,9 @@ function ShieldTxs() {
             <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
         </Group>
         <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
-            <ShieldListCard txlist={txListData}></ShieldListCard>
+            <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
+                <ShieldListCard txlist={txListData}></ShieldListCard>
+            </ScrollArea>
         </div>
         <Space h="md" />
         <Group position="center" spacing="lg">

@@ -140,11 +140,12 @@ function Home() {
       <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
         <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
       </Group>
-      <ScrollArea style={{ height: loaded ? 'auto' : 0, borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
-        <TxListCard txlist={txListData}></TxListCard>
-      </ScrollArea>
 
-      <Space h="sm" />
+      <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
+        <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
+          <TxListCard txlist={txListData}></TxListCard>
+        </ScrollArea>
+      </div>
       <Space h="md" />
     </>
 
