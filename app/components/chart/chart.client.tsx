@@ -2,9 +2,10 @@ import { Button, Divider } from '@mantine/core';
 import React, { useEffect, useRef } from "react";
 
 
-import { priceData } from "~/routes/charts/liquiditytvl/priceData.js";
+import { priceData } from "~/routes/charts/market/priceData.js";
+
 // import { areaData } from './areaData';
-import { volumeData } from "~/routes/charts/liquiditytvl/volumeData.js";
+import { volumeData } from "~/routes/charts/market/volumeData.js";
 
 import { createChart, CrosshairMode } from "lightweight-charts";
 
@@ -36,6 +37,9 @@ function Chart() {
             // priceScale: {
             //     borderColor: "#485c7b"
             // },
+            priceScale: {
+                borderColor: "#363636"
+            },
             timeScale: {
                 borderColor: "#363636"
             }
@@ -64,7 +68,7 @@ function Chart() {
         // areaSeries.setData(areaData);
 
         const volumeSeries = chart.current.addHistogramSeries({
-            color: "#182233",
+            color: "#485c7b",
             lineWidth: 2,
             priceFormat: {
                 type: "volume"
@@ -73,7 +77,16 @@ function Chart() {
             scaleMargins: {
                 top: 0.8,
                 bottom: 0
-            }
+            },
+            priceLineVisible: false,
+            grid: {
+                vertLines: {
+                    visible: false,
+                },
+                horzLines: {
+                    color: "#363636"
+                }
+            },
         });
 
         volumeSeries.setData(volumeData);
