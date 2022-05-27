@@ -86,9 +86,9 @@ function MainNavbar() {
                         <BlockChainSection />
                     </Accordion.Item>
 
-                    {/* <Accordion.Item label={<AccordionLabel label='Privacy Exchange' icon='/assets/images/icons/navbar-exchange.svg' />} classNames={classes}>
+                    <Accordion.Item label={<AccordionLabel label='Privacy Exchange' icon='/assets/images/icons/navbar-exchange.svg' />} classNames={classes}>
                         <ExchangeSection />
-                    </Accordion.Item> */}
+                    </Accordion.Item>
 
                     <Accordion.Item label={<AccordionLabel label='Shielded coins' icon='/assets/images/icons/navbar-shielded.svg' />} classNames={classes}>
                         <ShieldedSection />

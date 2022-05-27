@@ -19,15 +19,15 @@ function Chart() {
             width: chartContainerRef.current.clientWidth,
             height: 500, //"300px", //chartContainerRef.current.clientHeight,
             layout: {
-                backgroundColor: "#253248",
-                textColor: "rgba(255, 255, 255, 0.9)"
+                backgroundColor: "#1A1A1A",
+                textColor: "#757575"
             },
             grid: {
                 vertLines: {
-                    color: "#334158"
+                    visible: false,
                 },
                 horzLines: {
-                    color: "#334158"
+                    color: "#363636"
                 }
             },
             crosshair: {
@@ -37,19 +37,19 @@ function Chart() {
             //     borderColor: "#485c7b"
             // },
             timeScale: {
-                borderColor: "#485c7b"
+                borderColor: "#363636"
             }
         });
 
         console.log(chart.current);
 
         const candleSeries = chart.current.addCandlestickSeries({
-            upColor: "#4bffb5",
-            downColor: "#ff4976",
-            borderDownColor: "#ff4976",
-            borderUpColor: "#4bffb5",
-            wickDownColor: "#838ca1",
-            wickUpColor: "#838ca1"
+            upColor: "#0ECB81",
+            downColor: "#F6465D",
+            borderDownColor: "#F6465D",
+            borderUpColor: "#0ECB81",
+            wickDownColor: "#F6465D",
+            wickUpColor: "#0ECB81",
         });
 
         candleSeries.setData(priceData);

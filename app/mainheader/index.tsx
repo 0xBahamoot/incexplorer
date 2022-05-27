@@ -3,6 +3,7 @@ import { Sun, MoonStars, Search } from 'tabler-icons-react';
 import React, { useEffect, useState } from 'react';
 import { useLocalStorage } from '@mantine/hooks';
 import { Link, useNavigate } from 'react-router-dom';
+import { SpotlightProvider } from '@mantine/spotlight';
 
 import { useFetcher } from "@remix-run/react";
 import { showNotification } from '@mantine/notifications';
@@ -78,7 +79,9 @@ function MainHeader() {
 
   return (
     <>
+      {/* <SpotlightProvider shortcut={['mod + P', 'mod + K', '/']} actions={[]} nothingFoundMessage="Nothing found..." searchPlaceholder="Search anything..." searchIcon={<Search size={18} />}>
 
+      </SpotlightProvider> */}
       <Drawer
         opened={opened}
         onClose={() => setOpened(false)}
