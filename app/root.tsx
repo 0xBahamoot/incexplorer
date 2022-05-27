@@ -7,7 +7,7 @@ import {
   ScrollRestoration,
   useCatch,
 } from "@remix-run/react";
-import { ArrowNarrowUp } from 'tabler-icons-react';
+import { ArrowUp } from 'tabler-icons-react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -104,11 +104,11 @@ export default function App() {
               <Container size='xl' px={30}>
                 <div ref={(divElement) => { checkHeight(); setContentHeight((divElement) ? divElement?.clientHeight : 0) }}><Outlet /></div>
               </Container>
-              <Affix position={{ bottom: 70, right: 10 }}>
+              <Affix position={{ bottom: 76, right: 30 }}>
                 <Transition transition="slide-up" mounted={scroll.y > 0}>
                   {(transitionStyles) => (
-                    <ActionIcon p={2} radius="xl" variant="filled" style={transitionStyles} onClick={() => scrollTo({ y: 0 })}>
-                      < ArrowNarrowUp />
+                    <ActionIcon p={10} size={50} radius="xl" variant="filled" style={transitionStyles} onClick={() => scrollTo({ y: 0 })}>
+                      < ArrowUp size={30} />
                     </ActionIcon>
                   )}
                 </Transition>
