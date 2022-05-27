@@ -122,7 +122,7 @@ function MainHeader() {
               </Center>
             </MediaQuery>
           </Group>
-          <Group position="right">
+          <Group position="right" style={{ paddingRight: 30 }}>
             <Center>
               <TextInput
                 placeholder="Search anything..."
@@ -170,7 +170,7 @@ function MainHeader() {
           </Group>
 
 
-          <Group position="right">
+          <Group position="right" style={{ paddingRight: 30 }}>
             <TextInput
               placeholder="Search anything..."
               variant="filled"
@@ -183,39 +183,6 @@ function MainHeader() {
               onKeyUp={(event) => search(event)}
               height={44}
             />
-
-            {/* <Popover
-              opened={subMenuNetwork}
-              onClose={() => setSubMenuNetwork(false)}
-              position="bottom"
-              placement="center"
-              withArrow
-              trapFocus={false}
-              closeOnEscape={false}
-              onMouseEnter={() => setSubMenuNetwork(true)}
-              onMouseLeave={() => setSubMenuNetwork(false)}
-              // transition="pop-top-left"
-              // width={180}
-              target={
-                <Button
-                  onMouseEnter={() => setSubMenuNetwork(true)} onMouseLeave={() => setSubMenuNetwork(false)} variant="light" size="md" compact >{(chainNetwork == "mainnet") ? "mainnet" : "testnet"}</Button>
-              }
-            >
-              <Stack align="flex-start" justify="flex-start">
-                <Button variant="subtle" color={"dark"} compact onClick={() => { switchNetwork("mainnet") }}>Incognito Mainnet</Button>
-                <Button variant="subtle" color={"dark"} compact onClick={() => { switchNetwork("testnet") }}>Incognito Testnet</Button>
-              </Stack>
-            </Popover> */}
-            {/* <ActionIcon
-              variant="light"
-              size="lg"
-              radius="md"
-              // color={dark ? 'yellow' : 'blue'}
-              onClick={() => toggleColorScheme()}
-              title=""
-            >
-              {dark ? <Sun size={24} /> : <MoonStars size={24} />}
-            </ActionIcon> */}
           </Group>
         </Group>
       </MediaQuery>

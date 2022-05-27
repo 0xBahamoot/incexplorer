@@ -12,7 +12,7 @@ function MainFooter() {
 
   return (
     <>
-      <Group position="apart" grow>
+      <Group position="apart" grow style={{ padding: '0 30px' }}>
         <Group position="left">
           <Center style={{ width: 150, height: 60 }}>
             <Title order={5} style={{ color: '#fff', fontWeight: 500 }}>© 2022 Incognito</Title>
