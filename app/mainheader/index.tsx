@@ -123,14 +123,20 @@ function MainHeader() {
             </MediaQuery>
           </Group>
           <Group position="right">
-            <TextInput
-              placeholder="search anything"
-              variant="filled"
-              radius="md"
-              icon={(searching) ? <Loader size="xs" /> : <Search size={14} color={"#fff"} />} style={{ width: 240 }}
-              onChange={(event) => setSearchValue(event.target.value)}
-              onKeyUp={(event) => search(event)}
-            />
+            <Center>
+              <TextInput
+                placeholder="Search anything..."
+                variant="filled"
+                radius="md"
+                iconWidth={40}
+                icon={(searching) ? <Loader size="xs" style={{ marginLeft: 8 }} /> : <Search size={14} color={"#fff"} style={{ marginLeft: 8 }} />}
+                style={{ width: 280, backgroundColor: '#303030', borderRadius: 12, height: 44 }}
+                styles={{ input: { color: '#fff', height: 44, fontSize: 16, backgroundColor: '#303030' } }}
+                onChange={(event) => setSearchValue(event.target.value)}
+                onKeyUp={(event) => search(event)}
+                height={44}
+              />
+            </Center>
           </Group>
         </Group>
       </MediaQuery>
@@ -166,12 +172,16 @@ function MainHeader() {
 
           <Group position="right">
             <TextInput
-              placeholder="search anything"
+              placeholder="Search anything..."
               variant="filled"
               radius="md"
-              icon={(searching) ? <Loader size="xs" /> : <Search size={14} color={"#fff"} />} style={{ width: 280, backgroundColor: '#303030', borderRadius: 12 }}
+              iconWidth={40}
+              icon={(searching) ? <Loader size="xs" style={{ marginLeft: 8 }} /> : <Search size={14} color={"#fff"} style={{ marginLeft: 8 }} />}
+              style={{ width: 280, backgroundColor: '#303030', borderRadius: 12, height: 44 }}
+              styles={{ input: { color: '#fff', height: 44, fontSize: 16, backgroundColor: '#303030' } }}
               onChange={(event) => setSearchValue(event.target.value)}
               onKeyUp={(event) => search(event)}
+              height={44}
             />
 
             {/* <Popover
