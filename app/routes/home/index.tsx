@@ -29,41 +29,53 @@ function Home() {
     await data.map((item: any) => {
       switch (item.Name) {
         case "TRADING VOLUME":
+          item.Name = "Trading Volume"
           pdexList.push(item)
           break;
         case "LIQUIDITY":
+          item.Name = "Liquidity"
           pdexList.push(item)
           break;
         case "24H TRADING VOLUME":
+          item.Name = "24h Trading Volume"
           pdexList.push(item)
           break;
 
         case "SHIELDED":
+          item.Name = "Shielded"
           networkList.push(item)
           break;
         case "TRANSACTIONS":
+          item.Name = "Transactions"
           networkList.push(item)
           break;
         case "24H TX COUNT":
+          item.Name = "24h Tx Count"
           networkList.push(item)
           break;
         case "ACTIVE VALIDATORS":
+          item.Name = "Active Validators"
           networkList.push(item)
           break;
         case "BEACON HEIGHT":
+          item.Name = "Beacon Height"
           networkList.push(item)
           break;
         case "1H TX COUNT":
+          item.Name = "1h Tx Count"
           networkList.push(item)
           break;
 
         case "PRV PRICE":
+          item.Name = "PRV Price"
           prvList.push(item)
           break;
         case "PRV CIRCULATING SUPPLY":
+          item.Name = "PRV Circulating Supply"
           prvList.push(item)
           break;
         case "MARKET CAP":
+          item.Name = "Market Cap"
           prvList.push(item)
           break;
 
@@ -85,6 +97,7 @@ function Home() {
   }, []);
   return (
     <>
+      <Space h={30} />
       <SectionTitle text='Network' />
 
       <Space h="sm" />
@@ -127,11 +140,12 @@ function Home() {
       <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
         <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
       </Group>
-      <ScrollArea style={{ height: loaded ? 'auto' : 0, borderRadius: 12, paddingRight: 10 }} >
-        <TxListCard txlist={txListData}></TxListCard>
-      </ScrollArea>
 
-      <Space h="sm" />
+      <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
+        <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
+          <TxListCard txlist={txListData}></TxListCard>
+        </ScrollArea>
+      </div>
       <Space h="md" />
     </>
 

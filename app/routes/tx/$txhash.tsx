@@ -27,6 +27,7 @@ function Tx() {
 
   return (
     <>
+      <Space h={30} />
       <SectionTitle text={"Transaction Details"} />
       <Space h="md" />
 

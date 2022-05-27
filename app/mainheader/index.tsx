@@ -3,8 +3,7 @@ import { Sun, MoonStars, Search } from 'tabler-icons-react';
 import React, { useEffect, useState } from 'react';
 import { useLocalStorage } from '@mantine/hooks';
 import { Link, useNavigate } from 'react-router-dom';
-import { SpotlightProvider } from '@mantine/spotlight';
-
+import MainNavbar from '~/mainnavbar';
 import { useFetcher } from "@remix-run/react";
 import { showNotification } from '@mantine/notifications';
 import { NotificationsProvider } from '@mantine/notifications';
@@ -38,6 +37,7 @@ function MainHeader() {
     if ((event.key === "Enter") && (searchValue.length > 0)) {
       setSearching(true)
       fetcher.load(`/search/${searchValue}`);
+      setSearching(false)
     }
 
   }
@@ -85,18 +85,16 @@ function MainHeader() {
       <Drawer
         opened={opened}
         onClose={() => setOpened(false)}
-        title="Register"
         padding="xl"
         size="xl"
       >
-        {/* Drawer content */}
+        <MainNavbar />
       </Drawer>
 
       <NotificationsProvider position="top-right" zIndex={2077}>
       </NotificationsProvider>
       <MediaQuery largerThan={1200} styles={{ display: 'none' }}>
-
-        <Group position="apart">
+        <Group position="apart" style={{ height: 52 }}>
           <Group position="left">
             <Burger
               opened={opened}
@@ -108,16 +106,17 @@ function MainHeader() {
             <MediaQuery smallerThan={450} styles={{ display: 'none' }}>
               <Center>
                 <a href="/">
-                  <Image alt="logo" src={dark ? "/assets/images/logo_h_white.svg" : "/assets/images/logo_h_dark.svg"} height={30} />
+                  <Image alt="logo" src={dark ? "/assets/images/logo.svg" : "/assets/images/logo.svg"} height={44} />
                 </a>
 
                 <Text sx={(theme) => ({
                   backgroundColor: theme.colorScheme === 'dark' ? '#303030' : theme.colors.gray[0],
                   width: 'auto',
-                  fontSize: 16, textAlign: 'center',
-                  padding: '1px 8px',
+                  fontSize: 14, textAlign: 'center',
+                  padding: '2px 8px',
                   display: 'inline-block',
                   marginLeft: 12,
+                  marginTop: -15,
                   borderRadius: 6,
                   color: '#fff',
                   fontWeight: 500
@@ -126,41 +125,48 @@ function MainHeader() {
             </MediaQuery>
           </Group>
           <Group position="right">
-            <TextInput
-              placeholder="search anything"
-              variant="filled"
-              radius="md"
-              icon={(searching) ? <Loader size="xs" /> : <Search size={14} color={"#fff"} />} style={{ width: 240 }}
-              onChange={(event) => setSearchValue(event.target.value)}
-              onKeyUp={(event) => search(event)}
-            />
+            <Center>
+              <TextInput
+                placeholder="Search anything..."
+                variant="filled"
+                radius="md"
+                iconWidth={40}
+                icon={(searching) ? <Loader size="xs" style={{ marginLeft: 8 }} /> : <Search size={14} color={"#fff"} style={{ marginLeft: 8 }} />}
+                style={{ width: 280, backgroundColor: '#303030', borderRadius: 12, height: 44 }}
+                styles={{ input: { color: '#fff', height: 44, fontSize: 16, backgroundColor: '#303030' } }}
+                onChange={(event) => setSearchValue(event.target.value)}
+                onKeyUp={(event) => search(event)}
+                height={44}
+              />
+            </Center>
           </Group>
         </Group>
       </MediaQuery>
 
       <MediaQuery smallerThan={1200} styles={{ display: 'none' }}>
-        <Group position="apart" grow>
+        <Group position="apart" grow style={{ height: 52 }}>
           <Group position="left">
             <Center>
               <a href="/">
-                <Image alt="logo" src={dark ? "/assets/images/logo_h_white.svg" : "/assets/images/logo_h_dark.svg"} style={{ marginLeft: 25 }} height={30} />
+                <Image alt="logo" src={dark ? "/assets/images/logo.svg" : "/assets/images/logo.svg"} height={44} />
               </a>
 
               <Text sx={(theme) => ({
                 backgroundColor: theme.colorScheme === 'dark' ? '#303030' : theme.colors.gray[0],
                 width: 'auto',
-                fontSize: 16, textAlign: 'center',
-                padding: '1px 8px',
+                fontSize: 14, textAlign: 'center',
+                padding: '2px 8px',
                 marginLeft: 12,
+                marginTop: -15,
                 display: 'inline-block',
                 borderRadius: 6,
                 color: '#fff',
                 fontWeight: 500
               })}>Beta</Text>
             </Center>
-            <Group position='left' style={{ paddingLeft: 10 }}>
+            <Group position='left' style={{ paddingLeft: 30 }}>
               <Button variant="subtle" color="gray" size="md" compact component={Link} to="/">Explore</Button>
-              <Button variant="subtle" color="gray" size="md" compact component="a" target={"_blank"} href="https://incognito.org/apps">About us</Button>
+              <Button variant="subtle" color="gray" size="md" compact component="a" target={"_blank"} href="https://incognito.org">About us</Button>
               <Button variant="subtle" color="gray" size="md" compact component="a" target={"_blank"} href="https://we.incognito.org/">Community</Button>
             </Group>
           </Group>
@@ -168,46 +174,17 @@ function MainHeader() {
 
           <Group position="right">
             <TextInput
-              placeholder="search anything"
+              placeholder="Search anything..."
               variant="filled"
               radius="md"
-              icon={(searching) ? <Loader size="xs" /> : <Search size={14} color={"#fff"} />} style={{ width: 280, backgroundColor: '#303030', borderRadius: 12 }}
+              iconWidth={40}
+              icon={(searching) ? <Loader size="xs" style={{ marginLeft: 8 }} /> : <Search size={14} color={"#fff"} style={{ marginLeft: 8 }} />}
+              style={{ width: 280, backgroundColor: '#303030', borderRadius: 12, height: 44 }}
+              styles={{ input: { color: '#fff', height: 44, fontSize: 16, backgroundColor: '#303030' } }}
               onChange={(event) => setSearchValue(event.target.value)}
               onKeyUp={(event) => search(event)}
+              height={44}
             />
-
-            {/* <Popover
-              opened={subMenuNetwork}
-              onClose={() => setSubMenuNetwork(false)}
-              position="bottom"
-              placement="center"
-              withArrow
-              trapFocus={false}
-              closeOnEscape={false}
-              onMouseEnter={() => setSubMenuNetwork(true)}
-              onMouseLeave={() => setSubMenuNetwork(false)}
-              // transition="pop-top-left"
-              // width={180}
-              target={
-                <Button
-                  onMouseEnter={() => setSubMenuNetwork(true)} onMouseLeave={() => setSubMenuNetwork(false)} variant="light" size="md" compact >{(chainNetwork == "mainnet") ? "mainnet" : "testnet"}</Button>
-              }
-            >
-              <Stack align="flex-start" justify="flex-start">
-                <Button variant="subtle" color={"dark"} compact onClick={() => { switchNetwork("mainnet") }}>Incognito Mainnet</Button>
-                <Button variant="subtle" color={"dark"} compact onClick={() => { switchNetwork("testnet") }}>Incognito Testnet</Button>
-              </Stack>
-            </Popover> */}
-            {/* <ActionIcon
-              variant="light"
-              size="lg"
-              radius="md"
-              // color={dark ? 'yellow' : 'blue'}
-              onClick={() => toggleColorScheme()}
-              title=""
-            >
-              {dark ? <Sun size={24} /> : <MoonStars size={24} />}
-            </ActionIcon> */}
           </Group>
         </Group>
       </MediaQuery>

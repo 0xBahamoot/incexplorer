@@ -10,7 +10,7 @@ type Props = {
 
 const SectionTitle: FunctionComponent<Props> = ({ text }) => {
     return (
-        <Title order={3} style={{ color: '#fff', letterSpacing: "0.01em", fontStyle: 'normal', fontWeight: 500, fontSize: 26 }}>{text}</Title>
+        <Title order={3} style={{ color: '#fff', letterSpacing: "0.01em", fontStyle: 'normal', fontWeight: 500, fontSize: 24 }}>{text}</Title>
     );
 }
 

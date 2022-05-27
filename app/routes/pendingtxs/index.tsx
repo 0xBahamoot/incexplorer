@@ -59,6 +59,7 @@ function PendingTxs() {
 
     return (
         <>
+            <Space h={30} />
             <SectionTitle text="Pending transactions" />
             <Space h="md" />
             <Paper radius={12} withBorder className={classes.container}>
