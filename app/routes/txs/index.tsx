@@ -24,6 +24,7 @@ function Txs() {
     }, []);
 
     return <>
+        <Space h={30} />
         <SectionTitle text="Transactions" />
         <Space h="md" />
         <Group position="center" style={{ height: !loaded ? 200 : 0 }}>

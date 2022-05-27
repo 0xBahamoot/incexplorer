@@ -99,6 +99,7 @@ function ShardsOverview() {
 
     return (
         <>
+            <Space h={30} />
             <SectionTitle text="Overview" />
             <Space h='md' />
             <Group position="center" style={{ height: !loaded ? 200 : 0 }}>

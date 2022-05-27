@@ -85,7 +85,7 @@ export default function App() {
           }}>
 
             <AppShell
-              padding="md"
+              padding={0}
               navbarOffsetBreakpoint="lg"
               fixed
               navbar={
@@ -93,7 +93,7 @@ export default function App() {
                   <MainNavbar />
                 </Navbar>
               }
-              header={<Header fixed={true} height={72} p="xs" style={{ backgroundColor: '#1A1A1A' }}>
+              header={<Header fixed={true} height={72} p={'10px 30px'} style={{ backgroundColor: '#1A1A1A' }}>
                 <MainHeader />
               </Header>}
               footer={<Footer height={60} p={0} fixed={fixedFooter} style={{ backgroundColor: '#1A1A1A' }}>{<MainFooter />} </Footer>}
@@ -101,7 +101,7 @@ export default function App() {
                 main: { backgroundColor: theme.colorScheme === 'dark' ? '#1A1A1A' : "#fff" },
               })}
             >
-              <Container size='xl' px={0}>
+              <Container size='xl' px={30}>
                 <div ref={(divElement) => { checkHeight(); setContentHeight((divElement) ? divElement?.clientHeight : 0) }}><Outlet /></div>
               </Container>
               <Affix position={{ bottom: 70, right: 10 }}>

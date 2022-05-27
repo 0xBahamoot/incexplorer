@@ -48,6 +48,7 @@ function BlockDetail() {
 
   return (
     <>
+      <Space h={40} />
       <SectionTitle text={"Block Details"} />
       <Space h="xl" />
       <Paper shadow="sm" radius="md" p="xl" withBorder className={classes.container}>

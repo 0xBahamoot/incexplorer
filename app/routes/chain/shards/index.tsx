@@ -56,6 +56,7 @@ function ShardsOverview() {
 
   return (
     <>
+      <Space h={30} />
       <Group>
         <SectionTitle text="Shard list" /></Group>
       <Space h="md" />

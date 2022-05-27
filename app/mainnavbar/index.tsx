@@ -1,6 +1,7 @@
 import { Navbar, useMantineColorScheme, Stack, Button, Accordion, Group, Avatar, Text } from '@mantine/core';
 import { useState } from 'react';
 import NavbarBtn from '~/components/navbarbtn/navbarbtn';
+import { ChevronDown } from 'tabler-icons-react';
 import { accordionLabelStyle } from './styles';
 
 interface AccordionLabelProps {
@@ -13,7 +14,7 @@ function AccordionLabel({ label, icon }: AccordionLabelProps) {
         <Group noWrap>
             <Avatar src={icon} radius="xl" size="md" />
             <div>
-                <Text>{label}</Text>
+                <Text style={{ fontSize: 18, fontWeight: 500 }}>{label}</Text>
             </div>
         </Group>
     );
@@ -81,7 +82,7 @@ function MainNavbar() {
     return (
         <>
             <Navbar.Section>
-                <Accordion iconPosition="right">
+                <Accordion iconPosition="right" icon={<ChevronDown size={18} strokeWidth={3} />}>
                     <Accordion.Item label={<AccordionLabel label='Blockchain' icon='/assets/images/icons/navbar-blockchain.svg' />} classNames={classes}>
                         <BlockChainSection />
                     </Accordion.Item>

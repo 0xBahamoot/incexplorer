@@ -58,6 +58,7 @@ function ShardDetail() {
 
   return (
     <>
+      <Space h={30} />
       <Group><SectionTitle text={"Shard " + chainID} /><Text>|</Text> <Text>Total blocks: {currentHeight}</Text></Group>
       <Space h="md" />
       <Paper radius={12} withBorder style={{ backgroundColor: '#303030', padding: 20 }}>

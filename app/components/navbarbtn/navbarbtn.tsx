@@ -43,6 +43,7 @@ const NavbarBtn: FunctionComponent<Props> = ({ text, link, external }) => {
                     textAlign: 'left',
                     padding: theme.spacing.sm,
                     borderRadius: 8,
+                    fontSize: 18,
                     fontWeight: 500,
                     letterSpacing: "0.01em",
                     paddingLeft: 55,
@@ -50,7 +51,7 @@ const NavbarBtn: FunctionComponent<Props> = ({ text, link, external }) => {
                     cursor: 'pointer',
                     textDecoration: 'none',
                     height: 40,
-                    lineHeight: '16px',
+                    lineHeight: '18px',
                     '&:hover': {
                         backgroundColor:
                             theme.colorScheme === 'dark' ? '#303030' : theme.colors.gray[1],

@@ -122,7 +122,7 @@ function MainHeader() {
               </Center>
             </MediaQuery>
           </Group>
-          <Group position="right" style={{ paddingRight: 30 }}>
+          <Group position="right">
             <Center>
               <TextInput
                 placeholder="Search anything..."
@@ -146,7 +146,7 @@ function MainHeader() {
           <Group position="left">
             <Center>
               <a href="/">
-                <Image alt="logo" src={dark ? "/assets/images/logo.svg" : "/assets/images/logo.svg"} style={{ marginLeft: 25 }} height={44} />
+                <Image alt="logo" src={dark ? "/assets/images/logo.svg" : "/assets/images/logo.svg"} height={44} />
               </a>
 
               <Text sx={(theme) => ({
@@ -170,7 +170,7 @@ function MainHeader() {
           </Group>
 
 
-          <Group position="right" style={{ paddingRight: 30 }}>
+          <Group position="right">
             <TextInput
               placeholder="Search anything..."
               variant="filled"
