@@ -12,7 +12,7 @@ const useStyles = createStyles((theme) => ({
         lineHeight: 1,
         letterSpacing: '0.005em',
         margin: 0,
-        textTransform: 'capitalize',
+        // textTransform: 'capitalize',
         display: 'flex',
         alignItems: 'center'
     },

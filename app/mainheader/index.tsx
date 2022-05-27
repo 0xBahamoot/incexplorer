@@ -3,7 +3,7 @@ import { Sun, MoonStars, Search } from 'tabler-icons-react';
 import React, { useEffect, useState } from 'react';
 import { useLocalStorage } from '@mantine/hooks';
 import { Link, useNavigate } from 'react-router-dom';
-
+import MainNavbar from '~/mainnavbar';
 import { useFetcher } from "@remix-run/react";
 import { showNotification } from '@mantine/notifications';
 import { NotificationsProvider } from '@mantine/notifications';
@@ -37,6 +37,7 @@ function MainHeader() {
     if ((event.key === "Enter") && (searchValue.length > 0)) {
       setSearching(true)
       fetcher.load(`/search/${searchValue}`);
+      setSearching(false)
     }
 
   }
@@ -82,11 +83,10 @@ function MainHeader() {
       <Drawer
         opened={opened}
         onClose={() => setOpened(false)}
-        title="Register"
         padding="xl"
         size="xl"
       >
-        {/* Drawer content */}
+        <MainNavbar />
       </Drawer>
 
       <NotificationsProvider position="top-right" zIndex={2077}>
@@ -111,8 +111,8 @@ function MainHeader() {
                 <Text sx={(theme) => ({
                   backgroundColor: theme.colorScheme === 'dark' ? '#303030' : theme.colors.gray[0],
                   width: 'auto',
-                  fontSize: 16, textAlign: 'center',
-                  padding: '1px 8px',
+                  fontSize: 14, textAlign: 'center',
+                  padding: '2px 8px',
                   display: 'inline-block',
                   marginLeft: 12,
                   borderRadius: 6,
@@ -146,8 +146,8 @@ function MainHeader() {
               <Text sx={(theme) => ({
                 backgroundColor: theme.colorScheme === 'dark' ? '#303030' : theme.colors.gray[0],
                 width: 'auto',
-                fontSize: 16, textAlign: 'center',
-                padding: '1px 8px',
+                fontSize: 14, textAlign: 'center',
+                padding: '2px 8px',
                 marginLeft: 12,
                 display: 'inline-block',
                 borderRadius: 6,
@@ -157,7 +157,7 @@ function MainHeader() {
             </Center>
             <Group position='left' style={{ paddingLeft: 10 }}>
               <Button variant="subtle" color="gray" size="md" compact component={Link} to="/">Explore</Button>
-              <Button variant="subtle" color="gray" size="md" compact component="a" target={"_blank"} href="https://incognito.org/apps">About us</Button>
+              <Button variant="subtle" color="gray" size="md" compact component="a" target={"_blank"} href="https://incognito.org">About us</Button>
               <Button variant="subtle" color="gray" size="md" compact component="a" target={"_blank"} href="https://we.incognito.org/">Community</Button>
             </Group>
           </Group>
