@@ -92,8 +92,7 @@ function MainHeader() {
       <NotificationsProvider position="top-right" zIndex={2077}>
       </NotificationsProvider>
       <MediaQuery largerThan={1200} styles={{ display: 'none' }}>
-
-        <Group position="apart">
+        <Group position="apart" style={{ height: 52 }}>
           <Group position="left">
             <Burger
               opened={opened}
@@ -105,7 +104,7 @@ function MainHeader() {
             <MediaQuery smallerThan={450} styles={{ display: 'none' }}>
               <Center>
                 <a href="/">
-                  <Image alt="logo" src={dark ? "/assets/images/logo_h_white.svg" : "/assets/images/logo_h_dark.svg"} height={30} />
+                  <Image alt="logo" src={dark ? "/assets/images/logo.svg" : "/assets/images/logo.svg"} height={44} />
                 </a>
 
                 <Text sx={(theme) => ({
@@ -115,6 +114,7 @@ function MainHeader() {
                   padding: '2px 8px',
                   display: 'inline-block',
                   marginLeft: 12,
+                  marginTop: -15,
                   borderRadius: 6,
                   color: '#fff',
                   fontWeight: 500
@@ -136,11 +136,11 @@ function MainHeader() {
       </MediaQuery>
 
       <MediaQuery smallerThan={1200} styles={{ display: 'none' }}>
-        <Group position="apart" grow>
+        <Group position="apart" grow style={{ height: 52 }}>
           <Group position="left">
             <Center>
               <a href="/">
-                <Image alt="logo" src={dark ? "/assets/images/logo_h_white.svg" : "/assets/images/logo_h_dark.svg"} style={{ marginLeft: 25 }} height={30} />
+                <Image alt="logo" src={dark ? "/assets/images/logo.svg" : "/assets/images/logo.svg"} style={{ marginLeft: 25 }} height={44} />
               </a>
 
               <Text sx={(theme) => ({
@@ -149,6 +149,7 @@ function MainHeader() {
                 fontSize: 14, textAlign: 'center',
                 padding: '2px 8px',
                 marginLeft: 12,
+                marginTop: -15,
                 display: 'inline-block',
                 borderRadius: 6,
                 color: '#fff',

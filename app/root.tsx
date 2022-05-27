@@ -93,7 +93,7 @@ export default function App() {
                   <MainNavbar />
                 </Navbar>
               }
-              header={<Header fixed={true} height={60} p="xs" style={{ backgroundColor: '#1A1A1A' }}>
+              header={<Header fixed={true} height={72} p="xs" style={{ backgroundColor: '#1A1A1A' }}>
                 <MainHeader />
               </Header>}
               footer={<Footer height={60} p={0} fixed={fixedFooter} style={{ backgroundColor: '#1A1A1A' }}>{<MainFooter />} </Footer>}
