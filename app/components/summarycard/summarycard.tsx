@@ -1,4 +1,4 @@
-import { Paper, Text, ActionIcon, Tooltip } from '@mantine/core';
+import { Paper, Text, ActionIcon, Tooltip, Image } from '@mantine/core';
 // import { InfoCircle } from 'tabler-icons-react';
 import React, { FunctionComponent } from 'react'
 import useStyles from './styles'
@@ -46,6 +46,10 @@ const SummaryCard: FunctionComponent<Props> = ({ title, content, currencyFormat,
                     <Text className={classes.content}>
                         {currencyFormat ? "$" : ""}{format.formatAmount({ humanAmount: content, decimals: 4 })}</Text>
                 }
+
+                <div className={classes.graphic}>
+                    <Image alt="logo" src={"/assets/images/graphics/quarter.svg"} height={52} width={70} />
+                </div>
                 {/* {
                     (changePercent !== undefined) ? <Text className={classes.subcontent} >{changePercent >= 0 ?
                         <CaretUp

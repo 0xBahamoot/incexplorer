@@ -4,14 +4,17 @@ import NavbarBtn from '~/components/navbarbtn/navbarbtn';
 import { ChevronDown } from 'tabler-icons-react';
 import { accordionLabelStyle } from './styles';
 
+import { useNavigate } from 'react-router-dom';
+
 interface AccordionLabelProps {
     label: string;
     icon: string;
+    style?: any;
 }
 
-function AccordionLabel({ label, icon }: AccordionLabelProps) {
+function AccordionLabel({ label, icon, style }: AccordionLabelProps) {
     return (
-        <Group noWrap>
+        <Group noWrap style={style}>
             <Avatar src={icon} radius="xl" size="md" />
             <div>
                 <Text style={{ fontSize: 18, fontWeight: 500 }}>{label}</Text>
@@ -78,11 +81,17 @@ function GetStartedSection() {
     )
 }
 function MainNavbar() {
+
+    let navigate = useNavigate();
     const { classes } = accordionLabelStyle();
     return (
         <>
             <Navbar.Section>
-                <Accordion iconPosition="right" icon={<ChevronDown size={18} strokeWidth={3} />}>
+                {/* <Accordion.Item styles={{ control: { paddingLeft: 5 } }} iconSize={0} label={<AccordionLabel label='Home' icon='/assets/images/icons/navbar-blockchain.svg' />} classNames={classes} onClick={() => {
+                    navigate(`/`, { replace: true });
+                }}>
+                </Accordion.Item> */}
+                <Accordion iconPosition="right" multiple icon={<ChevronDown size={18} strokeWidth={3} />}>
                     <Accordion.Item label={<AccordionLabel label='Blockchain' icon='/assets/images/icons/navbar-blockchain.svg' />} classNames={classes}>
                         <BlockChainSection />
                     </Accordion.Item>
@@ -98,11 +107,21 @@ function MainNavbar() {
                     {/* <Accordion.Item label={<AccordionLabel label='Network' icon='/assets/images/icons/navbar-network.svg' />} classNames={classes}>
                         <NetworkSection />
                     </Accordion.Item> */}
-
+                    {/* 
                     <Accordion.Item label={<AccordionLabel label='Get started' icon='/assets/images/icons/navbar-getstarted.svg' />} classNames={classes}>
                         <GetStartedSection />
-                    </Accordion.Item>
+                    </Accordion.Item> */}
+
                 </Accordion>
+
+                {/* <Accordion.Item styles={{ control: { paddingLeft: 5 } }} iconSize={0} label={<AccordionLabel label='Community' icon='/assets/images/icons/navbar-blockchain.svg' />} classNames={classes} onClick={() => {
+                    window.open('https://we.incognito.org/', '_blank');
+                }}>
+                </Accordion.Item>
+                <Accordion.Item styles={{ control: { paddingLeft: 5 } }} iconSize={0} label={<AccordionLabel label='About us' icon='/assets/images/icons/navbar-blockchain.svg' />} classNames={classes} onClick={() => {
+                    window.open('https://incognito.org', '_blank');
+                }}>
+                </Accordion.Item> */}
 
 
             </Navbar.Section>

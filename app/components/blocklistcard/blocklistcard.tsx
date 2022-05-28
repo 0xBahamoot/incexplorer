@@ -32,23 +32,19 @@ const BlockListCard: FunctionComponent<Props> = ({ blocklist, blockType }) => {
   });
 
   return (
-    <Paper radius={12} withBorder className={classes.container}>
-      <Card className={classes.container} radius={12} >
-        <Card.Section>
-          <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
-            <thead className={classes.tableThead}>
-              <tr>
-                <th><Text className={classes.tableTheadText}>Height</Text></th>
-                <th><Text className={classes.tableTheadText}>Hash</Text></th>
-                <th><Text className={classes.tableTheadText}>Producer</Text></th>
-                {(blockType == 'shardblk') ? <th><Text className={classes.tableTheadText}>Txn</Text></th> : null}
-                <th><Text className={classes.tableTheadText}>Time created</Text></th>
-              </tr>
-            </thead>
-            <tbody>{rows}</tbody>
-          </Table>
-        </Card.Section>
-      </Card>
+    <Paper radius={12} className={classes.container}>
+      <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
+        <thead className={classes.tableThead}>
+          <tr>
+            <th><Text className={classes.tableTheadText}>Height</Text></th>
+            <th><Text className={classes.tableTheadText}>Hash</Text></th>
+            <th><Text className={classes.tableTheadText}>Producer</Text></th>
+            {(blockType == 'shardblk') ? <th><Text className={classes.tableTheadText}>Txn</Text></th> : null}
+            <th><Text className={classes.tableTheadText}>Time created</Text></th>
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </Table>
     </Paper>
   );
 }

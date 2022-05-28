@@ -1,4 +1,4 @@
-import { Text, Group, Space, Loader, Paper, Grid } from '@mantine/core';
+import { Text, Group, Space, Loader, Paper, Grid, ScrollArea } from '@mantine/core';
 import BlockListCard from '~/components/blocklistcard/blocklistcard';
 import { getBlocks } from '~/services/chains';
 import type { LoaderFunction } from "@remix-run/node";
@@ -72,7 +72,10 @@ function ShardDetail() {
         <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
       </Group>
       <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
-        <BlockListCard blocklist={data} blockType='shardblk'></BlockListCard>
+
+        <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
+          <BlockListCard blocklist={data} blockType='shardblk'></BlockListCard>
+        </ScrollArea>
       </div>
       <Space h="sm" />
     </>
