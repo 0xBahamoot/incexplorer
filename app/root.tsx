@@ -107,7 +107,7 @@ export default function App() {
               <Affix position={{ bottom: 76, right: 30 }}>
                 <Transition transition="slide-up" mounted={scroll.y > 0}>
                   {(transitionStyles) => (
-                    <ActionIcon p={10} size={50} radius="xl" variant="filled" style={transitionStyles} onClick={() => scrollTo({ y: 0 })}>
+                    <ActionIcon styles={{ root: { backgroundColor: '#404040' } }} p={10} size={50} radius="xl" variant="filled" style={transitionStyles} onClick={() => scrollTo({ y: 0 })}>
                       < ArrowUp size={30} />
                     </ActionIcon>
                   )}

@@ -1,10 +1,12 @@
-import { Title, Space, TextInput, Pagination, Group, Text, Loader, ScrollArea } from '@mantine/core';
+import { Title, Space, TextInput, Pagination, Group, Text, Loader, ScrollArea, Center } from '@mantine/core';
 import TxListCard from '~/components/txlistcard/txlistcard';
 import { useState, useEffect } from 'react';
 import { getNormalTx } from '~/services/transactions';
 import SectionTitle from '~/components/sectiontitle/sectiontitle';
+import useStyles from './styles'
 
 function Txs() {
+    const { classes } = useStyles();
     const [txListData, setTxListData] = useState<any>([]);
     const [totalPage, setTotalPage] = useState(1);
     const [activePage, setPage] = useState(1);
@@ -37,18 +39,31 @@ function Txs() {
         </div>
         <Space h="md" />
         <Group position="center" spacing="lg">
-            <Group position="center">
+            <Group position="center" spacing="sm">
                 <Text size="sm">Go to</Text>
                 <TextInput
                     placeholder="Page"
                     type="number"
                     radius='lg'
-                    style={{
-                        width: 80
+
+                    styles={{
+                        wrapper: {
+                            width: 80,
+                            height: 32,
+                            textAlign: 'center',
+                        },
+                        input: {
+                            backgroundColor: '#303030',
+                            textAlign: 'center',
+                            height: 32,
+                            lineHeight: 32,
+                            minHeight: 32,
+                            padding: '0 4px'
+                        }
                     }}
                 />
             </Group>
-            <Pagination page={activePage} onChange={handleFetchData} siblings={1} boundaries={1} total={totalPage} radius="xl" />
+            <Pagination page={activePage} onChange={handleFetchData} siblings={1} boundaries={1} total={totalPage} radius="xl" className={classes.paginationBox} classNames={classes} />
         </Group>
         <Space h="sm" />
 
