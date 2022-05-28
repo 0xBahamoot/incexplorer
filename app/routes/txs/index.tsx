@@ -9,6 +9,7 @@ function Txs() {
     const { classes } = useStyles();
     const [txListData, setTxListData] = useState<any>([]);
     const [totalPage, setTotalPage] = useState(1);
+    const [gotoPage, setGotoPage] = useState("");
     const [activePage, setPage] = useState(1);
     const [loaded, setLoaded] = useState(false);
 
@@ -24,6 +25,13 @@ function Txs() {
     useEffect(() => {
         handleFetchData(1);
     }, []);
+
+
+    function getPage(event: React.KeyboardEvent<HTMLInputElement>) {
+        if ((event.key === "Enter") && (gotoPage !== "")) {
+            handleFetchData(parseInt(gotoPage));
+        }
+    }
 
     return <>
         <Space h={30} />
@@ -45,6 +53,8 @@ function Txs() {
                     placeholder="Page"
                     type="number"
                     radius='lg'
+                    onChange={(event) => setGotoPage(event.target.value)}
+                    onKeyUp={(event) => getPage(event)}
 
                     styles={{
                         wrapper: {
