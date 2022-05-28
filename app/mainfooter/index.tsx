@@ -18,7 +18,7 @@ function MainFooter() {
             <Title order={5} style={{ color: '#fff', fontWeight: 500 }}>© 2022 Incognito</Title>
           </Center>
         </Group>
-        <Group position="right" style={{ paddingRight: 10 }}>
+        <Group position="right">
           {/* <TokenPriceChip tokenid='0000004' /> */}
           <Button variant="subtle" color="gray" style={{ color: '#fff' }} size="md" compact component="a" target={"_blank"} href="https://incognito.org/mediakit">Media kit</Button>
           <Button variant="subtle" color="gray" style={{ color: '#fff' }} size="md" compact component="a" target={"_blank"} href="https://t.me/incognitochain">Telegram</Button>
