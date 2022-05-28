@@ -4,8 +4,10 @@ import { useState, useEffect } from 'react';
 import { getNormalTx, getShieldTxs } from '~/services/transactions';
 import SectionTitle from '~/components/sectiontitle/sectiontitle';
 import ShieldListCard from '~/components/shieldlistcard/shieldlistcard';
+import useStyles from './styles'
 
 function ShieldTxs() {
+    const { classes } = useStyles();
     const [txListData, setTxListData] = useState<any>([]);
     const [totalPage, setTotalPage] = useState(1);
     const [activePage, setPage] = useState(1);
@@ -49,7 +51,7 @@ function ShieldTxs() {
                     }}
                 />
             </Group>
-            <Pagination page={activePage} onChange={handleFetchData} siblings={1} boundaries={1} total={totalPage} radius="xl" />
+            <Pagination page={activePage} onChange={handleFetchData} siblings={1} boundaries={1} total={totalPage} radius="xl" className={classes.paginationBox} classNames={classes} />
         </Group>
         <Space h="sm" />
 
