@@ -156,6 +156,7 @@ function ShardsOverview() {
                     <tbody>{shardRows}</tbody>
                 </Table>
             </Paper>
+            <Space h="lg" />
         </>
 
     );
