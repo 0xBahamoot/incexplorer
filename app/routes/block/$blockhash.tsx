@@ -209,7 +209,7 @@ function BlockDetail() {
             <Space h="xl" />
 
             <Paper radius={12} withBorder className={classes.container}>
-              <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
+              <Table verticalSpacing="sm" horizontalSpacing="md">
                 <thead className={classes.tableThead}>
                   <tr>
                     <th><Text className={classes.tableTheadText}>No.</Text></th>

@@ -15,14 +15,14 @@ function MainFooter() {
       <Group position="apart" grow style={{ padding: '0 30px' }}>
         <Group position="left">
           <Center style={{ width: 150, height: 60 }}>
-            <Title order={5} style={{ color: '#fff', fontWeight: 500 }}>© 2022 Incognito</Title>
+            <Title order={5} style={{ color: '#757575', fontWeight: 500 }}>© 2022 Incognito</Title>
           </Center>
         </Group>
         <Group position="right">
           {/* <TokenPriceChip tokenid='0000004' /> */}
-          <Button variant="subtle" color="gray" style={{ color: '#fff' }} size="md" compact component="a" target={"_blank"} href="https://incognito.org/mediakit">Media kit</Button>
-          <Button variant="subtle" color="gray" style={{ color: '#fff' }} size="md" compact component="a" target={"_blank"} href="https://t.me/incognitochain">Telegram</Button>
-          <Button variant="subtle" color="gray" style={{ color: '#fff' }} size="md" compact component="a" target={"_blank"} href="https://twitter.com/IncognitoChain">Twitter</Button>
+          <Button variant="subtle" color="gray" style={{ color: '#757575' }} size="md" compact component="a" target={"_blank"} href="https://incognito.org/mediakit">Media kit</Button>
+          <Button variant="subtle" color="gray" style={{ color: '#757575' }} size="md" compact component="a" target={"_blank"} href="https://t.me/incognitochain">Telegram</Button>
+          <Button variant="subtle" color="gray" style={{ color: '#757575' }} size="md" compact component="a" target={"_blank"} href="https://twitter.com/IncognitoChain">Twitter</Button>
         </Group>
       </Group>
     </>

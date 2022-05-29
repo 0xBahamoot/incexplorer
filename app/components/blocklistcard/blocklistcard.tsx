@@ -33,7 +33,7 @@ const BlockListCard: FunctionComponent<Props> = ({ blocklist, blockType }) => {
 
   return (
     <Paper radius={12} className={classes.container}>
-      <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
+      <Table verticalSpacing="sm" horizontalSpacing="md">
         <thead className={classes.tableThead}>
           <tr>
             <th><Text className={classes.tableTheadText}>Height</Text></th>

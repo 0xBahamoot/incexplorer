@@ -1,4 +1,4 @@
-import { Title, Space, Button, Loader, Group, ScrollArea } from '@mantine/core';
+import { Text, Space, Button, Loader, Group, ScrollArea } from '@mantine/core';
 import SummaryBox from '~/components/summarybox/summarybox';
 import TxListCard from '~/components/txlistcard/txlistcard';
 import { useState, useEffect } from 'react';
@@ -133,7 +133,7 @@ function Home() {
       <Group position='apart'>
         <SectionTitle text='Transactions' />
         <Button color='gray' variant="subtle" radius="xl" compact component={Link} to="/txs" style={{ marginRight: 10, color: '#757575' }}>
-          view all &#62;
+          <Text style={{ color: '#1A73E8', fontSize: 16 }}>view all</Text>
         </Button>
       </Group>
       <Space h="md" />

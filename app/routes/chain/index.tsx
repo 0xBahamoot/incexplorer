@@ -121,7 +121,7 @@ function ShardsOverview() {
             <SectionTitle text="Beacon Chain" />
             <Space h="sm" />
             <Paper radius={12} className={classes.container}>
-                <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
+                <Table verticalSpacing="sm" horizontalSpacing="md">
                     <thead className={classes.tableThead}>
                         <tr>
                             <th><Text className={classes.tableTheadText}>Hash</Text></th>
@@ -143,7 +143,7 @@ function ShardsOverview() {
             <SectionTitle text="Most recent blocks" />
             <Space h="sm" />
             <Paper radius={12} className={classes.container}>
-                <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
+                <Table verticalSpacing="sm" horizontalSpacing="md">
                     <thead className={classes.tableThead}>
                         <tr>
                             <th><Text className={classes.tableTheadText}>Hash</Text></th>

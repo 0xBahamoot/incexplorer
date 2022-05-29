@@ -64,10 +64,10 @@ function PendingTxs() {
             <Space h="md" />
             <Paper radius={12} withBorder className={classes.container}>
                 <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
-                    <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
+                    <Table verticalSpacing="sm" horizontalSpacing="md">
                         <thead className={classes.tableThead}>
                             <tr>
-                                <th>Time</th>
+                                <th>Time created</th>
                                 <th>Hash</th>
                             </tr>
                         </thead>

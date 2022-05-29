@@ -42,7 +42,7 @@ const TxListCard: FunctionComponent<Props> = ({ txlist }) => {
 
   return (
     <Paper radius={12} className={classes.container}>
-      <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
+      <Table verticalSpacing="sm" horizontalSpacing="md">
         <thead className={classes.tableThead}>
           <tr>
             <th style={{ wordWrap: 'normal' }}><Text className={classes.tableTheadText}>Time created</Text></th>
