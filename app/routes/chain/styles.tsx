@@ -14,7 +14,14 @@ const useStyles = createStyles((theme) => ({
         color: '#9C9C9C !important',
         fontWeight: 500,
         BorderRadius: 12
-    }
+    },
+    hashText: {
+        color: '#1A73E8',
+        fontWeight: 400,
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        display: 'inline-block',
+    },
 }));
 
 export default useStyles;

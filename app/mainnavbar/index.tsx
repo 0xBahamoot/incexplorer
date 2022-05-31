@@ -15,9 +15,9 @@ interface AccordionLabelProps {
 function AccordionLabel({ label, icon, style }: AccordionLabelProps) {
     return (
         <Group noWrap style={style}>
-            <Avatar src={icon} radius="xl" size="md" />
+            <Avatar src={icon} radius="xl" size={30} />
             <div>
-                <Text style={{ fontSize: 18, fontWeight: 500 }}>{label}</Text>
+                <Text style={{ fontSize: 16, fontWeight: 500 }}>{label}</Text>
             </div>
         </Group>
     );
@@ -87,10 +87,10 @@ function MainNavbar() {
     return (
         <>
             <Navbar.Section>
-                {/* <Accordion.Item styles={{ control: { paddingLeft: 5 } }} iconSize={0} label={<AccordionLabel label='Home' icon='/assets/images/icons/navbar-blockchain.svg' />} classNames={classes} onClick={() => {
+                <Accordion.Item styles={{ control: { paddingLeft: 0 } }} iconSize={0} label={<AccordionLabel label='Home' icon='/assets/images/icons/navbar-home.svg' />} classNames={classes} onClick={() => {
                     navigate(`/`, { replace: true });
                 }}>
-                </Accordion.Item> */}
+                </Accordion.Item>
                 <Accordion iconPosition="right" multiple icon={<ChevronDown size={18} strokeWidth={3} />}>
                     <Accordion.Item label={<AccordionLabel label='Blockchain' icon='/assets/images/icons/navbar-blockchain.svg' />} classNames={classes}>
                         <BlockChainSection />
@@ -117,11 +117,11 @@ function MainNavbar() {
                 {/* <Accordion.Item styles={{ control: { paddingLeft: 5 } }} iconSize={0} label={<AccordionLabel label='Community' icon='/assets/images/icons/navbar-blockchain.svg' />} classNames={classes} onClick={() => {
                     window.open('https://we.incognito.org/', '_blank');
                 }}>
-                </Accordion.Item>
-                <Accordion.Item styles={{ control: { paddingLeft: 5 } }} iconSize={0} label={<AccordionLabel label='About us' icon='/assets/images/icons/navbar-blockchain.svg' />} classNames={classes} onClick={() => {
+                </Accordion.Item> */}
+                <Accordion.Item styles={{ control: { paddingLeft: 0 } }} iconSize={0} label={<AccordionLabel label='About us' icon='/assets/images/icons/navbar-aboutus.svg' />} classNames={classes} onClick={() => {
                     window.open('https://incognito.org', '_blank');
                 }}>
-                </Accordion.Item> */}
+                </Accordion.Item>
 
 
             </Navbar.Section>

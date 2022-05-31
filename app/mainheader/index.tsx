@@ -131,12 +131,11 @@ function MainHeader() {
                 variant="filled"
                 radius="md"
                 iconWidth={40}
-                icon={(searching) ? <Loader size="xs" style={{ marginLeft: 8 }} /> : <Search size={14} color={"#fff"} style={{ marginLeft: 8 }} />}
-                style={{ width: 280, backgroundColor: '#303030', borderRadius: 12, height: 44 }}
-                styles={{ input: { color: '#fff', height: 44, fontSize: 16, backgroundColor: '#303030' } }}
+                icon={(searching) ? <Loader size="xs" style={{ marginLeft: 8 }} /> : <Image src='/assets/images/icons/search.svg' color={"#fff"} style={{ marginLeft: 8 }} />}
+                styles={{ input: { width: 280, color: '#fff', height: 40, fontSize: 16, backgroundColor: '#303030', paddingTop: 0 } }}
                 onChange={(event) => setSearchValue(event.target.value)}
                 onKeyUp={(event) => search(event)}
-                height={44}
+                height={40}
               />
             </Center>
           </Group>
@@ -178,12 +177,11 @@ function MainHeader() {
               variant="filled"
               radius="md"
               iconWidth={40}
-              icon={(searching) ? <Loader size="xs" style={{ marginLeft: 8 }} /> : <Search size={14} color={"#fff"} style={{ marginLeft: 8 }} />}
-              style={{ width: 280, backgroundColor: '#303030', borderRadius: 12, height: 44 }}
-              styles={{ input: { color: '#fff', height: 44, fontSize: 16, backgroundColor: '#303030' } }}
+              icon={(searching) ? <Loader size="xs" style={{ marginLeft: 8 }} /> : <Image src='/assets/images/icons/search.svg' color={"#fff"} style={{ marginLeft: 8 }} />}
+              styles={{ input: { width: 280, color: '#fff', height: 40, fontSize: 16, backgroundColor: '#303030', paddingTop: 0 } }}
               onChange={(event) => setSearchValue(event.target.value)}
               onKeyUp={(event) => search(event)}
-              height={44}
+              height={40}
             />
           </Group>
         </Group>

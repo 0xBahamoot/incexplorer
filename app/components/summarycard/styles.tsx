@@ -23,14 +23,14 @@ const useStyles = createStyles((theme) => ({
     content: {
         fontStyle: 'normal',
         fontWeight: 500,
-        fontSize: 26,
+        fontSize: 24,
         lineHeight: '36.4px',
         letterSpacing: '0.01em',
         margin: '12px 0 0',
         color: '#fff'
     },
     subcontent: {
-        fontSize: 18,
+        fontSize: 14,
         display: 'flex',
         alignItems: 'center',
     },

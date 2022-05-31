@@ -1,5 +1,4 @@
-import { Text, Card, Table, Paper, Box, ScrollArea } from '@mantine/core';
-
+import { Text, Card, Table, Paper, Box, Center } from '@mantine/core';
 import React, { FunctionComponent } from 'react'
 import { TxData } from '~/types/types';
 import useStyles from './styles'
@@ -13,14 +12,26 @@ type Props = {
 
 const TxListCard: FunctionComponent<Props> = ({ txlist }) => {
   const { classes } = useStyles();
+
+
+  function getTxText(txhash: String) {
+    let result: string = '';
+    result = txhash.slice(0, 24) + '...' + txhash.slice(-8);
+    return result
+  }
   const rows = txlist?.map((element, idx) => {
     return (
-
       <tr key={element.tx_hash} style={{ cursor: 'pointer' }} >
-        <td>{format.formatDateTime(element.lock_time)}</td>
-        <td><Text variant="link" component={Link} to={"/tx/" + element.tx_hash}>{element.tx_hash}</Text></td>
-        <td>{element.block_height}</td>
-        <td>{element.shard_id}</td>
+        <td className={classes.timeColumn}>{format.formatDateTime(element.lock_time, 'DD MMM HH:mm A')}</td>
+        <td><Text className={classes.txhash} variant="link" component={Link} to={"/tx/" + element.tx_hash}>
+          {/* <Center>
+            <p>{element.tx_hash}</p>
+            <p>{element.tx_hash.slice(element.tx_hash.length - 8, element.tx_hash.length)}</p>
+          </Center> */}
+          {getTxText(element.tx_hash)}
+        </Text></td>
+        <td className={classes.otherColumn}>{element.block_height}</td>
+        <td className={classes.otherColumn}>{element.shard_id}</td>
         <td><Text sx={(theme) => ({
           backgroundColor: theme.colorScheme === 'dark' ? '#303030' : theme.colors.gray[0],
           width: 'auto',
@@ -32,8 +43,9 @@ const TxListCard: FunctionComponent<Props> = ({ txlist }) => {
           paddingBottom: 5,
           display: 'inline-block',
           borderRadius: 6,
+          fontWeight: 400,
+          color: '#fff',
         })}>{element.meta_type_name}</Text>
-
         </td>
         {/* <td></td> */}
       </tr>

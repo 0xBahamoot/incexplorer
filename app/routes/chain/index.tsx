@@ -82,13 +82,17 @@ function ShardsOverview() {
         }
     }, [fetcher.data]);
 
-
+    function getBlockHashText(hash: String) {
+        let result: string = '';
+        result = hash.slice(0, 30) + '...' + hash.slice(-12);
+        return result
+    }
 
     const shardRows = data.shardsInfo.map((element: any, idx: number) => {
 
         return (
             <tr key={element.Hash} style={{ cursor: 'pointer' }}>
-                <td><Text variant="link" component={Link} to={"/block/" + element.Hash}>{element.Hash}</Text></td>
+                <td><Text className={classes.hashText} variant="link" component={Link} to={"/block/" + element.Hash}>{getBlockHashText(element.Hash)}</Text></td>
                 <td>{format.formatUnixDateTime(element.Time)}</td>
                 <td>{idx}</td>
                 <td>{format.formatAmount({ humanAmount: element.Height, decimals: 4 })}</td>
@@ -131,7 +135,7 @@ function ShardsOverview() {
                     </thead>
                     <tbody>
                         <tr style={{ cursor: 'pointer' }}>
-                            <td><Text variant="link" component={Link} to={"/block/" + data.beaconInfo.Hash + '?beacon=true'}>{data.beaconInfo.Hash}</Text></td>
+                            <td><Text className={classes.hashText} variant="link" component={Link} to={"/block/" + data.beaconInfo.Hash + '?beacon=true'}>{getBlockHashText(data.beaconInfo.Hash)}</Text></td>
                             <td>{format.formatUnixDateTime(data.beaconInfo.Time)}</td>
                             <td>{format.formatAmount({ humanAmount: data.beaconInfo.Height, decimals: 4 })}</td>
                         </tr>
