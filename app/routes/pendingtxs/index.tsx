@@ -1,4 +1,4 @@
-import { Paper, Card, Text, Table, Space } from '@mantine/core';
+import { Paper, ScrollArea, Text, Table, Space } from '@mantine/core';
 import { getMempoolInfo } from '~/services/chains';
 import type { LoaderFunction } from "@remix-run/node";
 import { useLoaderData, useFetcher } from "@remix-run/react";
@@ -63,19 +63,17 @@ function PendingTxs() {
             <SectionTitle text="Pending transactions" />
             <Space h="md" />
             <Paper radius={12} withBorder className={classes.container}>
-                <Card className={classes.container} radius={12} >
-                    <Card.Section>
-                        <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
-                            <thead className={classes.tableThead}>
-                                <tr>
-                                    <th>Time</th>
-                                    <th>Hash</th>
-                                </tr>
-                            </thead>
-                            <tbody>{rows}</tbody>
-                        </Table>
-                    </Card.Section>
-                </Card>
+                <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
+                    <Table verticalSpacing="sm" horizontalSpacing="md">
+                        <thead className={classes.tableThead}>
+                            <tr>
+                                <th>Time created</th>
+                                <th>Hash</th>
+                            </tr>
+                        </thead>
+                        <tbody>{rows}</tbody>
+                    </Table>
+                </ScrollArea>
             </Paper>
         </>
 

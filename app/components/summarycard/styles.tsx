@@ -4,14 +4,18 @@ const useStyles = createStyles((theme) => ({
     paper: {
         backgroundColor: '#303030',
         borderRadius: 12,
+        display: 'block',
+        overflow: 'hidden',
+        position: 'relative'
     },
     title: {
         fontStyle: 'normal',
         fontWeight: 500,
-        fontSize: 18,
+        fontSize: 16,
         lineHeight: 1,
         letterSpacing: '0.005em',
         margin: 0,
+        color: '#757575',
         // textTransform: 'capitalize',
         display: 'flex',
         alignItems: 'center'
@@ -29,6 +33,13 @@ const useStyles = createStyles((theme) => ({
         fontSize: 18,
         display: 'flex',
         alignItems: 'center',
+    },
+    graphic: {
+        position: 'absolute',
+        right: 0,
+        bottom: 0,
+        display: 'block',
+        overflow: 'hidden',
     }
 }));
 

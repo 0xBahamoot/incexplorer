@@ -61,7 +61,7 @@ const ShieldListCard: FunctionComponent<Props> = ({ txlist }) => {
   return (
     <Paper radius={12} withBorder className={classes.container}>
       <ScrollArea>
-        <Table highlightOnHover verticalSpacing="sm" horizontalSpacing="md">
+        <Table verticalSpacing="sm" horizontalSpacing="md">
           <thead className={classes.tableThead}>
             <tr>
               <th><Text className={classes.tableTheadText}>Token</Text></th>
