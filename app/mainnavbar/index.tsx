@@ -80,6 +80,18 @@ function GetStartedSection() {
         </>
     )
 }
+
+function AboutUsSection() {
+    return (
+        <>
+            <Stack justify="flex-start" spacing="xs">
+                <NavbarBtn text='Utilities' link='https://incognito.org/' external></NavbarBtn>
+                <NavbarBtn text='Community' link='https://we.incognito.org/' external></NavbarBtn>
+            </Stack>
+        </>
+    )
+}
+
 function MainNavbar() {
 
     let navigate = useNavigate();
@@ -95,10 +107,10 @@ function MainNavbar() {
                     <Accordion.Item label={<AccordionLabel label='Blockchain' icon='/assets/images/icons/navbar-blockchain.svg' />} classNames={classes}>
                         <BlockChainSection />
                     </Accordion.Item>
-
+                    {/* 
                     <Accordion.Item label={<AccordionLabel label='Privacy Exchange' icon='/assets/images/icons/navbar-exchange.svg' />} classNames={classes}>
                         <ExchangeSection />
-                    </Accordion.Item>
+                    </Accordion.Item> */}
 
                     <Accordion.Item label={<AccordionLabel label='Shielded coins' icon='/assets/images/icons/navbar-shielded.svg' />} classNames={classes}>
                         <ShieldedSection />
@@ -111,17 +123,19 @@ function MainNavbar() {
                     <Accordion.Item label={<AccordionLabel label='Get started' icon='/assets/images/icons/navbar-getstarted.svg' />} classNames={classes}>
                         <GetStartedSection />
                     </Accordion.Item> */}
-
+                    <Accordion.Item label={<AccordionLabel label='About us' icon='/assets/images/icons/navbar-aboutus.svg' />} classNames={classes}>
+                        <AboutUsSection />
+                    </Accordion.Item>
                 </Accordion>
 
                 {/* <Accordion.Item styles={{ control: { paddingLeft: 5 } }} iconSize={0} label={<AccordionLabel label='Community' icon='/assets/images/icons/navbar-blockchain.svg' />} classNames={classes} onClick={() => {
                     window.open('https://we.incognito.org/', '_blank');
                 }}>
                 </Accordion.Item> */}
-                <Accordion.Item styles={{ control: { paddingLeft: 0 } }} iconSize={0} label={<AccordionLabel label='About us' icon='/assets/images/icons/navbar-aboutus.svg' />} classNames={classes} onClick={() => {
+                {/* <Accordion.Item styles={{ control: { paddingLeft: 0 } }} iconSize={0} label={<AccordionLabel label='About us' icon='/assets/images/icons/navbar-aboutus.svg' />} classNames={classes} onClick={() => {
                     window.open('https://incognito.org', '_blank');
                 }}>
-                </Accordion.Item>
+                </Accordion.Item> */}
 
 
             </Navbar.Section>
