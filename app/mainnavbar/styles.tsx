@@ -21,6 +21,10 @@ const accordionLabelStyle = createStyles((theme, _params, getRef) => ({
         transition: `box-shadow 150ms ${theme.transitionTimingFunction}`,
         border: '1px solid transparent',
         borderRadius: theme.radius.sm,
+
+        [`& .${getRef('icon')}`]: {
+            color: '#757575'
+        },
     },
 
     itemOpened: {
@@ -30,6 +34,7 @@ const accordionLabelStyle = createStyles((theme, _params, getRef) => ({
 
         [`& .${getRef('icon')}`]: {
             transform: 'rotate(45deg)',
+            color: '#fff'
         },
     },
     icon: {
