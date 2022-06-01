@@ -53,7 +53,7 @@ const TxListCard: FunctionComponent<Props> = ({ txlist }) => {
   });
 
   return (
-    <Paper radius={12} className={classes.container}>
+    <Paper radius={0} className={classes.container}>
       <Table verticalSpacing="sm" horizontalSpacing="md">
         <thead className={classes.tableThead}>
           <tr>

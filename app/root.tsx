@@ -101,7 +101,7 @@ export default function App() {
                 main: { backgroundColor: theme.colorScheme === 'dark' ? '#1A1A1A' : "#fff" },
               })}
             >
-              <Container size='xl' px={30}>
+              <Container size='xl' px={0}>
                 <div ref={(divElement) => { checkHeight(); setContentHeight((divElement) ? divElement?.clientHeight : 0) }}><Outlet /></div>
               </Container>
               <Affix position={{ bottom: 76, right: 30 }}>

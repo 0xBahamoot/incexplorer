@@ -1,4 +1,4 @@
-import { Text, Space, Button, Loader, Group, ScrollArea } from '@mantine/core';
+import { Text, Space, Button, Loader, Group, ScrollArea, Box, MediaQuery } from '@mantine/core';
 import SummaryBox from '~/components/summarybox/summarybox';
 import TxListCard from '~/components/txlistcard/txlistcard';
 import { useState, useEffect } from 'react';
@@ -97,54 +97,70 @@ function Home() {
   }, []);
   return (
     <>
-      <Space h={30} />
-      <SectionTitle text='Network' />
+      <Box style={{ padding: '0 30px' }}>
+        <Space h={30} />
+        <SectionTitle text='Network' />
 
-      <Space h="sm" />
-      <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
-        <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
-      </Group>
+        <Space h="sm" />
+        <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
+          <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
+        </Group>
+
+        <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
+          <SummaryBox items={networkData}></SummaryBox>
+        </div>
+        <Space h={40} />
+        <SectionTitle text='Privacy Exchange' />
+        <Space h="sm" />
+        <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
+          <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
+        </Group>
+
+        <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
+          <SummaryBox items={pdexData}></SummaryBox>
+        </div>
+        <Space h={40} />
+        <SectionTitle text='PRV' />
+        <Space h="sm" />
+        <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
+          <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
+        </Group>
+
+        <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
+          <SummaryBox items={prvData}></SummaryBox>
+        </div>
+        <Space h={40} />
+        <Group position='apart'>
+          <SectionTitle text='Transactions' />
+          <Button color='gray' variant="subtle" radius="xl" compact component={Link} to="/txs" style={{ marginRight: 10, color: '#757575' }}>
+            <Text style={{ color: '#1A73E8', fontSize: 16 }}>view all</Text>
+          </Button>
+        </Group>
+        <Space h="md" />
+        <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
+          <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
+        </Group>
+
+      </Box>
 
       <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
-        <SummaryBox items={networkData}></SummaryBox>
-      </div>
-      <Space h={40} />
-      <SectionTitle text='Privacy Exchange' />
-      <Space h="sm" />
-      <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
-        <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
-      </Group>
 
-      <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
-        <SummaryBox items={pdexData}></SummaryBox>
-      </div>
-      <Space h={40} />
-      <SectionTitle text='PRV' />
-      <Space h="sm" />
-      <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
-        <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
-      </Group>
 
-      <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
-        <SummaryBox items={prvData}></SummaryBox>
-      </div>
+        <MediaQuery smallerThan={1440} styles={{ display: 'none' }}>
+          <Box style={{ padding: '0 30px' }}>
+            <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
+              <TxListCard txlist={txListData}></TxListCard>
+            </ScrollArea>
+          </Box>
 
-      <Space h={40} />
-      <Group position='apart'>
-        <SectionTitle text='Transactions' />
-        <Button color='gray' variant="subtle" radius="xl" compact component={Link} to="/txs" style={{ marginRight: 10, color: '#757575' }}>
-          <Text style={{ color: '#1A73E8', fontSize: 16 }}>view all</Text>
-        </Button>
-      </Group>
-      <Space h="md" />
-      <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
-        <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
-      </Group>
+        </ MediaQuery>
 
-      <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
-        <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
-          <TxListCard txlist={txListData}></TxListCard>
-        </ScrollArea>
+
+        <MediaQuery largerThan={1440} styles={{ display: 'none' }}>
+          <ScrollArea style={{ height: 'auto', overflow: 'hidden', border: '1px solid #363636' }} >
+            <TxListCard txlist={txListData}></TxListCard>
+          </ScrollArea>
+        </ MediaQuery>
       </div>
       <Space h="md" />
     </>
