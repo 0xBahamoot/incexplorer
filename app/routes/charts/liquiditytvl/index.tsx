@@ -1,4 +1,4 @@
-import Chart from "./chart.client";
+import Chart from '~/components/chart/chart.client';
 import { ClientOnly } from "~/components/clientonly/clientonly";
 import SectionTitle from "~/components/sectiontitle/sectiontitle";
 function LiquidityTVLChart() {

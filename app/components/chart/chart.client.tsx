@@ -2,9 +2,10 @@ import { Button, Divider } from '@mantine/core';
 import React, { useEffect, useRef } from "react";
 
 
-import { priceData } from "~/routes/charts/liquiditytvl/priceData.js";
+import { priceData } from "~/routes/charts/market/priceData.js";
+
 // import { areaData } from './areaData';
-import { volumeData } from "~/routes/charts/liquiditytvl/volumeData.js";
+import { volumeData } from "~/routes/charts/market/volumeData.js";
 
 import { createChart, CrosshairMode } from "lightweight-charts";
 
@@ -19,15 +20,15 @@ function Chart() {
             width: chartContainerRef.current.clientWidth,
             height: 500, //"300px", //chartContainerRef.current.clientHeight,
             layout: {
-                backgroundColor: "#253248",
-                textColor: "rgba(255, 255, 255, 0.9)"
+                backgroundColor: "#1A1A1A",
+                textColor: "#757575"
             },
             grid: {
                 vertLines: {
-                    color: "#334158"
+                    visible: false,
                 },
                 horzLines: {
-                    color: "#334158"
+                    color: "#363636"
                 }
             },
             crosshair: {
@@ -36,20 +37,23 @@ function Chart() {
             // priceScale: {
             //     borderColor: "#485c7b"
             // },
+            priceScale: {
+                borderColor: "#363636"
+            },
             timeScale: {
-                borderColor: "#485c7b"
+                borderColor: "#363636"
             }
         });
 
         console.log(chart.current);
 
         const candleSeries = chart.current.addCandlestickSeries({
-            upColor: "#4bffb5",
-            downColor: "#ff4976",
-            borderDownColor: "#ff4976",
-            borderUpColor: "#4bffb5",
-            wickDownColor: "#838ca1",
-            wickUpColor: "#838ca1"
+            upColor: "#0ECB81",
+            downColor: "#F6465D",
+            borderDownColor: "#F6465D",
+            borderUpColor: "#0ECB81",
+            wickDownColor: "#F6465D",
+            wickUpColor: "#0ECB81",
         });
 
         candleSeries.setData(priceData);
@@ -64,7 +68,7 @@ function Chart() {
         // areaSeries.setData(areaData);
 
         const volumeSeries = chart.current.addHistogramSeries({
-            color: "#182233",
+            color: "#485c7b",
             lineWidth: 2,
             priceFormat: {
                 type: "volume"
@@ -73,7 +77,16 @@ function Chart() {
             scaleMargins: {
                 top: 0.8,
                 bottom: 0
-            }
+            },
+            priceLineVisible: false,
+            grid: {
+                vertLines: {
+                    visible: false,
+                },
+                horzLines: {
+                    color: "#363636"
+                }
+            },
         });
 
         volumeSeries.setData(volumeData);

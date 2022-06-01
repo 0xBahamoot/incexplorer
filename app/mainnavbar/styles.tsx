@@ -32,7 +32,9 @@ const accordionLabelStyle = createStyles((theme, _params, getRef) => ({
             transform: 'rotate(45deg)',
         },
     },
-
+    icon: {
+        marginLeft: 5,
+    }
 }));
 
 
