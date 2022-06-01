@@ -4,6 +4,9 @@ const useStyles = createStyles((theme) => ({
     paper: {
         backgroundColor: '#303030',
         borderRadius: 12,
+        '&:hover': {
+            border: '1px solid #fff'
+        }
     },
     title: {
         fontStyle: 'normal',
