@@ -64,7 +64,7 @@ const ShieldListCard: FunctionComponent<Props> = ({ txlist }) => {
   });
 
   return (
-    <Table verticalSpacing={0} horizontalSpacing="md">
+    <Table verticalSpacing={0} horizontalSpacing="md" fontSize={16}>
       <thead className={classes.tableThead}>
         <tr>
           <th><Text className={classes.tableTheadText}>Token</Text></th>

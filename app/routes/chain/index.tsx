@@ -131,7 +131,7 @@ function ShardsOverview() {
             <MediaQuery smallerThan={1440} styles={{ display: 'none' }}>
                 <Box style={{ padding: '0 30px 30px' }}>
                     <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
-                        <Table verticalSpacing="sm" horizontalSpacing="md">
+                        <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
                             <thead className={classes.tableThead}>
                                 <tr>
                                     <th><Text className={classes.tableTheadText}>Hash</Text></th>
@@ -152,7 +152,7 @@ function ShardsOverview() {
             </MediaQuery>
             <MediaQuery largerThan={1440} styles={{ display: 'none' }}>
                 <ScrollArea style={{ height: 'auto', overflow: 'hidden', border: '1px solid #363636' }} >
-                    <Table verticalSpacing="sm" horizontalSpacing="md">
+                    <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
                         <thead className={classes.tableThead}>
                             <tr>
                                 <th><Text className={classes.tableTheadText}>Hash</Text></th>
@@ -181,7 +181,7 @@ function ShardsOverview() {
             <MediaQuery smallerThan={1440} styles={{ display: 'none' }}>
                 <Box style={{ padding: '0 30px 30px' }}>
                     <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
-                        <Table verticalSpacing="sm" horizontalSpacing="md">
+                        <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
                             <thead className={classes.tableThead}>
                                 <tr>
                                     <th><Text className={classes.tableTheadText}>Hash</Text></th>
@@ -198,7 +198,7 @@ function ShardsOverview() {
             </MediaQuery>
             <MediaQuery largerThan={1440} styles={{ display: 'none' }}>
                 <ScrollArea style={{ height: 'auto', overflow: 'hidden', border: '1px solid #363636' }} >
-                    <Table verticalSpacing="sm" horizontalSpacing="md">
+                    <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
                         <thead className={classes.tableThead}>
                             <tr>
                                 <th><Text className={classes.tableTheadText}>Hash</Text></th>
