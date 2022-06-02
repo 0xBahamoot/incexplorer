@@ -1,4 +1,4 @@
-import { Paper, Grid, Text, ScrollArea, Space, Table } from '@mantine/core';
+import { Paper, Grid, Text, ScrollArea, Space, Table, Box, MediaQuery } from '@mantine/core';
 import { useState } from 'react';
 import useStyles from './styles'
 import type { LoaderFunction } from "@remix-run/node";
@@ -49,7 +49,9 @@ function BlockDetail() {
   return (
     <>
       <Space h={40} />
-      <SectionTitle text={"Block Details"} />
+      <Box style={{ padding: '0 30px' }}>
+        <SectionTitle text={"Block Details"} />
+      </Box>
       <Space h="xl" />
       <Paper shadow="sm" radius="md" p="xl" withBorder className={classes.container}>
         <Grid columns={24} className={classes.wrapper}>
@@ -205,20 +207,42 @@ function BlockDetail() {
           <></> :
           <>
             <Space h="md" />
-            <SectionTitle text={"Transactions in block"} />
+
+            <Box style={{ padding: '0 30px' }}>
+              <SectionTitle text={"Transactions in block"} />
+            </Box>
             <Space h="xl" />
 
-            <Paper radius={12} withBorder className={classes.container}>
-              <Table verticalSpacing="sm" horizontalSpacing="md">
-                <thead className={classes.tableThead}>
-                  <tr>
-                    <th><Text className={classes.tableTheadText}>No.</Text></th>
-                    <th><Text className={classes.tableTheadText}>Hash</Text></th>
-                  </tr>
-                </thead>
-                <tbody>{GenTxRow(data.Txs)}</tbody>
-              </Table>
-            </Paper>
+            <MediaQuery smallerThan={1440} styles={{ display: 'none' }}>
+              <Box style={{ padding: '0 30px 30px' }}>
+                <Paper radius={12} withBorder className={classes.container}>
+                  <Table verticalSpacing="sm" horizontalSpacing="md">
+                    <thead className={classes.tableThead}>
+                      <tr>
+                        <th><Text className={classes.tableTheadText}>No.</Text></th>
+                        <th><Text className={classes.tableTheadText}>Hash</Text></th>
+                      </tr>
+                    </thead>
+                    <tbody>{GenTxRow(data.Txs)}</tbody>
+                  </Table>
+                </Paper>
+              </Box>
+            </MediaQuery>
+
+            <MediaQuery largerThan={1440} styles={{ display: 'none' }}>
+              <Paper radius={0} withBorder className={classes.container}>
+                <Table verticalSpacing="sm" horizontalSpacing="md">
+                  <thead className={classes.tableThead}>
+                    <tr>
+                      <th><Text className={classes.tableTheadText}>No.</Text></th>
+                      <th><Text className={classes.tableTheadText}>Hash</Text></th>
+                    </tr>
+                  </thead>
+                  <tbody>{GenTxRow(data.Txs)}</tbody>
+                </Table>
+              </Paper>
+            </MediaQuery>
+
           </>}
 
     </>
