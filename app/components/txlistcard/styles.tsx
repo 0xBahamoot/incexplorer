@@ -10,11 +10,13 @@ const useStyles = createStyles((theme) => ({
         fontWeight: 500
     },
     timeColumn: {
+        fontSize: 16,
         color: '#757575',
         fontWeight: 400,
         whiteSpace: 'nowrap'
     },
     otherColumn: {
+        fontSize: 16,
         color: '#fff',
         fontWeight: 400,
         whiteSpace: 'nowrap',
