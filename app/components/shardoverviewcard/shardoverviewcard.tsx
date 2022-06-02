@@ -4,9 +4,6 @@ import useStyles from './styles'
 import { ChainInfo } from '~/types/types';
 import moment from 'moment';
 import { ArrowUpRight } from 'tabler-icons-react';
-
-import { Link } from 'react-router-dom';
-
 type Props = {
     chainId: number
     chainInfo: ChainInfo
@@ -14,14 +11,13 @@ type Props = {
 
 const ShardOverviewCard: FunctionComponent<Props> = ({ chainInfo, chainId }) => {
     const { classes } = useStyles();
+
     return (
         <>
             <Paper radius={12} withBorder className={classes.paper}>
                 <Group position="apart" style={{ borderBottom: '1px solid #404040', padding: '10px 24px' }}>
                     <Text style={{ fontSize: 20, color: '#fff', fontWeight: 500 }}>Shard {chainId}</Text>
-                    <ActionIcon size="lg" radius="xl" component={Link} to={"/chain/shard/" + chainId}>
-                        <ArrowUpRight />
-                    </ActionIcon>
+                    <ArrowUpRight />
                 </Group>
                 <Grid gutter="lg" columns={6} style={{ padding: '18px 24px' }}>
                     <Grid.Col span={4} >
