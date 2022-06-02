@@ -7,7 +7,7 @@ const useStyles = createStyles((theme) => ({
         overflow: 'hidden'
     },
     tableThead: {
-        backgroundColor: '#303030', color: '#9C9C9C', whiteSpace: 'nowrap', padding: 13
+        backgroundColor: '#303030', color: '#9C9C9C', whiteSpace: 'nowrap', height: 40
     },
     tableTheadText: {
         color: '#9C9C9C !important',
