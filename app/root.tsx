@@ -72,7 +72,7 @@ export default function App() {
               lg: 1440,
               xl: 1920,
             },
-          }} withGlobalStyles withNormalizeCSS defaultProps={{
+          }} defaultProps={{
             Container: {
               sizes: {
                 xs: 500,
@@ -82,7 +82,7 @@ export default function App() {
                 xl: 1920,
               },
             },
-          }}>
+          }} withGlobalStyles withNormalizeCSS >
 
             <AppShell
               padding={0}

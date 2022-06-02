@@ -1,7 +1,6 @@
-import { Title, Space, TextInput, Pagination, Group, Text, Loader, ScrollArea } from '@mantine/core';
-import TxListCard from '~/components/txlistcard/txlistcard';
+import { Space, TextInput, Pagination, Group, Text, Loader, ScrollArea, Box, MediaQuery } from '@mantine/core';
 import { useState, useEffect } from 'react';
-import { getNormalTx, getShieldTxs } from '~/services/transactions';
+import { getShieldTxs } from '~/services/transactions';
 import SectionTitle from '~/components/sectiontitle/sectiontitle';
 import ShieldListCard from '~/components/shieldlistcard/shieldlistcard';
 import useStyles from './styles'
@@ -34,16 +33,32 @@ function ShieldTxs() {
     }
     return <>
         <Space h={30} />
-        <SectionTitle text="Shielded" />
+
+        <Box style={{ padding: '0 30px' }}>
+            <SectionTitle text="Shielded" />
+        </Box>
         <Space h="md" />
         <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
             <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
         </Group>
         <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
-            <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
-                <ShieldListCard txlist={txListData}></ShieldListCard>
-            </ScrollArea>
+
+            <MediaQuery smallerThan={1440} styles={{ display: 'none' }}>
+                <Box style={{ padding: '0 30px 30px' }}>
+                    <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
+                        <ShieldListCard txlist={txListData}></ShieldListCard>
+                    </ScrollArea>
+                </Box>
+            </MediaQuery>
+
+            <MediaQuery largerThan={1440} styles={{ display: 'none' }}>
+                <ScrollArea style={{ height: 'auto', overflow: 'hidden', border: '1px solid #363636' }} >
+                    <ShieldListCard txlist={txListData}></ShieldListCard>
+                </ScrollArea>
+            </MediaQuery>
         </div>
+
+
         <Space h="md" />
         <Group position="center" spacing="lg">
             <Group position="center" spacing="sm">
