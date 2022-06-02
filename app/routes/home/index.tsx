@@ -132,7 +132,7 @@ function Home() {
         <Space h={40} />
         <Group position='apart'>
           <SectionTitle text='Transactions' />
-          <Button color='gray' variant="subtle" radius="xl" compact component={Link} to="/txs" style={{ marginRight: 10, color: '#757575' }}>
+          <Button color='gray' variant="subtle" compact component={Link} to="/txs" style={{ marginRight: 10, color: '#757575' }}>
             <Text style={{ color: '#1A73E8', fontSize: 16 }}>view all</Text>
           </Button>
         </Group>
