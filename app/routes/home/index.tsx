@@ -145,6 +145,17 @@ function Home() {
 
       <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
 
+      <Space h={40} />
+      <Group position='apart'>
+        <SectionTitle text='Transactions' />
+        <Button color='gray' variant="subtle" compact component={Link} to="/txs" style={{ marginRight: 10, color: '#757575' }}>
+          <Text style={{ color: '#1A73E8', fontSize: 16 }}>view all</Text>
+        </Button>
+      </Group>
+      <Space h="md" />
+      <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
+        <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
+      </Group>
 
         <MediaQuery smallerThan={1440} styles={{ display: 'none' }}>
           <Box style={{ padding: '0 30px' }}>

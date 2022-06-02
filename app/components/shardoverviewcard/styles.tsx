@@ -1,12 +1,21 @@
 import { createStyles } from '@mantine/core';
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles((theme, _params, getRef) => ({
     paper: {
         backgroundColor: '#303030',
         borderRadius: 12,
+
+        [`& svg`]: {
+            color: '#757575'
+        },
         '&:hover': {
-            border: '1px solid #fff'
-        }
+            border: '1px solid #fff',
+            cursor: 'pointer',
+
+            [`& svg`]: {
+                color: '#fff'
+            },
+        },
     },
     title: {
         fontStyle: 'normal',

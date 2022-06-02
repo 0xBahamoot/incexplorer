@@ -50,9 +50,9 @@ function PendingTxs() {
 
         return (
 
-            <tr key={element.TxID} style={{ cursor: 'pointer' }} >
+            <tr key={element.TxID} style={{ cursor: 'pointer', height: 50 }} >
                 <td>{format.formatUnixDateTime(element.LockTime)}</td>
-                <td><Text variant="link" component={Link} to={"/tx/" + element.TxID}>{element.TxID}</Text></td>
+                <td style={{ lineHeight: '14px' }}><Text className={classes.txhash} variant="link" component={Link} to={"/tx/" + element.TxID}>{element.TxID}</Text></td>
             </tr>
         )
     });
@@ -64,7 +64,7 @@ function PendingTxs() {
             <Space h="md" />
             <Paper radius={12} withBorder className={classes.container}>
                 <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
-                    <Table verticalSpacing="sm" horizontalSpacing="md">
+                    <Table verticalSpacing={7.5} horizontalSpacing="md">
                         <thead className={classes.tableThead}>
                             <tr>
                                 <th>Time created</th>

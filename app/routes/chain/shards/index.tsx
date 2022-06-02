@@ -7,6 +7,8 @@ import ShardOverviewCard from '~/components/shardoverviewcard/shardoverviewcard'
 import { getBlockchainInfo } from '~/services/chains';
 import SectionTitle from '~/components/sectiontitle/sectiontitle';
 
+import { useNavigate } from 'react-router-dom';
+
 export const loader: LoaderFunction = async ({ params }) => {
   let blockchainInfo: ChainInfo[] = []
   // var id: any = params.shardid;
@@ -25,6 +27,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 function ShardsOverview() {
 
+  let navigate = useNavigate();
   const loaded = true;
   const loaderData = useLoaderData();
   const [data, setData] = useState(loaderData);
@@ -66,7 +69,10 @@ function ShardsOverview() {
       <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
         <Grid gutter="lg" columns={12}>
           {data.map((item: ChainInfo, idx: number) => (
-            <Grid.Col span={4} key={item.Hash}>
+            <Grid.Col span={4} key={item.Hash} onClick={() => {
+              console.log("SdfsdF");
+              navigate("/chain/shard/" + idx, { replace: true })
+            }}>
               <ShardOverviewCard chainInfo={item} chainId={idx} />
             </Grid.Col>
           ))}

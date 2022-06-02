@@ -5,7 +5,8 @@ const useStyles = createStyles((theme) => ({
         backgroundColor: '#1A1A1A'
     },
     tableThead: {
-        backgroundColor: '#303030', color: '#9C9C9C'
+        backgroundColor: '#303030', color: '#9C9C9C',
+        height: 40
     },
     tableTheadText: {
         color: '#9C9C9C !important',

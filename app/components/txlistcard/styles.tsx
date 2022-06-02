@@ -7,7 +7,8 @@ const useStyles = createStyles((theme) => ({
         overflow: 'hidden'
     },
     tableThead: {
-        backgroundColor: '#303030', color: '#9C9C9C', whiteSpace: 'nowrap'
+        backgroundColor: '#303030', color: '#9C9C9C', whiteSpace: 'nowrap',
+        height: 40
     },
     tableTheadText: {
         color: '#9C9C9C !important',
@@ -22,6 +23,9 @@ const useStyles = createStyles((theme) => ({
         color: '#fff',
         fontWeight: 400,
         whiteSpace: 'nowrap',
+        '&:hover': {
+            color: '#1A73E8'
+        }
     },
     txhash: {
         color: '#1A73E8',
@@ -29,7 +33,8 @@ const useStyles = createStyles((theme) => ({
         whiteSpace: 'nowrap',
         overflow: 'hidden',
         display: 'inline-block',
-    },
+        lineHeight: '32px',
+    }
 }));
 
 export default useStyles;

@@ -27,9 +27,9 @@ const BlockListCard: FunctionComponent<Props> = ({ blocklist, blockType }) => {
     }
 
     return (
-      <tr key={element.Hash} style={{ cursor: 'pointer' }}>
+      <tr key={element.Hash} style={{ cursor: 'pointer', height: 50 }}>
         <td>{element.Height}</td>
-        <td><Text className={classes.blockhash} variant="link" component={Link} to={'/block/' + element.Hash + ((blockType == 'shardblk') ? '' : '?beacon=true')}>{getBlockHashText(element.Hash)}</Text></td>
+        <td style={{ lineHeight: '14px' }}><Text className={classes.blockhash} variant="link" component={Link} to={'/block/' + element.Hash + ((blockType == 'shardblk') ? '' : '?beacon=true')}>{getBlockHashText(element.Hash)}</Text></td>
         <td style={{ textOverflow: 'ellipsis', maxWidth: 300, overflow: 'hidden' }}>{element.BlockProducer}</td>
         {(blockType == 'shardblk') ? <td>{element.TxHashes.length}</td> : null}
         <td>{format.formatUnixDateTime(element.Time)}</td>
@@ -39,7 +39,7 @@ const BlockListCard: FunctionComponent<Props> = ({ blocklist, blockType }) => {
 
   return (
     <Paper radius={12} className={classes.container}>
-      <Table verticalSpacing="sm" horizontalSpacing="md">
+      <Table verticalSpacing={7.5} horizontalSpacing="md">
         <thead className={classes.tableThead}>
           <tr>
             <th><Text className={classes.tableTheadText}>Height</Text></th>

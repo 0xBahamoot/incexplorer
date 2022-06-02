@@ -1,4 +1,4 @@
-import { Navbar, useMantineColorScheme, Stack, Button, Accordion, Group, Avatar, Text } from '@mantine/core';
+import { Navbar, useMantineColorScheme, Stack, ScrollArea, Accordion, Group, Avatar, Text, Space } from '@mantine/core';
 import { useState } from 'react';
 import NavbarBtn from '~/components/navbarbtn/navbarbtn';
 import { ChevronDown } from 'tabler-icons-react';
@@ -98,7 +98,8 @@ function MainNavbar() {
     const { classes } = accordionLabelStyle();
     return (
         <>
-            <Navbar.Section>
+            <Navbar.Section p={'0 16px'} grow component={ScrollArea}>
+                <Space h={16} />
                 <Accordion.Item styles={{ control: { paddingLeft: 0 } }} iconSize={0} label={<AccordionLabel label='Home' icon='/assets/images/icons/navbar-home.svg' />} classNames={classes} onClick={() => {
                     navigate(`/`, { replace: true });
                 }}>
@@ -137,6 +138,7 @@ function MainNavbar() {
                 }}>
                 </Accordion.Item> */}
 
+                <Space h={16} />
 
             </Navbar.Section>
         </>
