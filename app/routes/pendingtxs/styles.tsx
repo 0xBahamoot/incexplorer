@@ -5,7 +5,8 @@ const useStyles = createStyles((theme) => ({
         backgroundColor: '#1A1A1A'
     },
     tableThead: {
-        backgroundColor: '#303030', color: '#9C9C9C'
+        backgroundColor: '#303030', color: '#9C9C9C',
+        height: 40
     },
     paginationBox: {
         backgroundColor: '#303030',
@@ -21,7 +22,15 @@ const useStyles = createStyles((theme) => ({
         backgroundColor: '#303030',
         color: '#fff',
         height: 32
-    }
+    },
+
+    txhash: {
+        color: '#1A73E8',
+        fontWeight: 400,
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        display: 'inline-block',
+    },
 }));
 
 export default useStyles;

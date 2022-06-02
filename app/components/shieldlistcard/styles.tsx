@@ -12,7 +12,14 @@ const useStyles = createStyles((theme) => ({
     tableTheadText: {
         color: '#9C9C9C !important',
         fontWeight: 500
-    }
+    },
+    txhash: {
+        color: '#1A73E8',
+        fontWeight: 400,
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        display: 'inline-block',
+    },
 }));
 
 export default useStyles;

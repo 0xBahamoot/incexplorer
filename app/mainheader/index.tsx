@@ -143,11 +143,11 @@ function MainHeader() {
       </MediaQuery>
 
       <MediaQuery smallerThan={1200} styles={{ display: 'none' }}>
-        <Group position="apart" grow style={{ height: 52 }}>
+        <Group position="apart" grow style={{ height: 42 }}>
           <Group position="left">
             <Center>
               <a href="/">
-                <Image alt="logo" src={dark ? "/assets/images/logo.svg" : "/assets/images/logo.svg"} height={44} />
+                <Image alt="logo" src={dark ? "/assets/images/logo.svg" : "/assets/images/logo.svg"} height={38} />
               </a>
 
               <Text sx={(theme) => ({

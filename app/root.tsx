@@ -89,14 +89,14 @@ export default function App() {
               navbarOffsetBreakpoint="lg"
               fixed
               navbar={
-                <Navbar p="md" hiddenBreakpoint="lg" hidden={!openedNavBar} width={{ sm: 300, lg: 300 }} style={{ backgroundColor: '#1A1A1A' }}>
+                <Navbar hiddenBreakpoint="lg" hidden={!openedNavBar} width={{ sm: 300, lg: 300, height: '100%' }} style={{ backgroundColor: '#1A1A1A' }}>
                   <MainNavbar />
                 </Navbar>
               }
-              header={<Header fixed={true} height={72} p={'10px 30px'} style={{ backgroundColor: '#1A1A1A' }}>
+              header={<Header fixed={true} height={64} p={'10px 30px'} style={{ backgroundColor: '#1A1A1A' }}>
                 <MainHeader />
               </Header>}
-              footer={<Footer height={60} p={0} fixed={fixedFooter} style={{ backgroundColor: '#1A1A1A' }}>{<MainFooter />} </Footer>}
+              footer={<Footer height={50} p={0} fixed={fixedFooter} style={{ backgroundColor: '#1A1A1A' }}>{<MainFooter />} </Footer>}
               styles={(theme) => ({
                 main: { backgroundColor: theme.colorScheme === 'dark' ? '#1A1A1A' : "#fff" },
               })}

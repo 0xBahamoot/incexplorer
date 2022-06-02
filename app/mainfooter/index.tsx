@@ -14,7 +14,7 @@ function MainFooter() {
     <>
       <Group position="apart" grow style={{ padding: '0 30px' }}>
         <Group position="left">
-          <Center style={{ width: 150, height: 60 }}>
+          <Center style={{ width: 150, height: 50 }}>
             <Title order={5} style={{ color: '#757575', fontWeight: 500 }}>© 2022 Incognito</Title>
           </Center>
         </Group>

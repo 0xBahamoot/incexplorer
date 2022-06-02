@@ -27,7 +27,7 @@ const ShieldListCard: FunctionComponent<Props> = ({ txlist }) => {
             <Box ml={5} style={{ paddingLeft: 5 }}>{element.token_symbol}</Box>
           </Center>
         </td>
-        <td><Text variant="link" component={Link} to={"/tx/" + element.tx_hash}>{element.tx_hash}</Text></td>
+        <td><Text className={classes.txhash} variant="link" component={Link} to={"/tx/" + element.tx_hash}>{element.tx_hash}</Text></td>
         <td>
           <Center inline>
             <Text style={{ fontSize: 18, display: 'inline-block' }}>
@@ -42,8 +42,8 @@ const ShieldListCard: FunctionComponent<Props> = ({ txlist }) => {
           width: 'auto',
           textOverflow: 'ellipsis', maxWidth: 250, overflow: 'hidden', whiteSpace: 'nowrap',
           fontSize: 18,
-          textAlign: 'center',
-          paddingLeft: 15,
+          textAlign: 'left',
+          paddingLeft: 0,
           paddingRight: 15,
           paddingTop: 5,
           paddingBottom: 5,
@@ -61,14 +61,14 @@ const ShieldListCard: FunctionComponent<Props> = ({ txlist }) => {
   return (
     <Paper radius={12} withBorder className={classes.container}>
       <ScrollArea>
-        <Table verticalSpacing="sm" horizontalSpacing="md">
+        <Table verticalSpacing={7.5} horizontalSpacing="md">
           <thead className={classes.tableThead}>
             <tr>
               <th><Text className={classes.tableTheadText}>Token</Text></th>
               <th><Text className={classes.tableTheadText}>Hash</Text></th>
               <th><Text className={classes.tableTheadText}>Amount</Text></th>
               <th><Text className={classes.tableTheadText}>Type</Text></th>
-              <th><Text className={classes.tableTheadText}>Time</Text></th>
+              <th><Text className={classes.tableTheadText}>Time created</Text></th>
             </tr>
           </thead>
           <tbody>{rows}</tbody>
