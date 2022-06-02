@@ -68,28 +68,28 @@ export default function App() {
             breakpoints: {
               xs: 500,
               sm: 800,
-              md: 1000,
-              lg: 1275,
-              xl: 1440,
+              md: 1024,
+              lg: 1440,
+              xl: 1920,
             },
           }} withGlobalStyles withNormalizeCSS defaultProps={{
             Container: {
               sizes: {
-                xs: 540,
-                sm: 720,
-                md: 960,
-                lg: 1140,
-                xl: 1500,
+                xs: 500,
+                sm: 800,
+                md: 1024,
+                lg: 1440,
+                xl: 1920,
               },
             },
           }}>
 
             <AppShell
               padding={0}
-              navbarOffsetBreakpoint="lg"
+              navbarOffsetBreakpoint="md"
               fixed
               navbar={
-                <Navbar hiddenBreakpoint="lg" hidden={!openedNavBar} width={{ sm: 300, lg: 300, height: '100%' }} style={{ backgroundColor: '#1A1A1A' }}>
+                <Navbar hiddenBreakpoint="md" hidden={!openedNavBar} width={{ sm: 300, lg: 300, height: '100%' }} style={{ backgroundColor: '#1A1A1A' }}>
                   <MainNavbar />
                 </Navbar>
               }

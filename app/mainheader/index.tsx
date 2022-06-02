@@ -93,56 +93,42 @@ function MainHeader() {
 
       <NotificationsProvider position="top-right" zIndex={2077}>
       </NotificationsProvider>
-      <MediaQuery largerThan={1200} styles={{ display: 'none' }}>
-        <Group position="apart" style={{ height: 52 }}>
+      <MediaQuery largerThan={1024} styles={{ display: 'none' }}>
+        <Group position="apart" style={{ height: 42 }}>
           <Group position="left">
             <Burger
               opened={opened}
               onClick={() => setOpened((o) => !o)}
               size="sm"
-              color={theme.colors.gray[6]}
+              color={"#fff"}
             />
-
-            <MediaQuery smallerThan={450} styles={{ display: 'none' }}>
-              <Center>
-                <a href="/">
-                  <Image alt="logo" src={dark ? "/assets/images/logo.svg" : "/assets/images/logo.svg"} height={44} />
-                </a>
-
-                <Text sx={(theme) => ({
-                  backgroundColor: theme.colorScheme === 'dark' ? '#303030' : theme.colors.gray[0],
-                  width: 'auto',
-                  fontSize: 14, textAlign: 'center',
-                  padding: '2px 8px',
-                  display: 'inline-block',
-                  marginLeft: 12,
-                  marginTop: -15,
-                  borderRadius: 6,
-                  color: '#fff',
-                  fontWeight: 500
-                })}>Beta</Text>
-              </Center>
-            </MediaQuery>
           </Group>
+          <Center>
+            <a href="/">
+              <Image alt="logo" src={dark ? "/assets/images/logo_h_white.svg" : "/assets/images/logo_h_white.svg"} height={38} />
+            </a>
+
+            <Text sx={(theme) => ({
+              backgroundColor: theme.colorScheme === 'dark' ? '#303030' : theme.colors.gray[0],
+              width: 'auto',
+              fontSize: 14, textAlign: 'center',
+              padding: '2px 8px',
+              display: 'inline-block',
+              marginLeft: 12,
+              borderRadius: 6,
+              color: '#fff',
+              fontWeight: 500
+            })}>Beta</Text>
+          </Center>
           <Group position="right">
-            <Center>
-              <TextInput
-                placeholder="Search anything..."
-                variant="filled"
-                radius="md"
-                iconWidth={40}
-                icon={(searching) ? <Loader size="xs" style={{ marginLeft: 8 }} /> : <Image src='/assets/images/icons/search.svg' color={"#fff"} style={{ marginLeft: 8 }} />}
-                styles={{ input: { width: 280, color: '#fff', height: 40, fontSize: 16, backgroundColor: '#303030', paddingTop: 0 } }}
-                onChange={(event) => setSearchValue(event.target.value)}
-                onKeyUp={(event) => search(event)}
-                height={40}
-              />
-            </Center>
+            <ActionIcon size="xl" radius="xl" variant="transparent">
+              <Search />
+            </ActionIcon>
           </Group>
         </Group>
       </MediaQuery>
 
-      <MediaQuery smallerThan={1200} styles={{ display: 'none' }}>
+      <MediaQuery smallerThan={1024} styles={{ display: 'none' }}>
         <Group position="apart" grow style={{ height: 42 }}>
           <Group position="left">
             <Center>
@@ -163,11 +149,6 @@ function MainHeader() {
                 fontWeight: 500
               })}>Beta</Text>
             </Center>
-            {/* <Group position='left' style={{ paddingLeft: 30 }}>
-              <Button variant="subtle" color="gray" size="md" compact component={Link} to="/">Explore</Button>
-              <Button variant="subtle" color="gray" size="md" compact component="a" target={"_blank"} href="https://incognito.org">About us</Button>
-              <Button variant="subtle" color="gray" size="md" compact component="a" target={"_blank"} href="https://we.incognito.org/">Community</Button>
-            </Group> */}
           </Group>
 
 

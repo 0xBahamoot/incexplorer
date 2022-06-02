@@ -1,4 +1,4 @@
-import { Card, Table, Paper, Text } from '@mantine/core';
+import { Card, Table, Text } from '@mantine/core';
 
 import { Link } from 'react-router-dom';
 
@@ -38,20 +38,18 @@ const BlockListCard: FunctionComponent<Props> = ({ blocklist, blockType }) => {
   });
 
   return (
-    <Paper radius={12} className={classes.container}>
-      <Table verticalSpacing={7.5} horizontalSpacing="md">
-        <thead className={classes.tableThead}>
-          <tr>
-            <th><Text className={classes.tableTheadText}>Height</Text></th>
-            <th><Text className={classes.tableTheadText}>Hash</Text></th>
-            <th><Text className={classes.tableTheadText}>Producer</Text></th>
-            {(blockType == 'shardblk') ? <th><Text className={classes.tableTheadText}>Txn</Text></th> : null}
-            <th><Text className={classes.tableTheadText}>Time created</Text></th>
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </Table>
-    </Paper>
+    <Table verticalSpacing={7.5} horizontalSpacing="md">
+      <thead className={classes.tableThead}>
+        <tr>
+          <th><Text className={classes.tableTheadText}>Height</Text></th>
+          <th><Text className={classes.tableTheadText}>Hash</Text></th>
+          <th><Text className={classes.tableTheadText}>Producer</Text></th>
+          {(blockType == 'shardblk') ? <th><Text className={classes.tableTheadText}>Txn</Text></th> : null}
+          <th><Text className={classes.tableTheadText}>Time created</Text></th>
+        </tr>
+      </thead>
+      <tbody>{rows}</tbody>
+    </Table>
   );
 }
 
