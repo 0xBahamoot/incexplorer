@@ -1,17 +1,27 @@
-import { Text, Group, Space, Loader, Paper, Grid, ScrollArea, Box, MediaQuery } from '@mantine/core';
-import BlockListCard from '~/components/blocklistcard/blocklistcard';
-import { getBlocks } from '~/services/chains';
+import {
+  Text,
+  Group,
+  Space,
+  Loader,
+  Paper,
+  Grid,
+  ScrollArea,
+  Box,
+  MediaQuery,
+} from "@mantine/core";
+import BlockListCard from "~/components/blocklistcard/blocklistcard";
+import { getBlocks } from "~/services/chains";
 import type { LoaderFunction } from "@remix-run/node";
 import { useLoaderData, useFetcher } from "@remix-run/react";
-import { BlockData } from '~/types/types';
-import { useState, useEffect } from 'react';
-import SectionTitle from '~/components/sectiontitle/sectiontitle';
+import { BlockData } from "~/types/types";
+import { useState, useEffect } from "react";
+import SectionTitle from "~/components/sectiontitle/sectiontitle";
 
 export const loader: LoaderFunction = async () => {
   let blockList: BlockData[];
   const { Result, Error } = (await getBlocks(-1)) as any;
   blockList = Result;
-  return blockList
+  return blockList;
 };
 
 function BeaconDetail() {
@@ -28,9 +38,9 @@ function BeaconDetail() {
   // }
 
   useEffect(() => {
-    setData(loaderData)
-    setCurrentHeight(loaderData[0].Height)
-    setCurrentProducer(loaderData[0].BlockProducer)
+    setData(loaderData);
+    setCurrentHeight(loaderData[0].Height);
+    setCurrentProducer(loaderData[0].BlockProducer);
   }, [loaderData]);
 
   const fetcher = useFetcher();
@@ -46,8 +56,8 @@ function BeaconDetail() {
   useEffect(() => {
     if (fetcher.data) {
       setData(fetcher.data);
-      setCurrentHeight(fetcher.data[0].Height)
-      setCurrentProducer(fetcher.data[0].BlockProducer)
+      setCurrentHeight(fetcher.data[0].Height);
+      setCurrentProducer(fetcher.data[0].BlockProducer);
     }
   }, [fetcher.data]);
 
@@ -55,30 +65,82 @@ function BeaconDetail() {
   return (
     <>
       <Space h={30} />
-      <Box style={{ padding: '0 30px' }}>
-        <Group><SectionTitle text="Beacon Chain" /> <Text>|</Text> <Text>Total blocks: {currentHeight}</Text></Group>
+      <Box style={{ padding: "0 30px" }}>
+        {/* <Text>|</Text> <Text>Total blocks: {currentHeight}</Text> */}
+        <Group>
+          <SectionTitle text="Beacon Chain" />
+        </Group>
         <Space h="md" />
-        <Paper radius={12} withBorder style={{ backgroundColor: '#303030', padding: 20 }}>
-          <Grid columns={18}>
-            <Grid.Col span={6}>Current block producer</Grid.Col>
-            <Grid.Col span={12} style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>{currentProducer}</Grid.Col>
-          </Grid>
-        </Paper>
+        <Box
+          style={{
+            padding: 0,
+            border: "1px solid #363636",
+            borderRadius: 12,
+            display: "block",
+            overflow: "hidden",
+          }}
+        >
+          <Group
+            position="apart"
+            style={{ backgroundColor: "#363636", padding: "9px 24px" }}
+          >
+            <Text
+              style={{
+                fontWeight: 500,
+                fontSize: 16,
+                color: "#9C9C9C",
+              }}
+            >
+              Current block producer
+            </Text>
+            <div style={{ width: "auto", overflow: "hidden" }}>
+              <Text style={{ color: "#9C9C9C" }}>
+                Total blocks:{" "}
+                <span style={{ color: "#fff" }}>{currentHeight}</span>
+              </Text>
+              {/* <Text style={{ color: "#fff" }}></Text> */}
+            </div>
+          </Group>
+          <Text
+            style={{
+              color: "#fff",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              maxWidth: "80%",
+              padding: "14px 24px",
+            }}
+          >
+            {currentProducer}
+          </Text>
+        </Box>
         <Space h="md" />
-        <Group><SectionTitle text="Most recent blocks" /> </Group>
+        <Group>
+          <SectionTitle text="Most recent blocks" />{" "}
+        </Group>
         <Space h="md" />
         <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
-          <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
+          <Loader
+            color="gray"
+            size={30}
+            style={{ height: !loaded ? 200 : 0 }}
+          />
         </Group>
-        <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
-          <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
+        <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
+          <ScrollArea
+            style={{
+              height: "auto",
+              borderRadius: 12,
+              overflow: "hidden",
+              border: "1px solid #363636",
+            }}
+          >
             <BlockListCard blocklist={data}></BlockListCard>
           </ScrollArea>
         </div>
       </Box>
       <Space h="sm" />
     </>
-
   );
 }
 
