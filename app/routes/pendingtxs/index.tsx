@@ -51,8 +51,8 @@ function PendingTxs() {
         return (
 
             <tr key={element.TxID} style={{ cursor: 'pointer', height: 50 }} >
-                <td>{format.formatUnixDateTime(element.LockTime)}</td>
                 <td style={{ lineHeight: '14px' }}><Text className={classes.txhash} variant="link" component={Link} to={"/tx/" + element.TxID}>{element.TxID}</Text></td>
+                <td style={{ color: '#757575' }}>{format.formatUnixDateTime(element.LockTime)}</td>
             </tr>
         )
     });
@@ -63,19 +63,17 @@ function PendingTxs() {
             <Box style={{ padding: '0 30px' }}>
                 <SectionTitle text="Pending transactions" />
                 <Space h="md" />
-                <Paper radius={12} withBorder className={classes.container}>
-                    <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
-                        <Table verticalSpacing={7.5} horizontalSpacing={24} fontSize={16}>
-                            <thead className={classes.tableThead}>
-                                <tr>
-                                    <th style={{ fontWeight: 500 }}>Time created</th>
-                                    <th style={{ fontWeight: 500 }}>Hash</th>
-                                </tr>
-                            </thead>
-                            <tbody>{rows}</tbody>
-                        </Table>
-                    </ScrollArea>
-                </Paper>
+                <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
+                    <Table verticalSpacing={7.5} horizontalSpacing={24} fontSize={16}>
+                        <thead className={classes.tableThead}>
+                            <tr>
+                                <th style={{ fontWeight: 500 }}>Hash</th>
+                                <th style={{ fontWeight: 500 }}>Time created</th>
+                            </tr>
+                        </thead>
+                        <tbody>{rows}</tbody>
+                    </Table>
+                </ScrollArea>
             </Box>
         </>
 

@@ -40,7 +40,7 @@ const ShieldListCard: FunctionComponent<Props> = ({ txlist }) => {
             <Text style={{ fontSize: 16, display: 'inline-block', color: '#fff' }}>
               {format.formatAmount({ humanAmount: element.amount, decimals: 4 })}</Text>
 
-            <Text style={{ backgroundColor: '#303030', padding: '1.5px 8px', borderRadius: 6, display: 'inline-block', fontSize: 14, marginLeft: 8 }}>{element.token_symbol}</Text>
+            <Text style={{ backgroundColor: '#303030', padding: '1.5px 8px', borderRadius: 6, display: 'inline-block', fontSize: 14, marginLeft: 8, color: '#fff', fontWeight: 400 }}>{element.token_symbol}</Text>
 
           </Center>
         </td>
