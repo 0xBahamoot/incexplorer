@@ -174,7 +174,9 @@ export function ErrorBoundary(error: any) {
           }} withGlobalStyles withNormalizeCSS>
             <Center style={{ width: '100%', height: '95vh' }}>
               <Box>
-                <Text style={{ fontWeight: 500, fontSize: 36, display: 'block', color: '#fff' }}>Oh no! 404</Text>
+                <Text style={{ fontWeight: 500, fontSize: 36, display: 'block', color: '#000' }}>Oh no! 404</Text>
+                <Space h='xl' />
+                <Text style={{ fontWeight: 500, fontSize: 36, display: 'block', color: '#000' }}>{error.toString()}</Text>
                 <Space h='xl' />
                 <Button variant="light" style={{ display: 'table', margin: '0 auto' }} onClick={() => {
                   navigate(`/`, { replace: true });

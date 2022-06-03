@@ -53,7 +53,7 @@ const BlockListCard: FunctionComponent<Props> = ({ blocklist, blockType }) => {
         >
           {element.BlockProducer}
         </td>
-        {blockType == "shardblk" ? <td>{element.TxHashes.length}</td> : null}
+        {blockType == "shardblk" ? <td>{(element.TxHashes !== undefined) ? element.TxHashes.length : 0}</td> : null}
         <td style={{ whiteSpace: "nowrap", color: '#757575' }}>
           {format.formatUnixDateTime(element.Time)}
         </td>
