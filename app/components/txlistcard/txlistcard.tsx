@@ -22,7 +22,7 @@ const TxListCard: FunctionComponent<Props> = ({ txlist }) => {
   const rows = txlist?.map((element, idx) => {
     return (
       <tr key={element.tx_hash} style={{ height: 50, fontSize: 16 }}>
-        <td className={classes.timeColumn}>{format.formatDateTime(element.lock_time, 'DD MMM HH:mm A')}</td>
+        <td className={classes.timeColumn}>{format.formatDateTime(element.lock_time)}</td>
         <td style={{ lineHeight: '14px' }}><Text className={classes.txhash} variant="link" component={Link} to={"/tx/" + element.tx_hash}>
           {getTxText(element.tx_hash)}
         </Text></td>
