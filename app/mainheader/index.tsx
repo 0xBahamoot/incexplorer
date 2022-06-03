@@ -129,6 +129,7 @@ function MainHeader() {
                     : "/assets/images/logo_h_white.svg"
                 }
                 height={38}
+                width={"auto"}
               />
             </a>
 

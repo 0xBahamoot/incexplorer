@@ -49,7 +49,7 @@ function BeaconDetail() {
   useEffect(() => {
     const interval = setInterval(() => {
       fetcher.load("/chain/beacon?index");
-    }, 15 * 1000);
+    }, 2 * 1000);
     return () => clearInterval(interval);
   }, []);
 
@@ -94,9 +94,11 @@ function BeaconDetail() {
               Current block producer
             </Text>
             <div style={{ width: "auto", overflow: "hidden" }}>
-              <Text style={{ color: "#9C9C9C" }}>
+              <Text style={{ color: "#9C9C9C", fontWeight: 500 }}>
                 Total blocks:{" "}
-                <span style={{ color: "#fff" }}>{currentHeight}</span>
+                <span style={{ color: "#fff", fontWeight: 500 }}>
+                  {currentHeight}
+                </span>
               </Text>
               {/* <Text style={{ color: "#fff" }}></Text> */}
             </div>
@@ -109,12 +111,13 @@ function BeaconDetail() {
               overflow: "hidden",
               maxWidth: "80%",
               padding: "14px 24px",
+              fontWeight: 500,
             }}
           >
             {currentProducer}
           </Text>
         </Box>
-        <Space h="md" />
+        <Space h="xl" />
         <Group>
           <SectionTitle text="Most recent blocks" />{" "}
         </Group>

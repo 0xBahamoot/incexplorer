@@ -75,11 +75,11 @@ function Home() {
           break;
 
         case "PRV PRICE":
-          item.Name = "PRV Price";
+          item.Name = "Price";
           prvList.push(item);
           break;
         case "PRV CIRCULATING SUPPLY":
-          item.Name = "PRV Circulating Supply";
+          item.Name = "Circulating Supply";
           prvList.push(item);
           break;
         case "MARKET CAP":
