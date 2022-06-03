@@ -22,7 +22,6 @@ const TxListCard: FunctionComponent<Props> = ({ txlist }) => {
   const rows = txlist?.map((element, idx) => {
     return (
       <tr key={element.tx_hash} style={{ height: 50, fontSize: 16 }}>
-        <td className={classes.timeColumn}>{format.formatDateTime(element.lock_time)}</td>
         <td style={{ lineHeight: '14px' }}><Text className={classes.txhash} variant="link" component={Link} to={"/tx/" + element.tx_hash}>
           {getTxText(element.tx_hash)}
         </Text></td>
@@ -49,6 +48,7 @@ const TxListCard: FunctionComponent<Props> = ({ txlist }) => {
           </Stack>
 
         </td>
+        <td className={classes.timeColumn}>{format.formatDateTime(element.lock_time)}</td>
         {/* <td></td> */}
       </tr>
     )
@@ -58,11 +58,11 @@ const TxListCard: FunctionComponent<Props> = ({ txlist }) => {
     <Table verticalSpacing={7.5} horizontalSpacing={24} fontSize={16}>
       <thead className={classes.tableThead}>
         <tr>
-          <th style={{ wordWrap: 'normal' }}><Text className={classes.tableTheadText}>Time created</Text></th>
           <th><Text className={classes.tableTheadText}>Hash</Text></th>
           <th style={{ wordWrap: 'normal' }}><Text className={classes.tableTheadText}>Block height</Text></th>
           <th><Text className={classes.tableTheadText}>Shard</Text></th>
           <th><Text className={classes.tableTheadText}>Metatype</Text></th>
+          <th style={{ wordWrap: 'normal' }}><Text className={classes.tableTheadText}>Time created</Text></th>
           {/* <th></th> */}
         </tr>
       </thead>
