@@ -7,6 +7,7 @@ const useStyles = createStyles((theme) => ({
     display: "block",
     overflow: "hidden",
     position: "relative",
+    height: 140,
   },
   title: {
     fontStyle: "normal",

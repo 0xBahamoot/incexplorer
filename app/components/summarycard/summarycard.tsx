@@ -48,7 +48,7 @@ const SummaryCard: FunctionComponent<Props> = ({ title, content, currencyFormat,
                 }
 
                 {
-                    (changePercent != 0) && (changePercent !== undefined) ? <Text className={classes.subcontent} style={{ color: changePercent >= 0 ? '#0ECB81' : '#F6465D' }}><span style={{ marginTop: 5, paddingRight: 2 }}>{changePercent >= 0 ?
+                    (changePercent != 0) && (changePercent !== undefined) ? <Text className={classes.subcontent} style={{ color: changePercent >= 0 ? '#0ECB81' : '#F6465D' }}><span style={{ paddingTop: 5, paddingRight: 2 }}>{changePercent >= 0 ?
                         <CaretUp
                             size={18}
                             strokeWidth={4}
@@ -60,7 +60,7 @@ const SummaryCard: FunctionComponent<Props> = ({ title, content, currencyFormat,
                             strokeWidth={4}
                             fill={'#F6465D'}
                             color={'#F6465D'}
-                        />}</span> {format.formatAmount({ humanAmount: changePercent, decimals: 2 })}%</Text> : <Text style={{ color: '#757575', fontSize: 14 }}>{moment().format('MM/DD/YYYY')}</Text>
+                        />}</span> {format.formatAmount({ humanAmount: changePercent, decimals: 2 })}%</Text> : <Text className={classes.subcontent} style={{ color: '#757575', fontSize: 14, paddingTop: 5 }}>{moment().format('MM/DD/YYYY')}</Text>
                 }
 
                 <div className={classes.graphic}>
