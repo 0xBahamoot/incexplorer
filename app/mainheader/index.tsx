@@ -21,6 +21,7 @@ import MainNavbar from "~/mainnavbar";
 import { useFetcher } from "@remix-run/react";
 import { showNotification } from "@mantine/notifications";
 import { NotificationsProvider } from "@mantine/notifications";
+import NavDrawer from "~/components/navdrawer/navdrawer";
 
 // import { useLocation } from 'react-router-dom';
 
@@ -98,10 +99,10 @@ function MainHeader() {
       <Drawer
         opened={opened}
         onClose={() => setOpened(false)}
-        padding="xl"
+        padding={0}
         size="xl"
       >
-        <MainNavbar />
+        <NavDrawer />
       </Drawer>
 
       <NotificationsProvider
@@ -132,26 +133,6 @@ function MainHeader() {
                 width={"auto"}
               />
             </a>
-
-            {/* <Text
-              sx={(theme) => ({
-                backgroundColor:
-                  theme.colorScheme === "dark"
-                    ? "#303030"
-                    : theme.colors.gray[0],
-                width: "auto",
-                fontSize: 14,
-                textAlign: "center",
-                padding: "2px 8px",
-                display: "inline-block",
-                marginLeft: 12,
-                borderRadius: 6,
-                color: "#fff",
-                fontWeight: 500,
-              })}
-            >
-              Beta
-            </Text> */}
           </Center>
           <Group position="right">
             <ActionIcon size="xl" radius="xl" variant="transparent">
