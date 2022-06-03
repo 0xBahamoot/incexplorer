@@ -135,14 +135,14 @@ function ShardsOverview() {
                             <thead className={classes.tableThead}>
                                 <tr>
                                     <th><Text className={classes.tableTheadText}>Hash</Text></th>
-                                    <th><Text className={classes.tableTheadText}></Text></th>
+                                    <th><Text className={classes.tableTheadText} style={{ minWidth: 200 }}></Text></th>
                                     <th><Text className={classes.tableTheadText}>Height</Text></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr style={{ cursor: 'pointer', lineHeight: 0, height: 50 }}>
                                     <td style={{ width: 100 }}><Text className={classes.hashText} variant="link" component={Link} to={"/block/" + data.beaconInfo.Hash + '?beacon=true'}>{getBlockHashText(data.beaconInfo.Hash)}</Text></td>
-                                    <td style={{ color: '#757575' }}>{format.formatUnixDateTime(data.beaconInfo.Time)}</td>
+                                    <td style={{ color: '#757575', width: 200 }}>{format.formatUnixDateTime(data.beaconInfo.Time)}</td>
                                     <td>{format.formatAmount({ humanAmount: data.beaconInfo.Height, decimals: 4 })}</td>
                                 </tr>
                             </tbody>

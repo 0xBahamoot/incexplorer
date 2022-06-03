@@ -1,4 +1,4 @@
-import { CreateHTTPAnalyticInstance } from './http';
+import { CreateHTTPAnalyticInstance, CreateHTTPExplorerAPIInstance } from './http';
 
 export const getDashboard = async (network?: string) => {
     const inst = CreateHTTPAnalyticInstance((network || 'mainnet'))
@@ -8,3 +8,9 @@ export const getSummary = async (network?: string) => {
     const inst = CreateHTTPAnalyticInstance((network || 'mainnet'))
     return inst.get(`/chain/summary`);
 };
+
+
+export const getExplorerSummary = async (network?: string) => {
+    const inst = CreateHTTPExplorerAPIInstance((network || 'mainnet'))
+    return inst.get(`/explorer/summary`);
+}

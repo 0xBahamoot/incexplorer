@@ -128,12 +128,12 @@ function MainHeader() {
                     ? "/assets/images/logo_h_white.svg"
                     : "/assets/images/logo_h_white.svg"
                 }
-                height={38}
+                height={24}
                 width={"auto"}
               />
             </a>
 
-            <Text
+            {/* <Text
               sx={(theme) => ({
                 backgroundColor:
                   theme.colorScheme === "dark"
@@ -151,7 +151,7 @@ function MainHeader() {
               })}
             >
               Beta
-            </Text>
+            </Text> */}
           </Center>
           <Group position="right">
             <ActionIcon size="xl" radius="xl" variant="transparent">

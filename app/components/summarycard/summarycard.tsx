@@ -47,24 +47,25 @@ const SummaryCard: FunctionComponent<Props> = ({ title, content, currencyFormat,
                         {currencyFormat ? "$" : ""}{format.formatAmount({ humanAmount: content, decimals: 4 })}</Text>
                 }
 
-                <div className={classes.graphic}>
-                    <Image alt="logo" src={"/assets/images/graphics/quarter.svg"} height={52} width={70} />
-                </div>
-                {/* {
-                    (changePercent !== undefined) ? <Text className={classes.subcontent} >{changePercent >= 0 ?
+                {
+                    (changePercent != 0) && (changePercent !== undefined) ? <Text className={classes.subcontent} style={{ color: changePercent >= 0 ? '#0ECB81' : '#F6465D' }}><span style={{ marginTop: 5, paddingRight: 2 }}>{changePercent >= 0 ?
                         <CaretUp
                             size={18}
-                            strokeWidth={1}
+                            strokeWidth={4}
                             fill={'#0ECB81'}
                             color={'#0ECB81'}
                         /> :
                         <CaretDown
                             size={18}
-                            strokeWidth={1}
+                            strokeWidth={4}
                             fill={'#F6465D'}
                             color={'#F6465D'}
-                        />}{changePercent}%</Text> : <Text>{moment().format('MM/DD/YYYY')}</Text>
-                } */}
+                        />}</span> {format.formatAmount({ humanAmount: changePercent, decimals: 4 })}%</Text> : <Text>{moment().format('MM/DD/YYYY')}</Text>
+                }
+
+                <div className={classes.graphic}>
+                    <Image alt="logo" src={"/assets/images/graphics/quarter.svg"} height={52} width={70} />
+                </div>
             </Paper>
         </>
 

@@ -13,9 +13,21 @@ import TxListCard from "~/components/txlistcard/txlistcard";
 import { useState, useEffect } from "react";
 import { getNormalTx } from "~/services/transactions";
 import { Link } from "react-router-dom";
-import { getDashboard, getSummary } from "~/services/summary";
+import { getDashboard, getSummary, getExplorerSummary } from "~/services/summary";
 import SectionTitle from "~/components/sectiontitle/sectiontitle";
+import type { LoaderFunction } from "@remix-run/node";
+import { useFetcher } from "@remix-run/react";
+
+
+export const loader: LoaderFunction = async ({ params }) => {
+  const { data, message } = (await getExplorerSummary()) as any;
+  console.log(data);
+  return data
+};
+
 function Home() {
+  const fetcher = useFetcher();
+
   const [txListData, setTxListData] = useState<any>([]);
   const [loaded, setLoaded] = useState(false);
 
@@ -23,86 +35,105 @@ function Home() {
   const [pdexData, setPdexData] = useState<any>([]);
   const [prvData, setPRVData] = useState<any>([]);
 
-  const handleFetchData = async () => {
-    setLoaded(false);
-    let data1 = (await getDashboard()) as any;
-    let data2 = (await getSummary()) as any;
-    let data = data1.Result;
-    data = data.concat(data2.Result);
-    console.log(data);
-    let networkList: any = [];
-    let pdexList: any = [];
-    let prvList: any = [];
-
-    await data.map((item: any) => {
-      switch (item.Name) {
-        case "TRADING VOLUME":
-          item.Name = "Trading Volume";
-          pdexList.push(item);
-          break;
-        case "LIQUIDITY":
-          item.Name = "Liquidity";
-          pdexList.push(item);
-          break;
-        case "24H TRADING VOLUME":
-          item.Name = "24h Trading Volume";
-          pdexList.push(item);
-          break;
-
-        case "SHIELDED":
-          item.Name = "Shielded";
-          networkList.push(item);
-          break;
-        case "TRANSACTIONS":
-          item.Name = "Transactions";
-          networkList.push(item);
-          break;
-        case "24H TX COUNT":
-          item.Name = "24h Tx Count";
-          networkList.push(item);
-          break;
-        case "ACTIVE VALIDATORS":
-          item.Name = "Active Validators";
-          networkList.push(item);
-          break;
-        case "BEACON HEIGHT":
-          item.Name = "Beacon Height";
-          networkList.push(item);
-          break;
-        case "1H TX COUNT":
-          item.Name = "1h Tx Count";
-          networkList.push(item);
-          break;
-
-        case "PRV PRICE":
-          item.Name = "Price";
-          prvList.push(item);
-          break;
-        case "PRV CIRCULATING SUPPLY":
-          item.Name = "Circulating Supply";
-          prvList.push(item);
-          break;
-        case "MARKET CAP":
-          item.Name = "Market Cap";
-          prvList.push(item);
-          break;
-
-        default:
-          break;
-      }
-    });
-
-    setNetworkData(networkList);
-    setPdexData(pdexList);
-    setPRVData(prvList);
-    const { Result } = (await getNormalTx(1)) as any;
-    setTxListData(Result.Data.slice(0, 10));
-    setLoaded(true);
-  };
+  // Get fresh data every 15 seconds.
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetcher.load("/home?index");
+    }, 15 * 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
-    handleFetchData();
+    fetcher.load(`/home?index`);
   }, []);
+
+  useEffect(() => {
+    if (fetcher.data) {
+      setLoaded(false);
+      console.log("fetcher.data", fetcher.data);
+      let networkList: any = [];
+      let pdexList: any = [];
+      let prvList: any = [];
+
+      fetcher.data.map((item: any) => {
+        switch (item.metricType) {
+          case "TRADING_VOLUME_TOTAL":
+            item.Name = "Trading Volume";
+            pdexList.push(item);
+            break;
+          case "LIQUIDITY":
+            item.Name = "Liquidity";
+            pdexList.push(item);
+            break;
+          case "TRADING_VOLUME_24H":
+            item.Name = "24h Trading Volume";
+            pdexList.push(item);
+            break;
+
+          case "TOTAL_VOLUME_LOCK":
+            item.Name = "Total Volume Locked";
+            networkList.push(item);
+            break;
+          case "SHIELDED_VOLUME":
+            item.Name = "Shielded";
+            networkList.push(item);
+            break;
+          case "TOTAL_TX_COUNT":
+            item.Name = "Transactions";
+            networkList.push(item);
+            break;
+          case "TX_COUNT_24H":
+            item.Name = "24h Tx Count";
+            networkList.push(item);
+            break;
+          case "ACTIVE_VALIDATORS_COUNT":
+            item.Name = "Active Validators";
+            networkList.push(item);
+            break;
+          case "BEACON_HEIGHT":
+            item.Name = "Beacon Height";
+            networkList.push(item);
+            break;
+
+          case "TX_COUNT_1H":
+            item.Name = "1h Tx Count";
+            networkList.push(item);
+            break;
+
+          case "PRV_PRICE":
+            item.Name = "Price";
+            prvList.push(item);
+            break;
+          case "PRV_CIRCULATING_SUPPLY":
+            item.Name = "Circulating Supply";
+            prvList.push(item);
+            break;
+          case "PRV_MARKET_CAP":
+            item.Name = "Market Cap";
+            prvList.push(item);
+            break;
+
+          default:
+            break;
+        }
+      });
+
+      setNetworkData(networkList);
+      setPdexData(pdexList);
+      setPRVData(prvList);
+      handleFetchData()
+      setLoaded(true);
+    }
+  }, [fetcher.data]);
+
+  const handleFetchData = async () => {
+    const { Result } = (await getNormalTx(1)) as any;
+    setTxListData(Result.Data.slice(0, 10));
+  };
+
+  // useEffect(() => {
+  //   handleFetchData();
+  // }, []);
   return (
     <>
       <Box style={{ padding: "0 30px" }}>

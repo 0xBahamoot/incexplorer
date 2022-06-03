@@ -26,11 +26,12 @@ const useStyles = createStyles((theme) => ({
     fontSize: 22,
     lineHeight: "36.4px",
     letterSpacing: "0.01em",
-    margin: "12px 0 0",
+    margin: "14px 0 5px",
     color: "#fff",
   },
   subcontent: {
     fontSize: 14,
+    fontWeight: 500,
     display: "flex",
     alignItems: "center",
   },
