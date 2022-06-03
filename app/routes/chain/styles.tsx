@@ -1,5 +1,4 @@
 import { createStyles } from '@mantine/core';
-import { BorderRadius } from 'tabler-icons-react';
 
 const useStyles = createStyles((theme) => ({
     container: {
@@ -13,7 +12,8 @@ const useStyles = createStyles((theme) => ({
     tableTheadText: {
         color: '#9C9C9C !important',
         fontWeight: 500,
-        BorderRadius: 12
+        whiteSpace: 'nowrap',
+
     },
     hashText: {
         color: '#1A73E8',

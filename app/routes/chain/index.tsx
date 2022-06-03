@@ -93,7 +93,7 @@ function ShardsOverview() {
         return (
             <tr key={element.Hash} style={{ cursor: 'pointer', lineHeight: 0, height: 50 }}>
                 <td style={{ width: 100 }}><Text className={classes.hashText} variant="link" component={Link} to={"/block/" + element.Hash}>{getBlockHashText(element.Hash)}</Text></td>
-                <td style={{ color: '#757575' }}>{format.formatUnixDateTime(element.Time)}</td>
+                <td style={{ color: '#757575', minWidth: 200 }}>{format.formatUnixDateTime(element.Time)}</td>
                 <td className={classes.otherColumn}>{idx}</td>
                 <td className={classes.otherColumn}>{format.formatAmount({ humanAmount: element.Height, decimals: 4 })}</td>
                 <td>{format.formatAmount({ humanAmount: element.TotalTxs, decimals: 4 })}</td>
@@ -131,7 +131,7 @@ function ShardsOverview() {
             <MediaQuery smallerThan={1440} styles={{ display: 'none' }}>
                 <Box style={{ padding: '0 30px 30px' }}>
                     <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
-                        <Table verticalSpacing="sm" horizontalSpacing="md">
+                        <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
                             <thead className={classes.tableThead}>
                                 <tr>
                                     <th><Text className={classes.tableTheadText}>Hash</Text></th>
@@ -142,7 +142,7 @@ function ShardsOverview() {
                             <tbody>
                                 <tr style={{ cursor: 'pointer', lineHeight: 0, height: 50 }}>
                                     <td style={{ width: 100 }}><Text className={classes.hashText} variant="link" component={Link} to={"/block/" + data.beaconInfo.Hash + '?beacon=true'}>{getBlockHashText(data.beaconInfo.Hash)}</Text></td>
-                                    <td style={{ color: '#757575' }}>{format.formatUnixDateTime(data.beaconInfo.Time)}</td>
+                                    <td style={{ color: '#757575', minWidth: 200 }}>{format.formatUnixDateTime(data.beaconInfo.Time)}</td>
                                     <td>{format.formatAmount({ humanAmount: data.beaconInfo.Height, decimals: 4 })}</td>
                                 </tr>
                             </tbody>
@@ -152,7 +152,7 @@ function ShardsOverview() {
             </MediaQuery>
             <MediaQuery largerThan={1440} styles={{ display: 'none' }}>
                 <ScrollArea style={{ height: 'auto', overflow: 'hidden', border: '1px solid #363636' }} >
-                    <Table verticalSpacing="sm" horizontalSpacing="md">
+                    <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
                         <thead className={classes.tableThead}>
                             <tr>
                                 <th><Text className={classes.tableTheadText}>Hash</Text></th>
@@ -163,7 +163,7 @@ function ShardsOverview() {
                         <tbody>
                             <tr style={{ cursor: 'pointer', lineHeight: 0, height: 50 }}>
                                 <td style={{ width: 100 }}><Text className={classes.hashText} variant="link" component={Link} to={"/block/" + data.beaconInfo.Hash + '?beacon=true'}>{getBlockHashText(data.beaconInfo.Hash)}</Text></td>
-                                <td style={{ color: '#757575' }}>{format.formatUnixDateTime(data.beaconInfo.Time)}</td>
+                                <td style={{ color: '#757575', minWidth: 200 }}>{format.formatUnixDateTime(data.beaconInfo.Time)}</td>
                                 <td>{format.formatAmount({ humanAmount: data.beaconInfo.Height, decimals: 4 })}</td>
                             </tr>
                         </tbody>
@@ -181,7 +181,7 @@ function ShardsOverview() {
             <MediaQuery smallerThan={1440} styles={{ display: 'none' }}>
                 <Box style={{ padding: '0 30px 30px' }}>
                     <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
-                        <Table verticalSpacing="sm" horizontalSpacing="md">
+                        <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
                             <thead className={classes.tableThead}>
                                 <tr>
                                     <th><Text className={classes.tableTheadText}>Hash</Text></th>
@@ -198,7 +198,7 @@ function ShardsOverview() {
             </MediaQuery>
             <MediaQuery largerThan={1440} styles={{ display: 'none' }}>
                 <ScrollArea style={{ height: 'auto', overflow: 'hidden', border: '1px solid #363636' }} >
-                    <Table verticalSpacing="sm" horizontalSpacing="md">
+                    <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
                         <thead className={classes.tableThead}>
                             <tr>
                                 <th><Text className={classes.tableTheadText}>Hash</Text></th>

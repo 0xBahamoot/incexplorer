@@ -216,7 +216,7 @@ function BlockDetail() {
             <MediaQuery smallerThan={1440} styles={{ display: 'none' }}>
               <Box style={{ padding: '0 30px 30px' }}>
                 <Paper radius={12} withBorder className={classes.container}>
-                  <Table verticalSpacing="sm" horizontalSpacing="md">
+                  <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
                     <thead className={classes.tableThead}>
                       <tr>
                         <th><Text className={classes.tableTheadText}>No.</Text></th>
@@ -231,7 +231,7 @@ function BlockDetail() {
 
             <MediaQuery largerThan={1440} styles={{ display: 'none' }}>
               <Paper radius={0} withBorder className={classes.container}>
-                <Table verticalSpacing="sm" horizontalSpacing="md">
+                <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
                   <thead className={classes.tableThead}>
                     <tr>
                       <th><Text className={classes.tableTheadText}>No.</Text></th>

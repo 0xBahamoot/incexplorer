@@ -1,4 +1,4 @@
-import { Paper, ScrollArea, Text, Table, Space } from '@mantine/core';
+import { Paper, ScrollArea, Text, Table, Space, Box } from '@mantine/core';
 import { getMempoolInfo } from '~/services/chains';
 import type { LoaderFunction } from "@remix-run/node";
 import { useLoaderData, useFetcher } from "@remix-run/react";
@@ -51,8 +51,8 @@ function PendingTxs() {
         return (
 
             <tr key={element.TxID} style={{ cursor: 'pointer', height: 50 }} >
-                <td>{format.formatUnixDateTime(element.LockTime)}</td>
                 <td style={{ lineHeight: '14px' }}><Text className={classes.txhash} variant="link" component={Link} to={"/tx/" + element.TxID}>{element.TxID}</Text></td>
+                <td style={{ color: '#757575' }}>{format.formatUnixDateTime(element.LockTime)}</td>
             </tr>
         )
     });
@@ -60,21 +60,21 @@ function PendingTxs() {
     return (
         <>
             <Space h={30} />
-            <SectionTitle text="Pending transactions" />
-            <Space h="md" />
-            <Paper radius={12} withBorder className={classes.container}>
+            <Box style={{ padding: '0 30px' }}>
+                <SectionTitle text="Pending transactions" />
+                <Space h="md" />
                 <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
-                    <Table verticalSpacing={7.5} horizontalSpacing="md">
+                    <Table verticalSpacing={7.5} horizontalSpacing={24} fontSize={16}>
                         <thead className={classes.tableThead}>
                             <tr>
-                                <th>Time created</th>
-                                <th>Hash</th>
+                                <th style={{ fontWeight: 500 }}>Hash</th>
+                                <th style={{ fontWeight: 500 }}>Time created</th>
                             </tr>
                         </thead>
                         <tbody>{rows}</tbody>
                     </Table>
                 </ScrollArea>
-            </Paper>
+            </Box>
         </>
 
     );
