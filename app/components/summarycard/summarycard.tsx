@@ -60,7 +60,7 @@ const SummaryCard: FunctionComponent<Props> = ({ title, content, currencyFormat,
                             strokeWidth={4}
                             fill={'#F6465D'}
                             color={'#F6465D'}
-                        />}</span> {format.formatAmount({ humanAmount: changePercent, decimals: 4 })}%</Text> : <Text>{moment().format('MM/DD/YYYY')}</Text>
+                        />}</span> {format.formatAmount({ humanAmount: changePercent, decimals: 2 })}%</Text> : <Text>{moment().format('MM/DD/YYYY')}</Text>
                 }
 
                 <div className={classes.graphic}>
