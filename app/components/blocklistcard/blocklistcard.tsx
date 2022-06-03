@@ -61,7 +61,7 @@ const BlockListCard: FunctionComponent<Props> = ({ blocklist, blockType }) => {
   });
 
   return (
-    <Table verticalSpacing={7.5} horizontalSpacing="md" fontSize={16}>
+    <Table verticalSpacing={7.5} horizontalSpacing={24} fontSize={16}>
       <thead className={classes.tableThead}>
         <tr>
           <th>

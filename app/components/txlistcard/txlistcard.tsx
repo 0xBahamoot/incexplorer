@@ -55,7 +55,7 @@ const TxListCard: FunctionComponent<Props> = ({ txlist }) => {
   });
 
   return (
-    <Table verticalSpacing={7.5} horizontalSpacing="md" fontSize={16}>
+    <Table verticalSpacing={7.5} horizontalSpacing={24} fontSize={16}>
       <thead className={classes.tableThead}>
         <tr>
           <th style={{ wordWrap: 'normal' }}><Text className={classes.tableTheadText}>Time created</Text></th>
