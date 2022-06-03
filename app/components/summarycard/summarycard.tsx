@@ -19,7 +19,7 @@ const SummaryCard: FunctionComponent<Props> = ({ title, content, currencyFormat,
     const { classes } = useStyles();
     return (
         <>
-            <Paper shadow="sm" radius="md" p={18} withBorder className={classes.paper}>
+            <Paper shadow="sm" radius="md" p={'18px 18px 17px'} withBorder className={classes.paper}>
                 <p className={classes.title}>{title}
                     {/* <Tooltip
                         label={description}
@@ -60,7 +60,7 @@ const SummaryCard: FunctionComponent<Props> = ({ title, content, currencyFormat,
                             strokeWidth={4}
                             fill={'#F6465D'}
                             color={'#F6465D'}
-                        />}</span> {format.formatAmount({ humanAmount: changePercent, decimals: 2 })}%</Text> : <Text style={{ color: '#757575' }}>{moment().format('MM/DD/YYYY')}</Text>
+                        />}</span> {format.formatAmount({ humanAmount: changePercent, decimals: 2 })}%</Text> : <Text style={{ color: '#757575', fontSize: 14 }}>{moment().format('MM/DD/YYYY')}</Text>
                 }
 
                 <div className={classes.graphic}>
