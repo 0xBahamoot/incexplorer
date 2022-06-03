@@ -31,7 +31,7 @@ const ShieldListCard: FunctionComponent<Props> = ({ txlist }) => {
         <td style={{ paddingTop: 5 }}>
           <Center inline>
             <Avatar size={32} src={getTokenIcon(element.token_symbol)} />
-            <Box ml={5} style={{ paddingLeft: 5, fontSize: 16, fontWeight: 400, color: '##fff' }}>{element.token_symbol}</Box>
+            <Box ml={5} style={{ paddingLeft: 5, fontSize: 16, fontWeight: 400, color: '#fff' }}>{element.token_symbol}</Box>
           </Center>
         </td>
         <td style={{ paddingTop: 5 }}><Text className={classes.txhash} variant="link" component={Link} to={"/tx/" + element.tx_hash}>{getTxText(element.tx_hash)}</Text></td>
