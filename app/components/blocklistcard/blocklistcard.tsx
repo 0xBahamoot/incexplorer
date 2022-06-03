@@ -28,7 +28,7 @@ const BlockListCard: FunctionComponent<Props> = ({ blocklist, blockType }) => {
 
     return (
       <tr key={element.Hash} style={{ cursor: "pointer", height: 50 }}>
-        <td>{element.Height}</td>
+        <td style={{ color: '#fff' }}>{element.Height}</td>
         <td style={{ lineHeight: "14px" }}>
           <Text
             className={classes.blockhash}
@@ -48,12 +48,13 @@ const BlockListCard: FunctionComponent<Props> = ({ blocklist, blockType }) => {
             textOverflow: "ellipsis",
             maxWidth: 300,
             overflow: "hidden",
+            color: '#fff'
           }}
         >
           {element.BlockProducer}
         </td>
         {blockType == "shardblk" ? <td>{element.TxHashes.length}</td> : null}
-        <td style={{ whiteSpace: "nowrap" }}>
+        <td style={{ whiteSpace: "nowrap", color: '#757575' }}>
           {format.formatUnixDateTime(element.Time)}
         </td>
       </tr>
