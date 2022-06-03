@@ -60,14 +60,57 @@ function ShardDetail() {
     <>
       <Space h={30} />
       <Box style={{ padding: '0 30px' }}>
-        <Group><SectionTitle text={"Shard " + chainID} /><Text>|</Text> <Text>Total blocks: {currentHeight}</Text></Group>
+        <Group>
+          <SectionTitle text={"Shard " + chainID} />
+        </Group>
         <Space h="md" />
-        <Paper radius={12} withBorder style={{ backgroundColor: '#303030', padding: 20 }}>
-          <Grid columns={18}>
-            <Grid.Col span={6}>Current block producer</Grid.Col>
-            <Grid.Col span={12} style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>{currentProducer}</Grid.Col>
-          </Grid>
-        </Paper>
+        <Box
+          style={{
+            padding: 0,
+            border: "1px solid #363636",
+            borderRadius: 12,
+            display: "block",
+            overflow: "hidden",
+          }}
+        >
+          <Group
+            position="apart"
+            style={{ backgroundColor: "#363636", padding: "9px 24px" }}
+          >
+            <Text
+              style={{
+                fontWeight: 500,
+                fontSize: 16,
+                color: "#9C9C9C",
+              }}
+            >
+              Current block producer
+            </Text>
+            <div style={{ width: "auto", overflow: "hidden" }}>
+              <Text style={{ color: "#9C9C9C", fontWeight: 500 }}>
+                Total blocks:{" "}
+                <span style={{ color: "#fff", fontWeight: 500 }}>
+                  {currentHeight}
+                </span>
+              </Text>
+              {/* <Text style={{ color: "#fff" }}></Text> */}
+            </div>
+          </Group>
+          <Text
+            style={{
+              color: "#fff",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              maxWidth: "80%",
+              padding: "14px 24px",
+              fontWeight: 500,
+            }}
+          >
+            {currentProducer}
+          </Text>
+        </Box>
+
         <Space h="md" />
         <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
           <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
