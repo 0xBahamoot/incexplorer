@@ -1,4 +1,4 @@
-import { Text, Card, Table, Paper, Stack } from '@mantine/core';
+import { Text, Card, Table, Stack } from '@mantine/core';
 import React, { FunctionComponent } from 'react'
 import { TxData } from '~/types/types';
 import useStyles from './styles'
@@ -21,8 +21,7 @@ const TxListCard: FunctionComponent<Props> = ({ txlist }) => {
   }
   const rows = txlist?.map((element, idx) => {
     return (
-      <tr key={element.tx_hash} style={{ height: 50 }}>
-        <td className={classes.timeColumn}>{format.formatDateTime(element.lock_time, 'DD MMM HH:mm A')}</td>
+      <tr key={element.tx_hash} style={{ height: 50, fontSize: 16 }}>
         <td style={{ lineHeight: '14px' }}><Text className={classes.txhash} variant="link" component={Link} to={"/tx/" + element.tx_hash}>
           {getTxText(element.tx_hash)}
         </Text></td>
@@ -34,7 +33,7 @@ const TxListCard: FunctionComponent<Props> = ({ txlist }) => {
               backgroundColor: theme.colorScheme === 'dark' ? '#303030' : theme.colors.gray[0],
               width: 'auto',
               textOverflow: 'ellipsis', maxWidth: 250, overflow: 'hidden', whiteSpace: 'nowrap',
-              fontSize: 14, textAlign: 'center',
+              fontSize: 16, textAlign: 'center',
               paddingLeft: 15,
               paddingRight: 15,
               paddingTop: 2,
@@ -49,27 +48,26 @@ const TxListCard: FunctionComponent<Props> = ({ txlist }) => {
           </Stack>
 
         </td>
+        <td className={classes.timeColumn}>{format.formatDateTime(element.lock_time)}</td>
         {/* <td></td> */}
       </tr>
     )
   });
 
   return (
-    <Paper radius={12} className={classes.container}>
-      <Table verticalSpacing={7.5} horizontalSpacing="md">
-        <thead className={classes.tableThead}>
-          <tr>
-            <th style={{ wordWrap: 'normal' }}><Text className={classes.tableTheadText}>Time created</Text></th>
-            <th><Text className={classes.tableTheadText}>Hash</Text></th>
-            <th style={{ wordWrap: 'normal' }}><Text className={classes.tableTheadText}>Block height</Text></th>
-            <th><Text className={classes.tableTheadText}>Shard</Text></th>
-            <th><Text className={classes.tableTheadText}>Metatype</Text></th>
-            {/* <th></th> */}
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </Table>
-    </Paper>
+    <Table verticalSpacing={7.5} horizontalSpacing={24} fontSize={16}>
+      <thead className={classes.tableThead}>
+        <tr>
+          <th><Text className={classes.tableTheadText}>Hash</Text></th>
+          <th style={{ wordWrap: 'normal' }}><Text className={classes.tableTheadText}>Block height</Text></th>
+          <th><Text className={classes.tableTheadText}>Shard</Text></th>
+          <th><Text className={classes.tableTheadText}>Metatype</Text></th>
+          <th style={{ wordWrap: 'normal' }}><Text className={classes.tableTheadText}>Time created</Text></th>
+          {/* <th></th> */}
+        </tr>
+      </thead>
+      <tbody>{rows}</tbody>
+    </Table>
   );
 }
 

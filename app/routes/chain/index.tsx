@@ -1,4 +1,4 @@
-import { Text, Group, Space, Loader, Box, Grid, Paper, Card, Table } from '@mantine/core';
+import { Text, Group, Space, Loader, Grid, Table, ScrollArea, Box, MediaQuery } from '@mantine/core';
 import SummaryCard from '~/components/summarycard/summarycard';
 import type { LoaderFunction } from "@remix-run/node";
 import { useLoaderData, useFetcher } from "@remix-run/react";
@@ -104,62 +104,114 @@ function ShardsOverview() {
     return (
         <>
             <Space h={30} />
-            <SectionTitle text="Overview" />
-            <Space h='md' />
-            <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
-                <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
-            </Group>
 
-            <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
-                <Box p={0}>
-                    <Grid gutter="lg" columns={15}>
-                        {overviewData.map((item: any) => (
-                            <Grid.Col span={3} key={item.Title}>
-                                <SummaryCard title={item.Title} content={item.Content} type={0} currencyFormat={false} />
-                            </Grid.Col>
-                        ))}
-                    </Grid>
+            <Box style={{ padding: '0 30px' }}>
+                <SectionTitle text="Overview" />
+                <Space h='md' />
+                <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
+                    <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
+                </Group>
+
+                <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
+                    <Box p={0}>
+                        <Grid gutter="lg" columns={15}>
+                            {overviewData.map((item: any) => (
+                                <Grid.Col span={3} key={item.Title}>
+                                    <SummaryCard title={item.Title} content={item.Content} type={0} currencyFormat={false} />
+                                </Grid.Col>
+                            ))}
+                        </Grid>
+                    </Box>
+                </div>
+                <Space h={40} />
+                <SectionTitle text="Beacon Chain" />
+                <Space h="sm" />
+            </Box>
+
+            <MediaQuery smallerThan={1440} styles={{ display: 'none' }}>
+                <Box style={{ padding: '0 30px 30px' }}>
+                    <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
+                        <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
+                            <thead className={classes.tableThead}>
+                                <tr>
+                                    <th><Text className={classes.tableTheadText}>Hash</Text></th>
+                                    <th><Text className={classes.tableTheadText} style={{ minWidth: 200 }}></Text></th>
+                                    <th><Text className={classes.tableTheadText}>Height</Text></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style={{ cursor: 'pointer', lineHeight: 0, height: 50 }}>
+                                    <td style={{ width: 100 }}><Text className={classes.hashText} variant="link" component={Link} to={"/block/" + data.beaconInfo.Hash + '?beacon=true'}>{getBlockHashText(data.beaconInfo.Hash)}</Text></td>
+                                    <td style={{ color: '#757575', width: 200 }}>{format.formatUnixDateTime(data.beaconInfo.Time)}</td>
+                                    <td>{format.formatAmount({ humanAmount: data.beaconInfo.Height, decimals: 4 })}</td>
+                                </tr>
+                            </tbody>
+                        </Table>
+                    </ScrollArea>
                 </Box>
-            </div>
-            <Space h={40} />
-            <SectionTitle text="Beacon Chain" />
-            <Space h="sm" />
-            <Paper radius={12} className={classes.container}>
-                <Table verticalSpacing="sm" horizontalSpacing="md">
-                    <thead className={classes.tableThead}>
-                        <tr>
-                            <th><Text className={classes.tableTheadText}>Hash</Text></th>
-                            <th><Text className={classes.tableTheadText}></Text></th>
-                            <th><Text className={classes.tableTheadText}>Height</Text></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style={{ cursor: 'pointer', lineHeight: 0, height: 50 }}>
-                            <td style={{ width: 100 }}><Text className={classes.hashText} variant="link" component={Link} to={"/block/" + data.beaconInfo.Hash + '?beacon=true'}>{getBlockHashText(data.beaconInfo.Hash)}</Text></td>
-                            <td style={{ color: '#757575' }}>{format.formatUnixDateTime(data.beaconInfo.Time)}</td>
-                            <td>{format.formatAmount({ humanAmount: data.beaconInfo.Height, decimals: 4 })}</td>
-                        </tr>
-                    </tbody>
-                </Table>
-            </Paper>
+            </MediaQuery>
+            <MediaQuery largerThan={1440} styles={{ display: 'none' }}>
+                <ScrollArea style={{ height: 'auto', overflow: 'hidden', border: '1px solid #363636' }} >
+                    <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
+                        <thead className={classes.tableThead}>
+                            <tr>
+                                <th><Text className={classes.tableTheadText}>Hash</Text></th>
+                                <th><Text className={classes.tableTheadText}></Text></th>
+                                <th><Text className={classes.tableTheadText}>Height</Text></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style={{ cursor: 'pointer', lineHeight: 0, height: 50 }}>
+                                <td style={{ width: 100 }}><Text className={classes.hashText} variant="link" component={Link} to={"/block/" + data.beaconInfo.Hash + '?beacon=true'}>{getBlockHashText(data.beaconInfo.Hash)}</Text></td>
+                                <td style={{ color: '#757575' }}>{format.formatUnixDateTime(data.beaconInfo.Time)}</td>
+                                <td>{format.formatAmount({ humanAmount: data.beaconInfo.Height, decimals: 4 })}</td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                </ScrollArea>
+            </MediaQuery>
+
             <Space h={40} />
 
-            <SectionTitle text="Most recent blocks" />
-            <Space h="sm" />
-            <Paper radius={12} className={classes.container}>
-                <Table verticalSpacing="sm" horizontalSpacing="md">
-                    <thead className={classes.tableThead}>
-                        <tr>
-                            <th><Text className={classes.tableTheadText}>Hash</Text></th>
-                            <th><Text className={classes.tableTheadText}></Text></th>
-                            <th><Text className={classes.tableTheadText}>No. of shards</Text></th>
-                            <th><Text className={classes.tableTheadText}>Height</Text></th>
-                            <th><Text className={classes.tableTheadText}>Total txs</Text></th>
-                        </tr>
-                    </thead>
-                    <tbody>{shardRows}</tbody>
-                </Table>
-            </Paper>
+            <Box style={{ padding: '0 30px' }}>
+                <SectionTitle text="Most recent blocks" />
+                <Space h="sm" />
+            </Box>
+
+            <MediaQuery smallerThan={1440} styles={{ display: 'none' }}>
+                <Box style={{ padding: '0 30px 30px' }}>
+                    <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
+                        <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
+                            <thead className={classes.tableThead}>
+                                <tr>
+                                    <th><Text className={classes.tableTheadText}>Hash</Text></th>
+                                    <th><Text className={classes.tableTheadText}></Text></th>
+                                    <th><Text className={classes.tableTheadText}>No. of shards</Text></th>
+                                    <th><Text className={classes.tableTheadText}>Height</Text></th>
+                                    <th><Text className={classes.tableTheadText}>Total txs</Text></th>
+                                </tr>
+                            </thead>
+                            <tbody>{shardRows}</tbody>
+                        </Table>
+                    </ScrollArea>
+                </Box>
+            </MediaQuery>
+            <MediaQuery largerThan={1440} styles={{ display: 'none' }}>
+                <ScrollArea style={{ height: 'auto', overflow: 'hidden', border: '1px solid #363636' }} >
+                    <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
+                        <thead className={classes.tableThead}>
+                            <tr>
+                                <th><Text className={classes.tableTheadText}>Hash</Text></th>
+                                <th><Text className={classes.tableTheadText}></Text></th>
+                                <th><Text className={classes.tableTheadText}>No. of shards</Text></th>
+                                <th><Text className={classes.tableTheadText}>Height</Text></th>
+                                <th><Text className={classes.tableTheadText}>Total txs</Text></th>
+                            </tr>
+                        </thead>
+                        <tbody>{shardRows}</tbody>
+                    </Table>
+                </ScrollArea>
+            </MediaQuery>
             <Space h="lg" />
         </>
 

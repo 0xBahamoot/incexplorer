@@ -31,16 +31,16 @@ const ShieldListCard: FunctionComponent<Props> = ({ txlist }) => {
         <td style={{ paddingTop: 5 }}>
           <Center inline>
             <Avatar size={32} src={getTokenIcon(element.token_symbol)} />
-            <Box ml={5} style={{ paddingLeft: 5, fontSize: 16 }}>{element.token_symbol}</Box>
+            <Box ml={5} style={{ paddingLeft: 5, fontSize: 16, fontWeight: 400, color: '#fff' }}>{element.token_symbol}</Box>
           </Center>
         </td>
         <td style={{ paddingTop: 5 }}><Text className={classes.txhash} variant="link" component={Link} to={"/tx/" + element.tx_hash}>{getTxText(element.tx_hash)}</Text></td>
         <td style={{ paddingTop: 5 }}>
           <Center inline>
-            <Text style={{ fontSize: 16, display: 'inline-block' }}>
+            <Text style={{ fontSize: 16, display: 'inline-block', color: '#fff' }}>
               {format.formatAmount({ humanAmount: element.amount, decimals: 4 })}</Text>
 
-            <Text style={{ backgroundColor: '#303030', padding: '1.5px 8px', borderRadius: 6, display: 'inline-block', fontSize: 14, marginLeft: 8 }}>{element.token_symbol}</Text>
+            <Text style={{ backgroundColor: '#303030', padding: '1.5px 8px', borderRadius: 6, display: 'inline-block', fontSize: 14, marginLeft: 8, color: '#fff', fontWeight: 400 }}>{element.token_symbol}</Text>
 
           </Center>
         </td>
@@ -57,14 +57,14 @@ const ShieldListCard: FunctionComponent<Props> = ({ txlist }) => {
           color: (element.meta_type_name == 'Shield') ? '#0ECB81' : '#F6465D',
         })}>{element.meta_type_name}</Text>
         </td>
-        <td style={{ whiteSpace: 'nowrap', paddingTop: 5, fontSize: 16 }}>{format.formatDateTime(element.lock_time)}
+        <td style={{ whiteSpace: 'nowrap', paddingTop: 5, fontSize: 16, color: '#757575' }}>{format.formatDateTime(element.lock_time)}
         </td>
       </tr>
     )
   });
 
   return (
-    <Table verticalSpacing={0} horizontalSpacing="md">
+    <Table verticalSpacing={0} horizontalSpacing="md" fontSize={16}>
       <thead className={classes.tableThead}>
         <tr>
           <th><Text className={classes.tableTheadText}>Token</Text></th>

@@ -1,4 +1,4 @@
-import { Title, Group, Space, Loader, Paper, Grid } from '@mantine/core';
+import { Title, Group, Space, Loader, Box, Grid } from '@mantine/core';
 import type { LoaderFunction } from "@remix-run/node";
 import { useLoaderData, useFetcher } from "@remix-run/react";
 import { BlockData, ChainInfo } from '~/types/types';
@@ -60,25 +60,27 @@ function ShardsOverview() {
   return (
     <>
       <Space h={30} />
-      <Group>
-        <SectionTitle text="Shard list" /></Group>
-      <Space h="md" />
-      <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
-        <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
-      </Group>
-      <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
-        <Grid gutter="lg" columns={12}>
-          {data.map((item: ChainInfo, idx: number) => (
-            <Grid.Col span={4} key={item.Hash} onClick={() => {
-              console.log("SdfsdF");
-              navigate("/chain/shard/" + idx, { replace: true })
-            }}>
-              <ShardOverviewCard chainInfo={item} chainId={idx} />
-            </Grid.Col>
-          ))}
-        </Grid>
-      </div>
-      <Space h="sm" />
+      <Box style={{ padding: '0 30px' }}>
+        <Group>
+          <SectionTitle text="Shard list" /></Group>
+        <Space h="md" />
+        <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
+          <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
+        </Group>
+        <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
+          <Grid gutter="lg" columns={12}>
+            {data.map((item: ChainInfo, idx: number) => (
+              <Grid.Col span={4} key={item.Hash} onClick={() => {
+                console.log("SdfsdF");
+                navigate("/chain/shard/" + idx, { replace: true })
+              }}>
+                <ShardOverviewCard chainInfo={item} chainId={idx} />
+              </Grid.Col>
+            ))}
+          </Grid>
+        </div>
+        <Space h="sm" />
+      </Box>
     </>
 
   );
