@@ -13,16 +13,19 @@ import TxListCard from "~/components/txlistcard/txlistcard";
 import { useState, useEffect } from "react";
 import { getNormalTx } from "~/services/transactions";
 import { Link } from "react-router-dom";
-import { getDashboard, getSummary, getExplorerSummary } from "~/services/summary";
+import {
+  getDashboard,
+  getSummary,
+  getExplorerSummary,
+} from "~/services/summary";
 import SectionTitle from "~/components/sectiontitle/sectiontitle";
 import type { LoaderFunction } from "@remix-run/node";
 import { useFetcher } from "@remix-run/react";
 
-
 export const loader: LoaderFunction = async ({ params }) => {
   const { data, message } = (await getExplorerSummary()) as any;
   console.log(data);
-  return data
+  return data;
 };
 
 function Home() {
@@ -121,7 +124,7 @@ function Home() {
       setNetworkData(networkList);
       setPdexData(pdexList);
       setPRVData(prvList);
-      handleFetchData()
+      handleFetchData();
       setLoaded(true);
     }
   }, [fetcher.data]);
@@ -148,10 +151,22 @@ function Home() {
             style={{ height: !loaded ? 200 : 0 }}
           />
         </Group>
+      </Box>
+      <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
+        <Box style={{ padding: "0 30px" }}>
+          <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
+            <SummaryBox items={networkData}></SummaryBox>
+          </div>
+        </Box>
+      </MediaQuery>
 
+      <MediaQuery largerThan={1200} styles={{ display: "none" }}>
         <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
-          <SummaryBox items={networkData}></SummaryBox>
+          <SummaryBox items={networkData} scroll={true}></SummaryBox>
         </div>
+      </MediaQuery>
+
+      <Box style={{ padding: "0 30px" }}>
         <Space h={40} />
         <SectionTitle text="Privacy Exchange" />
         <Space h="sm" />
@@ -162,10 +177,23 @@ function Home() {
             style={{ height: !loaded ? 200 : 0 }}
           />
         </Group>
+      </Box>
 
+      <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
+        <Box style={{ padding: "0 30px" }}>
+          <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
+            <SummaryBox items={pdexData}></SummaryBox>
+          </div>
+        </Box>
+      </MediaQuery>
+
+      <MediaQuery largerThan={1200} styles={{ display: "none" }}>
         <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
-          <SummaryBox items={pdexData}></SummaryBox>
+          <SummaryBox items={pdexData} scroll={true}></SummaryBox>
         </div>
+      </MediaQuery>
+
+      <Box style={{ padding: "0 30px" }}>
         <Space h={40} />
         <SectionTitle text="PRV" />
         <Space h="sm" />
@@ -176,10 +204,23 @@ function Home() {
             style={{ height: !loaded ? 200 : 0 }}
           />
         </Group>
+      </Box>
 
+      <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
+        <Box style={{ padding: "0 30px" }}>
+          <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
+            <SummaryBox items={prvData}></SummaryBox>
+          </div>
+        </Box>
+      </MediaQuery>
+
+      <MediaQuery largerThan={1200} styles={{ display: "none" }}>
         <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
-          <SummaryBox items={prvData}></SummaryBox>
+          <SummaryBox items={prvData} scroll={true}></SummaryBox>
         </div>
+      </MediaQuery>
+
+      <Box style={{ padding: "0 30px" }}>
         <Space h={40} />
         <Group position="apart">
           <SectionTitle text="Transactions" />

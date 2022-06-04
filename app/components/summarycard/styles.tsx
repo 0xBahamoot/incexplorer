@@ -15,7 +15,7 @@ const useStyles = createStyles((theme) => ({
     fontSize: 16,
     lineHeight: 1,
     letterSpacing: "0.005em",
-    margin: '5px 0 0',
+    margin: "5px 0 0",
     color: "#757575",
     // textTransform: 'capitalize',
     display: "flex",
