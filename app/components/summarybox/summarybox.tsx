@@ -29,7 +29,7 @@ const SummaryBox: FunctionComponent<Props> = ({ items, scroll }) => {
                 style={{
                   minWidth: 230,
                   display: "inline-block",
-                  marginRight: 10,
+                  marginRight: 16,
                   position: "relative",
                 }}
               >

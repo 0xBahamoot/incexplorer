@@ -210,80 +210,80 @@ export function CatchBoundary() {
   );
 }
 
-export function ErrorBoundary(error: any) {
-  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
-    key: "mantine-color-scheme",
-    defaultValue: "dark",
-    getInitialValueInEffect: true,
-  });
-  const toggleColorScheme = (value?: ColorScheme) => {};
+// export function ErrorBoundary(error: any) {
+//   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+//     key: "mantine-color-scheme",
+//     defaultValue: "dark",
+//     getInitialValueInEffect: true,
+//   });
+//   const toggleColorScheme = (value?: ColorScheme) => {};
 
-  let navigate = useNavigate();
+//   let navigate = useNavigate();
 
-  console.error(error);
-  return (
-    <html>
-      <head>
-        <title>Oh no! 404</title>
-        <Meta />
-        <Links />
-        <link href="/stylesheet.css" rel="stylesheet"></link>
-      </head>
-      <body>
-        <ColorSchemeProvider
-          colorScheme={colorScheme}
-          toggleColorScheme={toggleColorScheme}
-        >
-          <MantineProvider
-            theme={{
-              colorScheme,
-              fontFamily: "Inter",
-              headings: { fontFamily: "Inter" },
-            }}
-            withGlobalStyles
-            withNormalizeCSS
-          >
-            <Center style={{ width: "100%", height: "95vh" }}>
-              <Box>
-                <Text
-                  style={{
-                    fontWeight: 500,
-                    fontSize: 36,
-                    display: "block",
-                    color: "#000",
-                  }}
-                >
-                  Oh no! 404
-                </Text>
-                <Space h="xl" />
-                <Text
-                  style={{
-                    fontWeight: 500,
-                    fontSize: 36,
-                    display: "block",
-                    color: "#000",
-                  }}
-                >
-                  {error.toString()}
-                </Text>
-                <Space h="xl" />
-                <Button
-                  variant="light"
-                  style={{ display: "table", margin: "0 auto" }}
-                  onClick={() => {
-                    navigate(`/`, { replace: true });
-                    window.location.reload();
-                    return;
-                  }}
-                >
-                  Go Home
-                </Button>
-              </Box>
-            </Center>
-          </MantineProvider>
-        </ColorSchemeProvider>
-        <Scripts />
-      </body>
-    </html>
-  );
-}
+//   console.error(error);
+//   return (
+//     <html>
+//       <head>
+//         <title>Oh no! 404</title>
+//         <Meta />
+//         <Links />
+//         <link href="/stylesheet.css" rel="stylesheet"></link>
+//       </head>
+//       <body>
+//         <ColorSchemeProvider
+//           colorScheme={colorScheme}
+//           toggleColorScheme={toggleColorScheme}
+//         >
+//           <MantineProvider
+//             theme={{
+//               colorScheme,
+//               fontFamily: "Inter",
+//               headings: { fontFamily: "Inter" },
+//             }}
+//             withGlobalStyles
+//             withNormalizeCSS
+//           >
+//             <Center style={{ width: "100%", height: "95vh" }}>
+//               <Box>
+//                 <Text
+//                   style={{
+//                     fontWeight: 500,
+//                     fontSize: 36,
+//                     display: "block",
+//                     color: "#000",
+//                   }}
+//                 >
+//                   Oh no! 404
+//                 </Text>
+//                 <Space h="xl" />
+//                 <Text
+//                   style={{
+//                     fontWeight: 500,
+//                     fontSize: 36,
+//                     display: "block",
+//                     color: "#000",
+//                   }}
+//                 >
+//                   {error.toString()}
+//                 </Text>
+//                 <Space h="xl" />
+//                 <Button
+//                   variant="light"
+//                   style={{ display: "table", margin: "0 auto" }}
+//                   onClick={() => {
+//                     navigate(`/`, { replace: true });
+//                     window.location.reload();
+//                     return;
+//                   }}
+//                 >
+//                   Go Home
+//                 </Button>
+//               </Box>
+//             </Center>
+//           </MantineProvider>
+//         </ColorSchemeProvider>
+//         <Scripts />
+//       </body>
+//     </html>
+//   );
+// }

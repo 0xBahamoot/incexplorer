@@ -35,8 +35,8 @@ function CreateRPCInstance(network: string) {
     },
     async (error) => {
       if (error?.isAxiosError && !error?.response) {
-        return Promise.resolve(null);
-        // throw new Error('Send request API failed');
+        // return Promise.resolve(null);
+        throw new Error("Send request API failed");
       }
       return Promise.reject(error);
     }

@@ -27,7 +27,7 @@ export const loader: LoaderFunction = async () => {
   let totalTxs: number = 0;
   let totalBlocks: number = 0;
   let Epoch: number = 0;
-  if (Error == undefined) {
+  if (Result !== undefined) {
     Object.keys(Result.BestBlocks).map((key) => {
       // last item is beacon chain
       totalBlocks += Result.BestBlocks[key].Height;
@@ -64,6 +64,7 @@ export const loader: LoaderFunction = async () => {
     };
     return data;
   }
+  return null;
 };
 
 function ShardsOverview() {
@@ -74,17 +75,21 @@ function ShardsOverview() {
   const [overviewData, setOverviewData] = useState([]);
 
   useEffect(() => {
-    setData(loaderData);
-    setOverviewData(loaderData.overview);
+    if (loaderData) {
+      setData(loaderData);
+      setOverviewData(loaderData.overview);
+    } else {
+      window.location.reload();
+    }
   }, [loaderData]);
 
   const fetcher = useFetcher();
 
-  // Get fresh data every 15 seconds.
+  // Get fresh data every 30 seconds.
   useEffect(() => {
     const interval = setInterval(() => {
       fetcher.load("/chain?index");
-    }, 1 * 1000);
+    }, 30 * 1000);
     return () => clearInterval(interval);
   }, []);
   useEffect(() => {
@@ -171,7 +176,7 @@ function ShardsOverview() {
                   style={{
                     minWidth: 230,
                     display: "inline-block",
-                    marginRight: 10,
+                    marginRight: 16,
                     position: "relative",
                   }}
                 >
