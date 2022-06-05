@@ -27,42 +27,43 @@ export const loader: LoaderFunction = async () => {
   let totalTxs: number = 0;
   let totalBlocks: number = 0;
   let Epoch: number = 0;
-  Object.keys(Result.BestBlocks).map((key) => {
-    // last item is beacon chain
-    totalBlocks += Result.BestBlocks[key].Height;
-    if (key == "-1") {
-      Epoch = Result.BestBlocks[key].Epoch;
-      beaconInfo = Result.BestBlocks[key];
-      return <></>;
-    }
-    shardsInfo.push(Result.BestBlocks[key]);
-    totalTxs += Result.BestBlocks[key].TotalTxs;
-  });
-  console.log(Result);
+  if (Error == undefined) {
+    Object.keys(Result.BestBlocks).map((key) => {
+      // last item is beacon chain
+      totalBlocks += Result.BestBlocks[key].Height;
+      if (key == "-1") {
+        Epoch = Result.BestBlocks[key].Epoch;
+        beaconInfo = Result.BestBlocks[key];
+        return <></>;
+      }
+      shardsInfo.push(Result.BestBlocks[key]);
+      totalTxs += Result.BestBlocks[key].TotalTxs;
+    });
 
-  let overview: any[] = [];
-  overview.push({ Title: "Network", Content: Result.ChainName, type: 0 });
-  overview.push({
-    Title: "Total Shards",
-    Content: Result.ActiveShards,
-    type: 0,
-  });
-  overview.push({ Title: "Total Blocks", Content: totalBlocks, type: 0 });
-  overview.push({ Title: "Epoch", Content: Epoch, type: 0 });
-  overview.push({
-    Title: "Total Transactions",
-    Content: totalTxs,
-    // changePercent?: number,
-    currencyFormat: false,
-    type: 0,
-  });
+    let overview: any[] = [];
+    overview.push({ Title: "Network", Content: Result.ChainName, type: 0 });
+    overview.push({
+      Title: "Total Shards",
+      Content: Result.ActiveShards,
+      type: 0,
+    });
+    overview.push({ Title: "Total Blocks", Content: totalBlocks, type: 0 });
+    overview.push({ Title: "Epoch", Content: Epoch, type: 0 });
+    overview.push({
+      Title: "Total Transactions",
+      Content: totalTxs,
+      // changePercent?: number,
+      currencyFormat: false,
+      type: 0,
+    });
 
-  let data: any = {
-    beaconInfo: beaconInfo,
-    shardsInfo: shardsInfo,
-    overview: overview,
-  };
-  return data;
+    let data: any = {
+      beaconInfo: beaconInfo,
+      shardsInfo: shardsInfo,
+      overview: overview,
+    };
+    return data;
+  }
 };
 
 function ShardsOverview() {
@@ -83,7 +84,7 @@ function ShardsOverview() {
   useEffect(() => {
     const interval = setInterval(() => {
       fetcher.load("/chain?index");
-    }, 15 * 1000);
+    }, 1 * 1000);
     return () => clearInterval(interval);
   }, []);
   useEffect(() => {
@@ -143,7 +144,51 @@ function ShardsOverview() {
             style={{ height: !loaded ? 200 : 0 }}
           />
         </Group>
+      </Box>
+      <MediaQuery largerThan={1200} styles={{ display: "none" }}>
+        <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
+          <ScrollArea
+            p={0}
+            style={{
+              width: "100%",
+              whiteSpace: "nowrap",
+              padding: "10px 0",
+            }}
+          >
+            <div
+              style={{
+                display: "block",
+                overflow: "auto",
+                width: "auto",
+                whiteSpace: "nowrap",
+                height: "auto",
+                padding: "0 30px",
+              }}
+            >
+              {overviewData.map((item: any) => (
+                <div
+                  key={item.Name}
+                  style={{
+                    minWidth: 230,
+                    display: "inline-block",
+                    marginRight: 10,
+                    position: "relative",
+                  }}
+                >
+                  <SummaryCard
+                    key={item.Title}
+                    title={item.Title}
+                    content={item.Content}
+                    currencyFormat={false}
+                  />
+                </div>
+              ))}
+            </div>
+          </ScrollArea>
+        </div>
+      </MediaQuery>
 
+      <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
         <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
           <Box p={0}>
             <Grid gutter="lg" columns={15}>
@@ -159,6 +204,15 @@ function ShardsOverview() {
             </Grid>
           </Box>
         </div>
+      </MediaQuery>
+
+      {/* <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
+          <Box p={0}>
+            <Grid gutter="lg" columns={15}></Grid>
+          </Box>
+        </div> */}
+
+      <Box style={{ padding: "0 30px" }}>
         <Space h={40} />
         <SectionTitle text="Beacon Chain" />
         <Space h="sm" />
