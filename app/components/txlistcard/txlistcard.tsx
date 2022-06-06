@@ -55,7 +55,7 @@ const TxListCard: FunctionComponent<Props> = ({ txlist }) => {
   });
 
   return (
-    <Table verticalSpacing={7.5} horizontalSpacing={24} fontSize={16}>
+    <Table verticalSpacing={0} horizontalSpacing={24} fontSize={16}>
       <thead className={classes.tableThead}>
         <tr>
           <th><Text className={classes.tableTheadText}>Hash</Text></th>

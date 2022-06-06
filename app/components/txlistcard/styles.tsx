@@ -5,7 +5,7 @@ const useStyles = createStyles((theme) => ({
     backgroundColor: "#303030",
     color: "#9C9C9C",
     whiteSpace: "nowrap",
-    height: 40,
+    maxHeight: 40,
   },
   tableTheadText: {
     color: "#9C9C9C !important",

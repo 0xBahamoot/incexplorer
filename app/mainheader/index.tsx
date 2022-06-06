@@ -24,9 +24,9 @@ import { showNotification } from "@mantine/notifications";
 import { NotificationsProvider } from "@mantine/notifications";
 import NavDrawer from "~/components/navdrawer/navdrawer";
 import useStyles from "./styles";
+import { SpotlightProvider, openSpotlight } from "@mantine/spotlight";
 
 // import { useLocation } from 'react-router-dom';
-
 function MainHeader() {
   // let location = useLocation();
 
@@ -96,9 +96,9 @@ function MainHeader() {
 
   return (
     <>
-      {/* <SpotlightProvider shortcut={['mod + P', 'mod + K', '/']} actions={[]} nothingFoundMessage="Nothing found..." searchPlaceholder="Search anything..." searchIcon={<Search size={18} />}>
+      <SpotlightProvider styles={{ spotlight: { maxWidth: 400, width: '90%' }, searchInput: { backgroundColor: "#303030" } }} shortcut={['mod + P', 'mod + K', '/']} actions={[]} nothingFoundMessage="Nothing found..." searchPlaceholder="Search anything..." searchIcon={<Search size={18} />}>
 
-      </SpotlightProvider> */}
+      </SpotlightProvider>
       <Drawer
         opened={opened}
         onClose={() => setOpened(false)}
@@ -177,7 +177,7 @@ function MainHeader() {
             </a>
           </Center>
           <Group position="right">
-            <ActionIcon size="xl" radius="xl" variant="transparent">
+            <ActionIcon size="xl" radius="xl" variant="transparent" onClick={openSpotlight}>
               <Search />
             </ActionIcon>
           </Group>
