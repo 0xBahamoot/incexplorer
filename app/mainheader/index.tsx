@@ -150,6 +150,7 @@ function MainHeader() {
       ></NotificationsProvider>
 
       <Dialog
+        transition="slide-down"
         opened={showSearch}
         onClose={() => setShowSearch(false)}
         position={{ top: 64, left: 0, right: 0 }}
