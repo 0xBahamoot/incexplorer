@@ -127,7 +127,7 @@ export default function App() {
                 <Header
                   fixed={true}
                   height={64}
-                  p={"10px 30px"}
+                  p={"10px 0"}
                   style={{ backgroundColor: "#1A1A1A" }}
                 >
                   <MainHeader />

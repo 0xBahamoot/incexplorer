@@ -13,7 +13,7 @@ import {
   useMantineTheme,
   Loader,
   Stack,
-  Box, Title
+  Box, Title, Dialog
 } from "@mantine/core";
 import { Sun, MoonStars, Search, X } from "tabler-icons-react";
 import React, { useEffect, useState } from "react";
@@ -24,7 +24,6 @@ import { showNotification } from "@mantine/notifications";
 import { NotificationsProvider } from "@mantine/notifications";
 import NavDrawer from "~/components/navdrawer/navdrawer";
 import useStyles from "./styles";
-import { SpotlightProvider, openSpotlight } from "@mantine/spotlight";
 
 // import { useLocation } from 'react-router-dom';
 function MainHeader() {
@@ -33,6 +32,7 @@ function MainHeader() {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const [opened, setOpened] = useState(false);
   const [searching, setSearching] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const fetcher = useFetcher();
   const theme = useMantineTheme();
@@ -96,9 +96,6 @@ function MainHeader() {
 
   return (
     <>
-      <SpotlightProvider styles={{ spotlight: { maxWidth: 400, width: '90%' }, searchInput: { backgroundColor: "#303030" } }} shortcut={['mod + P', 'mod + K', '/']} actions={[]} nothingFoundMessage="Nothing found..." searchPlaceholder="Search anything..." searchIcon={<Search size={18} />}>
-
-      </SpotlightProvider>
       <Drawer
         opened={opened}
         onClose={() => setOpened(false)}
@@ -151,8 +148,57 @@ function MainHeader() {
         position="top-right"
         zIndex={2077}
       ></NotificationsProvider>
+
+      <Dialog
+        opened={showSearch}
+        onClose={() => setShowSearch(false)}
+        position={{ top: 64, left: 0, right: 0 }}
+        // size={'100%'}
+        zIndex={1}
+        styles={{
+          root: {
+            backgroundColor: '#1A1A1A',
+            border: 'none',
+            boxShadow: 'none',
+            width: '100%'
+          }
+        }}
+      >
+        <TextInput
+          placeholder="Search anything..."
+          variant="filled"
+          radius="md"
+          iconWidth={40}
+          icon={
+            searching ? (
+              <Loader size="xs" style={{ marginLeft: 8 }} />
+            ) : (
+              <Image
+                src="/assets/images/icons/search.svg"
+                color={"#fff"}
+                style={{ marginLeft: 8 }}
+              />
+            )
+          }
+          styles={{
+            input: {
+              width: '100%',
+              color: "#fff",
+              height: 40,
+              fontSize: 16,
+              backgroundColor: "#303030",
+              paddingTop: 0,
+            },
+          }}
+          onChange={(event) => setSearchValue(event.target.value)}
+          onKeyUp={(event) => search(event)}
+          height={40}
+        />
+      </Dialog>
+
       <MediaQuery largerThan={1200} styles={{ display: "none" }}>
-        <Group position="apart" style={{ height: 42 }}>
+
+        <Group position="apart" style={{ height: 42, padding: '0 16px' }}>
           <Group position="left">
             <Burger
               opened={opened}
@@ -177,7 +223,10 @@ function MainHeader() {
             </a>
           </Center>
           <Group position="right">
-            <ActionIcon size="xl" radius="xl" variant="transparent" onClick={openSpotlight}>
+            <ActionIcon size="xl" radius="xl" variant="transparent" onClick={() => { setShowSearch(false) }} style={{ display: showSearch ? 'block' : "none" }}>
+              <X />
+            </ActionIcon>
+            <ActionIcon size="xl" radius="xl" variant="transparent" onClick={() => { setShowSearch(true) }} style={{ display: showSearch ? 'none' : "block" }}>
               <Search />
             </ActionIcon>
           </Group>
@@ -185,7 +234,7 @@ function MainHeader() {
       </MediaQuery>
 
       <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
-        <Group position="apart" grow style={{ height: 42 }}>
+        <Group position="apart" grow style={{ height: 42, padding: '0 30px' }}>
           <Group position="left">
             <Center>
               <a href="/">
