@@ -1,4 +1,4 @@
-import { Title, Space, TextInput, Pagination, Group, Text, Loader, ScrollArea, Box } from '@mantine/core';
+import { Title, Space, TextInput, Pagination, Group, Text, Loader, ScrollArea, Box, MediaQuery } from '@mantine/core';
 import TxListCard from '~/components/txlistcard/txlistcard';
 import { useState, useEffect } from 'react';
 import { getNormalTx } from '~/services/transactions';
@@ -38,16 +38,34 @@ function Txs() {
 
         <Box style={{ padding: '0 30px' }}>
             <SectionTitle text="Transactions" />
-            <Space h="md" />
-            <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
-                <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
-            </Group>
-            <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
-                <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
-                    <TxListCard txlist={txListData}></TxListCard>
-                </ScrollArea>
-            </div>
-            <Space h="md" />
+        </Box>
+        <Space h="md" />
+        <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
+            <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
+        </Group>
+
+        <MediaQuery smallerThan={1440} styles={{ display: "none" }}>
+            <Box style={{ padding: '0 30px' }}>
+                <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
+                    <ScrollArea style={{ height: 'auto', borderRadius: 12, overflow: 'hidden', border: '1px solid #363636' }} >
+                        <TxListCard txlist={txListData}></TxListCard>
+                    </ScrollArea>
+                </div>
+            </Box>
+        </MediaQuery>
+
+        <MediaQuery largerThan={1440} styles={{ display: "none" }}>
+            <Box style={{ padding: '0' }}>
+                <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
+                    <ScrollArea style={{ height: 'auto', borderRadius: 0, overflow: 'hidden', border: '1px solid #363636' }} >
+                        <TxListCard txlist={txListData}></TxListCard>
+                    </ScrollArea>
+                </div>
+            </Box>
+        </MediaQuery>
+        <Space h="md" />
+
+        <Box style={{ padding: '0 30px' }}>
             <Group position="center" spacing="lg">
                 <Group position="center" spacing="sm">
                     <Text size="sm">Go to</Text>
@@ -77,8 +95,8 @@ function Txs() {
                 </Group>
                 <Pagination page={activePage} onChange={handleFetchData} siblings={1} boundaries={1} total={totalPage} radius="xl" className={classes.paginationBox} classNames={classes} />
             </Group>
-            <Space h="sm" />
         </Box>
+        <Space h="sm" />
     </>
 }
 
