@@ -21,117 +21,179 @@ interface AccordionLabelProps {
   label: string;
   icon: string;
   style?: any;
+  fontSize?: number;
 }
 
-function AccordionLabel({ label, icon, style }: AccordionLabelProps) {
+function AccordionLabel({ label, icon, style, fontSize }: AccordionLabelProps) {
   return (
     <Group noWrap style={style}>
       <Avatar src={icon} radius="xl" size={30} />
       <div>
-        <Text style={{ fontSize: 16, fontWeight: 500 }}>{label}</Text>
+        <Text style={{ fontSize: fontSize ? fontSize : 16, fontWeight: 500 }}>
+          {label}
+        </Text>
       </div>
     </Group>
   );
 }
 
-function BlockChainSection(onNav?: () => void) {
+function BlockChainSection(onNav?: () => void, fontSize?: number) {
   return (
     <>
-      <Stack justify="flex-start" spacing="xs" onClick={() => {
-        if (onNav) {
-          onNav();
-        }
-      }}>
-        <NavbarBtn text="Overview" link="/chain"></NavbarBtn>
-        <NavbarBtn text="Beacon chain" link="/chain/beacon"></NavbarBtn>
-        <NavbarBtn text="Shards chain" link="/chain/shards"></NavbarBtn>
-        <NavbarBtn text="Transactions" link="/txs"></NavbarBtn>
-        <NavbarBtn text="Pending txs" link="/pendingtxs"></NavbarBtn>
-      </Stack>
-    </>
-  );
-}
-
-function ExchangeSection(onNav?: () => void) {
-  return (
-    <>
-      <Stack justify="flex-start" spacing="xs" onClick={() => {
-        if (onNav) {
-          onNav();
-        }
-      }}>
-        <NavbarBtn text="Markets" link="/charts/market"></NavbarBtn>
-        <NavbarBtn text="Liquidity" link="/"></NavbarBtn>
-      </Stack>
-    </>
-  );
-}
-
-function ShieldedSection(onNav?: () => void) {
-  return (
-    <>
-      <Stack justify="flex-start" spacing="xs" onClick={() => {
-        if (onNav) {
-          onNav();
-        }
-      }}>
-        {/* <NavbarBtn text='TVL' link='/charts/liquiditytvl'></NavbarBtn> */}
-        {/* <NavbarBtn text='Shield Volume' link='/charts/shieldvolume'></NavbarBtn> */}
-        <NavbarBtn text="Shield Txs" link="/shieldtxs"></NavbarBtn>
-      </Stack>
-    </>
-  );
-}
-
-function NetworkSection(onNav?: () => void) {
-  return (
-    <>
-      <Stack justify="flex-start" spacing="xs" onClick={() => {
-        if (onNav) {
-          onNav();
-        }
-      }}>
-        <NavbarBtn text="Validators" link="/validators"></NavbarBtn>
-      </Stack>
-    </>
-  );
-}
-
-function GetStartedSection(onNav?: () => void) {
-  return (
-    <>
-      <Stack justify="flex-start" spacing="xs" onClick={() => {
-        if (onNav) {
-          onNav();
-        }
-      }}>
+      <Stack
+        justify="flex-start"
+        spacing="xs"
+        onClick={() => {
+          if (onNav) {
+            onNav();
+          }
+        }}
+      >
         <NavbarBtn
-          text="Download"
-          link="https://incognito.org/"
-          external
+          text="Overview"
+          link="/chain"
+          fontSize={fontSize}
+        ></NavbarBtn>
+        <NavbarBtn
+          text="Beacon chain"
+          link="/chain/beacon"
+          fontSize={fontSize}
+        ></NavbarBtn>
+        <NavbarBtn
+          text="Shards chain"
+          link="/chain/shards"
+          fontSize={fontSize}
+        ></NavbarBtn>
+        <NavbarBtn
+          text="Transactions"
+          link="/txs"
+          fontSize={fontSize}
+        ></NavbarBtn>
+        <NavbarBtn
+          text="Pending txs"
+          link="/pendingtxs"
+          fontSize={fontSize}
         ></NavbarBtn>
       </Stack>
     </>
   );
 }
 
-function AboutUsSection(onNav?: () => void) {
+function ExchangeSection(onNav?: () => void, fontSize?: number) {
   return (
     <>
-      <Stack justify="flex-start" spacing="xs" onClick={() => {
-        if (onNav) {
-          onNav();
-        }
-      }}>
+      <Stack
+        justify="flex-start"
+        spacing="xs"
+        onClick={() => {
+          if (onNav) {
+            onNav();
+          }
+        }}
+      >
+        <NavbarBtn
+          text="Markets"
+          link="/charts/market"
+          fontSize={fontSize}
+        ></NavbarBtn>
+        <NavbarBtn text="Liquidity" link="/" fontSize={fontSize}></NavbarBtn>
+      </Stack>
+    </>
+  );
+}
+
+function ShieldedSection(onNav?: () => void, fontSize?: number) {
+  return (
+    <>
+      <Stack
+        justify="flex-start"
+        spacing="xs"
+        onClick={() => {
+          if (onNav) {
+            onNav();
+          }
+        }}
+      >
+        {/* <NavbarBtn text='TVL' link='/charts/liquiditytvl'fontSize={fontSize}></NavbarBtn> */}
+        {/* <NavbarBtn text='Shield Volume' link='/charts/shieldvolume'fontSize={fontSize}></NavbarBtn> */}
+        <NavbarBtn
+          text="Shield Txs"
+          link="/shieldtxs"
+          fontSize={fontSize}
+        ></NavbarBtn>
+      </Stack>
+    </>
+  );
+}
+
+function NetworkSection(onNav?: () => void, fontSize?: number) {
+  return (
+    <>
+      <Stack
+        justify="flex-start"
+        spacing="xs"
+        onClick={() => {
+          if (onNav) {
+            onNav();
+          }
+        }}
+      >
+        <NavbarBtn
+          text="Validators"
+          link="/validators"
+          fontSize={fontSize}
+        ></NavbarBtn>
+      </Stack>
+    </>
+  );
+}
+
+function GetStartedSection(onNav?: () => void, fontSize?: number) {
+  return (
+    <>
+      <Stack
+        justify="flex-start"
+        spacing="xs"
+        onClick={() => {
+          if (onNav) {
+            onNav();
+          }
+        }}
+      >
+        <NavbarBtn
+          text="Download"
+          link="https://incognito.org/"
+          external
+          fontSize={fontSize}
+        ></NavbarBtn>
+      </Stack>
+    </>
+  );
+}
+
+function AboutUsSection(onNav?: () => void, fontSize?: number) {
+  return (
+    <>
+      <Stack
+        justify="flex-start"
+        spacing="xs"
+        onClick={() => {
+          if (onNav) {
+            onNav();
+          }
+        }}
+      >
         <NavbarBtn
           text="Utilities"
           link="https://incognito.org/"
           external
+          fontSize={fontSize}
         ></NavbarBtn>
         <NavbarBtn
           text="Community"
           link="https://we.incognito.org/"
           external
+          fontSize={fontSize}
         ></NavbarBtn>
       </Stack>
     </>
@@ -157,6 +219,7 @@ const MainNavbar: FunctionComponent<Props> = ({ onNav }) => {
               <AccordionLabel
                 label="Home"
                 icon="/assets/images/icons/navbar-home.svg"
+                fontSize={20}
               />
             }
             classNames={{
@@ -167,7 +230,7 @@ const MainNavbar: FunctionComponent<Props> = ({ onNav }) => {
             }}
             onClick={() => {
               if (onNav) {
-                onNav()
+                onNav();
               }
               navigate(`/`, { replace: true });
             }}
@@ -182,6 +245,7 @@ const MainNavbar: FunctionComponent<Props> = ({ onNav }) => {
                 <AccordionLabel
                   label="Blockchain"
                   icon="/assets/images/icons/navbar-blockchain.svg"
+                  fontSize={20}
                 />
               }
               classNames={{
@@ -191,7 +255,7 @@ const MainNavbar: FunctionComponent<Props> = ({ onNav }) => {
                 icon: classes.icon,
               }}
             >
-              {BlockChainSection(onNav)}
+              {BlockChainSection(onNav, 20)}
             </Accordion.Item>
             {/* 
                     <Accordion.Item label={<AccordionLabel label='Privacy Exchange' icon='/assets/images/icons/navbar-exchange.svg' />}
@@ -204,6 +268,7 @@ const MainNavbar: FunctionComponent<Props> = ({ onNav }) => {
                 <AccordionLabel
                   label="Shielded coins"
                   icon="/assets/images/icons/navbar-shielded.svg"
+                  fontSize={20}
                 />
               }
               classNames={{
@@ -213,7 +278,7 @@ const MainNavbar: FunctionComponent<Props> = ({ onNav }) => {
                 icon: classes.icon,
               }}
             >
-              {ShieldedSection(onNav)}
+              {ShieldedSection(onNav, 20)}
             </Accordion.Item>
 
             {/* <Accordion.Item label={<AccordionLabel label='Network' icon='/assets/images/icons/navbar-network.svg' />}
@@ -230,6 +295,7 @@ const MainNavbar: FunctionComponent<Props> = ({ onNav }) => {
                 <AccordionLabel
                   label="About us"
                   icon="/assets/images/icons/navbar-aboutus.svg"
+                  fontSize={20}
                 />
               }
               classNames={{
@@ -239,7 +305,7 @@ const MainNavbar: FunctionComponent<Props> = ({ onNav }) => {
                 icon: classes.icon,
               }}
             >
-              {AboutUsSection(onNav)}
+              {AboutUsSection(onNav, 20)}
             </Accordion.Item>
           </Accordion>
           {/* <Accordion.Item styles={{ control: { paddingLeft: 5 } }} iconSize={0} label={<AccordionLabel label='Community' icon='/assets/images/icons/navbar-blockchain.svg' />}
@@ -344,6 +410,6 @@ const MainNavbar: FunctionComponent<Props> = ({ onNav }) => {
       </MediaQuery>
     </>
   );
-}
+};
 
 export default MainNavbar;

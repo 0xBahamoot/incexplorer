@@ -20,7 +20,7 @@ const SummaryBox: FunctionComponent<Props> = ({ items, scroll }) => {
               display: "block",
               overflow: "auto",
               whiteSpace: "nowrap",
-              padding: "0 30px",
+              padding: "0 16px",
             }}
           >
             {items.map((item: any) => (

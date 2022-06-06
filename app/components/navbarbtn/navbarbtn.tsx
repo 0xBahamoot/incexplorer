@@ -9,9 +9,15 @@ type Props = {
   text: string;
   link: string;
   external?: boolean;
+  fontSize?: number;
 };
 
-const NavbarBtn: FunctionComponent<Props> = ({ text, link, external }) => {
+const NavbarBtn: FunctionComponent<Props> = ({
+  text,
+  link,
+  external,
+  fontSize,
+}) => {
   let location = useLocation();
   let navigate = useNavigate();
 
@@ -44,7 +50,7 @@ const NavbarBtn: FunctionComponent<Props> = ({ text, link, external }) => {
           textAlign: "left",
           padding: theme.spacing.sm,
           borderRadius: 8,
-          fontSize: 16,
+          fontSize: fontSize ? fontSize : 16,
           fontWeight: 500,
           letterSpacing: "0.01em",
           paddingLeft: 45,
@@ -53,12 +59,12 @@ const NavbarBtn: FunctionComponent<Props> = ({ text, link, external }) => {
               ? "#fff"
               : "#000"
             : theme.colorScheme === "dark"
-              ? "#757575"
-              : "#000",
+            ? "#757575"
+            : "#000",
           cursor: "pointer",
           textDecoration: "none",
           height: 40,
-          lineHeight: "18px",
+          lineHeight: fontSize ? "14px" : "18px",
           "&:hover": {
             backgroundColor:
               theme.colorScheme === "dark" ? "#303030" : theme.colors.gray[1],

@@ -28,6 +28,105 @@ export const loader: LoaderFunction = async ({ params }) => {
   return data;
 };
 
+function renderMainContent(
+  loaded: boolean,
+  networkData: any,
+  pdexData: any,
+  prvData: any,
+  contentPadding: string,
+  scroll: boolean
+) {
+  return (
+    <>
+      <Space h={30} />
+      <Box style={{ padding: contentPadding }}>
+        <SectionTitle text="Network" />
+      </Box>
+      <Space h="sm" />
+
+      <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
+        <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
+      </Group>
+
+      <div
+        style={{
+          height: loaded ? "auto" : 0,
+          overflow: "hidden",
+          padding: contentPadding == "0px 16px" ? "0" : contentPadding,
+        }}
+      >
+        <SummaryBox items={networkData} scroll={scroll}></SummaryBox>
+      </div>
+
+      <Space h={40} />
+      <Box style={{ padding: contentPadding }}>
+        <SectionTitle text="Privacy Exchange" />
+      </Box>
+      <Space h="sm" />
+
+      <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
+        <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
+      </Group>
+
+      <div
+        style={{
+          height: loaded ? "auto" : 0,
+          overflow: "hidden",
+          padding: contentPadding == "0px 16px" ? "0" : contentPadding,
+        }}
+      >
+        <SummaryBox items={pdexData} scroll={scroll}></SummaryBox>
+      </div>
+
+      <Space h={40} />
+      <Box style={{ padding: contentPadding }}>
+        <SectionTitle text="PRV" />
+      </Box>
+      <Space h="sm" />
+
+      <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
+        <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
+      </Group>
+
+      <div
+        style={{
+          height: loaded ? "auto" : 0,
+          overflow: "hidden",
+          padding: contentPadding == "0px 16px" ? "0" : contentPadding,
+        }}
+      >
+        <SummaryBox items={prvData} scroll={scroll}></SummaryBox>
+      </div>
+
+      <Space h={40} />
+
+      <Box style={{ padding: contentPadding }}>
+        <Group position="apart">
+          <SectionTitle text="Transactions" />
+          <Button
+            color="gray"
+            variant="subtle"
+            compact
+            component={Link}
+            to="/txs"
+            style={{ marginRight: 10, color: "#757575" }}
+          >
+            <Text style={{ color: "#1A73E8", fontSize: 16 }}>View all</Text>
+          </Button>
+        </Group>
+        <Space h="md" />
+        <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
+          <Loader
+            color="gray"
+            size={30}
+            style={{ height: !loaded ? 200 : 0 }}
+          />
+        </Group>
+      </Box>
+    </>
+  );
+}
+
 function Home() {
   const fetcher = useFetcher();
 
@@ -139,111 +238,31 @@ function Home() {
   // }, []);
   return (
     <>
-      <Box style={{ padding: "0 30px" }}>
-        <Space h={30} />
-        <SectionTitle text="Network" />
-
-        <Space h="sm" />
-        <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
-          <Loader
-            color="gray"
-            size={30}
-            style={{ height: !loaded ? 200 : 0 }}
-          />
-        </Group>
-      </Box>
       <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
-        <Box style={{ padding: "0 30px" }}>
-          <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
-            <SummaryBox items={networkData}></SummaryBox>
-          </div>
-        </Box>
-      </MediaQuery>
-
-      <MediaQuery largerThan={1200} styles={{ display: "none" }}>
-        <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
-          <SummaryBox items={networkData} scroll={true}></SummaryBox>
+        <div>
+          {renderMainContent(
+            loaded,
+            networkData,
+            pdexData,
+            prvData,
+            "0px 30px",
+            false
+          )}
         </div>
       </MediaQuery>
 
-      <Box style={{ padding: "0 30px" }}>
-        <Space h={40} />
-        <SectionTitle text="Privacy Exchange" />
-        <Space h="sm" />
-        <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
-          <Loader
-            color="gray"
-            size={30}
-            style={{ height: !loaded ? 200 : 0 }}
-          />
-        </Group>
-      </Box>
-
-      <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
-        <Box style={{ padding: "0 30px" }}>
-          <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
-            <SummaryBox items={pdexData}></SummaryBox>
-          </div>
-        </Box>
-      </MediaQuery>
-
       <MediaQuery largerThan={1200} styles={{ display: "none" }}>
-        <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
-          <SummaryBox items={pdexData} scroll={true}></SummaryBox>
+        <div>
+          {renderMainContent(
+            loaded,
+            networkData,
+            pdexData,
+            prvData,
+            "0px 16px",
+            true
+          )}
         </div>
       </MediaQuery>
-
-      <Box style={{ padding: "0 30px" }}>
-        <Space h={40} />
-        <SectionTitle text="PRV" />
-        <Space h="sm" />
-        <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
-          <Loader
-            color="gray"
-            size={30}
-            style={{ height: !loaded ? 200 : 0 }}
-          />
-        </Group>
-      </Box>
-
-      <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
-        <Box style={{ padding: "0 30px" }}>
-          <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
-            <SummaryBox items={prvData}></SummaryBox>
-          </div>
-        </Box>
-      </MediaQuery>
-
-      <MediaQuery largerThan={1200} styles={{ display: "none" }}>
-        <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
-          <SummaryBox items={prvData} scroll={true}></SummaryBox>
-        </div>
-      </MediaQuery>
-
-      <Box style={{ padding: "0 30px" }}>
-        <Space h={40} />
-        <Group position="apart">
-          <SectionTitle text="Transactions" />
-          <Button
-            color="gray"
-            variant="subtle"
-            compact
-            component={Link}
-            to="/txs"
-            style={{ marginRight: 10, color: "#757575" }}
-          >
-            <Text style={{ color: "#1A73E8", fontSize: 16 }}>View all</Text>
-          </Button>
-        </Group>
-        <Space h="md" />
-        <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
-          <Loader
-            color="gray"
-            size={30}
-            style={{ height: !loaded ? 200 : 0 }}
-          />
-        </Group>
-      </Box>
 
       <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
         <MediaQuery smallerThan={1440} styles={{ display: "none" }}>

@@ -162,23 +162,46 @@ export default function App() {
                   <Outlet />
                 </div>
               </Container>
-              <Affix position={{ bottom: 76, right: 30 }}>
-                <Transition transition="slide-up" mounted={scroll.y > 0}>
-                  {(transitionStyles) => (
-                    <ActionIcon
-                      styles={{ root: { backgroundColor: "#404040" } }}
-                      p={10}
-                      size={50}
-                      radius="xl"
-                      variant="filled"
-                      style={transitionStyles}
-                      onClick={() => scrollTo({ y: 0 })}
-                    >
-                      <ArrowUp size={30} />
-                    </ActionIcon>
-                  )}
-                </Transition>
-              </Affix>
+
+              <MediaQuery largerThan={1200} styles={{ display: "none" }}>
+                <Affix position={{ bottom: 44, right: 16 }}>
+                  <Transition transition="slide-up" mounted={scroll.y > 0}>
+                    {(transitionStyles) => (
+                      <ActionIcon
+                        styles={{ root: { backgroundColor: "#404040" } }}
+                        p={10}
+                        size={40}
+                        radius="xl"
+                        variant="filled"
+                        style={transitionStyles}
+                        onClick={() => scrollTo({ y: 0 })}
+                      >
+                        <ArrowUp size={30} />
+                      </ActionIcon>
+                    )}
+                  </Transition>
+                </Affix>
+              </MediaQuery>
+
+              <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
+                <Affix position={{ bottom: 76, right: 30 }}>
+                  <Transition transition="slide-up" mounted={scroll.y > 0}>
+                    {(transitionStyles) => (
+                      <ActionIcon
+                        styles={{ root: { backgroundColor: "#404040" } }}
+                        p={10}
+                        size={50}
+                        radius="xl"
+                        variant="filled"
+                        style={transitionStyles}
+                        onClick={() => scrollTo({ y: 0 })}
+                      >
+                        <ArrowUp size={30} />
+                      </ActionIcon>
+                    )}
+                  </Transition>
+                </Affix>
+              </MediaQuery>
             </AppShell>
           </MantineProvider>
         </ColorSchemeProvider>

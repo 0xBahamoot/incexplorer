@@ -67,118 +67,119 @@ function BeaconDetail() {
   return (
     <>
       <Space h={30} />
-      <Box style={{ padding: "0 30px" }}>
-        <Group>
-          <SectionTitle text="Beacon Chain" />
-        </Group>
-      </Box>
-      <Space h="md" />
 
       <MediaQuery smallerThan={1440} styles={{ display: "none" }}>
-        <Box style={{ padding: "0 30px" }}>
-          <ScrollArea
-            style={{
-              height: "auto",
-              borderRadius: 12,
-              overflow: "hidden",
-              border: "1px solid #363636",
-            }}
-          >
-            <Box
-              className={classes.boxInfo}
+        <div>
+          <Box style={{ padding: "0 30px" }}>
+            <Group>
+              <SectionTitle text="Beacon Chain" />
+            </Group>
+            <Space h="md" />
+            <ScrollArea
+              style={{
+                height: "auto",
+                borderRadius: 12,
+                overflow: "hidden",
+                border: "1px solid #363636",
+              }}
             >
-              <Group
-                position="apart"
-                style={{ backgroundColor: "#363636", padding: "9px 24px" }}
-              >
-                <Text
-                  style={{
-                    fontWeight: 500,
-                    fontSize: 16,
-                    color: "#9C9C9C",
-                  }}
+              <Box className={classes.boxInfo}>
+                <Group
+                  position="apart"
+                  style={{ backgroundColor: "#363636", padding: "9px 24px" }}
                 >
-                  Current block producer
-                </Text>
-                <div style={{ width: "auto", overflow: "hidden" }}>
-                  <Text style={{ color: "#9C9C9C", fontWeight: 500 }}>
-                    Total blocks:{" "}
-                    <span style={{ color: "#fff", fontWeight: 500 }}>
-                      {currentHeight}
-                    </span>
+                  <Text
+                    style={{
+                      fontWeight: 500,
+                      fontSize: 16,
+                      color: "#9C9C9C",
+                    }}
+                  >
+                    Current block producer
                   </Text>
-                </div>
-              </Group>
-              <Text
-                className={classes.producerText}
-              >
-                {currentProducer}
-              </Text>
-            </Box>
-          </ScrollArea>
-        </Box>
+                  <div style={{ width: "auto", overflow: "hidden" }}>
+                    <Text style={{ color: "#9C9C9C", fontWeight: 500 }}>
+                      Total blocks:{" "}
+                      <span style={{ color: "#fff", fontWeight: 500 }}>
+                        {currentHeight}
+                      </span>
+                    </Text>
+                  </div>
+                </Group>
+                <Text className={classes.producerText}>{currentProducer}</Text>
+              </Box>
+            </ScrollArea>
+          </Box>
+        </div>
       </MediaQuery>
 
-
       <MediaQuery largerThan={1440} styles={{ display: "none" }}>
-        <Box style={{ padding: "0" }}>
-          <ScrollArea
-            style={{
-              height: "auto",
-              borderRadius: 0,
-              overflow: "hidden",
-              border: "1px solid #363636",
-            }}
-          >
-            <Box
-              className={classes.boxInfo}
+        <div>
+          <Box style={{ padding: "0 16px" }}>
+            <Group>
+              <SectionTitle text="Beacon Chain" />
+            </Group>
+            <Space h="md" />
+          </Box>
+          <Box style={{ padding: "0" }}>
+            <ScrollArea
+              style={{
+                height: "auto",
+                borderRadius: 0,
+                overflow: "hidden",
+                border: "1px solid #363636",
+              }}
             >
-              <Group
-                position="apart"
-                style={{ backgroundColor: "#363636", padding: "9px 24px" }}
-              >
-                <Text
-                  style={{
-                    fontWeight: 500,
-                    fontSize: 16,
-                    color: "#9C9C9C",
-                  }}
+              <Box className={classes.boxInfo}>
+                <Group
+                  position="apart"
+                  style={{ backgroundColor: "#363636", padding: "9px 24px" }}
                 >
-                  Current block producer
-                </Text>
-                <div style={{ width: "auto", overflow: "hidden" }}>
-                  <Text style={{ color: "#9C9C9C", fontWeight: 500 }}>
-                    Total blocks:{" "}
-                    <span style={{ color: "#fff", fontWeight: 500 }}>
-                      {currentHeight}
-                    </span>
+                  <Text
+                    style={{
+                      fontWeight: 500,
+                      fontSize: 16,
+                      color: "#9C9C9C",
+                    }}
+                  >
+                    Current block producer
                   </Text>
-                </div>
-              </Group>
-              <Text
-                className={classes.producerText}
-              >
-                {currentProducer}
-              </Text>
-            </Box>
-          </ScrollArea>
-        </Box>
+                  <div style={{ width: "auto", overflow: "hidden" }}>
+                    <Text style={{ color: "#9C9C9C", fontWeight: 500 }}>
+                      Total blocks:{" "}
+                      <span style={{ color: "#fff", fontWeight: 500 }}>
+                        {currentHeight}
+                      </span>
+                    </Text>
+                  </div>
+                </Group>
+                <Text className={classes.producerText}>{currentProducer}</Text>
+              </Box>
+            </ScrollArea>
+          </Box>
+        </div>
       </MediaQuery>
       <Space h="xl" />
 
-      <Box style={{ padding: "0 30px" }}>
-        <Group>
-          <SectionTitle text="Most recent blocks" />{" "}
-        </Group>
-      </Box>
+      <MediaQuery smallerThan={1440} styles={{ display: "none" }}>
+        <Box style={{ padding: "0 30px" }}>
+          <Group>
+            <SectionTitle text="Most recent blocks" />{" "}
+          </Group>
+        </Box>
+      </MediaQuery>
+
+      <MediaQuery largerThan={1440} styles={{ display: "none" }}>
+        <Box style={{ padding: "0 16px" }}>
+          <Group>
+            <SectionTitle text="Most recent blocks" />{" "}
+          </Group>
+        </Box>
+      </MediaQuery>
 
       <Space h="md" />
       <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
-        <Loader
-          color="gray"
-          size={30}
-          style={{ height: !loaded ? 200 : 0 }}
-        />
+        <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
       </Group>
       <MediaQuery smallerThan={1440} styles={{ display: "none" }}>
         <Box style={{ padding: "0 30px" }}>
