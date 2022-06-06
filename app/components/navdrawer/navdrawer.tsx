@@ -4,9 +4,11 @@ import useStyles from "./styles";
 import { useNavigate, useLocation } from "react-router-dom";
 import MainNavbar from "~/mainnavbar";
 
-type Props = {};
+type Props = {
+  onNav?: () => void;
+};
 
-const NavDrawer: FunctionComponent<Props> = ({ }) => {
+const NavDrawer: FunctionComponent<Props> = ({ onNav }) => {
   let location = useLocation();
   let navigate = useNavigate();
   const { classes } = useStyles();
@@ -14,7 +16,7 @@ const NavDrawer: FunctionComponent<Props> = ({ }) => {
   return (
     <>
 
-      <MainNavbar />
+      <MainNavbar onNav={onNav} />
 
     </>
   );

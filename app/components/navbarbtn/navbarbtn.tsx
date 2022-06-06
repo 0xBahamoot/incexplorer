@@ -33,7 +33,6 @@ const NavbarBtn: FunctionComponent<Props> = ({ text, link, external }) => {
             window.open(link, "_blank");
           } else {
             navigate(link, { replace: true });
-            window.location.reload();
           }
         }}
         sx={(theme) => ({
@@ -54,8 +53,8 @@ const NavbarBtn: FunctionComponent<Props> = ({ text, link, external }) => {
               ? "#fff"
               : "#000"
             : theme.colorScheme === "dark"
-            ? "#757575"
-            : "#000",
+              ? "#757575"
+              : "#000",
           cursor: "pointer",
           textDecoration: "none",
           height: 40,

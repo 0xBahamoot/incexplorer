@@ -10,7 +10,7 @@ import {
   Space,
   MediaQuery,
 } from "@mantine/core";
-import { useState } from "react";
+import { FunctionComponent, useState } from "react";
 import NavbarBtn from "~/components/navbarbtn/navbarbtn";
 import { ChevronDown } from "tabler-icons-react";
 import { accordionLabelStyle } from "./styles";
@@ -34,10 +34,14 @@ function AccordionLabel({ label, icon, style }: AccordionLabelProps) {
   );
 }
 
-function BlockChainSection() {
+function BlockChainSection(onNav?: () => void) {
   return (
     <>
-      <Stack justify="flex-start" spacing="xs">
+      <Stack justify="flex-start" spacing="xs" onClick={() => {
+        if (onNav) {
+          onNav();
+        }
+      }}>
         <NavbarBtn text="Overview" link="/chain"></NavbarBtn>
         <NavbarBtn text="Beacon chain" link="/chain/beacon"></NavbarBtn>
         <NavbarBtn text="Shards chain" link="/chain/shards"></NavbarBtn>
@@ -48,10 +52,14 @@ function BlockChainSection() {
   );
 }
 
-function ExchangeSection() {
+function ExchangeSection(onNav?: () => void) {
   return (
     <>
-      <Stack justify="flex-start" spacing="xs">
+      <Stack justify="flex-start" spacing="xs" onClick={() => {
+        if (onNav) {
+          onNav();
+        }
+      }}>
         <NavbarBtn text="Markets" link="/charts/market"></NavbarBtn>
         <NavbarBtn text="Liquidity" link="/"></NavbarBtn>
       </Stack>
@@ -59,10 +67,14 @@ function ExchangeSection() {
   );
 }
 
-function ShieldedSection() {
+function ShieldedSection(onNav?: () => void) {
   return (
     <>
-      <Stack justify="flex-start" spacing="xs">
+      <Stack justify="flex-start" spacing="xs" onClick={() => {
+        if (onNav) {
+          onNav();
+        }
+      }}>
         {/* <NavbarBtn text='TVL' link='/charts/liquiditytvl'></NavbarBtn> */}
         {/* <NavbarBtn text='Shield Volume' link='/charts/shieldvolume'></NavbarBtn> */}
         <NavbarBtn text="Shield Txs" link="/shieldtxs"></NavbarBtn>
@@ -71,20 +83,28 @@ function ShieldedSection() {
   );
 }
 
-function NetworkSection() {
+function NetworkSection(onNav?: () => void) {
   return (
     <>
-      <Stack justify="flex-start" spacing="xs">
+      <Stack justify="flex-start" spacing="xs" onClick={() => {
+        if (onNav) {
+          onNav();
+        }
+      }}>
         <NavbarBtn text="Validators" link="/validators"></NavbarBtn>
       </Stack>
     </>
   );
 }
 
-function GetStartedSection() {
+function GetStartedSection(onNav?: () => void) {
   return (
     <>
-      <Stack justify="flex-start" spacing="xs">
+      <Stack justify="flex-start" spacing="xs" onClick={() => {
+        if (onNav) {
+          onNav();
+        }
+      }}>
         <NavbarBtn
           text="Download"
           link="https://incognito.org/"
@@ -95,10 +115,14 @@ function GetStartedSection() {
   );
 }
 
-function AboutUsSection() {
+function AboutUsSection(onNav?: () => void) {
   return (
     <>
-      <Stack justify="flex-start" spacing="xs">
+      <Stack justify="flex-start" spacing="xs" onClick={() => {
+        if (onNav) {
+          onNav();
+        }
+      }}>
         <NavbarBtn
           text="Utilities"
           link="https://incognito.org/"
@@ -113,8 +137,11 @@ function AboutUsSection() {
     </>
   );
 }
+type Props = {
+  onNav?: () => void;
+};
 
-function MainNavbar() {
+const MainNavbar: FunctionComponent<Props> = ({ onNav }) => {
   let navigate = useNavigate();
   const { classes } = accordionLabelStyle();
   return (
@@ -139,7 +166,9 @@ function MainNavbar() {
               icon: classes.icon,
             }}
             onClick={() => {
-              window.location.reload();
+              if (onNav) {
+                onNav()
+              }
               navigate(`/`, { replace: true });
             }}
           ></Accordion.Item>
@@ -162,7 +191,7 @@ function MainNavbar() {
                 icon: classes.icon,
               }}
             >
-              <BlockChainSection />
+              {BlockChainSection(onNav)}
             </Accordion.Item>
             {/* 
                     <Accordion.Item label={<AccordionLabel label='Privacy Exchange' icon='/assets/images/icons/navbar-exchange.svg' />}
@@ -184,7 +213,7 @@ function MainNavbar() {
                 icon: classes.icon,
               }}
             >
-              <ShieldedSection />
+              {ShieldedSection(onNav)}
             </Accordion.Item>
 
             {/* <Accordion.Item label={<AccordionLabel label='Network' icon='/assets/images/icons/navbar-network.svg' />}
@@ -210,7 +239,7 @@ function MainNavbar() {
                 icon: classes.icon,
               }}
             >
-              <AboutUsSection />
+              {AboutUsSection(onNav)}
             </Accordion.Item>
           </Accordion>
           {/* <Accordion.Item styles={{ control: { paddingLeft: 5 } }} iconSize={0} label={<AccordionLabel label='Community' icon='/assets/images/icons/navbar-blockchain.svg' />}
@@ -257,7 +286,7 @@ function MainNavbar() {
               }
               classNames={classes}
             >
-              <BlockChainSection />
+              {BlockChainSection()}
             </Accordion.Item>
             {/* 
                     <Accordion.Item label={<AccordionLabel label='Privacy Exchange' icon='/assets/images/icons/navbar-exchange.svg' />}
@@ -274,7 +303,7 @@ function MainNavbar() {
               }
               classNames={classes}
             >
-              <ShieldedSection />
+              {ShieldedSection()}
             </Accordion.Item>
 
             {/* <Accordion.Item label={<AccordionLabel label='Network' icon='/assets/images/icons/navbar-network.svg' />}
@@ -295,7 +324,7 @@ function MainNavbar() {
               }
               classNames={classes}
             >
-              <AboutUsSection />
+              {AboutUsSection()}
             </Accordion.Item>
           </Accordion>
 

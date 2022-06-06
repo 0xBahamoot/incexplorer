@@ -19,7 +19,6 @@ import { Sun, MoonStars, Search, X } from "tabler-icons-react";
 import React, { useEffect, useState } from "react";
 import { useLocalStorage } from "@mantine/hooks";
 import { Link, useNavigate } from "react-router-dom";
-import MainNavbar from "~/mainnavbar";
 import { useFetcher } from "@remix-run/react";
 import { showNotification } from "@mantine/notifications";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -126,16 +125,15 @@ function MainHeader() {
                 </a>
               </Center>
               <Group position="right">
-                <ActionIcon size="xl" radius="xl" variant="transparent">
+                <ActionIcon size="xl" radius="xl" variant="transparent" onClick={() => { setOpened(false) }}>
                   <X color="#757575" />
                 </ActionIcon>
               </Group>
             </Group>
           </Box>
-          <NavDrawer />
+          <NavDrawer onNav={() => setOpened(false)} />
           <Box style={{ paddingLeft: 16, paddingBottom: 10 }}>
             <Group position="left">
-              {/* <TokenPriceChip tokenid='0000004' /> */}
               <Button variant="subtle" color="gray" className={classes.btn} size="md" compact component="a" target={"_blank"} href="https://incognito.org/mediakit">Media kit</Button>
               <Button variant="subtle" color="gray" className={classes.btn} size="md" compact component="a" target={"_blank"} href="https://t.me/incognitochain">Telegram</Button>
               <Button variant="subtle" color="gray" className={classes.btn} size="md" compact component="a" target={"_blank"} href="https://twitter.com/IncognitoChain">Twitter</Button>
