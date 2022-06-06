@@ -68,9 +68,10 @@ function ShardsOverview() {
           <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
         </Group>
         <div style={{ height: loaded ? 'auto' : 0, overflow: 'hidden' }}>
+
           <Grid gutter="lg" columns={12}>
             {data.map((item: ChainInfo, idx: number) => (
-              <Grid.Col span={4} key={item.Hash} onClick={() => {
+              <Grid.Col xs={12} sm={6} md={6} lg={4} xl={4} key={item.Hash} onClick={() => {
                 console.log("SdfsdF");
                 navigate("/chain/shard/" + idx, { replace: true })
               }}>

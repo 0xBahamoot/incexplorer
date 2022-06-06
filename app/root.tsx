@@ -88,8 +88,8 @@ export default function App() {
               fontFamily: "Inter",
               headings: { fontFamily: "Inter" },
               breakpoints: {
-                xs: 800,
-                sm: 1024,
+                xs: 600,
+                sm: 768,
                 md: 1200,
                 lg: 1440,
                 xl: 1920,
@@ -98,8 +98,8 @@ export default function App() {
             defaultProps={{
               Container: {
                 sizes: {
-                  xs: 800,
-                  sm: 1024,
+                  xs: 600,
+                  sm: 768,
                   md: 1200,
                   lg: 1440,
                   xl: 1920,
@@ -111,11 +111,11 @@ export default function App() {
           >
             <AppShell
               padding={0}
-              navbarOffsetBreakpoint="sm"
+              navbarOffsetBreakpoint="md"
               fixed
               navbar={
                 <Navbar
-                  hiddenBreakpoint="sm"
+                  hiddenBreakpoint="md"
                   hidden={!openedNavBar}
                   width={{ sm: 300, lg: 300, height: "100%" }}
                   style={{ backgroundColor: "#1A1A1A" }}

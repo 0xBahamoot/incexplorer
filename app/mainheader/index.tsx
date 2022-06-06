@@ -12,8 +12,10 @@ import {
   Drawer,
   useMantineTheme,
   Loader,
+  Stack,
+  Box, Title
 } from "@mantine/core";
-import { Sun, MoonStars, Search } from "tabler-icons-react";
+import { Sun, MoonStars, Search, X } from "tabler-icons-react";
 import React, { useEffect, useState } from "react";
 import { useLocalStorage } from "@mantine/hooks";
 import { Link, useNavigate } from "react-router-dom";
@@ -22,6 +24,7 @@ import { useFetcher } from "@remix-run/react";
 import { showNotification } from "@mantine/notifications";
 import { NotificationsProvider } from "@mantine/notifications";
 import NavDrawer from "~/components/navdrawer/navdrawer";
+import useStyles from "./styles";
 
 // import { useLocation } from 'react-router-dom';
 
@@ -34,6 +37,7 @@ function MainHeader() {
   const [searchValue, setSearchValue] = useState("");
   const fetcher = useFetcher();
   const theme = useMantineTheme();
+  const { classes } = useStyles();
   const dark = colorScheme === "dark";
   let navigate = useNavigate();
 
@@ -101,15 +105,55 @@ function MainHeader() {
         onClose={() => setOpened(false)}
         padding={0}
         size="xl"
+        withCloseButton={false}
       >
-        <NavDrawer />
+        <Stack justify="space-between" style={{ height: '100%' }}>
+          <Box style={{ paddingLeft: 16, borderBottom: '1px solid #363636' }}>
+            <Group position="apart" style={{ height: 64 }}>
+              <Center>
+                <a href="/">
+                  <Image
+                    alt="logo"
+                    fit="contain"
+                    src={
+                      dark
+                        ? "/assets/images/logo_h_white.svg"
+                        : "/assets/images/logo_h_white.svg"
+                    }
+                    height={24}
+                    width={"auto"}
+                  />
+                </a>
+              </Center>
+              <Group position="right">
+                <ActionIcon size="xl" radius="xl" variant="transparent">
+                  <X color="#757575" />
+                </ActionIcon>
+              </Group>
+            </Group>
+          </Box>
+          <NavDrawer />
+          <Box style={{ paddingLeft: 16, paddingBottom: 10 }}>
+            <Group position="left">
+              {/* <TokenPriceChip tokenid='0000004' /> */}
+              <Button variant="subtle" color="gray" className={classes.btn} size="md" compact component="a" target={"_blank"} href="https://incognito.org/mediakit">Media kit</Button>
+              <Button variant="subtle" color="gray" className={classes.btn} size="md" compact component="a" target={"_blank"} href="https://t.me/incognitochain">Telegram</Button>
+              <Button variant="subtle" color="gray" className={classes.btn} size="md" compact component="a" target={"_blank"} href="https://twitter.com/IncognitoChain">Twitter</Button>
+            </Group>
+            <Group position="left">
+              <Center style={{ width: 150, height: 50 }}>
+                <Title order={5} style={{ color: '#fff', fontWeight: 500 }}>© 2022 Incognito</Title>
+              </Center>
+            </Group>
+          </Box>
+        </Stack>
       </Drawer>
 
       <NotificationsProvider
         position="top-right"
         zIndex={2077}
       ></NotificationsProvider>
-      <MediaQuery largerThan={1024} styles={{ display: "none" }}>
+      <MediaQuery largerThan={1200} styles={{ display: "none" }}>
         <Group position="apart" style={{ height: 42 }}>
           <Group position="left">
             <Burger
@@ -142,7 +186,7 @@ function MainHeader() {
         </Group>
       </MediaQuery>
 
-      <MediaQuery smallerThan={1024} styles={{ display: "none" }}>
+      <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
         <Group position="apart" grow style={{ height: 42 }}>
           <Group position="left">
             <Center>
