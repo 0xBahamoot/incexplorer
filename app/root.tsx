@@ -76,6 +76,7 @@ export default function App() {
         <Meta />
         <Links />
         <link href="/stylesheet.css" rel="stylesheet"></link>
+        <link rel="apple-touch-icon" href="https://incognito.org/static/media/logo-stroke.f5c70e7b.png"></link>
       </head>
       <body>
         <ColorSchemeProvider

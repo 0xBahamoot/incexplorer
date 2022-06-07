@@ -61,11 +61,23 @@ function ShardDetail() {
   return (
     <>
       <Space h={30} />
-      <Box style={{ padding: '0 30px' }}>
-        <Group>
-          <SectionTitle text={"Shard " + chainID} />
-        </Group>
-      </Box>
+
+      <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
+        <Box style={{ padding: '0 30px' }}>
+          <Group>
+            <SectionTitle text={"Shard " + chainID} />
+          </Group>
+        </Box>
+      </MediaQuery>
+
+      <MediaQuery largerThan={1200} styles={{ display: "none" }}>
+        <Box style={{ padding: '0 16px' }}>
+          <Group>
+            <SectionTitle text={"Shard " + chainID} />
+          </Group>
+        </Box>
+      </MediaQuery>
+
       <Space h="md" />
       <MediaQuery smallerThan={1440} styles={{ display: "none" }}>
         <Box style={{ padding: "0 30px" }}>
@@ -160,11 +172,22 @@ function ShardDetail() {
 
 
       <Space h="xl" />
-      <Box style={{ padding: "0 30px" }}>
-        <Group>
-          <SectionTitle text="Most recent blocks" />{" "}
-        </Group>
-      </Box>
+
+      <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
+        <Box style={{ padding: "0 30px" }}>
+          <Group>
+            <SectionTitle text="Most recent blocks" />{" "}
+          </Group>
+        </Box>
+      </MediaQuery>
+
+      <MediaQuery largerThan={1200} styles={{ display: "none" }}>
+        <Box style={{ padding: "0 16px" }}>
+          <Group>
+            <SectionTitle text="Most recent blocks" />{" "}
+          </Group>
+        </Box>
+      </MediaQuery>
 
       <Space h="md" />
       <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
