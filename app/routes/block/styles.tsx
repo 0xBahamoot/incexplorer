@@ -1,29 +1,40 @@
-import { createStyles } from '@mantine/core';
+import { createStyles } from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({
-    container: {
-        backgroundColor: '#1A1A1A',
-        overflow: 'hidden'
+  container: {
+    backgroundColor: "#1A1A1A",
+    overflow: "hidden",
+    border: "1px solid #303030",
+  },
+  tableThead: {
+    backgroundColor: "#303030",
+    color: "#9C9C9C",
+  },
+  tableTheadText: {
+    color: "#9C9C9C !important",
+    fontWeight: 500,
+  },
+  wrapper: {
+    borderColor: "#303030",
+    borderBottomWidth: 1,
+    borderBottomStyle: "solid",
+    padding: "10px 24px 5px",
+    overflow: "hidden",
+    "&:last-child": {
+      borderBottomWidth: 0,
+      padding: "10px 24px 10px",
     },
-    tableThead: {
-        backgroundColor: '#303030', color: '#9C9C9C'
-    },
-    tableTheadText: {
-        color: '#9C9C9C !important',
-        fontWeight: 500
-    },
-    wrapper: {
-        backgroundColor: theme.colorScheme === 'dark' ? '#1A1A1A' : theme.white,
-        borderColor: "#303030",
-        borderBottomWidth: 1,
-        borderBottomStyle: "solid",
-        marginBottom: 15,
-        paddingBottom: 10,
-        overflow: 'hidden',
-        '&:last-child': {
-            borderBottomWidth: 0
-        }
-    },
+  },
+  propertyName: {
+    fontSize: 16,
+    fontWeight: 400,
+    color: "#757575",
+  },
+  propertyValue: {
+    fontSize: 16,
+    fontWeight: 400,
+    color: "#fff",
+  },
 }));
 
 export default useStyles;
