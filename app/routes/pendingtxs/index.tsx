@@ -114,21 +114,28 @@ function PendingTxs() {
             <ScrollArea
               style={{
                 height: "auto",
-                borderRadius: 0,
                 overflow: "hidden",
-                border: "1px solid #363636",
+                paddingBottom: 16,
               }}
               scrollbarSize={4}
             >
-              <Table verticalSpacing={0} horizontalSpacing={16} fontSize={16}>
-                <thead className={classes.tableThead}>
-                  <tr>
-                    <th className={classes.tableTheadText}>Hash</th>
-                    <th className={classes.tableTheadText}>Time created</th>
-                  </tr>
-                </thead>
-                <tbody>{rows}</tbody>
-              </Table>
+              <Box
+                style={{
+                  height: "auto",
+                  overflow: "hidden",
+                  border: "1px solid #363636",
+                }}
+              >
+                <Table verticalSpacing={0} horizontalSpacing={16} fontSize={16}>
+                  <thead className={classes.tableThead}>
+                    <tr>
+                      <th className={classes.tableTheadText}>Hash</th>
+                      <th className={classes.tableTheadText}>Time created</th>
+                    </tr>
+                  </thead>
+                  <tbody>{rows}</tbody>
+                </Table>
+              </Box>
             </ScrollArea>
           </Box>
         </div>

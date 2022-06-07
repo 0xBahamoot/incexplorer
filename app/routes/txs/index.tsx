@@ -71,7 +71,8 @@ function Txs() {
                 borderRadius: 12,
                 overflow: "hidden",
                 border: "1px solid #363636",
-              }} scrollbarSize={4}
+              }}
+              scrollbarSize={4}
             >
               <TxListCard txlist={txListData}></TxListCard>
             </ScrollArea>
@@ -85,12 +86,20 @@ function Txs() {
             <ScrollArea
               style={{
                 height: "auto",
-                borderRadius: 0,
                 overflow: "hidden",
-                border: "1px solid #363636",
-              }} scrollbarSize={4}
+                paddingBottom: 16,
+              }}
+              scrollbarSize={4}
             >
-              <TxListCard txlist={txListData}></TxListCard>
+              <Box
+                style={{
+                  height: "auto",
+                  overflow: "hidden",
+                  border: "1px solid #363636",
+                }}
+              >
+                <TxListCard txlist={txListData}></TxListCard>
+              </Box>
             </ScrollArea>
           </div>
         </Box>

@@ -159,7 +159,8 @@ function ShardsOverview() {
                 width: "100%",
                 whiteSpace: "nowrap",
                 padding: "10px 0",
-              }} scrollbarSize={4}
+              }}
+              scrollbarSize={4}
             >
               <div
                 style={{
@@ -215,7 +216,7 @@ function ShardsOverview() {
             </Group>
           </Box>
           <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
-            <Box p={'0 30px'}>
+            <Box p={"0 30px"}>
               <Grid gutter="lg" columns={20}>
                 {overviewData.map((item: any) => (
                   <Grid.Col sm={7} md={5} lg={4} xl={4} key={item.Title}>
@@ -229,7 +230,6 @@ function ShardsOverview() {
               </Grid>
             </Box>
           </div>
-
 
           <Box style={{ padding: "0 30px" }}>
             <Space h={40} />
@@ -247,7 +247,9 @@ function ShardsOverview() {
               borderRadius: 12,
               overflow: "hidden",
               border: "1px solid #363636",
-            }} scrollbarSize={4}
+            }}
+            scrollbarSize={4}
+            offsetScrollbars={true}
           >
             <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
               <thead className={classes.tableThead}>
@@ -295,50 +297,58 @@ function ShardsOverview() {
           style={{
             height: "auto",
             overflow: "hidden",
-            border: "1px solid #363636",
-          }} scrollbarSize={4}
+            paddingBottom: 16,
+          }}
+          scrollbarSize={4}
         >
-          <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
-            <thead className={classes.tableThead}>
-              <tr>
-                <th>
-                  <Text className={classes.tableTheadText}>Hash</Text>
-                </th>
-                <th>
-                  <Text className={classes.tableTheadText}></Text>
-                </th>
-                <th>
-                  <Text className={classes.tableTheadText}>Height</Text>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style={{ cursor: "pointer", lineHeight: 0, height: 50 }}>
-                <td style={{ width: 100 }}>
-                  <Text
-                    className={classes.hashText}
-                    variant="link"
-                    component={Link}
-                    to={"/block/" + data.beaconInfo.Hash + "?beacon=true"}
-                  >
-                    {getBlockHashText(data.beaconInfo.Hash)}
-                  </Text>
-                </td>
-                <td style={{ color: "#757575", minWidth: 200 }}>
-                  {format.formatUnixDateTime(data.beaconInfo.Time)}
-                </td>
-                <td>
-                  {format.formatAmount({
-                    humanAmount: data.beaconInfo.Height,
-                    decimals: 4,
-                  })}
-                </td>
-              </tr>
-            </tbody>
-          </Table>
+          <Box
+            style={{
+              height: "auto",
+              overflow: "hidden",
+              border: "1px solid #363636",
+            }}
+          >
+            <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
+              <thead className={classes.tableThead}>
+                <tr>
+                  <th>
+                    <Text className={classes.tableTheadText}>Hash</Text>
+                  </th>
+                  <th>
+                    <Text className={classes.tableTheadText}></Text>
+                  </th>
+                  <th>
+                    <Text className={classes.tableTheadText}>Height</Text>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style={{ cursor: "pointer", lineHeight: 0, height: 50 }}>
+                  <td style={{ width: 100 }}>
+                    <Text
+                      className={classes.hashText}
+                      variant="link"
+                      component={Link}
+                      to={"/block/" + data.beaconInfo.Hash + "?beacon=true"}
+                    >
+                      {getBlockHashText(data.beaconInfo.Hash)}
+                    </Text>
+                  </td>
+                  <td style={{ color: "#757575", minWidth: 200 }}>
+                    {format.formatUnixDateTime(data.beaconInfo.Time)}
+                  </td>
+                  <td>
+                    {format.formatAmount({
+                      humanAmount: data.beaconInfo.Height,
+                      decimals: 4,
+                    })}
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
+          </Box>
         </ScrollArea>
       </MediaQuery>
-
 
       <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
         <div>
@@ -366,7 +376,9 @@ function ShardsOverview() {
               borderRadius: 12,
               overflow: "hidden",
               border: "1px solid #363636",
-            }} scrollbarSize={4}
+            }}
+            scrollbarSize={4}
+            offsetScrollbars={true}
           >
             <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
               <thead className={classes.tableThead}>
@@ -400,31 +412,42 @@ function ShardsOverview() {
           style={{
             height: "auto",
             overflow: "hidden",
-            border: "1px solid #363636",
-          }} scrollbarSize={4}
+            paddingBottom: 16,
+          }}
+          scrollbarSize={4}
         >
-          <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
-            <thead className={classes.tableThead}>
-              <tr>
-                <th>
-                  <Text className={classes.tableTheadText}>Hash</Text>
-                </th>
-                <th>
-                  <Text className={classes.tableTheadText}></Text>
-                </th>
-                <th>
-                  <Text className={classes.tableTheadText}>No. of shards</Text>
-                </th>
-                <th>
-                  <Text className={classes.tableTheadText}>Height</Text>
-                </th>
-                <th>
-                  <Text className={classes.tableTheadText}>Total txs</Text>
-                </th>
-              </tr>
-            </thead>
-            <tbody>{shardRows}</tbody>
-          </Table>
+          <Box
+            style={{
+              height: "auto",
+              overflow: "hidden",
+              border: "1px solid #363636",
+            }}
+          >
+            <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
+              <thead className={classes.tableThead}>
+                <tr>
+                  <th>
+                    <Text className={classes.tableTheadText}>Hash</Text>
+                  </th>
+                  <th>
+                    <Text className={classes.tableTheadText}></Text>
+                  </th>
+                  <th>
+                    <Text className={classes.tableTheadText}>
+                      No. of shards
+                    </Text>
+                  </th>
+                  <th>
+                    <Text className={classes.tableTheadText}>Height</Text>
+                  </th>
+                  <th>
+                    <Text className={classes.tableTheadText}>Total txs</Text>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>{shardRows}</tbody>
+            </Table>
+          </Box>
         </ScrollArea>
       </MediaQuery>
       <Space h="md" />
