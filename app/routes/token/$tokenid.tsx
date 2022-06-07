@@ -118,7 +118,7 @@ function TokenInfo() {
                         <Text color="gray">Metadata</Text>
                     </Grid.Col>
                     <Grid.Col span={20}>
-                        <ScrollArea style={{ height: 250 }}>
+                        <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
                             <PrettyPrintJson data={JSON.parse(loaderData.Metadata)}></PrettyPrintJson>
                         </ScrollArea>
                     </Grid.Col>
@@ -150,7 +150,7 @@ function TokenInfo() {
                         <Text color="gray">Proof (base58check encode)</Text>
                     </Grid.Col>
                     <Grid.Col span={20}>
-                        <ScrollArea style={{ height: 250 }}>
+                        <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
                             <Text>{loaderData.Proof}</Text>
                         </ScrollArea>
                     </Grid.Col>
@@ -162,7 +162,7 @@ function TokenInfo() {
                         <Text color="gray">Proof detail</Text>
                     </Grid.Col>
                     <Grid.Col span={20}>
-                        <ScrollArea style={{ height: 250 }}>
+                        <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
                             <PrettyPrintJson data={loaderData.ProofDetail}></PrettyPrintJson>
                         </ScrollArea>
                     </Grid.Col>
@@ -173,7 +173,7 @@ function TokenInfo() {
                         <Text color="gray">Transacted privacy coin</Text>
                     </Grid.Col>
                     <Grid.Col span={20}>
-                        <ScrollArea style={{ height: 250 }}>
+                        <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
                             <PrettyPrintJson data={JSON.parse(loaderData.PrivacyCustomTokenData)} ></PrettyPrintJson>
                         </ScrollArea>
                     </Grid.Col>
@@ -184,7 +184,7 @@ function TokenInfo() {
                         <Text color="gray">Privacy coin proof detail</Text>
                     </Grid.Col>
                     <Grid.Col span={20}>
-                        <ScrollArea style={{ height: 250 }}>
+                        <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
                             <PrettyPrintJson data={loaderData.PrivacyCustomTokenProofDetail}></PrettyPrintJson>
                         </ScrollArea>
                     </Grid.Col>

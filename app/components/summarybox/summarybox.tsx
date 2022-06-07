@@ -14,6 +14,7 @@ const SummaryBox: FunctionComponent<Props> = ({ items, scroll }) => {
         <ScrollArea
           p={0}
           style={{ width: "100%", whiteSpace: "nowrap", padding: "10px 0" }}
+          scrollbarSize={4}
         >
           <div
             style={{

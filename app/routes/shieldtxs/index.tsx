@@ -68,7 +68,7 @@ function ShieldTxs() {
                 borderRadius: 12,
                 overflow: "hidden",
                 border: "1px solid #363636",
-              }}
+              }} scrollbarSize={4}
             >
               <ShieldListCard txlist={txListData}></ShieldListCard>
             </ScrollArea>
@@ -81,7 +81,7 @@ function ShieldTxs() {
               height: "auto",
               overflow: "hidden",
               border: "1px solid #363636",
-            }}
+            }} scrollbarSize={4}
           >
             <ShieldListCard txlist={txListData}></ShieldListCard>
           </ScrollArea>

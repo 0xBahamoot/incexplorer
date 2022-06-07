@@ -87,7 +87,7 @@ function ShardDetail() {
               borderRadius: 12,
               overflow: "hidden",
               border: "1px solid #363636",
-            }}
+            }} scrollbarSize={4}
           >
             <Box
               className={classes.boxInfo}
@@ -133,7 +133,7 @@ function ShardDetail() {
               borderRadius: 0,
               overflow: "hidden",
               border: "1px solid #363636",
-            }}
+            }} scrollbarSize={4}
           >
             <Box
               className={classes.boxInfo}

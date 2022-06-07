@@ -159,7 +159,7 @@ function ShardsOverview() {
                 width: "100%",
                 whiteSpace: "nowrap",
                 padding: "10px 0",
-              }}
+              }} scrollbarSize={4}
             >
               <div
                 style={{
@@ -247,7 +247,7 @@ function ShardsOverview() {
               borderRadius: 12,
               overflow: "hidden",
               border: "1px solid #363636",
-            }}
+            }} scrollbarSize={4}
           >
             <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
               <thead className={classes.tableThead}>
@@ -296,7 +296,7 @@ function ShardsOverview() {
             height: "auto",
             overflow: "hidden",
             border: "1px solid #363636",
-          }}
+          }} scrollbarSize={4}
         >
           <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
             <thead className={classes.tableThead}>
@@ -366,7 +366,7 @@ function ShardsOverview() {
               borderRadius: 12,
               overflow: "hidden",
               border: "1px solid #363636",
-            }}
+            }} scrollbarSize={4}
           >
             <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
               <thead className={classes.tableThead}>
@@ -401,7 +401,7 @@ function ShardsOverview() {
             height: "auto",
             overflow: "hidden",
             border: "1px solid #363636",
-          }}
+          }} scrollbarSize={4}
         >
           <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
             <thead className={classes.tableThead}>

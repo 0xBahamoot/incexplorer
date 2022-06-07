@@ -81,7 +81,7 @@ function BeaconDetail() {
                 borderRadius: 12,
                 overflow: "hidden",
                 border: "1px solid #363636",
-              }}
+              }} scrollbarSize={4}
             >
               <Box className={classes.boxInfo}>
                 <Group
@@ -128,7 +128,7 @@ function BeaconDetail() {
                 borderRadius: 0,
                 overflow: "hidden",
                 border: "1px solid #363636",
-              }}
+              }} scrollbarSize={4}
             >
               <Box className={classes.boxInfo}>
                 <Group
@@ -190,7 +190,7 @@ function BeaconDetail() {
                 borderRadius: 12,
                 overflow: "hidden",
                 border: "1px solid #363636",
-              }}
+              }} scrollbarSize={4}
             >
               <BlockListCard blocklist={data}></BlockListCard>
             </ScrollArea>
@@ -206,7 +206,7 @@ function BeaconDetail() {
                 borderRadius: 0,
                 overflow: "hidden",
                 border: "1px solid #363636",
-              }}
+              }} scrollbarSize={4}
             >
               <BlockListCard blocklist={data}></BlockListCard>
             </ScrollArea>

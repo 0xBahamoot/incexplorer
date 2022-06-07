@@ -136,7 +136,7 @@ function BlockDetail() {
             <Text color="gray">Validation Data</Text>
           </Grid.Col>
           <Grid.Col span={20}>
-            <ScrollArea style={{ height: 250 }}>
+            <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
               <PrettyPrintJson data={JSON.parse(data.ValidationData)} />
             </ScrollArea>
           </Grid.Col>
@@ -150,7 +150,7 @@ function BlockDetail() {
                   <Text color="gray">Root Hashes</Text>
                 </Grid.Col>
                 <Grid.Col span={20}>
-                  <ScrollArea style={{ height: 250 }}>
+                  <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
                     <PrettyPrintJson data={data.RootHash} />
                   </ScrollArea>
                 </Grid.Col>
@@ -180,7 +180,7 @@ function BlockDetail() {
                   <Text color="gray">Instructions</Text>
                 </Grid.Col>
                 <Grid.Col span={20}>
-                  <ScrollArea style={{ height: 250 }}>
+                  <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
                     <PrettyPrintJson data={data.Instructions} />
                   </ScrollArea>
                 </Grid.Col>
@@ -193,7 +193,7 @@ function BlockDetail() {
                   <Text color="gray">Instructions</Text>
                 </Grid.Col>
                 <Grid.Col span={20}>
-                  <ScrollArea style={{ height: 250 }}>
+                  <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
                     <PrettyPrintJson data={data.Instruction} />
                   </ScrollArea>
                 </Grid.Col>
