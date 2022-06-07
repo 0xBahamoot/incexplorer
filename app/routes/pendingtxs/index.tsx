@@ -65,7 +65,7 @@ function PendingTxs() {
             {element.TxID}
           </Text>
         </td>
-        <td style={{ color: "#757575" }}>
+        <td style={{ color: "#757575", whiteSpace: "nowrap" }}>
           {format.formatUnixDateTime(element.LockTime)}
         </td>
       </tr>
@@ -87,7 +87,8 @@ function PendingTxs() {
                 borderRadius: 12,
                 overflow: "hidden",
                 border: "1px solid #363636",
-              }} scrollbarSize={4}
+              }}
+              scrollbarSize={4}
             >
               <Table verticalSpacing={0} horizontalSpacing={24} fontSize={16}>
                 <thead className={classes.tableThead}>
@@ -116,7 +117,8 @@ function PendingTxs() {
                 borderRadius: 0,
                 overflow: "hidden",
                 border: "1px solid #363636",
-              }} scrollbarSize={4}
+              }}
+              scrollbarSize={4}
             >
               <Table verticalSpacing={0} horizontalSpacing={16} fontSize={16}>
                 <thead className={classes.tableThead}>
