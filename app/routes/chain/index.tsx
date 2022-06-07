@@ -141,7 +141,7 @@ function ShardsOverview() {
 
       <MediaQuery largerThan={1200} styles={{ display: "none" }}>
         <div>
-          <Box style={{ padding: "0 30px" }}>
+          <Box style={{ padding: "0 16px" }}>
             <SectionTitle text="Overview" />
             <Space h="md" />
             <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
@@ -168,7 +168,7 @@ function ShardsOverview() {
                   width: "auto",
                   whiteSpace: "nowrap",
                   height: "auto",
-                  padding: "0 30px",
+                  padding: "0 16px",
                 }}
               >
                 {overviewData.map((item: any) => (
@@ -192,12 +192,18 @@ function ShardsOverview() {
               </div>
             </ScrollArea>
           </div>
+
+          <Box style={{ padding: "0 16px" }}>
+            <Space h={40} />
+            <SectionTitle text="Beacon Chain" />
+            <Space h="sm" />
+          </Box>
         </div>
       </MediaQuery>
 
       <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
         <div>
-          <Box style={{ padding: "0 16px" }}>
+          <Box style={{ padding: "0 30px" }}>
             <SectionTitle text="Overview" />
             <Space h="md" />
             <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
@@ -223,20 +229,15 @@ function ShardsOverview() {
               </Grid>
             </Box>
           </div>
+
+
+          <Box style={{ padding: "0 30px" }}>
+            <Space h={40} />
+            <SectionTitle text="Beacon Chain" />
+            <Space h="sm" />
+          </Box>
         </div>
       </MediaQuery>
-
-      {/* <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
-          <Box p={0}>
-            <Grid gutter="lg" columns={15}></Grid>
-          </Box>
-        </div> */}
-
-      <Box style={{ padding: "0 30px" }}>
-        <Space h={40} />
-        <SectionTitle text="Beacon Chain" />
-        <Space h="sm" />
-      </Box>
 
       <MediaQuery smallerThan={1440} styles={{ display: "none" }}>
         <Box style={{ padding: "0 30px 30px" }}>
@@ -340,11 +341,22 @@ function ShardsOverview() {
 
       <Space h={40} />
 
-      <Box style={{ padding: "0 30px" }}>
-        <SectionTitle text="Most recent blocks" />
-        <Space h="sm" />
-      </Box>
+      <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
+        <div>
+          <Box style={{ padding: "0 30px" }}>
+            <SectionTitle text="Most recent blocks" />
+          </Box>
+        </div>
+      </MediaQuery>
+      <MediaQuery largerThan={1200} styles={{ display: "none" }}>
+        <div>
+          <Box style={{ padding: "0 16px" }}>
+            <SectionTitle text="Most recent blocks" />
+          </Box>
+        </div>
+      </MediaQuery>
 
+      <Space h="sm" />
       <MediaQuery smallerThan={1440} styles={{ display: "none" }}>
         <Box style={{ padding: "0 30px 30px" }}>
           <ScrollArea
