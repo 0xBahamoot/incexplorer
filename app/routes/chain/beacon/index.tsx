@@ -16,6 +16,7 @@ import { useLoaderData, useFetcher } from "@remix-run/react";
 import { BlockData } from "~/types/types";
 import { useState, useEffect } from "react";
 import SectionTitle from "~/components/sectiontitle/sectiontitle";
+import useStyles from "./styles";
 
 export const loader: LoaderFunction = async () => {
   let blockList: BlockData[];
@@ -26,6 +27,7 @@ export const loader: LoaderFunction = async () => {
 
 function BeaconDetail() {
   const loaded = true;
+  const { classes } = useStyles();
 
   const loaderData = useLoaderData();
 
@@ -65,83 +67,162 @@ function BeaconDetail() {
   return (
     <>
       <Space h={30} />
-      <Box style={{ padding: "0 30px" }}>
-        {/* <Text>|</Text> <Text>Total blocks: {currentHeight}</Text> */}
-        <Group>
-          <SectionTitle text="Beacon Chain" />
-        </Group>
-        <Space h="md" />
-        <Box
-          style={{
-            padding: 0,
-            border: "1px solid #363636",
-            borderRadius: 12,
-            display: "block",
-            overflow: "hidden",
-          }}
-        >
-          <Group
-            position="apart"
-            style={{ backgroundColor: "#363636", padding: "9px 24px" }}
-          >
-            <Text
+
+      <MediaQuery smallerThan={1440} styles={{ display: "none" }}>
+        <div>
+          <Box style={{ padding: "0 30px" }}>
+            <Group>
+              <SectionTitle text="Beacon Chain" />
+            </Group>
+            <Space h="md" />
+            <ScrollArea
               style={{
-                fontWeight: 500,
-                fontSize: 16,
-                color: "#9C9C9C",
+                height: "auto",
+                borderRadius: 12,
+                overflow: "hidden",
+                border: "1px solid #363636",
               }}
+              scrollbarSize={4}
             >
-              Current block producer
-            </Text>
-            <div style={{ width: "auto", overflow: "hidden" }}>
-              <Text style={{ color: "#9C9C9C", fontWeight: 500 }}>
-                Total blocks:{" "}
-                <span style={{ color: "#fff", fontWeight: 500 }}>
-                  {currentHeight}
-                </span>
-              </Text>
-              {/* <Text style={{ color: "#fff" }}></Text> */}
-            </div>
-          </Group>
-          <Text
-            style={{
-              color: "#fff",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              maxWidth: "80%",
-              padding: "14px 24px",
-              fontWeight: 500,
-            }}
-          >
-            {currentProducer}
-          </Text>
-        </Box>
-        <Space h="xl" />
-        <Group>
-          <SectionTitle text="Most recent blocks" />{" "}
-        </Group>
-        <Space h="md" />
-        <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
-          <Loader
-            color="gray"
-            size={30}
-            style={{ height: !loaded ? 200 : 0 }}
-          />
-        </Group>
-        <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
-          <ScrollArea
-            style={{
-              height: "auto",
-              borderRadius: 12,
-              overflow: "hidden",
-              border: "1px solid #363636",
-            }}
-          >
-            <BlockListCard blocklist={data}></BlockListCard>
-          </ScrollArea>
+              <Box className={classes.boxInfo}>
+                <Group
+                  position="apart"
+                  style={{ backgroundColor: "#363636", padding: "9px 24px" }}
+                >
+                  <Text
+                    style={{
+                      fontWeight: 500,
+                      fontSize: 16,
+                      color: "#9C9C9C",
+                    }}
+                  >
+                    Current block producer
+                  </Text>
+                  <div style={{ width: "auto", overflow: "hidden" }}>
+                    <Text style={{ color: "#9C9C9C", fontWeight: 500 }}>
+                      Total blocks:{" "}
+                      <span style={{ color: "#fff", fontWeight: 500 }}>
+                        {currentHeight}
+                      </span>
+                    </Text>
+                  </div>
+                </Group>
+                <Text className={classes.producerText}>{currentProducer}</Text>
+              </Box>
+            </ScrollArea>
+          </Box>
         </div>
-      </Box>
+      </MediaQuery>
+
+      <MediaQuery largerThan={1440} styles={{ display: "none" }}>
+        <div>
+          <Box style={{ padding: "0 16px" }}>
+            <Group>
+              <SectionTitle text="Beacon Chain" />
+            </Group>
+            <Space h="md" />
+          </Box>
+          <Box style={{ padding: "0" }}>
+            <ScrollArea
+              style={{
+                height: "auto",
+                overflow: "hidden",
+                paddingBottom: 16,
+              }}
+              scrollbarSize={4}
+            >
+              <Box className={classes.boxInfo}>
+                <Group
+                  position="apart"
+                  style={{ backgroundColor: "#363636", padding: "9px 24px" }}
+                >
+                  <Text
+                    style={{
+                      fontWeight: 500,
+                      fontSize: 16,
+                      color: "#9C9C9C",
+                    }}
+                  >
+                    Current block producer
+                  </Text>
+                  <div style={{ width: "auto", overflow: "hidden" }}>
+                    <Text style={{ color: "#9C9C9C", fontWeight: 500 }}>
+                      Total blocks:{" "}
+                      <span style={{ color: "#fff", fontWeight: 500 }}>
+                        {currentHeight}
+                      </span>
+                    </Text>
+                  </div>
+                </Group>
+                <Text className={classes.producerText}>{currentProducer}</Text>
+              </Box>
+            </ScrollArea>
+          </Box>
+        </div>
+      </MediaQuery>
+      <Space h="xl" />
+
+      <MediaQuery smallerThan={1440} styles={{ display: "none" }}>
+        <Box style={{ padding: "0 30px" }}>
+          <Group>
+            <SectionTitle text="Most recent blocks" />{" "}
+          </Group>
+        </Box>
+      </MediaQuery>
+
+      <MediaQuery largerThan={1440} styles={{ display: "none" }}>
+        <Box style={{ padding: "0 16px" }}>
+          <Group>
+            <SectionTitle text="Most recent blocks" />{" "}
+          </Group>
+        </Box>
+      </MediaQuery>
+
+      <Space h="md" />
+      <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
+        <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
+      </Group>
+      <MediaQuery smallerThan={1440} styles={{ display: "none" }}>
+        <Box style={{ padding: "0 30px" }}>
+          <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
+            <ScrollArea
+              style={{
+                height: "auto",
+                borderRadius: 12,
+                overflow: "hidden",
+                border: "1px solid #363636",
+              }}
+              scrollbarSize={4}
+            >
+              <BlockListCard blocklist={data}></BlockListCard>
+            </ScrollArea>
+          </div>
+        </Box>
+      </MediaQuery>
+      <MediaQuery largerThan={1440} styles={{ display: "none" }}>
+        <Box style={{ padding: "0 0" }}>
+          <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
+            <ScrollArea
+              style={{
+                height: "auto",
+                overflow: "hidden",
+                paddingBottom: 16,
+              }}
+              scrollbarSize={4}
+            >
+              <Box
+                style={{
+                  height: "auto",
+                  overflow: "hidden",
+                  border: "1px solid #363636",
+                }}
+              >
+                <BlockListCard blocklist={data}></BlockListCard>
+              </Box>
+            </ScrollArea>
+          </div>
+        </Box>
+      </MediaQuery>
       <Space h="sm" />
     </>
   );

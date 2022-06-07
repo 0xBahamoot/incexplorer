@@ -13,17 +13,119 @@ import TxListCard from "~/components/txlistcard/txlistcard";
 import { useState, useEffect } from "react";
 import { getNormalTx } from "~/services/transactions";
 import { Link } from "react-router-dom";
-import { getDashboard, getSummary, getExplorerSummary } from "~/services/summary";
+import {
+  getDashboard,
+  getSummary,
+  getExplorerSummary,
+} from "~/services/summary";
 import SectionTitle from "~/components/sectiontitle/sectiontitle";
 import type { LoaderFunction } from "@remix-run/node";
 import { useFetcher } from "@remix-run/react";
 
-
 export const loader: LoaderFunction = async ({ params }) => {
   const { data, message } = (await getExplorerSummary()) as any;
   console.log(data);
-  return data
+  return data;
 };
+
+function renderMainContent(
+  loaded: boolean,
+  networkData: any,
+  pdexData: any,
+  prvData: any,
+  contentPadding: string,
+  scroll: boolean
+) {
+  return (
+    <>
+      <Space h={30} />
+      <Box style={{ padding: contentPadding }}>
+        <SectionTitle text="Network" />
+      </Box>
+      <Space h={contentPadding == "0px 16px" ? 6 : "sm"} />
+
+      <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
+        <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
+      </Group>
+
+      <div
+        style={{
+          height: loaded ? "auto" : 0,
+          overflow: "hidden",
+          padding: contentPadding == "0px 16px" ? "0" : contentPadding,
+        }}
+      >
+        <SummaryBox items={networkData} scroll={scroll}></SummaryBox>
+      </div>
+
+      <Space h={contentPadding == "0px 16px" ? 24 : 40} />
+      <Box style={{ padding: contentPadding }}>
+        <SectionTitle text="Privacy Exchange" />
+      </Box>
+      <Space h={contentPadding == "0px 16px" ? 6 : "sm"} />
+
+      <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
+        <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
+      </Group>
+
+      <div
+        style={{
+          height: loaded ? "auto" : 0,
+          overflow: "hidden",
+          padding: contentPadding == "0px 16px" ? "0" : contentPadding,
+        }}
+      >
+        <SummaryBox items={pdexData} scroll={scroll}></SummaryBox>
+      </div>
+
+      <Space h={contentPadding == "0px 16px" ? 24 : 40} />
+      <Box style={{ padding: contentPadding }}>
+        <SectionTitle text="PRV" />
+      </Box>
+      <Space h={contentPadding == "0px 16px" ? 6 : "sm"} />
+
+      <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
+        <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
+      </Group>
+
+      <div
+        style={{
+          height: loaded ? "auto" : 0,
+          overflow: "hidden",
+          padding: contentPadding == "0px 16px" ? "0" : contentPadding,
+        }}
+      >
+        <SummaryBox items={prvData} scroll={scroll}></SummaryBox>
+      </div>
+
+      <Space h={contentPadding == "0px 16px" ? 24 : 40} />
+
+      <Box style={{ padding: contentPadding }}>
+        <Group position="apart">
+          <SectionTitle text="Transactions" />
+          <Button
+            color="gray"
+            variant="subtle"
+            compact
+            component={Link}
+            to="/txs"
+            style={{ marginRight: 10, color: "#757575" }}
+          >
+            <Text style={{ color: "#1A73E8", fontSize: 16 }}>View all</Text>
+          </Button>
+        </Group>
+        <Space h="md" />
+        <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
+          <Loader
+            color="gray"
+            size={30}
+            style={{ height: !loaded ? 200 : 0 }}
+          />
+        </Group>
+      </Box>
+    </>
+  );
+}
 
 function Home() {
   const fetcher = useFetcher();
@@ -121,7 +223,7 @@ function Home() {
       setNetworkData(networkList);
       setPdexData(pdexList);
       setPRVData(prvList);
-      handleFetchData()
+      handleFetchData();
       setLoaded(true);
     }
   }, [fetcher.data]);
@@ -136,73 +238,31 @@ function Home() {
   // }, []);
   return (
     <>
-      <Box style={{ padding: "0 30px" }}>
-        <Space h={30} />
-        <SectionTitle text="Network" />
-
-        <Space h="sm" />
-        <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
-          <Loader
-            color="gray"
-            size={30}
-            style={{ height: !loaded ? 200 : 0 }}
-          />
-        </Group>
-
-        <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
-          <SummaryBox items={networkData}></SummaryBox>
+      <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
+        <div>
+          {renderMainContent(
+            loaded,
+            networkData,
+            pdexData,
+            prvData,
+            "0px 30px",
+            false
+          )}
         </div>
-        <Space h={40} />
-        <SectionTitle text="Privacy Exchange" />
-        <Space h="sm" />
-        <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
-          <Loader
-            color="gray"
-            size={30}
-            style={{ height: !loaded ? 200 : 0 }}
-          />
-        </Group>
+      </MediaQuery>
 
-        <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
-          <SummaryBox items={pdexData}></SummaryBox>
+      <MediaQuery largerThan={1200} styles={{ display: "none" }}>
+        <div>
+          {renderMainContent(
+            loaded,
+            networkData,
+            pdexData,
+            prvData,
+            "0px 16px",
+            true
+          )}
         </div>
-        <Space h={40} />
-        <SectionTitle text="PRV" />
-        <Space h="sm" />
-        <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
-          <Loader
-            color="gray"
-            size={30}
-            style={{ height: !loaded ? 200 : 0 }}
-          />
-        </Group>
-
-        <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
-          <SummaryBox items={prvData}></SummaryBox>
-        </div>
-        <Space h={40} />
-        <Group position="apart">
-          <SectionTitle text="Transactions" />
-          <Button
-            color="gray"
-            variant="subtle"
-            compact
-            component={Link}
-            to="/txs"
-            style={{ marginRight: 10, color: "#757575" }}
-          >
-            <Text style={{ color: "#1A73E8", fontSize: 16 }}>View all</Text>
-          </Button>
-        </Group>
-        <Space h="md" />
-        <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
-          <Loader
-            color="gray"
-            size={30}
-            style={{ height: !loaded ? 200 : 0 }}
-          />
-        </Group>
-      </Box>
+      </MediaQuery>
 
       <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
         <MediaQuery smallerThan={1440} styles={{ display: "none" }}>
@@ -214,6 +274,8 @@ function Home() {
                 overflow: "hidden",
                 border: "1px solid #363636",
               }}
+              scrollbarSize={4}
+              offsetScrollbars={true}
             >
               <TxListCard txlist={txListData}></TxListCard>
             </ScrollArea>
@@ -225,10 +287,19 @@ function Home() {
             style={{
               height: "auto",
               overflow: "hidden",
-              border: "1px solid #363636",
+              paddingBottom: 16,
             }}
+            scrollbarSize={4}
           >
-            <TxListCard txlist={txListData}></TxListCard>
+            <Box
+              style={{
+                height: "auto",
+                overflow: "hidden",
+                border: "1px solid #363636",
+              }}
+            >
+              <TxListCard txlist={txListData}></TxListCard>
+            </Box>
           </ScrollArea>
         </MediaQuery>
       </div>
