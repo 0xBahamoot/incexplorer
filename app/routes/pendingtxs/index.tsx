@@ -121,8 +121,8 @@ function PendingTxs() {
               <Table verticalSpacing={0} horizontalSpacing={16} fontSize={16}>
                 <thead className={classes.tableThead}>
                   <tr>
-                    <th style={{ fontWeight: 500 }}>Hash</th>
-                    <th style={{ fontWeight: 500 }}>Time created</th>
+                    <th className={classes.tableTheadText}>Hash</th>
+                    <th className={classes.tableTheadText}>Time created</th>
                   </tr>
                 </thead>
                 <tbody>{rows}</tbody>

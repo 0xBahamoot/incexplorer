@@ -215,10 +215,10 @@ function ShardsOverview() {
             </Group>
           </Box>
           <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
-            <Box p={0}>
-              <Grid gutter="lg" columns={15}>
+            <Box p={'0 30px'}>
+              <Grid gutter="lg" columns={20}>
                 {overviewData.map((item: any) => (
-                  <Grid.Col span={3} key={item.Title}>
+                  <Grid.Col sm={7} md={5} lg={4} xl={4} key={item.Title}>
                     <SummaryCard
                       title={item.Title}
                       content={item.Content}

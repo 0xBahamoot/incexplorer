@@ -60,7 +60,7 @@ function ShieldTxs() {
         <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
       </Group>
       <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
-        <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
+        <MediaQuery smallerThan={1440} styles={{ display: "none" }}>
           <Box style={{ padding: "0 30px 30px" }}>
             <ScrollArea
               style={{
@@ -75,7 +75,7 @@ function ShieldTxs() {
           </Box>
         </MediaQuery>
 
-        <MediaQuery largerThan={1200} styles={{ display: "none" }}>
+        <MediaQuery largerThan={1440} styles={{ display: "none" }}>
           <ScrollArea
             style={{
               height: "auto",
