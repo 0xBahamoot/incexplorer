@@ -165,7 +165,7 @@ export default function App() {
               </Container>
 
               <MediaQuery largerThan={1200} styles={{ display: "none" }}>
-                <Affix position={{ bottom: 44, right: 16 }}>
+                <Affix position={{ bottom: 16, right: 16 }}>
                   <Transition transition="slide-up" mounted={scroll.y > 0}>
                     {(transitionStyles) => (
                       <ActionIcon

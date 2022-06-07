@@ -127,16 +127,17 @@ function Txs() {
           <Pagination
             page={activePage}
             onChange={handleFetchData}
-            siblings={1}
+            // siblings={1}
             boundaries={1}
+            size="sm"
             total={totalPage}
             radius="xl"
             className={classes.paginationBox}
             classNames={classes}
+            noWrap={true}
           />
         </Group>
       </Box>
-      <Space h="sm" />
     </>
   );
 }
