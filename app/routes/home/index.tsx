@@ -42,7 +42,7 @@ function renderMainContent(
       <Box style={{ padding: contentPadding }}>
         <SectionTitle text="Network" />
       </Box>
-      <Space h="sm" />
+      <Space h={contentPadding == "0px 16px" ? 6 : "sm"} />
 
       <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
         <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
@@ -58,11 +58,11 @@ function renderMainContent(
         <SummaryBox items={networkData} scroll={scroll}></SummaryBox>
       </div>
 
-      <Space h={40} />
+      <Space h={contentPadding == "0px 16px" ? 24 : 40} />
       <Box style={{ padding: contentPadding }}>
         <SectionTitle text="Privacy Exchange" />
       </Box>
-      <Space h="sm" />
+      <Space h={contentPadding == "0px 16px" ? 6 : "sm"} />
 
       <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
         <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
@@ -78,11 +78,11 @@ function renderMainContent(
         <SummaryBox items={pdexData} scroll={scroll}></SummaryBox>
       </div>
 
-      <Space h={40} />
+      <Space h={contentPadding == "0px 16px" ? 24 : 40} />
       <Box style={{ padding: contentPadding }}>
         <SectionTitle text="PRV" />
       </Box>
-      <Space h="sm" />
+      <Space h={contentPadding == "0px 16px" ? 6 : "sm"} />
 
       <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
         <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
@@ -98,7 +98,7 @@ function renderMainContent(
         <SummaryBox items={prvData} scroll={scroll}></SummaryBox>
       </div>
 
-      <Space h={40} />
+      <Space h={contentPadding == "0px 16px" ? 24 : 40} />
 
       <Box style={{ padding: contentPadding }}>
         <Group position="apart">

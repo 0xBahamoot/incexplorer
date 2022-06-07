@@ -143,7 +143,7 @@ function ShardsOverview() {
         <div>
           <Box style={{ padding: "0 16px" }}>
             <SectionTitle text="Overview" />
-            <Space h="md" />
+            <Space h={6} />
             <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
               <Loader
                 color="gray"
@@ -194,9 +194,9 @@ function ShardsOverview() {
           </div>
 
           <Box style={{ padding: "0 16px" }}>
-            <Space h={40} />
+            <Space h={24} />
             <SectionTitle text="Beacon Chain" />
-            <Space h="sm" />
+            <Space h={6} />
           </Box>
         </div>
       </MediaQuery>
@@ -339,10 +339,10 @@ function ShardsOverview() {
         </ScrollArea>
       </MediaQuery>
 
-      <Space h={40} />
 
       <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
         <div>
+          <Space h={40} />
           <Box style={{ padding: "0 30px" }}>
             <SectionTitle text="Most recent blocks" />
           </Box>
@@ -350,6 +350,7 @@ function ShardsOverview() {
       </MediaQuery>
       <MediaQuery largerThan={1200} styles={{ display: "none" }}>
         <div>
+          <Space h={24} />
           <Box style={{ padding: "0 16px" }}>
             <SectionTitle text="Most recent blocks" />
           </Box>
@@ -426,7 +427,7 @@ function ShardsOverview() {
           </Table>
         </ScrollArea>
       </MediaQuery>
-      <Space h="lg" />
+      <Space h="md" />
     </>
   );
 }
