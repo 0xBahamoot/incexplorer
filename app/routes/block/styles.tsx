@@ -20,6 +20,7 @@ const useStyles = createStyles((theme) => ({
     borderBottomStyle: "solid",
     padding: "8px 24px 10px",
     overflow: "hidden",
+    maxWidth: "200vw",
     height: 50,
     "&:last-child": {
       borderBottomWidth: 0,
