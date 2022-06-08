@@ -196,7 +196,7 @@ function BlockDetail() {
             </Grid.Col>
           </Grid>
 
-          <Grid columns={25} className={classes.wrapper}>
+          <Grid columns={25} className={classes.wrapper} style={{ height: 'auto' }}>
             <Grid.Col span={5}>
               <Text className={classes.propertyName}>Validation Data</Text>
             </Grid.Col>
@@ -209,7 +209,7 @@ function BlockDetail() {
 
           {isbeacon ? (
             <>
-              <Grid columns={25} className={classes.wrapper}>
+              <Grid columns={25} className={classes.wrapper} style={{ height: 'auto' }}>
                 <Grid.Col span={5}>
                   <Text className={classes.propertyName}>Root Hashes</Text>
                 </Grid.Col>
@@ -237,7 +237,7 @@ function BlockDetail() {
         <Paper radius="md" p={0} className={classes.container}>
           {isbeacon ? (
             <>
-              <Grid columns={25} className={classes.wrapper}>
+              <Grid columns={25} className={classes.wrapper} style={{ height: 'auto' }}>
                 <Grid.Col span={5}>
                   <Text className={classes.propertyName}>Instructions</Text>
                 </Grid.Col>
@@ -250,7 +250,7 @@ function BlockDetail() {
             </>
           ) : (
             <>
-              <Grid columns={25} className={classes.wrapper}>
+              <Grid columns={25} className={classes.wrapper} style={{ height: 'auto' }}>
                 <Grid.Col span={5}>
                   <Text className={classes.propertyName}>Instructions</Text>
                 </Grid.Col>
