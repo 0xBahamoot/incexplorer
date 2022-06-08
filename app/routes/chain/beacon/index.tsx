@@ -33,7 +33,7 @@ function BeaconDetail() {
 
   const [data, setData] = useState(loaderData);
   const [currentHeight, setCurrentHeight] = useState(0);
-  const [currentProducer, setCurrentProducer] = useState(0);
+  const [currentProducer, setCurrentProducer] = useState("");
 
   // if (loaderData.length > 0) {
   //   ;
@@ -63,7 +63,12 @@ function BeaconDetail() {
     }
   }, [fetcher.data]);
 
-  //TODO
+  function getEllipsisText(hash: String) {
+    let result: string = '';
+    result = hash.slice(0, 44) + '...' + hash.slice(-44);
+    return result
+  }
+
   return (
     <>
       <Space h={30} />
@@ -107,7 +112,7 @@ function BeaconDetail() {
                     </Text>
                   </div>
                 </Group>
-                <Text className={classes.producerText}>{currentProducer}</Text>
+                <Text className={classes.producerText}>{getEllipsisText(currentProducer)}</Text>
               </Box>
             </ScrollArea>
           </Box>

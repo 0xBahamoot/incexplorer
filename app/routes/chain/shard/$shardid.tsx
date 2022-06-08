@@ -29,7 +29,7 @@ function ShardDetail() {
   const loaderData = useLoaderData();
   const [data, setData] = useState(loaderData);
   const [currentHeight, setCurrentHeight] = useState(0);
-  const [currentProducer, setCurrentProducer] = useState(0);
+  const [currentProducer, setCurrentProducer] = useState("");
 
   // if (loaderData.length > 0) {
   //   ;
@@ -57,6 +57,12 @@ function ShardDetail() {
       setCurrentProducer(fetcher.data[0].BlockProducer)
     }
   }, [fetcher.data]);
+
+  function getEllipsisText(hash: String) {
+    let result: string = '';
+    result = hash.slice(0, 44) + '...' + hash.slice(-44);
+    return result
+  }
 
   return (
     <>
@@ -117,7 +123,7 @@ function ShardDetail() {
               <Text
                 className={classes.producerText}
               >
-                {currentProducer}
+                {getEllipsisText(currentProducer)}
               </Text>
             </Box>
           </ScrollArea>

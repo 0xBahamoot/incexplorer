@@ -8,7 +8,6 @@ const useStyles = createStyles((theme) => ({
   },
   producerText: {
     color: "#fff",
-    textOverflow: "ellipsis",
     whiteSpace: "nowrap",
     overflow: "hidden",
     maxWidth: 1024,
