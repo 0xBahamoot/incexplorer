@@ -147,6 +147,7 @@ function Txs() {
           />
         </Group>
       </Box>
+      <Space h={30} />
     </>
   );
 }

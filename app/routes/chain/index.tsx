@@ -128,7 +128,7 @@ function ShardsOverview() {
         <td className={classes.otherColumn}>
           {format.formatAmount({ humanAmount: element.Height, decimals: 4 })}
         </td>
-        <td>
+        <td className={classes.otherColumn}>
           {format.formatAmount({ humanAmount: element.TotalTxs, decimals: 4 })}
         </td>
       </tr>
