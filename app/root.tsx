@@ -25,11 +25,6 @@ import {
   Affix,
   ActionIcon,
   Transition,
-  Center,
-  Space,
-  Box,
-  Text,
-  Button,
   MediaQuery,
 } from "@mantine/core";
 import { useHotkeys, useLocalStorage } from "@mantine/hooks";

@@ -11,7 +11,7 @@ const useStyles = createStyles((theme) => ({
         textOverflow: "ellipsis",
         whiteSpace: "nowrap",
         overflow: "hidden",
-        maxWidth: "80%",
+        maxWidth: 1024,
         padding: "14px 24px",
         fontWeight: 500,
     }
