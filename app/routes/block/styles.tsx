@@ -27,7 +27,7 @@ const useStyles = createStyles((theme) => ({
   },
   propertyName: {
     fontSize: 16,
-    fontWeight: 400,
+    fontWeight: 500,
     color: "#757575",
   },
   propertyValue: {

@@ -32,86 +32,100 @@ function Tx() {
         <SectionTitle text={"Transaction Details"} />
         <Space h="md" />
 
-        <Paper shadow="sm" radius="md" p="xl" withBorder className={classes.container}>
-          <Grid columns={24} className={classes.wrapper}>
-            <Grid.Col span={4}>
-              <Text color="gray">Status</Text>
+        <Paper shadow="sm" radius="md" p={0} className={classes.container}>
+          <Grid columns={25} className={classes.wrapper}>
+            <Grid.Col span={5}>
+              <Text className={classes.propertyName}>Status</Text>
             </Grid.Col>
-            <Grid.Col span={20}>{loaderData.IsInBlock ? "Success" : "Pending"}</Grid.Col>
+            <Grid.Col span={20}> <Text style={{
+              backgroundColor: '#303030',
+              width: 'auto',
+              textOverflow: 'ellipsis', maxWidth: 250, overflow: 'hidden', whiteSpace: 'nowrap',
+              fontSize: 16, textAlign: 'center',
+              paddingLeft: 15,
+              paddingRight: 15,
+              paddingTop: 1,
+              paddingBottom: 1,
+              display: 'inline-block',
+              borderRadius: 6,
+              fontWeight: 400,
+              color: '#fff',
+              marginTop: -2,
+            }}>{loaderData.IsInBlock ? "Success" : "Pending"}</Text></Grid.Col>
           </Grid>
 
-          <Grid columns={24} className={classes.wrapper}>
-            <Grid.Col span={4}>
-              <Text color="gray">TxHash</Text>
+          <Grid columns={25} className={classes.wrapper}>
+            <Grid.Col span={5}>
+              <Text className={classes.propertyName}>TxHash</Text>
             </Grid.Col>
-            <Grid.Col span={20}>{loaderData.Hash}</Grid.Col>
+            <Grid.Col span={20} className={classes.propertyValue}>{loaderData.Hash}</Grid.Col>
           </Grid>
 
-          <Grid columns={24} className={classes.wrapper}>
-            <Grid.Col span={4}>
-              <Text color="gray">ShardID</Text>
+          <Grid columns={25} className={classes.wrapper}>
+            <Grid.Col span={5}>
+              <Text className={classes.propertyName}>ShardID</Text>
             </Grid.Col>
-            <Grid.Col span={20}>{loaderData.ShardID}</Grid.Col>
+            <Grid.Col span={20} className={classes.propertyValue}>{loaderData.ShardID}</Grid.Col>
           </Grid>
 
-          <Grid columns={24} className={classes.wrapper}>
-            <Grid.Col span={4}>
-              <Text color="gray">Block</Text>
+          <Grid columns={25} className={classes.wrapper}>
+            <Grid.Col span={5}>
+              <Text className={classes.propertyName}>Block</Text>
             </Grid.Col>
             <Grid.Col span={20}><Text variant="link" component={Link} to={"/block/" + loaderData.BlockHash}>{loaderData.BlockHash}</Text></Grid.Col>
           </Grid>
 
-          <Grid columns={24} className={classes.wrapper}>
-            <Grid.Col span={4}>
-              <Text color="gray">Block height</Text>
+          <Grid columns={25} className={classes.wrapper}>
+            <Grid.Col span={5}>
+              <Text className={classes.propertyName}>Block height</Text>
             </Grid.Col>
-            <Grid.Col span={20}>{format.formatAmount({ humanAmount: loaderData.BlockHeight, decimals: 4 })}</Grid.Col>
+            <Grid.Col span={20} className={classes.propertyValue}>{format.formatAmount({ humanAmount: loaderData.BlockHeight, decimals: 4 })}</Grid.Col>
           </Grid>
 
-          <Grid columns={24} className={classes.wrapper}>
-            <Grid.Col span={4}>
-              <Text color="gray">Network Fee</Text>
+          <Grid columns={25} className={classes.wrapper}>
+            <Grid.Col span={5}>
+              <Text className={classes.propertyName}>Network Fee</Text>
             </Grid.Col>
-            <Grid.Col span={20}>{loaderData.Fee} PRV</Grid.Col>
+            <Grid.Col span={20} className={classes.propertyValue}>{loaderData.Fee} PRV</Grid.Col>
           </Grid>
 
-          <Grid columns={24} className={classes.wrapper}>
-            <Grid.Col span={4}>
-              <Text color="gray">Version</Text>
+          <Grid columns={25} className={classes.wrapper}>
+            <Grid.Col span={5}>
+              <Text className={classes.propertyName}>Version</Text>
             </Grid.Col>
-            <Grid.Col span={20}>{loaderData.Version}</Grid.Col>
+            <Grid.Col span={20} className={classes.propertyValue}>{loaderData.Version}</Grid.Col>
           </Grid>
 
-          <Grid columns={24} className={classes.wrapper}>
-            <Grid.Col span={4}>
-              <Text color="gray">Timestamp</Text>
+          <Grid columns={25} className={classes.wrapper}>
+            <Grid.Col span={5}>
+              <Text className={classes.propertyName}>Timestamp</Text>
             </Grid.Col>
-            <Grid.Col span={20}>{loaderData.LockTime}</Grid.Col>
+            <Grid.Col span={20} className={classes.propertyValue}>{loaderData.LockTime}</Grid.Col>
           </Grid>
 
-          <Grid columns={24} className={classes.wrapper}>
-            <Grid.Col span={4}>
-              <Text color="gray">Type</Text>
+          <Grid columns={25} className={classes.wrapper}>
+            <Grid.Col span={5}>
+              <Text className={classes.propertyName}>Type</Text>
             </Grid.Col>
-            <Grid.Col span={20}>{loaderData.TransactionData.meta_type_name}</Grid.Col>
+            <Grid.Col span={20} className={classes.propertyValue}>{loaderData.TransactionData.meta_type_name}</Grid.Col>
           </Grid>
 
-          <Grid columns={24} className={classes.wrapper}>
-            <Grid.Col span={4}>
-              <Text color="gray">Memo</Text>
+          <Grid columns={25} className={classes.wrapper} style={{ height: 'auto' }}>
+            <Grid.Col span={5}>
+              <Text className={classes.propertyName}>Memo</Text>
             </Grid.Col>
-            <Grid.Col span={20}>{loaderData.Info}</Grid.Col>
+            <Grid.Col span={20} className={classes.propertyValue}>{loaderData.Info}</Grid.Col>
           </Grid>
 
         </Paper>
 
         <Space h="md" />
 
-        <Paper shadow="sm" radius="md" p="xl" withBorder className={classes.container}>
+        <Paper shadow="sm" radius="md" p={0} className={classes.container}>
 
-          <Grid columns={24} className={classes.wrapper}>
-            <Grid.Col span={4}>
-              <Text color="gray">Metadata</Text>
+          <Grid columns={25} className={classes.wrapper} style={{ height: 'auto' }}>
+            <Grid.Col span={5}>
+              <Text className={classes.propertyName}>Metadata</Text>
             </Grid.Col>
             <Grid.Col span={20}>
               <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
@@ -122,28 +136,28 @@ function Tx() {
         </Paper>
         <Space h="md" />
 
-        <Paper shadow="sm" radius="md" p="xl" withBorder className={classes.container}>
+        <Paper shadow="sm" radius="md" p={0} className={classes.container}>
 
-          <Grid columns={24} className={classes.wrapper}>
-            <Grid.Col span={4}>
-              <Text color="gray">SigPubkey</Text>
+          <Grid columns={25} className={classes.wrapper}>
+            <Grid.Col span={5}>
+              <Text className={classes.propertyName}>SigPubkey</Text>
             </Grid.Col>
             <Grid.Col span={20}>
               {loaderData.SigPubKey}
             </Grid.Col>
           </Grid>
 
-          <Grid columns={24} className={classes.wrapper}>
-            <Grid.Col span={4}>
-              <Text color="gray">Sig</Text>
+          <Grid columns={25} className={classes.wrapper}>
+            <Grid.Col span={5}>
+              <Text className={classes.propertyName}>Sig</Text>
             </Grid.Col>
-            <Grid.Col span={20}>{loaderData.Sig}</Grid.Col>
+            <Grid.Col span={20} className={classes.propertyValue}>{loaderData.Sig}</Grid.Col>
           </Grid>
 
 
-          <Grid columns={24} className={classes.wrapper}>
-            <Grid.Col span={4}>
-              <Text color="gray">Proof (base58check encode)</Text>
+          <Grid columns={25} className={classes.wrapper} style={{ height: 'auto' }}>
+            <Grid.Col span={5}>
+              <Text className={classes.propertyName}>Proof (base58check encode)</Text>
             </Grid.Col>
             <Grid.Col span={20}>
               <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
@@ -153,9 +167,9 @@ function Tx() {
           </Grid>
 
 
-          <Grid columns={24} className={classes.wrapper}>
-            <Grid.Col span={4}>
-              <Text color="gray">Proof detail</Text>
+          <Grid columns={25} className={classes.wrapper} style={{ height: 'auto' }}>
+            <Grid.Col span={5}>
+              <Text className={classes.propertyName}>Proof detail</Text>
             </Grid.Col>
             <Grid.Col span={20}>
               <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
@@ -164,9 +178,9 @@ function Tx() {
             </Grid.Col>
           </Grid>
 
-          <Grid columns={24} className={classes.wrapper}>
-            <Grid.Col span={4}>
-              <Text color="gray">Transacted privacy coin</Text>
+          <Grid columns={25} className={classes.wrapper} style={{ height: 'auto' }}>
+            <Grid.Col span={5}>
+              <Text className={classes.propertyName}>Transacted privacy coin</Text>
             </Grid.Col>
             <Grid.Col span={20}>
               <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
@@ -175,9 +189,9 @@ function Tx() {
             </Grid.Col>
           </Grid>
 
-          <Grid columns={24} className={classes.wrapper}>
-            <Grid.Col span={4}>
-              <Text color="gray">Privacy coin proof detail</Text>
+          <Grid columns={25} className={classes.wrapper} style={{ height: 'auto' }}>
+            <Grid.Col span={5}>
+              <Text className={classes.propertyName}>Privacy coin proof detail</Text>
             </Grid.Col>
             <Grid.Col span={20}>
               <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
@@ -187,6 +201,7 @@ function Tx() {
           </Grid>
         </Paper>
       </Box>
+      <Space h="md" />
     </>
   );
 }

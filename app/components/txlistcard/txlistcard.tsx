@@ -30,7 +30,7 @@ const TxListCard: FunctionComponent<Props> = ({ txlist }) => {
         <td>
           <Stack align="flex-start">
             <Text sx={(theme) => ({
-              backgroundColor: theme.colorScheme === 'dark' ? '#303030' : theme.colors.gray[0],
+              backgroundColor: '#303030',
               width: 'auto',
               textOverflow: 'ellipsis', maxWidth: 250, overflow: 'hidden', whiteSpace: 'nowrap',
               fontSize: 16, textAlign: 'center',
