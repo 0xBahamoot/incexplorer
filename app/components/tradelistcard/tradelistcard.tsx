@@ -30,8 +30,8 @@ const TradeListCard: FunctionComponent<Props> = ({ txlist }) => {
       <tr key={element.tx_hash} style={{ cursor: 'pointer', height: 50 }} >
         <td style={{ paddingTop: 5 }}>
           <Center inline>
-            <Avatar size={32} src={getTokenIcon(element.pdex_sell_token_symbol)} style={{ zIndex: 1 }} />
-            <Avatar size={32} src={getTokenIcon(element.pdex_buy_token_symbol)} style={{ marginLeft: -15, }} />
+            <Avatar size={32} src={getTokenIcon(element.pdex_sell_token_symbol)} style={{ zIndex: 1, borderRadius: "100%" }} />
+            <Avatar size={32} src={getTokenIcon(element.pdex_buy_token_symbol)} style={{ marginLeft: -15, borderRadius: "100%" }} />
             <Box ml={5} style={{ paddingLeft: 5, fontSize: 16, fontWeight: 400, color: '#fff', whiteSpace: 'nowrap' }}>{element.pdex_pair_token}</Box>
           </Center>
         </td>
