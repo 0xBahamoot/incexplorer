@@ -141,7 +141,7 @@ function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       fetcher.load("/home?index");
-    }, 15 * 1000);
+    }, 5 * 1000);
     return () => clearInterval(interval);
   }, []);
 
@@ -150,6 +150,7 @@ function Home() {
   }, []);
 
   useEffect(() => {
+    console.log("fetcher.data2", fetcher.data);
     if (fetcher.data) {
       setLoaded(false);
       console.log("fetcher.data", fetcher.data);
