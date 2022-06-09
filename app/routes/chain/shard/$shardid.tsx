@@ -90,13 +90,11 @@ function ShardDetail() {
           <ScrollArea
             style={{
               height: "auto",
-              borderRadius: 12,
               overflow: "hidden",
-              border: "1px solid #363636",
             }} scrollbarSize={4}
           >
             <Box
-              className={classes.boxInfo}
+              className={classes.boxInfo} style={{ borderRadius: 12 }}
             >
               <Group
                 position="apart"
@@ -138,7 +136,6 @@ function ShardDetail() {
               height: "auto",
               borderRadius: 0,
               overflow: "hidden",
-              border: "1px solid #363636",
             }} scrollbarSize={4}
           >
             <Box
