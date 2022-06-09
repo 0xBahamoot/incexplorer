@@ -124,9 +124,16 @@ function ShardsOverview() {
         <td style={{ color: "#757575", minWidth: 200 }}>
           {format.formatUnixDateTime(element.Time)}
         </td>
-        <td className={classes.otherColumn}>{idx}</td>
-        <td className={classes.otherColumn}>
-          {format.formatAmount({ humanAmount: element.Height, decimals: 4 })}
+        <td><Text
+          className={classes.hashText} variant="link"
+          component={Link}
+          to={"/chain/shard/" + idx}>{idx}</Text></td>
+        <td>
+          <Text
+            className={classes.hashText} variant="link"
+            component={Link}
+            to={"/block/" + element.Hash}>
+            {format.formatAmount({ humanAmount: element.Height, decimals: 4 })}</Text>
         </td>
         <td className={classes.otherColumn}>
           {format.formatAmount({ humanAmount: element.TotalTxs, decimals: 4 })}
