@@ -204,12 +204,13 @@ function ShardDetail() {
             <ScrollArea
               style={{
                 height: "auto",
-                borderRadius: 12,
                 overflow: "hidden",
-                border: "1px solid #363636",
+
               }}
             >
-              <BlockListCard blocklist={data} blockType='shardblk'></BlockListCard>
+              <Box style={{ border: "1px solid #363636", borderRadius: 12 }}>
+                <BlockListCard blocklist={data} blockType='shardblk'></BlockListCard>
+              </Box>
             </ScrollArea>
           </div>
         </Box>
@@ -222,10 +223,11 @@ function ShardDetail() {
                 height: "auto",
                 borderRadius: 0,
                 overflow: "hidden",
-                border: "1px solid #363636",
               }}
             >
-              <BlockListCard blocklist={data} blockType='shardblk'></BlockListCard>
+              <Box style={{ border: "1px solid #363636" }}>
+                <BlockListCard blocklist={data} blockType='shardblk'></BlockListCard>
+              </Box>
             </ScrollArea>
           </div>
         </Box>
