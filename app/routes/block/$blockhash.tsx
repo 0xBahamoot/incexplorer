@@ -57,213 +57,226 @@ const GenTxRow = (txlist: TxInBlock[]) => {
   return result;
 };
 
+function renderBlockDetailContent(data: BlockData, isbeacon: boolean, classes: any, padding: string) {
+  return <> <Paper radius={padding == "0px 16px" ? 0 : "md"} p={0} className={classes.container}
+    style={{ borderWidth: padding == "0px 16px" ? "1px 0px" : "1px" }}>
+    <Grid columns={25} className={classes.wrapper}>
+      <Grid.Col span={5}>
+        <Text className={classes.propertyName}>Hash</Text>
+      </Grid.Col>
+      <Grid.Col span={20} className={classes.propertyValue}>
+        {data.Hash}
+      </Grid.Col>
+    </Grid>
+
+    <Grid columns={25} className={classes.wrapper}>
+      <Grid.Col span={5}>
+        <Text className={classes.propertyName}>Block height</Text>
+      </Grid.Col>
+      <Grid.Col span={20} className={classes.propertyValue}>
+        {format.formatAmount({ humanAmount: data.Height, decimals: 4 })}
+      </Grid.Col>
+    </Grid>
+
+    <Grid columns={25} className={classes.wrapper}>
+      <Grid.Col span={5}>
+        <Text className={classes.propertyName}>Version</Text>
+      </Grid.Col>
+      <Grid.Col span={20} className={classes.propertyValue}>
+        {data.Version}
+      </Grid.Col>
+    </Grid>
+
+    <Grid columns={25} className={classes.wrapper}>
+      <Grid.Col span={5}>
+        <Text className={classes.propertyName}>Confirmations</Text>
+      </Grid.Col>
+      <Grid.Col span={20} className={classes.propertyValue}>
+        {data.FinalityHeight > 0
+          ? data.Height - data.FinalityHeight
+          : "not finality yet"}
+      </Grid.Col>
+    </Grid>
+
+    <Grid columns={25} className={classes.wrapper}>
+      <Grid.Col span={5}>
+        <Text className={classes.propertyName}>Timestamp</Text>
+      </Grid.Col>
+      <Grid.Col span={20} className={classes.propertyValue}>
+        {format.formatUnixDateTime(data.Time)}
+      </Grid.Col>
+    </Grid>
+
+    <Grid columns={25} className={classes.wrapper}>
+      <Grid.Col span={5}>
+        <Text className={classes.propertyName}>Round</Text>
+      </Grid.Col>
+      <Grid.Col span={20} className={classes.propertyValue}>
+        {data.Round}
+      </Grid.Col>
+    </Grid>
+
+    <Grid columns={25} className={classes.wrapper}>
+      <Grid.Col span={5}>
+        <Text className={classes.propertyName}>Epoch</Text>
+      </Grid.Col>
+      <Grid.Col span={20} className={classes.propertyValue}>
+        {data.Epoch}
+      </Grid.Col>
+    </Grid>
+
+    <Grid columns={25} className={classes.wrapper}>
+      <Grid.Col span={5}>
+        <Text className={classes.propertyName}>Previous block</Text>
+      </Grid.Col>
+      <Grid.Col span={20} className={classes.propertyValue}>
+        {data.PreviousBlockHash}
+      </Grid.Col>
+    </Grid>
+
+    <Grid columns={25} className={classes.wrapper}>
+      <Grid.Col span={5}>
+        <Text className={classes.propertyName}>Next block</Text>
+      </Grid.Col>
+      <Grid.Col span={20} className={classes.propertyValue}>
+        {data.NextBlockHash}
+      </Grid.Col>
+    </Grid>
+
+    <Grid columns={25} className={classes.wrapper}>
+      <Grid.Col span={5}>
+        <Text className={classes.propertyName}>Block producer</Text>
+      </Grid.Col>
+      <Grid.Col span={20} className={classes.propertyValue}>
+        {data.BlockProducer}
+      </Grid.Col>
+    </Grid>
+
+    <Grid columns={25} className={classes.wrapper}>
+      <Grid.Col span={5}>
+        <Text className={classes.propertyName}>Propose Time</Text>
+      </Grid.Col>
+      <Grid.Col span={20} className={classes.propertyValue}>
+        {format.formatUnixDateTime(data.ProposeTime)}
+      </Grid.Col>
+    </Grid>
+
+    <Grid columns={25} className={classes.wrapper} style={{ height: 'auto' }}>
+      <Grid.Col span={5}>
+        <Text className={classes.propertyName}>Validation Data</Text>
+      </Grid.Col>
+      <Grid.Col span={20} className={classes.propertyValue}>
+        <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
+          <PrettyPrintJson data={JSON.parse(data.ValidationData)} />
+        </ScrollArea>
+      </Grid.Col>
+    </Grid>
+
+    {isbeacon ? (
+      <>
+        <Grid columns={25} className={classes.wrapper} style={{ height: 'auto' }}>
+          <Grid.Col span={5}>
+            <Text className={classes.propertyName}>Root Hashes</Text>
+          </Grid.Col>
+          <Grid.Col span={20} className={classes.propertyValue}>
+            <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
+              <PrettyPrintJson data={data.RootHash} />
+            </ScrollArea>
+          </Grid.Col>
+        </Grid>
+      </>
+    ) : (
+      <>
+        <Grid columns={25} className={classes.wrapper}>
+          <Grid.Col span={5}>
+            <Text className={classes.propertyName}>Tx Root</Text>
+          </Grid.Col>
+          <Grid.Col span={20} className={classes.propertyValue}>
+            {data.TxRoot}
+          </Grid.Col>
+        </Grid>
+      </>
+    )}
+  </Paper>
+    <Space h="md" />
+    <Paper radius={padding == "0px 16px" ? 0 : "md"} p={0} className={classes.container}
+      style={{ borderWidth: padding == "0px 16px" ? "1px 0px" : "1px" }}>
+      {isbeacon ? (
+        <>
+          <Grid columns={25} className={classes.wrapper} style={{ height: 'auto' }}>
+            <Grid.Col span={5}>
+              <Text className={classes.propertyName}>Instructions</Text>
+            </Grid.Col>
+            <Grid.Col span={20} className={classes.propertyValue}>
+              <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
+                <PrettyPrintJson data={data.Instructions} />
+              </ScrollArea>
+            </Grid.Col>
+          </Grid>
+        </>
+      ) : (
+        <>
+          <Grid columns={25} className={classes.wrapper} style={{ height: 'auto' }}>
+            <Grid.Col span={5}>
+              <Text className={classes.propertyName}>Instructions</Text>
+            </Grid.Col>
+            <Grid.Col span={20} className={classes.propertyValue}>
+              <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
+                <PrettyPrintJson data={data.Instruction} />
+              </ScrollArea>
+            </Grid.Col>
+          </Grid>
+        </>
+      )}
+    </Paper></>
+}
+
+function renderBlockDetail(data: BlockData, isbeacon: boolean, classes: any, padding: string) {
+  return <>
+    <Box style={{ padding: padding }}>
+      <SectionTitle text={"Block Details"} />
+    </Box>
+    <Space h="xl" />
+    {padding === "0px 16px" ? (
+      <ScrollArea
+        style={{
+          height: "auto",
+          width: "100vw",
+          overflow: "hidden",
+          paddingBottom: 16,
+        }}
+        scrollbarSize={4}
+      >
+        {renderBlockDetailContent(data, isbeacon, classes, padding)}
+      </ScrollArea>
+    ) : (
+      renderBlockDetailContent(data, isbeacon, classes, padding)
+    )}
+  </>
+}
+
 function BlockDetail() {
   let location = useLocation();
 
   const isbeacon = location.search.includes("beacon");
   const { classes } = useStyles();
   const loaderData: BlockData = useLoaderData();
-  const [data, setData] = useState(loaderData);
-
-  console.log(data);
-
   return (
     <>
       <Space h={30} />
 
       <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
-        <Box style={{ padding: "0 30px" }}>
-          <SectionTitle text={"Block Details"} />
-        </Box>
+        <div>
+          {renderBlockDetail(loaderData, isbeacon, classes, "0px 30px")}
+        </div>
       </MediaQuery>
 
       <MediaQuery largerThan={1200} styles={{ display: "none" }}>
-        <Box style={{ padding: "0 16px" }}>
-          <SectionTitle text={"Block Details"} />
-        </Box>
+        <div>
+          {renderBlockDetail(loaderData, isbeacon, classes, "0px 16px")}
+        </div>
       </MediaQuery>
 
-      <Space h="xl" />
-
-      <Box style={{ padding: "0 30px" }}>
-        <Paper radius="md" p={0} className={classes.container}>
-          <Grid columns={25} className={classes.wrapper}>
-            <Grid.Col span={5}>
-              <Text className={classes.propertyName}>Hash</Text>
-            </Grid.Col>
-            <Grid.Col span={20} className={classes.propertyValue}>
-              {data.Hash}
-            </Grid.Col>
-          </Grid>
-
-          <Grid columns={25} className={classes.wrapper}>
-            <Grid.Col span={5}>
-              <Text className={classes.propertyName}>Block height</Text>
-            </Grid.Col>
-            <Grid.Col span={20} className={classes.propertyValue}>
-              {format.formatAmount({ humanAmount: data.Height, decimals: 4 })}
-            </Grid.Col>
-          </Grid>
-
-          <Grid columns={25} className={classes.wrapper}>
-            <Grid.Col span={5}>
-              <Text className={classes.propertyName}>Version</Text>
-            </Grid.Col>
-            <Grid.Col span={20} className={classes.propertyValue}>
-              {data.Version}
-            </Grid.Col>
-          </Grid>
-
-          <Grid columns={25} className={classes.wrapper}>
-            <Grid.Col span={5}>
-              <Text className={classes.propertyName}>Confirmations</Text>
-            </Grid.Col>
-            <Grid.Col span={20} className={classes.propertyValue}>
-              {data.FinalityHeight > 0
-                ? data.Height - data.FinalityHeight
-                : "not finality yet"}
-            </Grid.Col>
-          </Grid>
-
-          <Grid columns={25} className={classes.wrapper}>
-            <Grid.Col span={5}>
-              <Text className={classes.propertyName}>Timestamp</Text>
-            </Grid.Col>
-            <Grid.Col span={20} className={classes.propertyValue}>
-              {format.formatUnixDateTime(data.Time)}
-            </Grid.Col>
-          </Grid>
-
-          <Grid columns={25} className={classes.wrapper}>
-            <Grid.Col span={5}>
-              <Text className={classes.propertyName}>Round</Text>
-            </Grid.Col>
-            <Grid.Col span={20} className={classes.propertyValue}>
-              {data.Round}
-            </Grid.Col>
-          </Grid>
-
-          <Grid columns={25} className={classes.wrapper}>
-            <Grid.Col span={5}>
-              <Text className={classes.propertyName}>Epoch</Text>
-            </Grid.Col>
-            <Grid.Col span={20} className={classes.propertyValue}>
-              {data.Epoch}
-            </Grid.Col>
-          </Grid>
-
-          <Grid columns={25} className={classes.wrapper}>
-            <Grid.Col span={5}>
-              <Text className={classes.propertyName}>Previous block</Text>
-            </Grid.Col>
-            <Grid.Col span={20} className={classes.propertyValue}>
-              {data.PreviousBlockHash}
-            </Grid.Col>
-          </Grid>
-
-          <Grid columns={25} className={classes.wrapper}>
-            <Grid.Col span={5}>
-              <Text className={classes.propertyName}>Next block</Text>
-            </Grid.Col>
-            <Grid.Col span={20} className={classes.propertyValue}>
-              {data.NextBlockHash}
-            </Grid.Col>
-          </Grid>
-
-          <Grid columns={25} className={classes.wrapper}>
-            <Grid.Col span={5}>
-              <Text className={classes.propertyName}>Block producer</Text>
-            </Grid.Col>
-            <Grid.Col span={20} className={classes.propertyValue}>
-              <Text
-                style={{
-                  textOverflow: "ellipsis",
-                  display: "block",
-                  overflow: "hidden",
-                }}
-              >
-                {data.BlockProducer}
-              </Text>
-            </Grid.Col>
-          </Grid>
-
-          <Grid columns={25} className={classes.wrapper}>
-            <Grid.Col span={5}>
-              <Text className={classes.propertyName}>Propose Time</Text>
-            </Grid.Col>
-            <Grid.Col span={20} className={classes.propertyValue}>
-              {format.formatUnixDateTime(data.ProposeTime)}
-            </Grid.Col>
-          </Grid>
-
-          <Grid columns={25} className={classes.wrapper} style={{ height: 'auto' }}>
-            <Grid.Col span={5}>
-              <Text className={classes.propertyName}>Validation Data</Text>
-            </Grid.Col>
-            <Grid.Col span={20} className={classes.propertyValue}>
-              <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
-                <PrettyPrintJson data={JSON.parse(data.ValidationData)} />
-              </ScrollArea>
-            </Grid.Col>
-          </Grid>
-
-          {isbeacon ? (
-            <>
-              <Grid columns={25} className={classes.wrapper} style={{ height: 'auto' }}>
-                <Grid.Col span={5}>
-                  <Text className={classes.propertyName}>Root Hashes</Text>
-                </Grid.Col>
-                <Grid.Col span={20} className={classes.propertyValue}>
-                  <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
-                    <PrettyPrintJson data={data.RootHash} />
-                  </ScrollArea>
-                </Grid.Col>
-              </Grid>
-            </>
-          ) : (
-            <>
-              <Grid columns={25} className={classes.wrapper}>
-                <Grid.Col span={5}>
-                  <Text className={classes.propertyName}>Tx Root</Text>
-                </Grid.Col>
-                <Grid.Col span={20} className={classes.propertyValue}>
-                  {data.TxRoot}
-                </Grid.Col>
-              </Grid>
-            </>
-          )}
-        </Paper>
-        <Space h="md" />
-        <Paper radius="md" p={0} className={classes.container}>
-          {isbeacon ? (
-            <>
-              <Grid columns={25} className={classes.wrapper} style={{ height: 'auto' }}>
-                <Grid.Col span={5}>
-                  <Text className={classes.propertyName}>Instructions</Text>
-                </Grid.Col>
-                <Grid.Col span={20} className={classes.propertyValue}>
-                  <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
-                    <PrettyPrintJson data={data.Instructions} />
-                  </ScrollArea>
-                </Grid.Col>
-              </Grid>
-            </>
-          ) : (
-            <>
-              <Grid columns={25} className={classes.wrapper} style={{ height: 'auto' }}>
-                <Grid.Col span={5}>
-                  <Text className={classes.propertyName}>Instructions</Text>
-                </Grid.Col>
-                <Grid.Col span={20} className={classes.propertyValue}>
-                  <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
-                    <PrettyPrintJson data={data.Instruction} />
-                  </ScrollArea>
-                </Grid.Col>
-              </Grid>
-            </>
-          )}
-        </Paper>
-      </Box>
 
       {isbeacon ? (
         <></>
@@ -303,7 +316,7 @@ function BlockDetail() {
                       </th>
                     </tr>
                   </thead>
-                  <tbody>{GenTxRow(data.Txs)}</tbody>
+                  <tbody>{GenTxRow(loaderData.Txs)}</tbody>
                 </Table>
               </Paper>
             </Box>
@@ -322,7 +335,7 @@ function BlockDetail() {
                     </th>
                   </tr>
                 </thead>
-                <tbody>{GenTxRow(data.Txs)}</tbody>
+                <tbody>{GenTxRow(loaderData.Txs)}</tbody>
               </Table>
             </Paper>
           </MediaQuery>

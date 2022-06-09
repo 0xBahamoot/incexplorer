@@ -31,11 +31,14 @@ const useStyles = createStyles((theme) => ({
     fontSize: 16,
     fontWeight: 500,
     color: "#757575",
+    whiteSpace: 'nowrap'
   },
   propertyValue: {
     fontSize: 16,
     fontWeight: 400,
     color: "#fff",
+    textOverflow: 'ellipsis',
+    overflow: 'hidden'
   },
 }));
 
