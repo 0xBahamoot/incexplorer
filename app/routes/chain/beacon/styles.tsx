@@ -5,7 +5,6 @@ const useStyles = createStyles((theme) => ({
     padding: 0,
     display: "block",
     overflow: "hidden",
-    border: "1px solid #363636",
   },
   producerText: {
     color: "#fff",
