@@ -85,7 +85,6 @@ function BeaconDetail() {
                 height: "auto",
                 borderRadius: 12,
                 overflow: "hidden",
-                border: "1px solid #363636",
               }}
               scrollbarSize={4}
             >
@@ -159,7 +158,7 @@ function BeaconDetail() {
                     </Text>
                   </div>
                 </Group>
-                <Text className={classes.producerText}>{currentProducer}</Text>
+                <Text className={classes.producerText}>{getEllipsisText(currentProducer)}</Text>
               </Box>
             </ScrollArea>
           </Box>

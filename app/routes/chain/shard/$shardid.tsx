@@ -169,7 +169,7 @@ function ShardDetail() {
               <Text
                 className={classes.producerText}
               >
-                {currentProducer}
+                {getEllipsisText(currentProducer)}
               </Text>
             </Box>
           </ScrollArea>
