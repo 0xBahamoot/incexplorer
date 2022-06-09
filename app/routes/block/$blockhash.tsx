@@ -250,7 +250,10 @@ function renderBlockDetail(data: BlockData, isbeacon: boolean, classes: any, pad
         {renderBlockDetailContent(data, isbeacon, classes, padding)}
       </ScrollArea>
     ) : (
-      renderBlockDetailContent(data, isbeacon, classes, padding)
+
+      <Box style={{ padding: padding }}>
+        {renderBlockDetailContent(data, isbeacon, classes, padding)}
+      </Box>
     )}
   </>
 }
