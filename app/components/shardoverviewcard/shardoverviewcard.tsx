@@ -19,26 +19,42 @@ const ShardOverviewCard: FunctionComponent<Props> = ({ chainInfo, chainId }) => 
                     <Text style={{ fontSize: 20, color: '#fff', fontWeight: 500 }}>Shard {chainId}</Text>
                     <ArrowUpRight />
                 </Group>
-                <Grid gutter="lg" columns={6} style={{ padding: '18px 24px' }}>
-                    <Grid.Col span={4} >
+                <Grid columns={9} style={{ padding: '18px 24px' }}>
+                    <Grid.Col xs={5}
+                        sm={6}
+                        md={6}
+                        lg={6}
+                        xl={6} >
                         <Stack align="flex-start" justify="flex-start" spacing="xs">
                             <Text className={classes.propTitle}>Height</Text>
                             <Text className={classes.propData}>{chainInfo.Height}</Text>
                         </Stack>
                     </Grid.Col>
-                    <Grid.Col span={2} >
+                    <Grid.Col xs={4}
+                        sm={3}
+                        md={3}
+                        lg={3}
+                        xl={3} >
                         <Stack align="flex-start" justify="flex-start" spacing="xs">
                             <Text className={classes.propTitle}>Total txs</Text>
                             <Text className={classes.propData}>{chainInfo.TotalTxs}</Text>
                         </Stack>
                     </Grid.Col>
-                    <Grid.Col span={4} >
+                    <Grid.Col xs={5}
+                        sm={6}
+                        md={6}
+                        lg={6}
+                        xl={6} >
                         <Stack align="flex-start" justify="flex-start" spacing="xs">
                             <Text className={classes.propTitle}>Most recent block</Text>
                             <Text className={classes.propData}>{chainInfo.Hash}</Text>
                         </Stack>
                     </Grid.Col>
-                    <Grid.Col span={2} >
+                    <Grid.Col xs={4}
+                        sm={3}
+                        md={3}
+                        lg={3}
+                        xl={3} >
                         <Stack align="flex-start" justify="flex-start" spacing="xs">
                             <Text className={classes.propTitle}>Time</Text>
                             <Text className={classes.propData}>{moment.unix(chainInfo.Time).fromNow()}</Text>

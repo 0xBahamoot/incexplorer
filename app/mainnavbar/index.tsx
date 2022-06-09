@@ -91,12 +91,16 @@ function ExchangeSection(onNav?: () => void, fontSize?: number) {
           }
         }}
       >
-        <NavbarBtn
+        {/* <NavbarBtn
           text="Markets"
           link="/charts/market"
           fontSize={fontSize}
+        ></NavbarBtn> */}
+        <NavbarBtn
+          text="Trades"
+          link="/pdex/trades"
+          fontSize={fontSize}
         ></NavbarBtn>
-        <NavbarBtn text="Liquidity" link="/" fontSize={fontSize}></NavbarBtn>
       </Stack>
     </>
   );
@@ -257,11 +261,24 @@ const MainNavbar: FunctionComponent<Props> = ({ onNav }) => {
             >
               {BlockChainSection(onNav, 20)}
             </Accordion.Item>
-            {/* 
-                    <Accordion.Item label={<AccordionLabel label='Privacy Exchange' icon='/assets/images/icons/navbar-exchange.svg' />}
-            className={classes.sectionBtn}>
-                        <ExchangeSection />
-                    </Accordion.Item> */}
+
+            <Accordion.Item
+              label={
+                <AccordionLabel
+                  label="Privacy Exchange"
+                  icon="/assets/images/icons/navbar-exchange.svg"
+                  fontSize={20}
+                />
+              }
+              classNames={{
+                item: classes.item,
+                itemOpened: classes.itemOpened,
+                control: classes.controlMobile,
+                icon: classes.icon,
+              }}
+            >
+              {ExchangeSection(onNav, 20)}
+            </Accordion.Item>
 
             <Accordion.Item
               label={
@@ -354,11 +371,18 @@ const MainNavbar: FunctionComponent<Props> = ({ onNav }) => {
             >
               {BlockChainSection()}
             </Accordion.Item>
-            {/* 
-                    <Accordion.Item label={<AccordionLabel label='Privacy Exchange' icon='/assets/images/icons/navbar-exchange.svg' />}
-            classNames={classes}>
-                        <ExchangeSection />
-                    </Accordion.Item> */}
+
+            <Accordion.Item
+              label={
+                <AccordionLabel
+                  label="Privacy Exchange"
+                  icon="/assets/images/icons/navbar-exchange.svg"
+                />
+              }
+              classNames={classes}
+            >
+              {ExchangeSection(onNav)}
+            </Accordion.Item>
 
             <Accordion.Item
               label={

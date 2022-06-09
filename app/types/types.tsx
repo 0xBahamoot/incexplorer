@@ -8,6 +8,52 @@ export type TxData = {
     amount: number,
     token_id: string,
     token_symbol: string,
+
+    //Trade
+    pdex_buy_amount: number,
+    pdex_sell_amount: number,
+    pdex_buy_token_id: string,
+    pdex_sell_token_id: string,
+    pdex_buy_token_symbol: string,
+    pdex_sell_token_symbol: string,
+    pdex_nft_id: string,
+    pdex_order_id: string,
+    pdex_pair_token: string,
+    pdex_pool_id: string,
+    pdex_pool_id_tx_request: string,
+    pdex_status: string,
+    pdex_trading_fee: number,
+    side: string,
+
+    //     pdex_buy_amount: 3.269243434
+    // ​​​
+    // pdex_buy_token_id: "be02b225bcd26eeae00d3a51e554ac0adcdcc09de77ad03202904666d427a7e4"
+    // ​​​
+    // pdex_buy_token_symbol: "pBUSD"
+    // ​​​
+    // pdex_nft_id: ""
+    // ​​​
+    // pdex_order_id: ""
+    // ​​​
+    // pdex_pair_token: "pUSDT-pBUSD"
+    // ​​​
+    // pdex_pool_id: "716fd1009e2a1669caacc36891e707bfdf02590f96ebd897548e8963c95ebac0-be02b225bcd26eeae00d3a51e554ac0adcdcc09de77ad03202904666d427a7e4-676779678ea9ec76b29de2f3304e7dbc6dd0f964ef7c6bf43870a5219986e3a7"
+    // ​​​
+    // pdex_pool_id_tx_request: "676779678ea9ec76b29de2f3304e7dbc6dd0f964ef7c6bf43870a5219986e3a7"
+    // ​​​
+    // pdex_sell_amount: 3.120002
+    // ​​​
+    // pdex_sell_token_id: "716fd1009e2a1669caacc36891e707bfdf02590f96ebd897548e8963c95ebac0"
+    // ​​​
+    // pdex_sell_token_symbol: "pUSDT"
+    // ​​​
+    // pdex_status: "success"
+    // ​​​
+    // pdex_trading_fee: 0.007801
+    // ​​​
+    // shard_id: "7"
+    // ​​​
+    // side: "Sell"
 }
 
 export type TxDetail = {

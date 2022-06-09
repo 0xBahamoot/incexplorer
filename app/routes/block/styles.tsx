@@ -18,8 +18,10 @@ const useStyles = createStyles((theme) => ({
     borderColor: "#303030",
     borderBottomWidth: 1,
     borderBottomStyle: "solid",
-    padding: "10px 24px 5px",
+    padding: "8px 24px 10px",
     overflow: "hidden",
+    maxWidth: "200vw",
+    height: 50,
     "&:last-child": {
       borderBottomWidth: 0,
       padding: "10px 24px 10px",
@@ -27,13 +29,16 @@ const useStyles = createStyles((theme) => ({
   },
   propertyName: {
     fontSize: 16,
-    fontWeight: 400,
+    fontWeight: 500,
     color: "#757575",
+    whiteSpace: 'nowrap'
   },
   propertyValue: {
     fontSize: 16,
     fontWeight: 400,
     color: "#fff",
+    textOverflow: 'ellipsis',
+    overflow: 'hidden'
   },
 }));
 

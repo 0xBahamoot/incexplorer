@@ -30,7 +30,7 @@ const ShieldListCard: FunctionComponent<Props> = ({ txlist }) => {
       <tr key={element.tx_hash} style={{ cursor: 'pointer', height: 50 }} >
         <td style={{ paddingTop: 5 }}>
           <Center inline>
-            <Avatar size={32} src={getTokenIcon(element.token_symbol)} />
+            <Avatar size={32} src={getTokenIcon(element.token_symbol)} style={{ borderRadius: "100%" }} />
             <Box ml={5} style={{ paddingLeft: 5, fontSize: 16, fontWeight: 400, color: '#fff' }}>{element.token_symbol}</Box>
           </Center>
         </td>

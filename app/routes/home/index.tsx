@@ -173,7 +173,7 @@ function Home() {
             break;
 
           case "TOTAL_VOLUME_LOCK":
-            item.Name = "Total Volume Locked";
+            item.Name = "Total Value Locked";
             networkList.push(item);
             break;
           case "SHIELDED_VOLUME":

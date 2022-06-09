@@ -29,7 +29,7 @@ function ShardDetail() {
   const loaderData = useLoaderData();
   const [data, setData] = useState(loaderData);
   const [currentHeight, setCurrentHeight] = useState(0);
-  const [currentProducer, setCurrentProducer] = useState(0);
+  const [currentProducer, setCurrentProducer] = useState("");
 
   // if (loaderData.length > 0) {
   //   ;
@@ -58,6 +58,12 @@ function ShardDetail() {
     }
   }, [fetcher.data]);
 
+  function getEllipsisText(hash: String) {
+    let result: string = '';
+    result = hash.slice(0, 44) + '...' + hash.slice(-44);
+    return result
+  }
+
   return (
     <>
       <Space h={30} />
@@ -84,13 +90,11 @@ function ShardDetail() {
           <ScrollArea
             style={{
               height: "auto",
-              borderRadius: 12,
               overflow: "hidden",
-              border: "1px solid #363636",
             }} scrollbarSize={4}
           >
             <Box
-              className={classes.boxInfo}
+              className={classes.boxInfo} style={{ borderRadius: 12 }}
             >
               <Group
                 position="apart"
@@ -117,7 +121,7 @@ function ShardDetail() {
               <Text
                 className={classes.producerText}
               >
-                {currentProducer}
+                {getEllipsisText(currentProducer)}
               </Text>
             </Box>
           </ScrollArea>
@@ -132,7 +136,6 @@ function ShardDetail() {
               height: "auto",
               borderRadius: 0,
               overflow: "hidden",
-              border: "1px solid #363636",
             }} scrollbarSize={4}
           >
             <Box
@@ -163,7 +166,7 @@ function ShardDetail() {
               <Text
                 className={classes.producerText}
               >
-                {currentProducer}
+                {getEllipsisText(currentProducer)}
               </Text>
             </Box>
           </ScrollArea>
