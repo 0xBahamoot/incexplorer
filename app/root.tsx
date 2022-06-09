@@ -229,6 +229,23 @@ export function CatchBoundary() {
   );
 }
 
+export function ErrorBoundary(error: any) {
+  window.location.reload();
+  return (
+    <html>
+      <head>
+        <title>Oh no!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        {/* add the UI you want your users to see */}
+        <Scripts />
+      </body>
+    </html>
+  );
+}
+
 // export function ErrorBoundary(error: any) {
 //   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
 //     key: "mantine-color-scheme",
