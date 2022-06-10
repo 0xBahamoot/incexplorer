@@ -20,6 +20,7 @@ const useStyles = createStyles((theme) => ({
     // textTransform: 'capitalize',
     display: "flex",
     alignItems: "center",
+    whiteSpace: "nowrap",
   },
   content: {
     fontStyle: "normal",

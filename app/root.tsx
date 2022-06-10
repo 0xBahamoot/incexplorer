@@ -71,7 +71,10 @@ export default function App() {
         <Meta />
         <Links />
         <link href="/stylesheet.css" rel="stylesheet"></link>
-        <link rel="apple-touch-icon" href="https://incognito.org/static/media/logo-stroke.f5c70e7b.png"></link>
+        <link
+          rel="apple-touch-icon"
+          href="https://incognito.org/static/media/logo-stroke.f5c70e7b.png"
+        ></link>
       </head>
       <body>
         <ColorSchemeProvider
@@ -84,8 +87,8 @@ export default function App() {
               fontFamily: "Inter",
               headings: { fontFamily: "Inter" },
               breakpoints: {
-                xs: 374,
-                sm: 500,
+                xs: 300,
+                sm: 750,
                 md: 1200,
                 lg: 1440,
                 xl: 1920,
@@ -94,8 +97,8 @@ export default function App() {
             defaultProps={{
               Container: {
                 sizes: {
-                  xs: 374,
-                  sm: 500,
+                  xs: 300,
+                  sm: 750,
                   md: 1200,
                   lg: 1440,
                   xl: 1920,

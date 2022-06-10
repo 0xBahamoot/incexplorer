@@ -50,9 +50,9 @@ const SummaryBox: FunctionComponent<Props> = ({ items, scroll }) => {
   } else {
     return (
       <>
-        <Grid gutter="lg" columns={20}>
+        <Grid gutter="sm" columns={20} style={{ paddingTop: 10 }}>
           {items.map((item: any) => (
-            <Grid.Col xs={20} sm={10} md={5} lg={5} xl={4} key={item.Name}>
+            <Grid.Col xs={10} sm={10} md={5} lg={5} xl={4} key={item.Name}>
               <SummaryCard
                 title={item.Name}
                 content={item.value}
