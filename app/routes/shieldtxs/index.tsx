@@ -64,74 +64,107 @@ function ShieldTxs() {
       </Group>
       <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
         <MediaQuery smallerThan={1440} styles={{ display: "none" }}>
-          <Box style={{ padding: "0 30px 30px" }}>
-            <ScrollArea
-              style={{
-                height: "auto",
-                borderRadius: 12,
-                overflow: "hidden",
-                border: "1px solid #363636",
-              }}
-              scrollbarSize={4}
-            >
-              <ShieldListCard txlist={txListData}></ShieldListCard>
-            </ScrollArea>
-          </Box>
+          <div>
+            <Box style={{ padding: "0 30px 0" }}>
+              <ScrollArea
+                style={{
+                  height: "auto",
+                  borderRadius: 12,
+                  overflow: "hidden",
+                  border: "1px solid #363636",
+                }}
+                scrollbarSize={4}
+              >
+                <ShieldListCard txlist={txListData}></ShieldListCard>
+              </ScrollArea>
+            </Box>
+            <Box style={{ padding: "0 30px" }}>
+              <Group position="left">
+                <Group position="left" spacing="xs">
+                  <Text size="sm">Go to</Text>
+                  <TextInput
+                    placeholder="Page"
+                    type="number"
+                    radius="lg"
+                    onChange={(event) => setGotoPage(event.target.value)}
+                    onKeyUp={(event) => getPage(event)}
+                    styles={{
+                      wrapper: {
+                        width: 60,
+                        height: 32,
+                        textAlign: "center",
+                      },
+                      input: {
+                        backgroundColor: "#303030",
+                        textAlign: "center",
+                        height: 32,
+                        lineHeight: 32,
+                        minHeight: 32,
+                        padding: "0 4px",
+                      },
+                    }}
+                  />
+                </Group>
+                <Pagination totalPage={totalPage} currentPage={activePage} onPageChange={handlePageClick} ></Pagination>
+              </Group>
+            </Box>
+          </div>
         </MediaQuery>
 
         <MediaQuery largerThan={1440} styles={{ display: "none" }}>
-          <ScrollArea
-            style={{
-              height: "auto",
-              overflow: "hidden",
-              paddingBottom: 16,
-            }}
-            scrollbarSize={4}
-          >
-            <Box
+          <div>
+            <ScrollArea
               style={{
                 height: "auto",
                 overflow: "hidden",
-                border: "1px solid #363636",
+                paddingBottom: 16,
               }}
+              scrollbarSize={4}
             >
-              <ShieldListCard txlist={txListData}></ShieldListCard>
+              <Box
+                style={{
+                  height: "auto",
+                  overflow: "hidden",
+                  border: "1px solid #363636",
+                }}
+              >
+                <ShieldListCard txlist={txListData}></ShieldListCard>
+              </Box>
+            </ScrollArea>
+            <Box style={{ padding: "0 16px" }}>
+              <Group position="left">
+                <Group position="left" spacing="xs">
+                  <Text size="sm">Go to</Text>
+                  <TextInput
+                    placeholder="Page"
+                    type="number"
+                    radius="lg"
+                    onChange={(event) => setGotoPage(event.target.value)}
+                    onKeyUp={(event) => getPage(event)}
+                    styles={{
+                      wrapper: {
+                        width: 60,
+                        height: 32,
+                        textAlign: "center",
+                      },
+                      input: {
+                        backgroundColor: "#303030",
+                        textAlign: "center",
+                        height: 32,
+                        lineHeight: 32,
+                        minHeight: 32,
+                        padding: "0 4px",
+                      },
+                    }}
+                  />
+                </Group>
+                <Pagination totalPage={totalPage} currentPage={activePage} onPageChange={handlePageClick} ></Pagination>
+              </Group>
             </Box>
-          </ScrollArea>
+          </div>
+
         </MediaQuery>
       </div>
-
-      <Space h="md" />
-      <Group position="center">
-        <Group position="center" spacing="sm">
-          <Text size="sm">Go to</Text>
-          <TextInput
-            placeholder="Page"
-            type="number"
-            radius="lg"
-            onChange={(event) => setGotoPage(event.target.value)}
-            onKeyUp={(event) => getPage(event)}
-            styles={{
-              wrapper: {
-                width: 80,
-                height: 32,
-                textAlign: "center",
-              },
-              input: {
-                backgroundColor: "#303030",
-                textAlign: "center",
-                height: 32,
-                lineHeight: 32,
-                minHeight: 32,
-                padding: "0 4px",
-              },
-            }}
-          />
-        </Group>
-
-        <Pagination totalPage={totalPage} currentPage={activePage} onPageChange={handlePageClick} ></Pagination>
-      </Group>
-      <Space h="sm" />
     </>
   );
 }
