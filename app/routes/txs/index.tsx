@@ -2,7 +2,6 @@ import {
   Title,
   Space,
   TextInput,
-  Pagination,
   Group,
   Text,
   Loader,
@@ -14,6 +13,7 @@ import TxListCard from "~/components/txlistcard/txlistcard";
 import { useState, useEffect } from "react";
 import { getNormalTx } from "~/services/transactions";
 import SectionTitle from "~/components/sectiontitle/sectiontitle";
+import Pagination from "~/components/pagination/pagination";
 import useStyles from "./styles";
 
 function Txs() {
@@ -36,6 +36,10 @@ function Txs() {
   useEffect(() => {
     handleFetchData(1);
   }, []);
+
+  const handlePageClick = (event: any) => {
+    console.log("event", event);
+  };
 
   function getPage(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === "Enter" && gotoPage !== "") {
@@ -133,7 +137,7 @@ function Txs() {
               }}
             />
           </Group>
-          <Pagination
+          {/* <Pagination
             page={activePage}
             onChange={handleFetchData}
             // siblings={1}
@@ -144,7 +148,16 @@ function Txs() {
             className={classes.paginationBox}
             classNames={classes}
             noWrap={true}
-          />
+
+
+            styles={{
+              item: { border: 'none' },
+              // dots: { color: 'red' },
+              // active: { color: 'red' },
+            }}
+
+          /> */}
+          <Pagination totalPage={totalPage} currentPage={activePage}></Pagination>
         </Group>
       </Box>
       <Space h={30} />

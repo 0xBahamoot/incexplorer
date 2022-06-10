@@ -5,6 +5,7 @@ const useStyles = createStyles((theme) => ({
         backgroundColor: '#303030',
         borderRadius: 100,
         height: 32,
+        maxWidth: 200,
     },
     item: {
         backgroundColor: '#303030',
