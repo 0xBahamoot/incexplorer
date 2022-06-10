@@ -38,7 +38,7 @@ function Txs() {
   }, []);
 
   const handlePageClick = (event: any) => {
-    handleFetchData(event.selected)
+    handleFetchData(event.selected);
   };
 
   function getPage(event: React.KeyboardEvent<HTMLInputElement>) {
@@ -83,7 +83,9 @@ function Txs() {
             <Box style={{ padding: "0 16px" }}>
               <Group position="center">
                 <Group position="center" spacing="xs">
-                  <Text size="sm">Go to</Text>
+                  <Text size="sm" color={"#fff"}>
+                    Go to
+                  </Text>
                   <TextInput
                     placeholder="Page"
                     type="number"
@@ -107,7 +109,11 @@ function Txs() {
                     }}
                   />
                 </Group>
-                <Pagination totalPage={totalPage} currentPage={activePage} onPageChange={handlePageClick} ></Pagination>
+                <Pagination
+                  totalPage={totalPage}
+                  currentPage={activePage}
+                  onPageChange={handlePageClick}
+                ></Pagination>
               </Group>
             </Box>
           </div>
@@ -139,7 +145,9 @@ function Txs() {
           <Box style={{ padding: "0 16px" }}>
             <Group position="left">
               <Group position="left" spacing="xs">
-                <Text size="sm">Go to</Text>
+                <Text size="sm" color={"#fff"}>
+                  Go to
+                </Text>
                 <TextInput
                   placeholder="Page"
                   type="number"
@@ -163,13 +171,15 @@ function Txs() {
                   }}
                 />
               </Group>
-              <Pagination totalPage={totalPage} currentPage={activePage} onPageChange={handlePageClick} ></Pagination>
+              <Pagination
+                totalPage={totalPage}
+                currentPage={activePage}
+                onPageChange={handlePageClick}
+              ></Pagination>
             </Group>
           </Box>
         </Box>
       </MediaQuery>
-
-
     </>
   );
 }

@@ -37,7 +37,7 @@ function ShieldTxs() {
   }, []);
 
   const handlePageClick = (event: any) => {
-    handleFetchData(event.selected)
+    handleFetchData(event.selected);
   };
   function getPage(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === "Enter" && gotoPage !== "") {
@@ -81,7 +81,9 @@ function ShieldTxs() {
             <Box style={{ padding: "0 30px" }}>
               <Group position="left">
                 <Group position="left" spacing="xs">
-                  <Text size="sm">Go to</Text>
+                  <Text size="sm" color={"#fff"}>
+                    Go to
+                  </Text>
                   <TextInput
                     placeholder="Page"
                     type="number"
@@ -105,7 +107,11 @@ function ShieldTxs() {
                     }}
                   />
                 </Group>
-                <Pagination totalPage={totalPage} currentPage={activePage} onPageChange={handlePageClick} ></Pagination>
+                <Pagination
+                  totalPage={totalPage}
+                  currentPage={activePage}
+                  onPageChange={handlePageClick}
+                ></Pagination>
               </Group>
             </Box>
           </div>
@@ -134,7 +140,9 @@ function ShieldTxs() {
             <Box style={{ padding: "0 16px" }}>
               <Group position="left">
                 <Group position="left" spacing="xs">
-                  <Text size="sm">Go to</Text>
+                  <Text size="sm" color={"#fff"}>
+                    Go to
+                  </Text>
                   <TextInput
                     placeholder="Page"
                     type="number"
@@ -158,11 +166,14 @@ function ShieldTxs() {
                     }}
                   />
                 </Group>
-                <Pagination totalPage={totalPage} currentPage={activePage} onPageChange={handlePageClick} ></Pagination>
+                <Pagination
+                  totalPage={totalPage}
+                  currentPage={activePage}
+                  onPageChange={handlePageClick}
+                ></Pagination>
               </Group>
             </Box>
           </div>
-
         </MediaQuery>
       </div>
     </>
