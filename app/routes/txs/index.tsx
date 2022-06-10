@@ -1,9 +1,9 @@
 import {
-  Title,
   Space,
   TextInput,
   Group,
   Text,
+  Grid,
   Loader,
   ScrollArea,
   Box,
@@ -110,9 +110,10 @@ function Txs() {
       </MediaQuery>
       <Space h="md" />
 
-      <Box style={{ padding: "0 30px" }}>
-        <Group position="center" spacing="lg">
-          <Group position="center" spacing="sm">
+      <Box style={{ padding: "0" }}>
+        <Group position="center">
+
+          <Group position="left" spacing="xs">
             <Text size="sm">Go to</Text>
             <TextInput
               placeholder="Page"
@@ -122,7 +123,7 @@ function Txs() {
               onKeyUp={(event) => getPage(event)}
               styles={{
                 wrapper: {
-                  width: 80,
+                  width: 60,
                   height: 32,
                   textAlign: "center",
                 },
@@ -138,6 +139,7 @@ function Txs() {
             />
           </Group>
           <Pagination totalPage={totalPage} currentPage={activePage} onPageChange={handlePageClick} ></Pagination>
+
         </Group>
       </Box>
       <Space h={30} />

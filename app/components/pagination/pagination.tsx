@@ -15,14 +15,14 @@ const Pagination: FunctionComponent<Props> = ({ totalPage, currentPage, onPageCh
 
   return (
     <ReactPaginate
-      nextLabel={<ActionIcon>
+      nextLabel={<ActionIcon variant="transparent">
         <ChevronRight color="#fff" />
       </ActionIcon>}
       onPageChange={onPageChange}
-      pageRangeDisplayed={2}
+      pageRangeDisplayed={4}
       marginPagesDisplayed={1}
       pageCount={totalPage}
-      previousLabel={<ActionIcon>
+      previousLabel={<ActionIcon variant="transparent">
         <ChevronLeft color="#757575" />
       </ActionIcon>}
       containerClassName={classes.pagination}
