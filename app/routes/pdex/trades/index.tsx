@@ -102,7 +102,7 @@ function TradeTxs() {
       </div>
 
       <Space h="md" />
-      <Group position="center" spacing="lg">
+      <Group position="center">
         <Group position="center" spacing="sm">
           <Text size="sm">Go to</Text>
           <TextInput

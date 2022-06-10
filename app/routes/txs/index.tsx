@@ -112,7 +112,6 @@ function Txs() {
 
       <Box style={{ padding: "0" }}>
         <Group position="center">
-
           <Group position="left" spacing="xs">
             <Text size="sm">Go to</Text>
             <TextInput
