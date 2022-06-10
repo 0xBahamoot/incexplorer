@@ -15,7 +15,7 @@ const useStyles = createStyles((theme) => ({
         whiteSpace: 'nowrap',
         overflow: 'hidden',
         display: 'inline-block',
-    },
+    }
 }));
 
 export default useStyles;

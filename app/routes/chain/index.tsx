@@ -125,12 +125,12 @@ function ShardsOverview() {
           {format.formatUnixDateTime(element.Time)}
         </td>
         <td><Text
-          className={classes.hashText} variant="link"
+          className={classes.otherColumn} variant="link"
           component={Link}
           to={"/chain/shard/" + idx}>{idx}</Text></td>
         <td>
           <Text
-            className={classes.hashText} variant="link"
+            className={classes.otherColumn} variant="link"
             component={Link}
             to={"/block/" + element.Hash}>
             {format.formatAmount({ humanAmount: element.Height, decimals: 4 })}</Text>
@@ -256,7 +256,6 @@ function ShardsOverview() {
               border: "1px solid #363636",
             }}
             scrollbarSize={4}
-            offsetScrollbars={true}
           >
             <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
               <thead className={classes.tableThead}>
@@ -385,7 +384,6 @@ function ShardsOverview() {
               border: "1px solid #363636",
             }}
             scrollbarSize={4}
-            offsetScrollbars={true}
           >
             <Table verticalSpacing="sm" horizontalSpacing="md" fontSize={16}>
               <thead className={classes.tableThead}>
