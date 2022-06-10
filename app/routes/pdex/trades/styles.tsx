@@ -1,11 +1,6 @@
 import { createStyles } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
-    paginationBox: {
-        backgroundColor: '#303030',
-        borderRadius: 100,
-        height: 32
-    },
     item: {
         backgroundColor: '#303030',
         color: '#757575',

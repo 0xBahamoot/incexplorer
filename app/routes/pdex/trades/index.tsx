@@ -1,7 +1,6 @@
 import {
   Space,
   TextInput,
-  Pagination,
   Group,
   Text,
   Loader,
@@ -13,6 +12,7 @@ import { useState, useEffect } from "react";
 import { getTradeTxs } from "~/services/transactions";
 import SectionTitle from "~/components/sectiontitle/sectiontitle";
 import TradeListCard from "~/components/tradelistcard/tradelistcard";
+import Pagination from "~/components/pagination/pagination";
 import useStyles from "./styles";
 
 function TradeTxs() {
@@ -36,6 +36,9 @@ function TradeTxs() {
     handleFetchData(1);
   }, []);
 
+  const handlePageClick = (event: any) => {
+    handleFetchData(event.selected)
+  };
   function getPage(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === "Enter" && gotoPage !== "") {
       handleFetchData(parseInt(gotoPage));
@@ -125,16 +128,8 @@ function TradeTxs() {
             }}
           />
         </Group>
-        <Pagination
-          page={activePage}
-          onChange={handleFetchData}
-          siblings={1}
-          boundaries={1}
-          total={totalPage}
-          radius="xl"
-          className={classes.paginationBox}
-          classNames={classes}
-        />
+
+        <Pagination totalPage={totalPage} currentPage={activePage} onPageChange={handlePageClick} ></Pagination>
       </Group>
       <Space h="sm" />
     </>

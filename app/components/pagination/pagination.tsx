@@ -19,7 +19,7 @@ const Pagination: FunctionComponent<Props> = ({ totalPage, currentPage, onPageCh
         <ChevronRight color="#fff" />
       </ActionIcon>}
       onPageChange={onPageChange}
-      pageRangeDisplayed={3}
+      pageRangeDisplayed={2}
       marginPagesDisplayed={1}
       pageCount={totalPage}
       previousLabel={<ActionIcon>

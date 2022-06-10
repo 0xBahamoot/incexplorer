@@ -38,7 +38,7 @@ function Txs() {
   }, []);
 
   const handlePageClick = (event: any) => {
-    console.log("event", event);
+    handleFetchData(event.selected)
   };
 
   function getPage(event: React.KeyboardEvent<HTMLInputElement>) {
@@ -137,27 +137,7 @@ function Txs() {
               }}
             />
           </Group>
-          {/* <Pagination
-            page={activePage}
-            onChange={handleFetchData}
-            // siblings={1}
-            boundaries={1}
-            size="sm"
-            total={totalPage}
-            radius="xl"
-            className={classes.paginationBox}
-            classNames={classes}
-            noWrap={true}
-
-
-            styles={{
-              item: { border: 'none' },
-              // dots: { color: 'red' },
-              // active: { color: 'red' },
-            }}
-
-          /> */}
-          <Pagination totalPage={totalPage} currentPage={activePage}></Pagination>
+          <Pagination totalPage={totalPage} currentPage={activePage} onPageChange={handlePageClick} ></Pagination>
         </Group>
       </Box>
       <Space h={30} />

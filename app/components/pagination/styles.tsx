@@ -1,6 +1,6 @@
 import { createStyles } from '@mantine/core';
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles((theme, _params, getRef) => ({
     pagination: {
         display: 'flex',
         listStyle: 'none',
@@ -9,19 +9,21 @@ const useStyles = createStyles((theme) => ({
         // maxWidth: 200,
         backgroundColor: '#303030',
         padding: '1px 5px',
+        'li .selected': {
+            pageLink: {
+                backgroundColor: '#fff',
+            }
+        },
     },
     pageItem: {
-        '.selected': {
-            backgroundColor: '#fff',
+        '&.selected': {
+            [`& .${getRef('page-link')}`]: {
+                color: '#fff',
+            }
         },
-        ':disabled': {
-            pageLink: {
-                color: '#6c757d',
-                pointerEvents: 'none',
-            },
-        }
     },
     pageLink: {
+        ref: getRef('page-link'),
         position: 'relative',
         display: 'block',
         color: '#757575',
@@ -31,11 +33,7 @@ const useStyles = createStyles((theme) => ({
         fontWeight: 400,
         ':hover': {
             cursor: 'pointer',
-            backgroundColor: '#fff',
-            color: '#000',
-        },
-        '.selected': {
-            backgroundColor: '#fff',
+            color: '#fff',
         },
         ':disabled': {
             color: '#000'
