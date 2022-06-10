@@ -25,7 +25,7 @@ const TxListCard: FunctionComponent<Props> = ({ txlist }) => {
         <td style={{ lineHeight: '14px' }}><Text className={classes.txhash} variant="link" component={Link} to={"/tx/" + element.tx_hash}>
           {getTxText(element.tx_hash)}
         </Text></td>
-        <td><Text className={classes.otherColumn} variant="link" component={Link} to={"/block/" + element.block_height}>{element.block_height}</Text></td>
+        <td><Text className={classes.otherColumn} variant="link" component={Link} to={"/block/" + element.block_hash}>{element.block_height}</Text></td>
         <td><Text className={classes.otherColumn} variant="link" component={Link} to={"/chain/shard/" + element.shard_id}>{element.shard_id}</Text></td>
         <td>
           <Stack align="flex-start">

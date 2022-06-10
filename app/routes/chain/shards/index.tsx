@@ -126,7 +126,6 @@ function ShardsOverview() {
                   xl={4}
                   key={item.Hash}
                   onClick={() => {
-                    console.log("SdfsdF");
                     navigate("/chain/shard/" + idx, { replace: true });
                   }}
                 >

@@ -85,7 +85,7 @@ export default function App() {
               headings: { fontFamily: "Inter" },
               breakpoints: {
                 xs: 374,
-                sm: 768,
+                sm: 500,
                 md: 1200,
                 lg: 1440,
                 xl: 1920,
@@ -95,7 +95,7 @@ export default function App() {
               Container: {
                 sizes: {
                   xs: 374,
-                  sm: 768,
+                  sm: 500,
                   md: 1200,
                   lg: 1440,
                   xl: 1920,

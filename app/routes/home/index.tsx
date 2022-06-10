@@ -21,21 +21,27 @@ import {
 import SectionTitle from "~/components/sectiontitle/sectiontitle";
 import type { LoaderFunction } from "@remix-run/node";
 import { useFetcher } from "@remix-run/react";
+import React, { FunctionComponent } from "react";
 
 export const loader: LoaderFunction = async ({ params }) => {
   const { data, message } = (await getExplorerSummary()) as any;
   console.log(data);
   return data;
 };
-
-function renderMainContent(
+type mainContentProps = {
   loaded: boolean,
   networkData: any,
   pdexData: any,
   prvData: any,
   contentPadding: string,
   scroll: boolean
-) {
+}
+
+export const RenderMainContent: FunctionComponent<mainContentProps> = ({ loaded, networkData, pdexData, prvData, contentPadding, scroll }) => {
+  const [toggleNetworkExpand, setToggleNetworkExpand] = useState<boolean>(false);
+  const [toggleExchangeExpand, setToggleExchangeExpand] = useState<boolean>(false);
+  const [togglePRVExpand, setTogglePRVExpand] = useState<boolean>(false);
+
   return (
     <>
       <Space h={30} />
@@ -46,11 +52,10 @@ function renderMainContent(
             color="gray"
             variant="subtle"
             compact
-            component={Link}
-            to="/txs"
-            style={{ color: "#757575" }}
+            onClick={() => setToggleNetworkExpand(!toggleNetworkExpand)}
+            hidden={!(contentPadding == "0px 16px")}
           >
-            <Text style={{ color: "#1A73E8", fontSize: 16 }}>View all</Text>
+            <Text style={{ color: !toggleNetworkExpand ? "#1A73E8" : "#757575", fontSize: 16 }}>{!toggleNetworkExpand ? "View all" : "Hide"}</Text>
           </Button>
         </Group>
       </Box>
@@ -67,7 +72,12 @@ function renderMainContent(
           padding: contentPadding == "0px 16px" ? "0" : contentPadding,
         }}
       >
-        <SummaryBox items={networkData} scroll={scroll}></SummaryBox>
+        <div hidden={toggleNetworkExpand}>
+          <SummaryBox items={networkData} scroll={scroll}></SummaryBox>
+        </div>
+        <div hidden={!toggleNetworkExpand} style={{ padding: "0 16px" }}>
+          <SummaryBox items={networkData} scroll={false}></SummaryBox>
+        </div>
       </div>
 
       <Space h={contentPadding == "0px 16px" ? 24 : 40} />
@@ -78,11 +88,10 @@ function renderMainContent(
             color="gray"
             variant="subtle"
             compact
-            component={Link}
-            to="/txs"
-            style={{ color: "#757575" }}
+            onClick={() => setToggleExchangeExpand(!toggleExchangeExpand)}
+            hidden={!(contentPadding == "0px 16px")}
           >
-            <Text style={{ color: "#1A73E8", fontSize: 16 }}>View all</Text>
+            <Text style={{ color: !toggleExchangeExpand ? "#1A73E8" : "#757575", fontSize: 16 }}>{!toggleExchangeExpand ? "View all" : "Hide"}</Text>
           </Button>
         </Group>
       </Box>
@@ -99,7 +108,12 @@ function renderMainContent(
           padding: contentPadding == "0px 16px" ? "0" : contentPadding,
         }}
       >
-        <SummaryBox items={pdexData} scroll={scroll}></SummaryBox>
+        <div hidden={toggleExchangeExpand}>
+          <SummaryBox items={pdexData} scroll={scroll}></SummaryBox>
+        </div>
+        <div hidden={!toggleExchangeExpand} style={{ padding: "0 16px" }}>
+          <SummaryBox items={pdexData} scroll={false}></SummaryBox>
+        </div>
       </div>
 
       <Space h={contentPadding == "0px 16px" ? 24 : 40} />
@@ -110,11 +124,10 @@ function renderMainContent(
             color="gray"
             variant="subtle"
             compact
-            component={Link}
-            to="/txs"
-            style={{ color: "#757575" }}
+            onClick={() => setTogglePRVExpand(!togglePRVExpand)}
+            hidden={!(contentPadding == "0px 16px")}
           >
-            <Text style={{ color: "#1A73E8", fontSize: 16 }}>View all</Text>
+            <Text style={{ color: !togglePRVExpand ? "#1A73E8" : "#757575", fontSize: 16 }}>{!togglePRVExpand ? "View all" : "Hide"}</Text>
           </Button>
         </Group>
       </Box>
@@ -131,7 +144,12 @@ function renderMainContent(
           padding: contentPadding == "0px 16px" ? "0" : contentPadding,
         }}
       >
-        <SummaryBox items={prvData} scroll={scroll}></SummaryBox>
+        <div hidden={togglePRVExpand}>
+          <SummaryBox items={prvData} scroll={scroll}></SummaryBox>
+        </div>
+        <div hidden={!togglePRVExpand} style={{ padding: "0 16px" }}>
+          <SummaryBox items={prvData} scroll={false}></SummaryBox>
+        </div>
       </div>
 
       <Space h={contentPadding == "0px 16px" ? 24 : 40} />
@@ -145,7 +163,6 @@ function renderMainContent(
             compact
             component={Link}
             to="/txs"
-            style={{ color: "#757575" }}
           >
             <Text style={{ color: "#1A73E8", fontSize: 16 }}>View all</Text>
           </Button>
@@ -186,7 +203,6 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    console.log("fetcher.data2", fetcher.data);
     if (fetcher.data) {
       setLoaded(false);
       console.log("fetcher.data", fetcher.data);
@@ -277,27 +293,13 @@ function Home() {
     <>
       <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
         <div>
-          {renderMainContent(
-            loaded,
-            networkData,
-            pdexData,
-            prvData,
-            "0px 30px",
-            false
-          )}
+          <RenderMainContent loaded={loaded} networkData={networkData} pdexData={pdexData} prvData={prvData} contentPadding="0px 30px" scroll={false} />
         </div>
       </MediaQuery>
 
       <MediaQuery largerThan={1200} styles={{ display: "none" }}>
         <div>
-          {renderMainContent(
-            loaded,
-            networkData,
-            pdexData,
-            prvData,
-            "0px 16px",
-            true
-          )}
+          <RenderMainContent loaded={loaded} networkData={networkData} pdexData={pdexData} prvData={prvData} contentPadding="0px 16px" scroll={true} />
         </div>
       </MediaQuery>
 
