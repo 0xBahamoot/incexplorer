@@ -29,7 +29,7 @@ const useStyles = createStyles((theme) => ({
         '&:hover': {
             color: '#1A73E8'
         }
-    },
+    }
 }));
 
 export default useStyles;

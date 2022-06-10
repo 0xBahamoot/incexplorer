@@ -40,7 +40,19 @@ function renderMainContent(
     <>
       <Space h={30} />
       <Box style={{ padding: contentPadding }}>
-        <SectionTitle text="Network" />
+        <Group position="apart">
+          <SectionTitle text="Network" />
+          <Button
+            color="gray"
+            variant="subtle"
+            compact
+            component={Link}
+            to="/txs"
+            style={{ color: "#757575" }}
+          >
+            <Text style={{ color: "#1A73E8", fontSize: 16 }}>View all</Text>
+          </Button>
+        </Group>
       </Box>
       <Space h={contentPadding == "0px 16px" ? 6 : "sm"} />
 
@@ -60,7 +72,19 @@ function renderMainContent(
 
       <Space h={contentPadding == "0px 16px" ? 24 : 40} />
       <Box style={{ padding: contentPadding }}>
-        <SectionTitle text="Privacy Exchange" />
+        <Group position="apart">
+          <SectionTitle text="Privacy Exchange" />
+          <Button
+            color="gray"
+            variant="subtle"
+            compact
+            component={Link}
+            to="/txs"
+            style={{ color: "#757575" }}
+          >
+            <Text style={{ color: "#1A73E8", fontSize: 16 }}>View all</Text>
+          </Button>
+        </Group>
       </Box>
       <Space h={contentPadding == "0px 16px" ? 6 : "sm"} />
 
@@ -80,7 +104,19 @@ function renderMainContent(
 
       <Space h={contentPadding == "0px 16px" ? 24 : 40} />
       <Box style={{ padding: contentPadding }}>
-        <SectionTitle text="PRV" />
+        <Group position="apart">
+          <SectionTitle text="PRV" />
+          <Button
+            color="gray"
+            variant="subtle"
+            compact
+            component={Link}
+            to="/txs"
+            style={{ color: "#757575" }}
+          >
+            <Text style={{ color: "#1A73E8", fontSize: 16 }}>View all</Text>
+          </Button>
+        </Group>
       </Box>
       <Space h={contentPadding == "0px 16px" ? 6 : "sm"} />
 
@@ -109,7 +145,7 @@ function renderMainContent(
             compact
             component={Link}
             to="/txs"
-            style={{ marginRight: 10, color: "#757575" }}
+            style={{ color: "#757575" }}
           >
             <Text style={{ color: "#1A73E8", fontSize: 16 }}>View all</Text>
           </Button>
@@ -276,7 +312,6 @@ function Home() {
                 border: "1px solid #363636",
               }}
               scrollbarSize={4}
-              offsetScrollbars={true}
             >
               <TxListCard txlist={txListData}></TxListCard>
             </ScrollArea>
@@ -296,7 +331,7 @@ function Home() {
               style={{
                 height: "auto",
                 overflow: "hidden",
-                border: "1px solid #363636",
+                border: "1px solid #363636"
               }}
             >
               <TxListCard txlist={txListData}></TxListCard>
