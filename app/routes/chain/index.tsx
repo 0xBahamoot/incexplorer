@@ -8,6 +8,7 @@ import {
   ScrollArea,
   Box,
   MediaQuery,
+  Button,
 } from "@mantine/core";
 import SummaryCard from "~/components/summarycard/summarycard";
 import type { LoaderFunction } from "@remix-run/node";
@@ -73,6 +74,8 @@ function ShardsOverview() {
   const loaderData = useLoaderData();
   const [data, setData] = useState(loaderData);
   const [overviewData, setOverviewData] = useState([]);
+  const [toggleOverviewExpand, setToggleOverviewExpand] =
+    useState<boolean>(false);
 
   useEffect(() => {
     if (loaderData) {
@@ -124,16 +127,25 @@ function ShardsOverview() {
         <td style={{ color: "#757575", minWidth: 200 }}>
           {format.formatUnixDateTime(element.Time)}
         </td>
-        <td><Text
-          className={classes.otherColumn} variant="link"
-          component={Link}
-          to={"/chain/shard/" + idx}>{idx}</Text></td>
         <td>
           <Text
-            className={classes.otherColumn} variant="link"
+            className={classes.otherColumn}
+            variant="link"
             component={Link}
-            to={"/block/" + element.Hash}>
-            {format.formatAmount({ humanAmount: element.Height, decimals: 4 })}</Text>
+            to={"/chain/shard/" + idx}
+          >
+            {idx}
+          </Text>
+        </td>
+        <td>
+          <Text
+            className={classes.otherColumn}
+            variant="link"
+            component={Link}
+            to={"/block/" + element.Hash}
+          >
+            {format.formatAmount({ humanAmount: element.Height, decimals: 4 })}
+          </Text>
         </td>
         <td className={classes.otherColumn}>
           {format.formatAmount({ humanAmount: element.TotalTxs, decimals: 4 })}
@@ -149,14 +161,23 @@ function ShardsOverview() {
       <MediaQuery largerThan={1200} styles={{ display: "none" }}>
         <div>
           <Box style={{ padding: "0 16px" }}>
-            <SectionTitle text="Overview" />
-            <Space h={6} />
-            <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
-              <Loader
+            <Group position="apart">
+              <SectionTitle text="Overview" />
+              <Button
                 color="gray"
-                size={30}
-                style={{ height: !loaded ? 200 : 0 }}
-              />
+                variant="subtle"
+                compact
+                onClick={() => setToggleOverviewExpand(!toggleOverviewExpand)}
+              >
+                <Text
+                  style={{
+                    color: !toggleOverviewExpand ? "#1A73E8" : "#757575",
+                    fontSize: 16,
+                  }}
+                >
+                  {!toggleOverviewExpand ? "View all" : "Hide"}
+                </Text>
+              </Button>
             </Group>
           </Box>
           <div style={{ height: loaded ? "auto" : 0, overflow: "hidden" }}>
@@ -168,6 +189,7 @@ function ShardsOverview() {
                 padding: "10px 0",
               }}
               scrollbarSize={4}
+              hidden={toggleOverviewExpand}
             >
               <div
                 style={{
@@ -199,6 +221,27 @@ function ShardsOverview() {
                 ))}
               </div>
             </ScrollArea>
+
+            <Box p={"16px 16px"} hidden={!toggleOverviewExpand}>
+              <Grid gutter="lg" columns={20}>
+                {overviewData.map((item: any) => (
+                  <Grid.Col
+                    xs={10}
+                    sm={10}
+                    md={5}
+                    lg={5}
+                    xl={4}
+                    key={item.Title}
+                  >
+                    <SummaryCard
+                      title={item.Title}
+                      content={item.Content}
+                      currencyFormat={false}
+                    />
+                  </Grid.Col>
+                ))}
+              </Grid>
+            </Box>
           </div>
 
           <Box style={{ padding: "0 16px" }}>
