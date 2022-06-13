@@ -244,12 +244,14 @@ function MainHeader() {
       <MediaQuery largerThan={1200} styles={{ display: "none" }}>
         <Group position="apart" style={{ height: 42, padding: "0 16px" }}>
           <Group position="left">
-            <Burger
-              opened={opened}
-              onClick={() => setOpened((o) => !o)}
+            <ActionIcon
               size="sm"
-              color={"#fff"}
-            />
+              radius="xl"
+              variant="transparent"
+              onClick={() => setOpened((o) => !o)}
+            >
+              <Image src="/assets/images/icons/burger.svg" color={"#fff"} />
+            </ActionIcon>
           </Group>
           <Center>
             <a href="/">
@@ -268,18 +270,18 @@ function MainHeader() {
           </Center>
           <Group position="right">
             <ActionIcon
-              size="xl"
-              radius="xl"
+              size="sm"
+              // radius="xl"
               variant="transparent"
               onClick={() => {
                 setShowSearch(false);
               }}
-              style={{ display: showSearch ? "block" : "none" }}
+              style={{ display: showSearch ? "block" : "none", marginTop: -5 }}
             >
-              <X />
+              <X color="#757575" />
             </ActionIcon>
             <ActionIcon
-              size="xl"
+              size="sm"
               radius="xl"
               variant="transparent"
               onClick={() => {
@@ -287,7 +289,7 @@ function MainHeader() {
               }}
               style={{ display: showSearch ? "none" : "block" }}
             >
-              <Search />
+              <Image src="/assets/images/icons/search.svg" color={"#fff"} />
             </ActionIcon>
           </Group>
         </Group>
