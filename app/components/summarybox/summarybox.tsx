@@ -4,10 +4,15 @@ import React, { FunctionComponent } from "react";
 
 type Props = {
   items: any;
+  contentSize: string;
   scroll?: boolean;
 };
 
-const SummaryBox: FunctionComponent<Props> = ({ items, scroll }) => {
+const SummaryBox: FunctionComponent<Props> = ({
+  items,
+  contentSize,
+  scroll,
+}) => {
   if (scroll == true) {
     return (
       <>
@@ -39,6 +44,7 @@ const SummaryBox: FunctionComponent<Props> = ({ items, scroll }) => {
                   title={item.Name}
                   content={item.value}
                   changePercent={item.valueChangePercentage}
+                  contentSize={contentSize}
                   currencyFormat={item.isCurrency}
                 />
               </div>
@@ -58,6 +64,7 @@ const SummaryBox: FunctionComponent<Props> = ({ items, scroll }) => {
                 content={item.value}
                 changePercent={item.valueChangePercentage}
                 currencyFormat={item.isCurrency}
+                contentSize={contentSize}
               />
             </Grid.Col>
           ))}

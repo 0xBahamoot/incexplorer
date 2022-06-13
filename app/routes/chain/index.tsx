@@ -216,6 +216,7 @@ function ShardsOverview() {
                       title={item.Title}
                       content={item.Content}
                       currencyFormat={false}
+                      contentSize="big"
                     />
                   </div>
                 ))}
@@ -237,6 +238,7 @@ function ShardsOverview() {
                       title={item.Title}
                       content={item.Content}
                       currencyFormat={false}
+                      contentSize="small"
                     />
                   </Grid.Col>
                 ))}
@@ -274,6 +276,7 @@ function ShardsOverview() {
                       title={item.Title}
                       content={item.Content}
                       currencyFormat={false}
+                      contentSize="big"
                     />
                   </Grid.Col>
                 ))}

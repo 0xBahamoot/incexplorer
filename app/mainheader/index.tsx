@@ -246,11 +246,25 @@ function MainHeader() {
           <Group position="left">
             <ActionIcon
               size="sm"
+              // radius="xl"
+              variant="transparent"
+              onClick={() => {
+                setShowSearch(false);
+              }}
+              style={{ display: showSearch ? "block" : "none", marginTop: -5 }}
+            >
+              <X color="#757575" />
+            </ActionIcon>
+            <ActionIcon
+              size="sm"
               radius="xl"
               variant="transparent"
-              onClick={() => setOpened((o) => !o)}
+              onClick={() => {
+                setShowSearch(true);
+              }}
+              style={{ display: showSearch ? "none" : "block" }}
             >
-              <Image src="/assets/images/icons/burger.svg" color={"#fff"} />
+              <Image src="/assets/images/icons/search.svg" color={"#fff"} />
             </ActionIcon>
           </Group>
           <Center>
@@ -271,25 +285,11 @@ function MainHeader() {
           <Group position="right">
             <ActionIcon
               size="sm"
-              // radius="xl"
-              variant="transparent"
-              onClick={() => {
-                setShowSearch(false);
-              }}
-              style={{ display: showSearch ? "block" : "none", marginTop: -5 }}
-            >
-              <X color="#757575" />
-            </ActionIcon>
-            <ActionIcon
-              size="sm"
               radius="xl"
               variant="transparent"
-              onClick={() => {
-                setShowSearch(true);
-              }}
-              style={{ display: showSearch ? "none" : "block" }}
+              onClick={() => setOpened((o) => !o)}
             >
-              <Image src="/assets/images/icons/search.svg" color={"#fff"} />
+              <Image src="/assets/images/icons/burger.svg" color={"#fff"} />
             </ActionIcon>
           </Group>
         </Group>

@@ -29,17 +29,26 @@ export const loader: LoaderFunction = async ({ params }) => {
   return data;
 };
 type mainContentProps = {
-  loaded: boolean,
-  networkData: any,
-  pdexData: any,
-  prvData: any,
-  contentPadding: string,
-  scroll: boolean
-}
+  loaded: boolean;
+  networkData: any;
+  pdexData: any;
+  prvData: any;
+  contentPadding: string;
+  scroll: boolean;
+};
 
-export const RenderMainContent: FunctionComponent<mainContentProps> = ({ loaded, networkData, pdexData, prvData, contentPadding, scroll }) => {
-  const [toggleNetworkExpand, setToggleNetworkExpand] = useState<boolean>(false);
-  const [toggleExchangeExpand, setToggleExchangeExpand] = useState<boolean>(false);
+export const RenderMainContent: FunctionComponent<mainContentProps> = ({
+  loaded,
+  networkData,
+  pdexData,
+  prvData,
+  contentPadding,
+  scroll,
+}) => {
+  const [toggleNetworkExpand, setToggleNetworkExpand] =
+    useState<boolean>(false);
+  const [toggleExchangeExpand, setToggleExchangeExpand] =
+    useState<boolean>(false);
   const [togglePRVExpand, setTogglePRVExpand] = useState<boolean>(false);
 
   return (
@@ -55,7 +64,14 @@ export const RenderMainContent: FunctionComponent<mainContentProps> = ({ loaded,
             onClick={() => setToggleNetworkExpand(!toggleNetworkExpand)}
             hidden={!(contentPadding == "0px 16px")}
           >
-            <Text style={{ color: !toggleNetworkExpand ? "#1A73E8" : "#757575", fontSize: 16 }}>{!toggleNetworkExpand ? "View all" : "Hide"}</Text>
+            <Text
+              style={{
+                color: !toggleNetworkExpand ? "#1A73E8" : "#757575",
+                fontSize: 16,
+              }}
+            >
+              {!toggleNetworkExpand ? "View all" : "Hide"}
+            </Text>
           </Button>
         </Group>
       </Box>
@@ -73,10 +89,18 @@ export const RenderMainContent: FunctionComponent<mainContentProps> = ({ loaded,
         }}
       >
         <div hidden={toggleNetworkExpand}>
-          <SummaryBox items={networkData} scroll={scroll}></SummaryBox>
+          <SummaryBox
+            items={networkData}
+            scroll={scroll}
+            contentSize="big"
+          ></SummaryBox>
         </div>
         <div hidden={!toggleNetworkExpand} style={{ padding: "0 16px" }}>
-          <SummaryBox items={networkData} scroll={false}></SummaryBox>
+          <SummaryBox
+            items={networkData}
+            scroll={false}
+            contentSize="small"
+          ></SummaryBox>
         </div>
       </div>
 
@@ -91,7 +115,14 @@ export const RenderMainContent: FunctionComponent<mainContentProps> = ({ loaded,
             onClick={() => setToggleExchangeExpand(!toggleExchangeExpand)}
             hidden={!(contentPadding == "0px 16px")}
           >
-            <Text style={{ color: !toggleExchangeExpand ? "#1A73E8" : "#757575", fontSize: 16 }}>{!toggleExchangeExpand ? "View all" : "Hide"}</Text>
+            <Text
+              style={{
+                color: !toggleExchangeExpand ? "#1A73E8" : "#757575",
+                fontSize: 16,
+              }}
+            >
+              {!toggleExchangeExpand ? "View all" : "Hide"}
+            </Text>
           </Button>
         </Group>
       </Box>
@@ -109,10 +140,18 @@ export const RenderMainContent: FunctionComponent<mainContentProps> = ({ loaded,
         }}
       >
         <div hidden={toggleExchangeExpand}>
-          <SummaryBox items={pdexData} scroll={scroll}></SummaryBox>
+          <SummaryBox
+            items={pdexData}
+            scroll={scroll}
+            contentSize="big"
+          ></SummaryBox>
         </div>
         <div hidden={!toggleExchangeExpand} style={{ padding: "0 16px" }}>
-          <SummaryBox items={pdexData} scroll={false}></SummaryBox>
+          <SummaryBox
+            items={pdexData}
+            scroll={false}
+            contentSize="small"
+          ></SummaryBox>
         </div>
       </div>
 
@@ -127,7 +166,14 @@ export const RenderMainContent: FunctionComponent<mainContentProps> = ({ loaded,
             onClick={() => setTogglePRVExpand(!togglePRVExpand)}
             hidden={!(contentPadding == "0px 16px")}
           >
-            <Text style={{ color: !togglePRVExpand ? "#1A73E8" : "#757575", fontSize: 16 }}>{!togglePRVExpand ? "View all" : "Hide"}</Text>
+            <Text
+              style={{
+                color: !togglePRVExpand ? "#1A73E8" : "#757575",
+                fontSize: 16,
+              }}
+            >
+              {!togglePRVExpand ? "View all" : "Hide"}
+            </Text>
           </Button>
         </Group>
       </Box>
@@ -145,10 +191,18 @@ export const RenderMainContent: FunctionComponent<mainContentProps> = ({ loaded,
         }}
       >
         <div hidden={togglePRVExpand}>
-          <SummaryBox items={prvData} scroll={scroll}></SummaryBox>
+          <SummaryBox
+            items={prvData}
+            scroll={scroll}
+            contentSize="big"
+          ></SummaryBox>
         </div>
         <div hidden={!togglePRVExpand} style={{ padding: "0 16px" }}>
-          <SummaryBox items={prvData} scroll={false}></SummaryBox>
+          <SummaryBox
+            items={prvData}
+            scroll={false}
+            contentSize="small"
+          ></SummaryBox>
         </div>
       </div>
 
@@ -178,7 +232,7 @@ export const RenderMainContent: FunctionComponent<mainContentProps> = ({ loaded,
       </Box>
     </>
   );
-}
+};
 
 function Home() {
   const fetcher = useFetcher();
@@ -293,13 +347,27 @@ function Home() {
     <>
       <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
         <div>
-          <RenderMainContent loaded={loaded} networkData={networkData} pdexData={pdexData} prvData={prvData} contentPadding="0px 30px" scroll={false} />
+          <RenderMainContent
+            loaded={loaded}
+            networkData={networkData}
+            pdexData={pdexData}
+            prvData={prvData}
+            contentPadding="0px 30px"
+            scroll={false}
+          />
         </div>
       </MediaQuery>
 
       <MediaQuery largerThan={1200} styles={{ display: "none" }}>
         <div>
-          <RenderMainContent loaded={loaded} networkData={networkData} pdexData={pdexData} prvData={prvData} contentPadding="0px 16px" scroll={true} />
+          <RenderMainContent
+            loaded={loaded}
+            networkData={networkData}
+            pdexData={pdexData}
+            prvData={prvData}
+            contentPadding="0px 16px"
+            scroll={true}
+          />
         </div>
       </MediaQuery>
 
@@ -333,7 +401,7 @@ function Home() {
               style={{
                 height: "auto",
                 overflow: "hidden",
-                border: "1px solid #363636"
+                border: "1px solid #363636",
               }}
             >
               <TxListCard txlist={txListData}></TxListCard>
