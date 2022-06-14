@@ -233,7 +233,7 @@ export function CatchBoundary() {
 }
 
 export function ErrorBoundary(error: any) {
-  window.location.reload();
+  // window.location.reload();
   return (
     <html>
       <head>

@@ -91,14 +91,14 @@ function ExchangeSection(onNav?: () => void, fontSize?: number) {
           }
         }}
       >
-        {/* <NavbarBtn
-          text="Markets"
-          link="/charts/market"
-          fontSize={fontSize}
-        ></NavbarBtn> */}
         <NavbarBtn
           text="Trades"
           link="/pdex/trades"
+          fontSize={fontSize}
+        ></NavbarBtn>
+        <NavbarBtn
+          text="Tokens"
+          link="/pdex/tokens"
           fontSize={fontSize}
         ></NavbarBtn>
       </Stack>
