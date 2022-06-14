@@ -1,10 +1,9 @@
 import {
-  Title,
   Space,
   TextInput,
-  Pagination,
   Group,
   Text,
+  Grid,
   Loader,
   ScrollArea,
   Box,
@@ -14,6 +13,7 @@ import TxListCard from "~/components/txlistcard/txlistcard";
 import { useState, useEffect } from "react";
 import { getNormalTx } from "~/services/transactions";
 import SectionTitle from "~/components/sectiontitle/sectiontitle";
+import Pagination from "~/components/pagination/pagination";
 import useStyles from "./styles";
 
 function Txs() {
@@ -36,6 +36,10 @@ function Txs() {
   useEffect(() => {
     handleFetchData(1);
   }, []);
+
+  const handlePageClick = (event: any) => {
+    handleFetchData(event.selected);
+  };
 
   function getPage(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === "Enter" && gotoPage !== "") {
@@ -76,6 +80,42 @@ function Txs() {
             >
               <TxListCard txlist={txListData}></TxListCard>
             </ScrollArea>
+            <Box style={{ padding: "0 16px" }}>
+              <Group position="center">
+                <Group position="center" spacing="xs">
+                  <Text size="sm" color={"#fff"}>
+                    Go to
+                  </Text>
+                  <TextInput
+                    placeholder="Page"
+                    type="number"
+                    radius="lg"
+                    onChange={(event) => setGotoPage(event.target.value)}
+                    onKeyUp={(event) => getPage(event)}
+                    styles={{
+                      wrapper: {
+                        width: 60,
+                        height: 32,
+                        textAlign: "center",
+                      },
+                      input: {
+                        backgroundColor: "#303030",
+                        textAlign: "center",
+                        height: 32,
+                        lineHeight: 32,
+                        minHeight: 32,
+                        padding: "0 4px",
+                      },
+                    }}
+                  />
+                </Group>
+                <Pagination
+                  totalPage={totalPage}
+                  currentPage={activePage}
+                  onPageChange={handlePageClick}
+                ></Pagination>
+              </Group>
+            </Box>
           </div>
         </Box>
       </MediaQuery>
@@ -102,52 +142,44 @@ function Txs() {
               </Box>
             </ScrollArea>
           </div>
+          <Box style={{ padding: "0 16px" }}>
+            <Group position="left">
+              <Group position="left" spacing="xs">
+                <Text size="sm" color={"#fff"}>
+                  Go to
+                </Text>
+                <TextInput
+                  placeholder="Page"
+                  type="number"
+                  radius="lg"
+                  onChange={(event) => setGotoPage(event.target.value)}
+                  onKeyUp={(event) => getPage(event)}
+                  styles={{
+                    wrapper: {
+                      width: 60,
+                      height: 32,
+                      textAlign: "center",
+                    },
+                    input: {
+                      backgroundColor: "#303030",
+                      textAlign: "center",
+                      height: 32,
+                      lineHeight: 32,
+                      minHeight: 32,
+                      padding: "0 4px",
+                    },
+                  }}
+                />
+              </Group>
+              <Pagination
+                totalPage={totalPage}
+                currentPage={activePage}
+                onPageChange={handlePageClick}
+              ></Pagination>
+            </Group>
+          </Box>
         </Box>
       </MediaQuery>
-      <Space h="md" />
-
-      <Box style={{ padding: "0 30px" }}>
-        <Group position="center" spacing="lg">
-          <Group position="center" spacing="sm">
-            <Text size="sm">Go to</Text>
-            <TextInput
-              placeholder="Page"
-              type="number"
-              radius="lg"
-              onChange={(event) => setGotoPage(event.target.value)}
-              onKeyUp={(event) => getPage(event)}
-              styles={{
-                wrapper: {
-                  width: 80,
-                  height: 32,
-                  textAlign: "center",
-                },
-                input: {
-                  backgroundColor: "#303030",
-                  textAlign: "center",
-                  height: 32,
-                  lineHeight: 32,
-                  minHeight: 32,
-                  padding: "0 4px",
-                },
-              }}
-            />
-          </Group>
-          <Pagination
-            page={activePage}
-            onChange={handleFetchData}
-            // siblings={1}
-            boundaries={1}
-            size="sm"
-            total={totalPage}
-            radius="xl"
-            className={classes.paginationBox}
-            classNames={classes}
-            noWrap={true}
-          />
-        </Group>
-      </Box>
-      <Space h={30} />
     </>
   );
 }

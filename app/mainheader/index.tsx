@@ -13,7 +13,9 @@ import {
   useMantineTheme,
   Loader,
   Stack,
-  Box, Title, Dialog
+  Box,
+  Title,
+  Dialog,
 } from "@mantine/core";
 import { Sun, MoonStars, Search, X } from "tabler-icons-react";
 import React, { useEffect, useState } from "react";
@@ -103,8 +105,8 @@ function MainHeader() {
         size="xl"
         withCloseButton={false}
       >
-        <Stack justify="space-between" style={{ height: '100%' }}>
-          <Box style={{ paddingLeft: 16, borderBottom: '1px solid #363636' }}>
+        <Stack justify="space-between" style={{ height: "100%" }}>
+          <Box style={{ paddingLeft: 16, borderBottom: "1px solid #363636" }}>
             <Group position="apart" style={{ height: 64 }}>
               <Center>
                 <a href="/">
@@ -113,16 +115,23 @@ function MainHeader() {
                     fit="contain"
                     src={
                       dark
-                        ? "/assets/images/logo_h_white.svg"
-                        : "/assets/images/logo_h_white.svg"
+                        ? "/assets/images/logo_mobile2.svg"
+                        : "/assets/images/logo_mobile2.svg"
                     }
-                    height={24}
+                    height={42}
                     width={"auto"}
                   />
                 </a>
               </Center>
               <Group position="right">
-                <ActionIcon size="xl" radius="xl" variant="transparent" onClick={() => { setOpened(false) }}>
+                <ActionIcon
+                  size="xl"
+                  radius="xl"
+                  variant="transparent"
+                  onClick={() => {
+                    setOpened(false);
+                  }}
+                >
                   <X color="#757575" />
                 </ActionIcon>
               </Group>
@@ -131,13 +140,48 @@ function MainHeader() {
           <NavDrawer onNav={() => setOpened(false)} />
           <Box style={{ paddingLeft: 16, paddingBottom: 10 }}>
             <Group position="left">
-              <Button variant="subtle" color="gray" className={classes.btn} size="md" compact component="a" target={"_blank"} href="https://incognito.org/mediakit">Media kit</Button>
-              <Button variant="subtle" color="gray" className={classes.btn} size="md" compact component="a" target={"_blank"} href="https://t.me/incognitochain">Telegram</Button>
-              <Button variant="subtle" color="gray" className={classes.btn} size="md" compact component="a" target={"_blank"} href="https://twitter.com/IncognitoChain">Twitter</Button>
+              <Button
+                variant="subtle"
+                color="gray"
+                className={classes.btn}
+                size="md"
+                compact
+                component="a"
+                target={"_blank"}
+                href="https://incognito.org/mediakit"
+              >
+                Media kit
+              </Button>
+              <Button
+                variant="subtle"
+                color="gray"
+                className={classes.btn}
+                size="md"
+                compact
+                component="a"
+                target={"_blank"}
+                href="https://t.me/incognitochain"
+              >
+                Telegram
+              </Button>
+              <Button
+                variant="subtle"
+                color="gray"
+                className={classes.btn}
+                size="md"
+                compact
+                component="a"
+                target={"_blank"}
+                href="https://twitter.com/IncognitoChain"
+              >
+                Twitter
+              </Button>
             </Group>
             <Group position="left">
               <Center style={{ width: 150, height: 50 }}>
-                <Title order={5} style={{ color: '#fff', fontWeight: 500 }}>© 2022 Incognito</Title>
+                <Title order={5} style={{ color: "#fff", fontWeight: 500 }}>
+                  © 2022 Incognito
+                </Title>
               </Center>
             </Group>
           </Box>
@@ -158,11 +202,11 @@ function MainHeader() {
         zIndex={1}
         styles={{
           root: {
-            backgroundColor: '#1A1A1A',
-            border: 'none',
-            boxShadow: 'none',
-            width: '100%'
-          }
+            backgroundColor: "#1A1A1A",
+            border: "none",
+            boxShadow: "none",
+            width: "100%",
+          },
         }}
       >
         <TextInput
@@ -183,7 +227,7 @@ function MainHeader() {
           }
           styles={{
             input: {
-              width: '100%',
+              width: "100%",
               color: "#fff",
               height: 40,
               fontSize: 16,
@@ -198,15 +242,30 @@ function MainHeader() {
       </Dialog>
 
       <MediaQuery largerThan={1200} styles={{ display: "none" }}>
-
-        <Group position="apart" style={{ height: 42, padding: '0 16px' }}>
+        <Group position="apart" style={{ height: 42, padding: "0 16px" }}>
           <Group position="left">
-            <Burger
-              opened={opened}
-              onClick={() => setOpened((o) => !o)}
+            <ActionIcon
               size="sm"
-              color={"#fff"}
-            />
+              // radius="xl"
+              variant="transparent"
+              onClick={() => {
+                setShowSearch(false);
+              }}
+              style={{ display: showSearch ? "block" : "none", marginTop: -5 }}
+            >
+              <X color="#757575" />
+            </ActionIcon>
+            <ActionIcon
+              size="sm"
+              radius="xl"
+              variant="transparent"
+              onClick={() => {
+                setShowSearch(true);
+              }}
+              style={{ display: showSearch ? "none" : "block" }}
+            >
+              <Image src="/assets/images/icons/search.svg" color={"#fff"} />
+            </ActionIcon>
           </Group>
           <Center>
             <a href="/">
@@ -215,27 +274,29 @@ function MainHeader() {
                 fit="contain"
                 src={
                   dark
-                    ? "/assets/images/logo_h_white.svg"
-                    : "/assets/images/logo_h_white.svg"
+                    ? "/assets/images/logo_mobile.svg"
+                    : "/assets/images/logo_mobile.svg"
                 }
-                height={24}
+                height={42}
                 width={"auto"}
               />
             </a>
           </Center>
           <Group position="right">
-            <ActionIcon size="xl" radius="xl" variant="transparent" onClick={() => { setShowSearch(false) }} style={{ display: showSearch ? 'block' : "none" }}>
-              <X />
-            </ActionIcon>
-            <ActionIcon size="xl" radius="xl" variant="transparent" onClick={() => { setShowSearch(true) }} style={{ display: showSearch ? 'none' : "block" }}>
-              <Search />
+            <ActionIcon
+              size="sm"
+              radius="xl"
+              variant="transparent"
+              onClick={() => setOpened((o) => !o)}
+            >
+              <Image src="/assets/images/icons/burger.svg" color={"#fff"} />
             </ActionIcon>
           </Group>
         </Group>
       </MediaQuery>
 
       <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
-        <Group position="apart" grow style={{ height: 42, padding: '0 30px' }}>
+        <Group position="apart" grow style={{ height: 42, padding: "0 30px" }}>
           <Group position="left">
             <Center>
               <a href="/">

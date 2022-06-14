@@ -15,21 +15,6 @@ const useStyles = createStyles((theme) => ({
         fontWeight: 500,
         lineHeight: "40px",
     },
-    paginationBox: {
-        backgroundColor: '#303030',
-        borderRadius: 100,
-        height: 32
-    },
-    item: {
-        backgroundColor: '#303030',
-        color: '#757575',
-        height: 32
-    },
-    active: {
-        backgroundColor: '#303030',
-        color: '#fff',
-        height: 32
-    },
 
     txhash: {
         color: '#1A73E8',

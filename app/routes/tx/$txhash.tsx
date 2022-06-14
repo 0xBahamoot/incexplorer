@@ -83,7 +83,14 @@ function renderTxDetailContent(
           <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
             <Text className={classes.propertyName}>TxHash</Text>
           </Grid.Col>
-          <Grid.Col xs={20} sm={23} md={23} lg={20} xl={20} className={classes.propertyValue}>
+          <Grid.Col
+            xs={20}
+            sm={23}
+            md={23}
+            lg={20}
+            xl={20}
+            className={classes.propertyValue}
+          >
             {loaderData.Hash}
           </Grid.Col>
         </Grid>
@@ -92,7 +99,14 @@ function renderTxDetailContent(
           <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
             <Text className={classes.propertyName}>ShardID</Text>
           </Grid.Col>
-          <Grid.Col xs={20} sm={23} md={23} lg={20} xl={20} className={classes.propertyValue}>
+          <Grid.Col
+            xs={20}
+            sm={23}
+            md={23}
+            lg={20}
+            xl={20}
+            className={classes.propertyValue}
+          >
             {loaderData.ShardID}
           </Grid.Col>
         </Grid>
@@ -116,7 +130,14 @@ function renderTxDetailContent(
           <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
             <Text className={classes.propertyName}>Block height</Text>
           </Grid.Col>
-          <Grid.Col xs={20} sm={23} md={23} lg={20} xl={20} className={classes.propertyValue}>
+          <Grid.Col
+            xs={20}
+            sm={23}
+            md={23}
+            lg={20}
+            xl={20}
+            className={classes.propertyValue}
+          >
             {format.formatAmount({
               humanAmount: loaderData.BlockHeight,
               decimals: 4,
@@ -128,8 +149,15 @@ function renderTxDetailContent(
           <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
             <Text className={classes.propertyName}>Network Fee</Text>
           </Grid.Col>
-          <Grid.Col xs={20} sm={23} md={23} lg={20} xl={20} className={classes.propertyValue}>
-            {loaderData.Fee} PRV
+          <Grid.Col
+            xs={20}
+            sm={23}
+            md={23}
+            lg={20}
+            xl={20}
+            className={classes.propertyValue}
+          >
+            {loaderData.TransactionData.tx_fee} PRV
           </Grid.Col>
         </Grid>
 
@@ -137,7 +165,14 @@ function renderTxDetailContent(
           <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
             <Text className={classes.propertyName}>Version</Text>
           </Grid.Col>
-          <Grid.Col xs={20} sm={23} md={23} lg={20} xl={20} className={classes.propertyValue}>
+          <Grid.Col
+            xs={20}
+            sm={23}
+            md={23}
+            lg={20}
+            xl={20}
+            className={classes.propertyValue}
+          >
             {loaderData.Version}
           </Grid.Col>
         </Grid>
@@ -146,7 +181,14 @@ function renderTxDetailContent(
           <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
             <Text className={classes.propertyName}>Timestamp</Text>
           </Grid.Col>
-          <Grid.Col xs={20} sm={23} md={23} lg={20} xl={20} className={classes.propertyValue}>
+          <Grid.Col
+            xs={20}
+            sm={23}
+            md={23}
+            lg={20}
+            xl={20}
+            className={classes.propertyValue}
+          >
             {loaderData.LockTime}
           </Grid.Col>
         </Grid>
@@ -155,7 +197,14 @@ function renderTxDetailContent(
           <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
             <Text className={classes.propertyName}>Type</Text>
           </Grid.Col>
-          <Grid.Col xs={20} sm={23} md={23} lg={20} xl={20} className={classes.propertyValue}>
+          <Grid.Col
+            xs={20}
+            sm={23}
+            md={23}
+            lg={20}
+            xl={20}
+            className={classes.propertyValue}
+          >
             {loaderData.TransactionData.meta_type_name}
           </Grid.Col>
         </Grid>
@@ -168,7 +217,14 @@ function renderTxDetailContent(
           <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
             <Text className={classes.propertyName}>Memo</Text>
           </Grid.Col>
-          <Grid.Col xs={20} sm={23} md={23} lg={20} xl={20} className={classes.propertyValue}>
+          <Grid.Col
+            xs={20}
+            sm={23}
+            md={23}
+            lg={20}
+            xl={20}
+            className={classes.propertyValue}
+          >
             {loaderData.Info}
           </Grid.Col>
         </Grid>
@@ -215,14 +271,23 @@ function renderTxDetailContent(
           <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
             <Text className={classes.propertyName}>SigPubkey</Text>
           </Grid.Col>
-          <Grid.Col xs={20} sm={23} md={23} lg={20} xl={20}>{loaderData.SigPubKey}</Grid.Col>
+          <Grid.Col xs={20} sm={23} md={23} lg={20} xl={20}>
+            {loaderData.SigPubKey}
+          </Grid.Col>
         </Grid>
 
         <Grid columns={25} className={classes.wrapper}>
           <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
             <Text className={classes.propertyName}>Sig</Text>
           </Grid.Col>
-          <Grid.Col xs={20} sm={23} md={23} lg={20} xl={20} className={classes.propertyValue}>
+          <Grid.Col
+            xs={20}
+            sm={23}
+            md={23}
+            lg={20}
+            xl={20}
+            className={classes.propertyValue}
+          >
             {loaderData.Sig}
           </Grid.Col>
         </Grid>
@@ -325,11 +390,9 @@ function renderTxDetail(loaderData: TxDetail, classes: any, padding: string) {
           {renderTxDetailContent(loaderData, classes, padding)}
         </ScrollArea>
       ) : (
-
         <Box style={{ padding: padding }}>
           {renderTxDetailContent(loaderData, classes, padding)}
         </Box>
-
       )}
     </>
   );
