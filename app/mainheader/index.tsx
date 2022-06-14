@@ -125,14 +125,22 @@ function MainHeader() {
               </Center>
               <Group position="right">
                 <ActionIcon
-                  size="xl"
+                  size={22}
                   radius="xl"
                   variant="transparent"
                   onClick={() => {
                     setOpened(false);
                   }}
+                  style={{
+                    marginTop: -2,
+                    marginRight: 15,
+                    padding: 2,
+                  }}
                 >
-                  <X color="#757575" />
+                  <Image
+                    src="/assets/images/icons/cancel.svg"
+                    color={"#757575"}
+                  />
                 </ActionIcon>
               </Group>
             </Group>
@@ -245,15 +253,19 @@ function MainHeader() {
         <Group position="apart" style={{ height: 42, padding: "0 16px" }}>
           <Group position="left">
             <ActionIcon
-              size="sm"
+              size={22}
               // radius="xl"
               variant="transparent"
               onClick={() => {
                 setShowSearch(false);
               }}
-              style={{ display: showSearch ? "block" : "none", marginTop: -5 }}
+              style={{
+                display: showSearch ? "block" : "none",
+                marginTop: -2,
+                padding: 2,
+              }}
             >
-              <X color="#757575" />
+              <Image src="/assets/images/icons/cancel.svg" color={"#757575"} />
             </ActionIcon>
             <ActionIcon
               size="sm"
@@ -262,7 +274,7 @@ function MainHeader() {
               onClick={() => {
                 setShowSearch(true);
               }}
-              style={{ display: showSearch ? "none" : "block" }}
+              style={{ display: showSearch ? "none" : "block", marginTop: -2 }}
             >
               <Image src="/assets/images/icons/search.svg" color={"#fff"} />
             </ActionIcon>
