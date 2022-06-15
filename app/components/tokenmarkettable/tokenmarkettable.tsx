@@ -1,6 +1,7 @@
 import { Text, Table, Box, Center, Avatar } from '@mantine/core';
 
 import React, { FunctionComponent } from 'react'
+import { CaretUp, CaretDown } from "tabler-icons-react";
 import { TokenInfo } from '~/types/types';
 import useStyles from './styles'
 import format from '~/utils/format';
@@ -28,28 +29,52 @@ const TokenMarketTable: FunctionComponent<Props> = ({ tokenlist }) => {
     return (
 
       <tr key={element.TokenID} style={{ cursor: 'pointer', height: 50 }} >
-        <td style={{ paddingTop: 5 }}>
-          <Center inline>
+        <td style={{ whiteSpace: 'nowrap', }}>
+          <Center inline style={{ height: 50 }}>
             <Avatar size={32} src={getTokenIcon(element.Symbol)} style={{ zIndex: 1, borderRadius: "100%" }} />
             <Box ml={5} style={{ paddingLeft: 5, fontSize: 16, fontWeight: 400, color: '#fff', whiteSpace: 'nowrap' }}>{element.Name}</Box>
           </Center>
         </td>
 
-        <td style={{ paddingTop: 5 }}><Text style={{
-          display: 'inline-block', overflow: 'hidden', whiteSpace: 'nowrap',
-          fontSize: 14,
-          textAlign: 'center',
-          padding: 3,
-        }}>{format.formatAmount({ humanAmount: element.PriceUsd, decimals: 4 })}</Text><Text sx={(theme) => ({
-          width: 'auto', maxWidth: 250, overflow: 'hidden', whiteSpace: 'nowrap',
-          fontSize: 12,
-          textAlign: 'center',
-          padding: 3,
-          display: 'inline-block',
-          borderRadius: 6,
-          backgroundColor: !(element.PercentChange24h.includes("-")) ? '#0ECB81' : '#F6465D',
-          color: '#fff',
-        })}>{element.PercentChange24h}%</Text>
+        <td style={{ whiteSpace: 'nowrap', }}>
+
+          <Center inline>
+            <Text style={{
+              display: 'inline-block', overflow: 'hidden', whiteSpace: 'nowrap',
+              fontSize: 16,
+              textAlign: 'center',
+              padding: 3,
+              color: '#fff',
+              paddingRight: 10,
+            }}>${format.formatAmount({ humanAmount: element.PriceUsd, decimals: 4 })}</Text>
+            <Text sx={(theme) => ({
+              width: 'auto', maxWidth: 250, overflow: 'hidden', whiteSpace: 'nowrap',
+              fontSize: 14,
+              textAlign: 'center',
+              padding: "2px 6px",
+              display: 'inline-block',
+              borderRadius: 6,
+              backgroundColor: !(element.PercentChange24h.includes("-")) ? '#0ECB81' : '#CF304A',
+              color: '#fff',
+            })}> <span style={{ paddingRight: 2, top: 2, position: 'relative' }}>
+                {!(element.PercentChange24h.includes("-")) ? (
+                  <CaretUp
+                    size={14}
+                    strokeWidth={1}
+                    fill={"#fff"}
+                    color={"#fff"}
+                  />
+                ) : (
+                  <CaretDown
+                    size={14}
+                    strokeWidth={1}
+                    fill={"#fff"}
+                    color={"#fff"}
+                  />
+                )}
+              </span>{element.PercentChange24h}%</Text>
+          </Center>
+
         </td>
       </tr>
     )
@@ -60,7 +85,7 @@ const TokenMarketTable: FunctionComponent<Props> = ({ tokenlist }) => {
       <thead className={classes.tableThead}>
         <tr>
           <th><Text className={classes.tableTheadText}>Token</Text></th>
-          <th><Text className={classes.tableTheadText}>Price</Text></th>
+          <th><Text className={classes.tableTheadText}>Price (USD)</Text></th>
         </tr>
       </thead>
       <tbody>{rows}</tbody>
