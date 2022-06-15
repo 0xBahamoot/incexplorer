@@ -32,7 +32,10 @@ const TokenMarketTable: FunctionComponent<Props> = ({ tokenlist }) => {
         <td style={{ whiteSpace: 'nowrap', }}>
           <Center inline style={{ height: 50 }}>
             <Avatar size={32} src={getTokenIcon(element.Symbol)} style={{ zIndex: 1, borderRadius: "100%" }} />
-            <Box ml={5} style={{ paddingLeft: 5, fontSize: 16, fontWeight: 400, color: '#fff', whiteSpace: 'nowrap' }}>{element.Name}</Box>
+            <Box ml={5} style={{ paddingLeft: 5, whiteSpace: 'nowrap' }}>
+              <Text style={{ fontSize: 16, fontWeight: 400, color: '#fff' }}>{element.Name}</Text>
+              <Text style={{ fontSize: 14, fontWeight: 400, color: '#757575', lineHeight: "14px" }}>{element.Network}</Text>
+            </Box>
           </Center>
         </td>
 
