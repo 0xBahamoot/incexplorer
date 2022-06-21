@@ -233,7 +233,7 @@ export function CatchBoundary() {
 }
 
 export function ErrorBoundary(error: any) {
-  window.location.reload();
+  // window.location.reload();
   return (
     <html>
       <head>
@@ -242,7 +242,7 @@ export function ErrorBoundary(error: any) {
         <Links />
       </head>
       <body>
-        {/* add the UI you want your users to see */}
+        <h4>{error}</h4>
         <Scripts />
       </body>
     </html>
