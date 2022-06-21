@@ -6,6 +6,6 @@ export const TestnetConfig = {
 export const MainnetConfig = {
   ExplorerAPI: "https://api-explorer.incognito.org/api/v1/",
   AnalyticsEndpoint: "https://api-explorer.incognito.org/",
-  CoinserviceEndpoint: "",
-  FullnodeEndpoint: "https://community-fullnode.incognito.org/fullnode",
+  CoinserviceEndpoint: "https://api-coinservice.incognito.org",
+  FullnodeEndpoint: "https://fullnode.incognito.org/fullnode",
 };
