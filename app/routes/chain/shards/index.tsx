@@ -7,9 +7,7 @@ import {
   Grid,
   MediaQuery,
 } from "@mantine/core";
-import type { LoaderFunction } from "@remix-run/node";
-import { useLoaderData, useFetcher } from "@remix-run/react";
-import { BlockData, ChainInfo } from "~/types/types";
+import { ChainInfo } from "~/types/types";
 import { useState, useEffect } from "react";
 import ShardOverviewCard from "~/components/shardoverviewcard/shardoverviewcard";
 import { getBlockchainInfo } from "~/services/chains";
@@ -17,51 +15,42 @@ import SectionTitle from "~/components/sectiontitle/sectiontitle";
 
 import { useNavigate } from "react-router-dom";
 
-export const loader: LoaderFunction = async ({ params }) => {
-  let blockchainInfo: ChainInfo[] = [];
-  // var id: any = params.shardid;
-  // var chainID: number = parseInt(id);
-  const { Result, Error } = (await getBlockchainInfo()) as any;
-  // let keys = Array.from(Result.BestBlocks.keys());
-  Object.keys(Result.BestBlocks).map((key) => {
-    if (key == "-1") {
-      return <></>;
-    }
-    blockchainInfo.push(Result.BestBlocks[key]);
-  });
-  console.log(blockchainInfo);
-  return blockchainInfo;
-};
-
 function ShardsOverview() {
   let navigate = useNavigate();
   const loaded = true;
-  const loaderData = useLoaderData();
-  const [data, setData] = useState(loaderData);
+  const [data, setData] = useState<ChainInfo[]>([]);
 
   useEffect(() => {
-    setData(loaderData);
-    console.log(loaderData);
-    // setCurrentHeight(loaderData[0].Height)
-    // setCurrentProducer(loaderData[0].BlockProducer)
-  }, [loaderData]);
-
-  const fetcher = useFetcher();
+    getBlockchainInfo().then((res) => {
+      const { Result, Error } = res as any;
+      let blockchainInfo: ChainInfo[] = [];
+      Object.keys(Result.BestBlocks).map((key) => {
+        if (key == "-1") {
+          return <></>;
+        }
+        blockchainInfo.push(Result.BestBlocks[key]);
+      });
+      setData(blockchainInfo);
+    });
+  }, []);
 
   // Get fresh data every 15 seconds.
   useEffect(() => {
     const interval = setInterval(() => {
-      fetcher.load("/chain/shards?index");
-    }, 15 * 1000);
+      getBlockchainInfo().then((res) => {
+        const { Result, Error } = res as any;
+        let blockchainInfo: ChainInfo[] = [];
+        Object.keys(Result.BestBlocks).map((key) => {
+          if (key == "-1") {
+            return <></>;
+          }
+          blockchainInfo.push(Result.BestBlocks[key]);
+        });
+        setData(blockchainInfo);
+      });
+    }, 40 * 1000);
     return () => clearInterval(interval);
   }, []);
-  useEffect(() => {
-    if (fetcher.data) {
-      setData(fetcher.data);
-      // setCurrentHeight(fetcher.data[0].Height)
-      // setCurrentProducer(fetcher.data[0].BlockProducer)
-    }
-  }, [fetcher.data]);
 
   return (
     <>
