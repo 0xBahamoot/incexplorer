@@ -1,7 +1,7 @@
 import { Text, Group, Space, Loader, Paper, Grid, ScrollArea, Box, MediaQuery } from '@mantine/core';
 import BlockListCard from '~/components/blocklistcard/blocklistcard';
 import { getBlocks } from '~/services/chains';
-import type { LoaderFunction } from "@remix-run/node";
+// import type { LoaderFunction } from "@remix-run/node";
 import { useLoaderData, useFetcher } from "@remix-run/react";
 import { BlockData } from '~/types/types';
 import { useState, useEffect } from 'react';
@@ -10,53 +10,53 @@ import useStyles from "./styles";
 import { useParams } from "@remix-run/react";
 import SectionTitle from '~/components/sectiontitle/sectiontitle';
 
-export const loader: LoaderFunction = async ({ params }) => {
-  let blockList: BlockData[];
-  var id: any = params.shardid;
-  var chainID: number = parseInt(id);
-  const { Result, Error } = (await getBlocks(chainID)) as any;
-  console.log(Result);
-  blockList = Result;
-  return blockList
-};
+// export const loader: LoaderFunction = async ({ params }) => {
+//   let blockList: BlockData[];
+//   var id: any = params.shardid;
+//   var chainID: number = parseInt(id);
+//   const { Result, Error } = (await getBlocks(chainID)) as any;
+//   console.log(Result);
+//   blockList = Result;
+//   return blockList
+// };
 
 function ShardDetail() {
   const { classes } = useStyles();
   const params = useParams();
-  const chainID = params.shardid;
-
+  const chainID: any = params.shardid;
+  const chainIDint: number = parseInt(chainID);
   const loaded = true;
   const loaderData = useLoaderData();
-  const [data, setData] = useState(loaderData);
+  const [data, setData] = useState<BlockData[]>([]);
   const [currentHeight, setCurrentHeight] = useState(0);
   const [currentProducer, setCurrentProducer] = useState("");
 
-  // if (loaderData.length > 0) {
-  //   ;
-  // }
-
   useEffect(() => {
-    setData(loaderData)
-    setCurrentHeight(loaderData[0].Height)
-    setCurrentProducer(loaderData[0].BlockProducer)
-  }, [loaderData]);
+    getBlocks(chainIDint).then((res) => {
+      const { Result, Error } = res as any;
+      setData(Result)
+    })
+  }, []);
 
   const fetcher = useFetcher();
 
   // Get fresh data every 15 seconds.
   useEffect(() => {
     const interval = setInterval(() => {
-      fetcher.load("/chain/beacon?index");
-    }, 15 * 1000);
+      getBlocks(chainIDint).then((res) => {
+        const { Result, Error } = res as any;
+        setData(Result)
+      })
+    }, 40 * 1000);
     return () => clearInterval(interval);
   }, []);
+
   useEffect(() => {
-    if (fetcher.data) {
-      setData(fetcher.data);
-      setCurrentHeight(fetcher.data[0].Height)
-      setCurrentProducer(fetcher.data[0].BlockProducer)
+    if (data.length > 0) {
+      setCurrentHeight(data[0].Height)
+      setCurrentProducer(data[0].BlockProducer)
     }
-  }, [fetcher.data]);
+  }, [data]);
 
   function getEllipsisText(hash: String) {
     let result: string = '';

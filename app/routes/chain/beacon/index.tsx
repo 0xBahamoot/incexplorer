@@ -11,57 +11,45 @@ import {
 } from "@mantine/core";
 import BlockListCard from "~/components/blocklistcard/blocklistcard";
 import { getBlocks } from "~/services/chains";
-import type { LoaderFunction } from "@remix-run/node";
-import { useLoaderData, useFetcher } from "@remix-run/react";
 import { BlockData } from "~/types/types";
 import { useState, useEffect } from "react";
 import SectionTitle from "~/components/sectiontitle/sectiontitle";
 import useStyles from "./styles";
 
-export const loader: LoaderFunction = async () => {
-  let blockList: BlockData[];
-  const { Result, Error } = (await getBlocks(-1)) as any;
-  blockList = Result;
-  return blockList;
-};
-
 function BeaconDetail() {
   const loaded = true;
   const { classes } = useStyles();
 
-  const loaderData = useLoaderData();
-
-  const [data, setData] = useState(loaderData);
+  const [data, setData] = useState<BlockData[]>([]);
   const [currentHeight, setCurrentHeight] = useState(0);
   const [currentProducer, setCurrentProducer] = useState("");
 
-  // if (loaderData.length > 0) {
-  //   ;
-  // }
 
   useEffect(() => {
-    setData(loaderData);
-    setCurrentHeight(loaderData[0].Height);
-    setCurrentProducer(loaderData[0].BlockProducer);
-  }, [loaderData]);
+    getBlocks(-1).then((res) => {
+      const { Result, Error } = res as any;
+      setData(Result)
+    })
+  }, []);
 
-  const fetcher = useFetcher();
-
-  // Get fresh data every 15 seconds.
   useEffect(() => {
     const interval = setInterval(() => {
-      fetcher.load("/chain/beacon?index");
-    }, 2 * 1000);
+      getBlocks(-1).then((res) => {
+        const { Result, Error } = res as any;
+        if (Result) {
+          setData(Result);
+        }
+      })
+    }, 40 * 1000);
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
-    if (fetcher.data) {
-      setData(fetcher.data);
-      setCurrentHeight(fetcher.data[0].Height);
-      setCurrentProducer(fetcher.data[0].BlockProducer);
+    if (data.length > 0) {
+      setCurrentHeight(data[0].Height);
+      setCurrentProducer(data[0].BlockProducer);
     }
-  }, [fetcher.data]);
+  }, [data]);
 
   function getEllipsisText(hash: String) {
     let result: string = '';

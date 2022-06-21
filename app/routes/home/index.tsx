@@ -14,20 +14,11 @@ import { useState, useEffect } from "react";
 import { getNormalTx } from "~/services/transactions";
 import { Link } from "react-router-dom";
 import {
-  getDashboard,
-  getSummary,
   getExplorerSummary,
 } from "~/services/summary";
 import SectionTitle from "~/components/sectiontitle/sectiontitle";
-import type { LoaderFunction } from "@remix-run/node";
-import { useFetcher } from "@remix-run/react";
 import React, { FunctionComponent } from "react";
 
-export const loader: LoaderFunction = async ({ params }) => {
-  const { data, message } = (await getExplorerSummary()) as any;
-  console.log(data);
-  return data;
-};
 type mainContentProps = {
   loaded: boolean;
   networkData: any;
@@ -235,11 +226,10 @@ export const RenderMainContent: FunctionComponent<mainContentProps> = ({
 };
 
 function Home() {
-  const fetcher = useFetcher();
 
   const [txListData, setTxListData] = useState<any>([]);
   const [loaded, setLoaded] = useState(false);
-  const [explData, setExplData] = useState<any>([]);
+  const [explData, setExplData] = useState<any>(null);
 
   const [networkData, setNetworkData] = useState<any>([]);
   const [pdexData, setPdexData] = useState<any>([]);
@@ -248,21 +238,20 @@ function Home() {
   // Get fresh data every 15 seconds.
   useEffect(() => {
     const interval = setInterval(() => {
-      const { data, message } = (getExplorerSummary()) as any;
-      if (data) {
-        setExplData(data);
-      }
-    }, 5 * 1000);
+      console.log("asdjasljdkl")
+      getExplorerSummary().then((data) => {
+        console.log(data.data);
+        setExplData(data.data);
+      })
+    }, 40 * 1000);
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
-    // fetcher.load(`/home?index`);
-
-    const { data, message } = (getExplorerSummary()) as any;
-    if (data) {
-      setExplData(data);
-    }
+    getExplorerSummary().then((data) => {
+      console.log(data.data);
+      setExplData(data.data);
+    })
   }, []);
 
   useEffect(() => {
