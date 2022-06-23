@@ -8,8 +8,8 @@ import {
   MediaQuery,
 } from "@mantine/core";
 import { getMempoolInfo } from "~/services/chains";
-import type { LoaderFunction } from "@remix-run/node";
-import { useLoaderData, useFetcher } from "@remix-run/react";
+// import type { LoaderFunction } from "@remix-run/node";
+// import { useLoaderData, useFetcher } from "@remix-run/react";
 import SectionTitle from "~/components/sectiontitle/sectiontitle";
 import useStyles from "./styles";
 import format from "~/utils/format";
@@ -17,60 +17,58 @@ import format from "~/utils/format";
 import { Link } from "react-router-dom";
 
 import { useState, useEffect } from "react";
-export const loader: LoaderFunction = async () => {
-  let txList: any[];
-  const { Result, Error } = (await getMempoolInfo()) as any;
-  txList = Result;
-  console.log(Result);
-  return txList;
-};
+
 function PendingTxs() {
-  const loaderData = useLoaderData();
-  const [data, setData] = useState(loaderData);
+  // const loaderData = useLoaderData();
+  const [data, setData] = useState<any>(null);
 
   useEffect(() => {
-    setData(loaderData);
-  }, [loaderData]);
-
-  const fetcher = useFetcher();
+    getMempoolInfo().then((res) => {
+      const { Result, Error } = res as any;
+      setData(Result);
+    });
+  }, []);
 
   // Get fresh data every 15 seconds.
   useEffect(() => {
     const interval = setInterval(() => {
-      fetcher.load("/pendingtxs?index");
+      getMempoolInfo().then((res) => {
+        const { Result, Error } = res as any;
+        setData(Result);
+      });
     }, 15 * 1000);
     return () => clearInterval(interval);
   }, []);
-  useEffect(() => {
-    if (fetcher.data) {
-      setData(fetcher.data);
-    }
-  }, [fetcher.data]);
 
   const { classes } = useStyles();
-  const rows = data.ListTxs?.map((element: any, idx: number) => {
-    if (idx >= 15) {
-      return null;
-    }
 
-    return (
-      <tr key={element.TxID} style={{ cursor: "pointer", height: 50 }}>
-        <td style={{ lineHeight: "14px" }}>
-          <Text
-            className={classes.txhash}
-            variant="link"
-            component={Link}
-            to={"/tx/" + element.TxID}
-          >
-            {element.TxID}
-          </Text>
-        </td>
-        <td style={{ color: "#757575", whiteSpace: "nowrap" }}>
-          {format.formatUnixDateTime(element.LockTime)}
-        </td>
-      </tr>
-    );
-  });
+  const renderTxs = () => {
+    if (data) {
+      return data.ListTxs?.map((element: any, idx: number) => {
+        if (idx >= 15) {
+          return null;
+        }
+
+        return (
+          <tr key={element.TxID} style={{ cursor: "pointer", height: 50 }}>
+            <td style={{ lineHeight: "14px" }}>
+              <Text
+                className={classes.txhash}
+                variant="link"
+                component={Link}
+                to={"/tx/" + element.TxID}
+              >
+                {element.TxID}
+              </Text>
+            </td>
+            <td style={{ color: "#757575", whiteSpace: "nowrap" }}>
+              {format.formatUnixDateTime(element.LockTime)}
+            </td>
+          </tr>
+        );
+      });
+    }
+  };
 
   return (
     <>
@@ -97,7 +95,7 @@ function PendingTxs() {
                     <th className={classes.tableTheadText}>Time created</th>
                   </tr>
                 </thead>
-                <tbody>{rows}</tbody>
+                <tbody>{renderTxs()}</tbody>
               </Table>
             </ScrollArea>
           </Box>
@@ -133,7 +131,7 @@ function PendingTxs() {
                       <th className={classes.tableTheadText}>Time created</th>
                     </tr>
                   </thead>
-                  <tbody>{rows}</tbody>
+                  <tbody>{renderTxs()}</tbody>
                 </Table>
               </Box>
             </ScrollArea>
