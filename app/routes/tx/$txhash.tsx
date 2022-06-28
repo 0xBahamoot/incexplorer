@@ -45,6 +45,10 @@ function renderTxDetailContent(
     requestTx = md.RequestTxID;
     console.log("requestTx", requestTx);
   }
+  if (md.ReqTxID) {
+    requestTx = md.ReqTxID;
+    console.log("requestTx", requestTx);
+  }
   return (
     <>
       <Paper
