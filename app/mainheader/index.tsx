@@ -16,6 +16,7 @@ import {
   Box,
   Title,
   Dialog,
+  Modal,
 } from "@mantine/core";
 import { Sun, MoonStars, Search, X } from "tabler-icons-react";
 import React, { useEffect, useState } from "react";
@@ -30,12 +31,13 @@ import useStyles from "./styles";
 // import { useLocation } from 'react-router-dom';
 function MainHeader() {
   // let location = useLocation();
+  const [openedSearchResult, setOpenedSearchResult] = useState(false);
 
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const [opened, setOpened] = useState(false);
-  const [searching, setSearching] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [searchResultList, setSearchResultList] = useState([]);
   const fetcher = useFetcher();
   const theme = useMantineTheme();
   const { classes } = useStyles();
@@ -55,9 +57,7 @@ function MainHeader() {
 
   function search(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === "Enter" && searchValue.length > 0) {
-      setSearching(true);
       fetcher.load(`/search/${searchValue}`);
-      setSearching(false);
     }
   }
 
@@ -80,24 +80,53 @@ function MainHeader() {
         return;
       }
 
+      if (result.TokenID) {
+        navigate(`/token/${searchValue}`, { replace: true });
+        return;
+      }
+
+      if (typeof result !== 'string' && result.length > 0) {
+        console.log(result)
+        setSearchResultList(result)
+        setOpenedSearchResult(true)
+        return;
+      }
+
+
       showNotification({
         autoClose: 5000,
         title: "Search result",
-        message: "Hash not found!",
+        message: "nothing was found!",
         color: "red",
         radius: "md",
       });
     }
   }, [fetcher.data]);
 
-  // useEffect(() => {
-  //   if (location.pathname === '/') {
-  //     setOpened(false);
-  //   }
-  // }, [location])
-
   return (
     <>
+      <Modal
+        opened={openedSearchResult}
+        onClose={() => setOpenedSearchResult(false)}
+        title="Search result"
+      >
+        {data.map((item: ChainInfo, idx: number) => (
+          <Grid.Col
+            xs={12}
+            sm={6}
+            md={6}
+            lg={4}
+            xl={4}
+            key={item.Hash}
+            onClick={() => {
+              navigate("/chain/shard/" + idx, { replace: true });
+            }}
+          >
+            <ShardOverviewCard chainInfo={item} chainId={idx} />
+          </Grid.Col>
+        ))}
+      </Modal>
+
       <Drawer
         opened={opened}
         onClose={() => setOpened(false)}
@@ -223,7 +252,7 @@ function MainHeader() {
           radius="md"
           iconWidth={40}
           icon={
-            searching ? (
+            fetcher.state !== 'idle' ? (
               <Loader size="xs" style={{ marginLeft: 8 }} />
             ) : (
               <Image
@@ -352,7 +381,7 @@ function MainHeader() {
               radius="md"
               iconWidth={40}
               icon={
-                searching ? (
+                fetcher.state !== 'idle' ? (
                   <Loader size="xs" style={{ marginLeft: 8 }} />
                 ) : (
                   <Image
