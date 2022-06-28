@@ -24,7 +24,6 @@ const NavbarBtn: FunctionComponent<Props> = ({
   const [isSelected, setIsSelected] = useState(false);
 
   useEffect(() => {
-    console.log("location.pathname", location.pathname, link);
     if (location.pathname === link) {
       setIsSelected(true);
     } else {

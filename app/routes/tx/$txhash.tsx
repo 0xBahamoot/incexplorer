@@ -39,6 +39,12 @@ function renderTxDetailContent(
   classes: any,
   padding: string
 ) {
+  let requestTx: string = "";
+  const md = JSON.parse(loaderData.Metadata);
+  if (md.RequestTxID) {
+    requestTx = md.RequestTxID;
+    console.log("requestTx", requestTx);
+  }
   return (
     <>
       <Paper
@@ -94,6 +100,25 @@ function renderTxDetailContent(
             {loaderData.Hash}
           </Grid.Col>
         </Grid>
+        {requestTx !== "" ? (
+          <Grid columns={25} className={classes.wrapper}>
+            <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
+              <Text className={classes.propertyName}>RequestTx</Text>
+            </Grid.Col>
+            <Grid.Col
+              xs={20}
+              sm={23}
+              md={23}
+              lg={20}
+              xl={20}
+              className={classes.propertyValue}
+            >
+              <Text variant="link" component={Link} to={"/tx/" + requestTx}>
+                {requestTx}
+              </Text>
+            </Grid.Col>
+          </Grid>
+        ) : null}
 
         <Grid columns={25} className={classes.wrapper}>
           <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>

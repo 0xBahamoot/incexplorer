@@ -36,6 +36,7 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 500,
     display: "flex",
     alignItems: "center",
+    height: 26,
   },
   graphic: {
     position: "absolute",

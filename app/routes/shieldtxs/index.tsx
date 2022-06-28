@@ -44,6 +44,46 @@ function ShieldTxs() {
       handleFetchData(parseInt(gotoPage));
     }
   }
+
+  function renderPagination() {
+    return (
+      <>
+        <Group position="left" spacing="xs">
+          <Text size="sm" color={"#fff"}>
+            Go to
+          </Text>
+          <TextInput
+            placeholder="Page"
+            type="number"
+            radius="lg"
+            onChange={(event) => setGotoPage(event.target.value)}
+            onKeyUp={(event) => getPage(event)}
+            styles={{
+              wrapper: {
+                width: 60,
+                height: 32,
+                textAlign: "center",
+              },
+              input: {
+                backgroundColor: "#303030",
+                textAlign: "center",
+                height: 32,
+                lineHeight: 32,
+                minHeight: 32,
+                padding: "0 4px",
+              },
+            }}
+          />
+        </Group>
+        <Pagination
+          totalPage={totalPage}
+          currentPage={activePage}
+          onPageChange={handlePageClick}
+        ></Pagination>
+      </>
+    );
+  }
+
   return (
     <>
       <Space h={30} />
@@ -78,41 +118,9 @@ function ShieldTxs() {
                 <ShieldListCard txlist={txListData}></ShieldListCard>
               </ScrollArea>
             </Box>
+            <Space h="md" />
             <Box style={{ padding: "0 30px" }}>
-              <Group position="left">
-                <Group position="left" spacing="xs">
-                  <Text size="sm" color={"#fff"}>
-                    Go to
-                  </Text>
-                  <TextInput
-                    placeholder="Page"
-                    type="number"
-                    radius="lg"
-                    onChange={(event) => setGotoPage(event.target.value)}
-                    onKeyUp={(event) => getPage(event)}
-                    styles={{
-                      wrapper: {
-                        width: 60,
-                        height: 32,
-                        textAlign: "center",
-                      },
-                      input: {
-                        backgroundColor: "#303030",
-                        textAlign: "center",
-                        height: 32,
-                        lineHeight: 32,
-                        minHeight: 32,
-                        padding: "0 4px",
-                      },
-                    }}
-                  />
-                </Group>
-                <Pagination
-                  totalPage={totalPage}
-                  currentPage={activePage}
-                  onPageChange={handlePageClick}
-                ></Pagination>
-              </Group>
+              <Group position="center">{renderPagination()}</Group>
             </Box>
           </div>
         </MediaQuery>
@@ -137,44 +145,19 @@ function ShieldTxs() {
                 <ShieldListCard txlist={txListData}></ShieldListCard>
               </Box>
             </ScrollArea>
+            <Space h="md" />
             <Box style={{ padding: "0 16px" }}>
-              <Group position="left">
-                <Group position="left" spacing="xs">
-                  <Text size="sm" color={"#fff"}>
-                    Go to
-                  </Text>
-                  <TextInput
-                    placeholder="Page"
-                    type="number"
-                    radius="lg"
-                    onChange={(event) => setGotoPage(event.target.value)}
-                    onKeyUp={(event) => getPage(event)}
-                    styles={{
-                      wrapper: {
-                        width: 60,
-                        height: 32,
-                        textAlign: "center",
-                      },
-                      input: {
-                        backgroundColor: "#303030",
-                        textAlign: "center",
-                        height: 32,
-                        lineHeight: 32,
-                        minHeight: 32,
-                        padding: "0 4px",
-                      },
-                    }}
-                  />
-                </Group>
-                <Pagination
-                  totalPage={totalPage}
-                  currentPage={activePage}
-                  onPageChange={handlePageClick}
-                ></Pagination>
-              </Group>
+              <MediaQuery smallerThan={1024} styles={{ display: "none" }}>
+                <Group position="center">{renderPagination()}</Group>
+              </MediaQuery>
+
+              <MediaQuery largerThan={500} styles={{ display: "none" }}>
+                <Group position="left">{renderPagination()}</Group>
+              </MediaQuery>
             </Box>
           </div>
         </MediaQuery>
+        <Space h="md" />
       </div>
     </>
   );
