@@ -40,15 +40,18 @@ function renderTxDetailContent(
   padding: string
 ) {
   let requestTx: string = "";
-  const md = JSON.parse(loaderData.Metadata);
-  if (md.RequestTxID) {
-    requestTx = md.RequestTxID;
-    console.log("requestTx", requestTx);
+  if (loaderData.Metadata) {
+    const md = JSON.parse(loaderData.Metadata);
+    if (md.RequestTxID) {
+      requestTx = md.RequestTxID;
+      console.log("requestTx", requestTx);
+    }
+    if (md.ReqTxID) {
+      requestTx = md.ReqTxID;
+      console.log("requestTx", requestTx);
+    }
   }
-  if (md.ReqTxID) {
-    requestTx = md.ReqTxID;
-    console.log("requestTx", requestTx);
-  }
+
   return (
     <>
       <Paper
@@ -296,12 +299,15 @@ function renderTxDetailContent(
         className={classes.container}
         style={{ borderWidth: padding == "0px 16px" ? "1px 0px" : "1px" }}
       >
-        <Grid columns={25} className={classes.wrapper}>
+        <Grid columns={25} className={classes.wrapper}
+          style={{ height: "auto" }}>
           <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
             <Text className={classes.propertyName}>SigPubkey</Text>
           </Grid.Col>
           <Grid.Col xs={20} sm={23} md={23} lg={20} xl={20}>
-            {loaderData.SigPubKey}
+            <ScrollArea style={{ height: 100 }} scrollbarSize={4}>
+              <Text>{loaderData.SigPubKey}</Text>
+            </ScrollArea>
           </Grid.Col>
         </Grid>
 
@@ -332,8 +338,8 @@ function renderTxDetailContent(
             </Text>
           </Grid.Col>
           <Grid.Col xs={20} sm={23} md={23} lg={20} xl={20}>
-            <ScrollArea style={{ height: 250 }} scrollbarSize={4}>
-              <Text>{loaderData.Proof}</Text>
+            <ScrollArea style={{ height: 100 }} scrollbarSize={4}>
+              <Text style={{ wordBreak: 'break-all' }}>{loaderData.Proof}</Text>
             </ScrollArea>
           </Grid.Col>
         </Grid>
