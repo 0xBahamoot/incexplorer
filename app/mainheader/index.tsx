@@ -16,6 +16,9 @@ import {
   Box,
   Title,
   Dialog,
+  Modal,
+  Card,
+  Avatar,
 } from "@mantine/core";
 import { Sun, MoonStars, Search, X } from "tabler-icons-react";
 import React, { useEffect, useState } from "react";
@@ -26,16 +29,19 @@ import { showNotification } from "@mantine/notifications";
 import { NotificationsProvider } from "@mantine/notifications";
 import NavDrawer from "~/components/navdrawer/navdrawer";
 import useStyles from "./styles";
+import { TokenInfo } from "~/types/types";
+import { getTokenIcon } from "~/services/icons";
 
 // import { useLocation } from 'react-router-dom';
 function MainHeader() {
   // let location = useLocation();
+  const [openedSearchResult, setOpenedSearchResult] = useState(false);
 
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const [opened, setOpened] = useState(false);
-  const [searching, setSearching] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [searchResultList, setSearchResultList] = useState([]);
   const fetcher = useFetcher();
   const theme = useMantineTheme();
   const { classes } = useStyles();
@@ -55,9 +61,7 @@ function MainHeader() {
 
   function search(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === "Enter" && searchValue.length > 0) {
-      setSearching(true);
       fetcher.load(`/search/${searchValue}`);
-      setSearching(false);
     }
   }
 
@@ -80,24 +84,74 @@ function MainHeader() {
         return;
       }
 
+      if (result.TokenID) {
+        navigate(`/token/${searchValue}`, { replace: true });
+        return;
+      }
+
+      if (typeof result !== 'string' && result.length > 0) {
+        console.log(result)
+        setSearchResultList(result)
+        setOpenedSearchResult(true)
+        return;
+      }
+
+
       showNotification({
         autoClose: 5000,
         title: "Search result",
-        message: "Hash not found!",
+        message: "nothing was found!",
         color: "red",
         radius: "md",
       });
     }
   }, [fetcher.data]);
 
-  // useEffect(() => {
-  //   if (location.pathname === '/') {
-  //     setOpened(false);
-  //   }
-  // }, [location])
-
   return (
     <>
+      <Modal
+        opened={openedSearchResult}
+        onClose={() => setOpenedSearchResult(false)}
+        withCloseButton={false}
+        overlayOpacity={0.55}
+        overlayBlur={3}
+        overflow="inside"
+        title={<Title data-autofocus order={4} style={{ color: '#fff' }}>Search result for "{searchValue}"</Title>}
+      >
+        <ActionIcon
+          size={16}
+          radius="xl"
+          variant="transparent"
+          onClick={() => {
+            setOpenedSearchResult(false);
+          }}
+          style={{
+            position: 'absolute',
+            top: 25,
+            right: 20,
+          }}
+        >
+          <Image
+            src="/assets/images/icons/cancel.svg"
+            color={"#fff"}
+          />
+        </ActionIcon>
+
+        {searchResultList.map((element: TokenInfo, idx: number) => (
+          <Card key={idx} style={{ marginBottom: 10, backgroundColor: '#303030', cursor: "pointer" }} radius='md' component={Link} to={
+            "/token/" + element.TokenID
+          } onClick={() => { setOpenedSearchResult(false) }}>
+            <Center inline style={{ height: 50 }}>
+              <Avatar size={32} src={getTokenIcon(element.Symbol)} style={{ zIndex: 1, borderRadius: "100%" }} />
+              <Box ml={5} style={{ paddingLeft: 5, whiteSpace: 'nowrap' }}>
+                <Text style={{ fontSize: 16, fontWeight: 400, color: '#fff' }}>{element.Name}</Text>
+                <Text style={{ fontSize: 14, fontWeight: 400, color: '#757575', lineHeight: "14px" }}>{element.Network}</Text>
+              </Box>
+            </Center>
+          </Card>
+        ))}
+      </Modal>
+
       <Drawer
         opened={opened}
         onClose={() => setOpened(false)}
@@ -223,7 +277,7 @@ function MainHeader() {
           radius="md"
           iconWidth={40}
           icon={
-            searching ? (
+            fetcher.state !== 'idle' ? (
               <Loader size="xs" style={{ marginLeft: 8 }} />
             ) : (
               <Image
@@ -352,7 +406,7 @@ function MainHeader() {
               radius="md"
               iconWidth={40}
               icon={
-                searching ? (
+                fetcher.state !== 'idle' ? (
                   <Loader size="xs" style={{ marginLeft: 8 }} />
                 ) : (
                   <Image

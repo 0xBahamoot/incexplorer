@@ -14,7 +14,7 @@ type Props = {
 
 const TradeListCard: FunctionComponent<Props> = ({ txlist }) => {
   const { classes } = useStyles();
-
+  console.log(txlist)
   function getTxText(txhash: String) {
     let result: string = '';
     result = txhash.slice(0, 24) + '...' + txhash.slice(-8);
@@ -22,6 +22,12 @@ const TradeListCard: FunctionComponent<Props> = ({ txlist }) => {
   }
 
   const rows = txlist?.map((element, idx) => {
+    let txType: string = 'response'
+
+    if (element.meta_type_name.toLowerCase().indexOf('request') >= 0) {
+      txType = 'request'
+    }
+
     if (element.amount == 0) {
       return null
     }
@@ -31,8 +37,7 @@ const TradeListCard: FunctionComponent<Props> = ({ txlist }) => {
         <td style={{ paddingTop: 5 }}>
           <Center inline>
             <Avatar size={32} src={getTokenIcon(element.pdex_sell_token_symbol)} style={{ zIndex: 1, borderRadius: "100%" }} />
-            <Avatar size={32} src={getTokenIcon(element.pdex_buy_token_symbol)} style={{ marginLeft: -15, borderRadius: "100%" }} />
-            <Box ml={5} style={{ paddingLeft: 5, fontSize: 16, fontWeight: 400, color: '#fff', whiteSpace: 'nowrap' }}>{element.pdex_pair_token}</Box>
+            <Box ml={5} style={{ paddingLeft: 5, fontSize: 16, fontWeight: 400, color: '#fff', whiteSpace: 'nowrap' }}>{element.pdex_sell_token_symbol}</Box>
           </Center>
         </td>
         <td style={{ paddingTop: 5 }}>
@@ -44,7 +49,12 @@ const TradeListCard: FunctionComponent<Props> = ({ txlist }) => {
 
           </Center>
         </td>
-
+        <td style={{ paddingTop: 5 }}>
+          <Center inline>
+            <Avatar size={32} src={getTokenIcon(element.pdex_buy_token_symbol)} style={{ zIndex: 1, borderRadius: "100%" }} />
+            <Box ml={5} style={{ paddingLeft: 5, fontSize: 16, fontWeight: 400, color: '#fff', whiteSpace: 'nowrap' }}>{element.pdex_buy_token_symbol}</Box>
+          </Center>
+        </td>
         <td style={{ paddingTop: 5 }}>
           <Center inline>
             <Text style={{ fontSize: 16, display: 'inline-block', color: '#fff' }}>
@@ -57,7 +67,7 @@ const TradeListCard: FunctionComponent<Props> = ({ txlist }) => {
 
         <td style={{ paddingTop: 5 }}><Text className={classes.txhash} variant="link" component={Link} to={"/tx/" + element.tx_hash}>{getTxText(element.tx_hash)}</Text></td>
 
-        <td style={{ paddingTop: 5 }}><Text style={{ fontSize: 16, display: 'inline-block', color: '#fff' }}>{element.block_height}</Text></td>
+        <td style={{ paddingTop: 5 }}><Text style={{ fontSize: 16, display: 'inline-block', color: '#fff' }}>{txType}</Text></td>
 
 
         <td style={{ paddingTop: 5 }}><Text sx={(theme) => ({
@@ -82,11 +92,12 @@ const TradeListCard: FunctionComponent<Props> = ({ txlist }) => {
     <Table verticalSpacing={0} horizontalSpacing={24} fontSize={16}>
       <thead className={classes.tableThead}>
         <tr>
-          <th><Text className={classes.tableTheadText}>Pair</Text></th>
-          <th><Text className={classes.tableTheadText}>Base Amount</Text></th>
-          <th><Text className={classes.tableTheadText}>Quote Amount</Text></th>
+          <th><Text className={classes.tableTheadText}>Sell Token</Text></th>
+          <th><Text className={classes.tableTheadText}>Sell Amount</Text></th>
+          <th><Text className={classes.tableTheadText}>Buy Token</Text></th>
+          <th><Text className={classes.tableTheadText}>Buy Amount</Text></th>
           <th><Text className={classes.tableTheadText}>Hash</Text></th>
-          <th><Text className={classes.tableTheadText}>Block Height</Text></th>
+          <th><Text className={classes.tableTheadText}>Type</Text></th>
           <th><Text className={classes.tableTheadText}>Side</Text></th>
           <th><Text className={classes.tableTheadText}>Time created</Text></th>
         </tr>
