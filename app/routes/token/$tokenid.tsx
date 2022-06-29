@@ -1,4 +1,4 @@
-import { Paper, Grid, Text, Space, ScrollArea, Box, MediaQuery, Badge } from "@mantine/core";
+import { Paper, Grid, Text, Space, ScrollArea, Box, MediaQuery, Badge, Avatar } from "@mantine/core";
 import type { LoaderFunction } from "@remix-run/node";
 import { TokenInfo } from "~/types/types";
 import { useLoaderData } from "@remix-run/react";
@@ -6,6 +6,7 @@ import SectionTitle from "~/components/sectiontitle/sectiontitle";
 import useStyles from "./styles";
 import { getTokenInfo } from "~/services/coinservice";
 import { CircleCheck } from 'tabler-icons-react';
+import { getTokenIcon } from "~/services/icons";
 
 
 export const loader: LoaderFunction = async ({ params }) => {
@@ -35,7 +36,6 @@ function renderTokenDetailContent(
         className={classes.container}
         style={{ borderWidth: padding == "0px 16px" ? "1px 0px" : "1px" }}
       >
-
         <Grid columns={25} className={classes.wrapper}>
           <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
             <Text className={classes.propertyName}>TokenID</Text>
@@ -66,6 +66,23 @@ function renderTokenDetailContent(
             {loaderData.Name}
           </Grid.Col>
         </Grid>
+
+        <Grid columns={25} className={classes.wrapper} style={{ height: 60 }}>
+          <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
+            <Text className={classes.propertyName}>Logo</Text>
+          </Grid.Col>
+          <Grid.Col
+            xs={20}
+            sm={23}
+            md={23}
+            lg={20}
+            xl={20}
+            className={classes.propertyValue}
+          >
+            <Avatar size={32} src={getTokenIcon(loaderData.Symbol)} style={{ zIndex: 1, borderRadius: "100%" }} />
+          </Grid.Col>
+        </Grid>
+
         <Grid columns={25} className={classes.wrapper}>
           <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
             <Text className={classes.propertyName}>Symbol</Text>
@@ -96,6 +113,21 @@ function renderTokenDetailContent(
             {loaderData.PSymbol}
           </Grid.Col>
         </Grid>
+        <Grid columns={25} className={classes.wrapper}>
+          <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
+            <Text className={classes.propertyName}>ContractID</Text>
+          </Grid.Col>
+          <Grid.Col
+            xs={20}
+            sm={23}
+            md={23}
+            lg={20}
+            xl={20}
+            className={classes.propertyValue}
+          >
+            {loaderData.ContractID}
+          </Grid.Col>
+        </Grid>
         <Grid columns={25} className={classes.wrapper} style={{ height: "auto" }}>
           <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
             <Text className={classes.propertyName}>Network</Text>
@@ -111,22 +143,7 @@ function renderTokenDetailContent(
             {(loaderData.Network === "") ? "Incognito" : loaderData.Network}
           </Grid.Col>
         </Grid>
-        {/* <Grid columns={25} className={classes.wrapper}
-          style={{ height: "auto" }}>
-          <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
-            <Text className={classes.propertyName}>Verify</Text>
-          </Grid.Col>
-          <Grid.Col
-            xs={20}
-            sm={23}
-            md={23}
-            lg={20}
-            xl={20}
-            className={classes.propertyValue}
-          >
-            {loaderData.Verified ? 'verified' : 'not verified'}
-          </Grid.Col>
-        </Grid> */}
+
       </Paper>
 
       <Space h="md" />
@@ -140,7 +157,7 @@ function renderTokenInfo(loaderData: TokenInfo, classes: any, padding: string) {
     <>
       <Box style={{ padding: padding }}>
         <SectionTitle text={"Token Info"} />
-        <Badge color="green" variant="filled" style={{ textTransform: 'none', fontSize: 12, fontWeight: 500, marginTop: 5 }} p={6} leftSection={<CircleCheck
+        <Badge color="green" variant="filled" style={{ textTransform: 'none', fontSize: 10, fontWeight: 500, marginTop: 5 }} p={6} leftSection={<CircleCheck
           size={14}
           strokeWidth={2}
           color={'white'}

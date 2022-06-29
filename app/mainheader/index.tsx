@@ -17,6 +17,8 @@ import {
   Title,
   Dialog,
   Modal,
+  Card,
+  Avatar,
 } from "@mantine/core";
 import { Sun, MoonStars, Search, X } from "tabler-icons-react";
 import React, { useEffect, useState } from "react";
@@ -27,6 +29,8 @@ import { showNotification } from "@mantine/notifications";
 import { NotificationsProvider } from "@mantine/notifications";
 import NavDrawer from "~/components/navdrawer/navdrawer";
 import useStyles from "./styles";
+import { TokenInfo } from "~/types/types";
+import { getTokenIcon } from "~/services/icons";
 
 // import { useLocation } from 'react-router-dom';
 function MainHeader() {
@@ -108,22 +112,43 @@ function MainHeader() {
       <Modal
         opened={openedSearchResult}
         onClose={() => setOpenedSearchResult(false)}
-        title="Search result"
+        withCloseButton={false}
+        overlayOpacity={0.55}
+        overlayBlur={3}
+        overflow="inside"
+        title={<Title data-autofocus order={4} style={{ color: '#fff' }}>Search result for "{searchValue}"</Title>}
       >
-        {data.map((item: ChainInfo, idx: number) => (
-          <Grid.Col
-            xs={12}
-            sm={6}
-            md={6}
-            lg={4}
-            xl={4}
-            key={item.Hash}
-            onClick={() => {
-              navigate("/chain/shard/" + idx, { replace: true });
-            }}
-          >
-            <ShardOverviewCard chainInfo={item} chainId={idx} />
-          </Grid.Col>
+        <ActionIcon
+          size={16}
+          radius="xl"
+          variant="transparent"
+          onClick={() => {
+            setOpenedSearchResult(false);
+          }}
+          style={{
+            position: 'absolute',
+            top: 25,
+            right: 20,
+          }}
+        >
+          <Image
+            src="/assets/images/icons/cancel.svg"
+            color={"#fff"}
+          />
+        </ActionIcon>
+
+        {searchResultList.map((element: TokenInfo, idx: number) => (
+          <Card key={idx} style={{ marginBottom: 10, backgroundColor: '#303030', cursor: "pointer" }} radius='md' component={Link} to={
+            "/token/" + element.TokenID
+          } onClick={() => { setOpenedSearchResult(false) }}>
+            <Center inline style={{ height: 50 }}>
+              <Avatar size={32} src={getTokenIcon(element.Symbol)} style={{ zIndex: 1, borderRadius: "100%" }} />
+              <Box ml={5} style={{ paddingLeft: 5, whiteSpace: 'nowrap' }}>
+                <Text style={{ fontSize: 16, fontWeight: 400, color: '#fff' }}>{element.Name}</Text>
+                <Text style={{ fontSize: 14, fontWeight: 400, color: '#757575', lineHeight: "14px" }}>{element.Network}</Text>
+              </Box>
+            </Center>
+          </Card>
         ))}
       </Modal>
 

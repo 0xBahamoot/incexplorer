@@ -11,6 +11,20 @@ const useStyles = createStyles((theme) => ({
     color: "#9C9C9C",
     whiteSpace: "nowrap",
     height: 40,
+    'th': {
+      position: 'sticky',
+      insetBlockStart: 0,
+      backgroundColor: "#303030",
+      color: "#9C9C9C",
+      whiteSpace: "nowrap",
+      height: 40,
+      zIndex: 9,
+      // position: sticky;
+      // top: 0;
+    },
+    // 'thead': {
+    //   insetBlockStart: 0,
+    // }
   },
   tableTheadText: {
     color: "#9C9C9C !important",

@@ -19,14 +19,15 @@ export const loader: LoaderFunction = async ({ params }) => {
         return Result
     } catch (error) {
         //check if it is token name
-        if (value.length <= 5) {
+        if (value.length <= 10) {
             try {
                 const { Result, Error } = (await getVerifyTokenList()) as any;
                 let tokenList: TokenInfo[] = [];
                 if (Result.length > 0) {
                     Result.forEach((element: any) => {
                         let sym: string = element.Symbol;
-                        if (sym.toLocaleLowerCase().search(value.toLocaleLowerCase()) >= 0) {
+                        let name: string = element.Name;
+                        if ((sym.toLocaleLowerCase().search(value.toLocaleLowerCase()) >= 0) || (name.toLocaleLowerCase().search(value.toLocaleLowerCase()) >= 0)) {
                             tokenList.push(element)
                         }
                     });
