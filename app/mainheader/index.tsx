@@ -138,7 +138,7 @@ function MainHeader() {
         </ActionIcon>
 
         {searchResultList.map((element: TokenInfo, idx: number) => (
-          <Card key={idx} style={{ marginBottom: 10, backgroundColor: '#303030', cursor: "pointer" }} radius='md' component={Link} to={
+          <Card key={idx} style={{ marginBottom: 10, backgroundColor: '#303030', cursor: "pointer", padding: '10px 15px' }} radius='md' component={Link} to={
             "/token/" + element.TokenID
           } onClick={() => { setOpenedSearchResult(false) }}>
             <Center inline style={{ height: 50 }}>
