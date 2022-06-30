@@ -190,6 +190,8 @@ export type TokenInfo = {
   Network: string,
   PercentChange24h: string,
   ContractID: string,
+  PDecimals: number,
+  Decimals: number,
   // "TokenID": "1054c3920754a182b60380bbdf64d3ace74746fe5b71d30a2d215b9e56599ef3",
   // "Name": "Binamon Energy",
   // "Symbol": "BNRG",
