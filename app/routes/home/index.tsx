@@ -13,9 +13,7 @@ import TxListCard from "~/components/txlistcard/txlistcard";
 import { useState, useEffect } from "react";
 import { getNormalTx } from "~/services/transactions";
 import { Link } from "react-router-dom";
-import {
-  getExplorerSummary,
-} from "~/services/summary";
+import { getExplorerSummary } from "~/services/summary";
 import SectionTitle from "~/components/sectiontitle/sectiontitle";
 import React, { FunctionComponent } from "react";
 
@@ -226,7 +224,6 @@ export const RenderMainContent: FunctionComponent<mainContentProps> = ({
 };
 
 function Home() {
-
   const [txListData, setTxListData] = useState<any>([]);
   const [loaded, setLoaded] = useState(false);
   const [explData, setExplData] = useState<any>(null);
@@ -238,11 +235,11 @@ function Home() {
   // Get fresh data every 15 seconds.
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log("asdjasljdkl")
+      console.log("asdjasljdkl");
       getExplorerSummary().then((data) => {
         console.log(data.data);
         setExplData(data.data);
-      })
+      });
     }, 40 * 1000);
     return () => clearInterval(interval);
   }, []);
@@ -251,7 +248,7 @@ function Home() {
     getExplorerSummary().then((data) => {
       console.log(data.data);
       setExplData(data.data);
-    })
+    });
   }, []);
 
   useEffect(() => {
@@ -277,14 +274,14 @@ function Home() {
             pdexList.push(item);
             break;
 
-          case "TOTAL_VOLUME_LOCK":
-            item.Name = "Total Value Locked";
-            networkList.push(item);
-            break;
-          case "SHIELDED_VOLUME":
-            item.Name = "Shielded";
-            networkList.push(item);
-            break;
+          // case "TOTAL_VOLUME_LOCK":
+          //   item.Name = "Total Value Locked";
+          //   networkList.push(item);
+          //   break;
+          // case "SHIELDED_VOLUME":
+          //   item.Name = "Shielded";
+          //   networkList.push(item);
+          //   break;
           case "TOTAL_TX_COUNT":
             item.Name = "Transactions";
             networkList.push(item);
