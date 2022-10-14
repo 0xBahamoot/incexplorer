@@ -258,19 +258,47 @@ function Home() {
       let networkList: any = [];
       let pdexList: any = [];
       let prvList: any = [];
+      let Trading24h = {
+        Name: "24h Trading Volume",
+        value: 0,
+        lastValue: 0,
+        valueChangePercentage: 0,
+      };
+      let TradingVolumes = {
+        Name: "Total Trading Volume",
+        value: 0,
+        lastValue: 0,
+        valueChangePercentage: 0,
+      };
 
       explData.map((item: any) => {
         switch (item.metricType) {
+          case "TRADING_VOLUME_24H":
+            Trading24h.value += item.value;
+            Trading24h.lastValue += item.lastValue;
+            break;
           case "TRADING_VOLUME_TOTAL":
-            item.Name = "Trading Volume";
-            pdexList.push(item);
+            TradingVolumes.value += item.value;
+            TradingVolumes.lastValue += item.lastValue;
+            break;
+          case "PAPP_TOTAL_TRADING_VOLUME_24H":
+            Trading24h.value += item.value;
+            Trading24h.lastValue += item.lastValue;
+            break;
+          case "PAPP_TOTAL_TRADING_VOLUME":
+            TradingVolumes.value += item.value;
+            TradingVolumes.lastValue += item.lastValue;
+            break;
+          case "WEB_PAPP_TOTAL_TRADING_VOLUME_24H":
+            Trading24h.value += item.value;
+            Trading24h.lastValue += item.lastValue;
+            break;
+          case "WEB_PAPP_TOTAL_TRADING_VOLUME":
+            TradingVolumes.value += item.value;
+            TradingVolumes.lastValue += item.lastValue;
             break;
           case "LIQUIDITY":
             item.Name = "Liquidity";
-            pdexList.push(item);
-            break;
-          case "TRADING_VOLUME_24H":
-            item.Name = "24h Trading Volume";
             pdexList.push(item);
             break;
 
@@ -321,7 +349,16 @@ function Home() {
             break;
         }
       });
+      // totalTradingVolume * 100 / previousTotalTradingVolume - 100;
 
+      Trading24h.valueChangePercentage =
+        (Trading24h.value * 100) / Trading24h.lastValue - 100;
+
+      TradingVolumes.valueChangePercentage =
+        (TradingVolumes.value * 100) / TradingVolumes.lastValue - 100;
+
+      pdexList.push(TradingVolumes);
+      pdexList.push(Trading24h);
       setNetworkData(networkList);
       setPdexData(pdexList);
       setPRVData(prvList);
