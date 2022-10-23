@@ -19,8 +19,9 @@ import {
   Modal,
   Card,
   Avatar,
+  Badge,
 } from "@mantine/core";
-import { Sun, MoonStars, Search, X } from "tabler-icons-react";
+import { Sun, MoonStars, Search, X, CircleCheck } from "tabler-icons-react";
 import React, { useEffect, useState } from "react";
 import { useLocalStorage } from "@mantine/hooks";
 import { Link, useNavigate } from "react-router-dom";
@@ -89,13 +90,12 @@ function MainHeader() {
         return;
       }
 
-      if (typeof result !== 'string' && result.length > 0) {
-        console.log(result)
-        setSearchResultList(result)
-        setOpenedSearchResult(true)
+      if (typeof result !== "string" && result.length > 0) {
+        console.log(result);
+        setSearchResultList(result);
+        setOpenedSearchResult(true);
         return;
       }
-
 
       showNotification({
         autoClose: 5000,
@@ -116,7 +116,11 @@ function MainHeader() {
         overlayOpacity={0.55}
         overlayBlur={3}
         overflow="inside"
-        title={<Title data-autofocus order={4} style={{ color: '#fff' }}>Search result for "{searchValue}"</Title>}
+        title={
+          <Title data-autofocus order={4} style={{ color: "#fff" }}>
+            Search result for "{searchValue}"
+          </Title>
+        }
       >
         <ActionIcon
           size={16}
@@ -126,26 +130,93 @@ function MainHeader() {
             setOpenedSearchResult(false);
           }}
           style={{
-            position: 'absolute',
+            position: "absolute",
             top: 25,
             right: 20,
           }}
         >
-          <Image
-            src="/assets/images/icons/cancel.svg"
-            color={"#fff"}
-          />
+          <Image src="/assets/images/icons/cancel.svg" color={"#fff"} />
         </ActionIcon>
 
         {searchResultList.map((element: TokenInfo, idx: number) => (
-          <Card key={idx} style={{ marginBottom: 10, backgroundColor: '#303030', cursor: "pointer", padding: '10px 15px' }} radius='md' component={Link} to={
-            "/token/" + element.TokenID
-          } onClick={() => { setOpenedSearchResult(false) }}>
-            <Center inline style={{ height: 50 }}>
-              <Avatar size={32} src={getTokenIcon(element.Symbol)} style={{ zIndex: 1, borderRadius: "100%" }} />
-              <Box ml={5} style={{ paddingLeft: 5, whiteSpace: 'nowrap' }}>
-                <Text style={{ fontSize: 16, fontWeight: 400, color: '#fff' }}>{element.Name}</Text>
-                <Text style={{ fontSize: 14, fontWeight: 400, color: '#757575', lineHeight: "14px" }}>{element.Network}</Text>
+          <Card
+            key={idx}
+            style={{
+              marginBottom: 10,
+              backgroundColor: "#303030",
+              cursor: "pointer",
+              padding: "10px 15px",
+            }}
+            radius="md"
+            component={Link}
+            to={"/token/" + element.TokenID}
+            onClick={() => {
+              setOpenedSearchResult(false);
+            }}
+          >
+            <Center inline style={{ minHeight: 50, maxHeight: 70 }}>
+              <Avatar
+                size={32}
+                src={getTokenIcon(element.Symbol)}
+                style={{ zIndex: 1, borderRadius: "100%" }}
+              />
+              <Box ml={5} style={{ paddingLeft: 5, whiteSpace: "nowrap" }}>
+                <Text style={{ fontSize: 16, fontWeight: 400, color: "#fff" }}>
+                  {/* <Badge
+                    color="green"
+                    variant="filled"
+                    style={{
+                      textTransform: "none",
+                      fontSize: 10,
+                      fontWeight: 500,
+                      marginTop: 5,
+                      width: 20,
+                    }}
+                    p={6}
+                    leftSection={
+                      <Check
+                        size={14}
+                        strokeWidth={2}
+                        color={"white"}
+                        style={{ marginTop: 5, marginLeft: 5 }}
+                      />
+                    }
+                    hidden={!element.Verified}
+                  ></Badge> */}
+                  {element.Name}{" "}
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 14,
+                    fontWeight: 400,
+                    color: "#757575",
+                    lineHeight: "14px",
+                  }}
+                >
+                  {element.Network}
+                </Text>
+                <Badge
+                  color="green"
+                  variant="filled"
+                  style={{
+                    textTransform: "none",
+                    fontSize: 10,
+                    fontWeight: 500,
+                    marginTop: 5,
+                  }}
+                  p={6}
+                  leftSection={
+                    <CircleCheck
+                      size={14}
+                      strokeWidth={2}
+                      color={"white"}
+                      style={{ marginTop: 5 }}
+                    />
+                  }
+                  hidden={!element.Verified}
+                >
+                  Verified
+                </Badge>
               </Box>
             </Center>
           </Card>
@@ -277,7 +348,7 @@ function MainHeader() {
           radius="md"
           iconWidth={40}
           icon={
-            fetcher.state !== 'idle' ? (
+            fetcher.state !== "idle" ? (
               <Loader size="xs" style={{ marginLeft: 8 }} />
             ) : (
               <Image
@@ -406,7 +477,7 @@ function MainHeader() {
               radius="md"
               iconWidth={40}
               icon={
-                fetcher.state !== 'idle' ? (
+                fetcher.state !== "idle" ? (
                   <Loader size="xs" style={{ marginLeft: 8 }} />
                 ) : (
                   <Image
