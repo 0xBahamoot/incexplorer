@@ -200,7 +200,7 @@ const TokenMarketTable: FunctionComponent<Props> = ({ tokenlist }) => {
       <thead className={classes.tableThead}>
         <tr>
           <th>
-            <Text className={classes.tableTheadText}>Token</Text>
+            <Text className={classes.tableTheadText}>Token name</Text>
           </th>
           <th>
             <Text className={classes.tableTheadText}>Price (USD)</Text>
