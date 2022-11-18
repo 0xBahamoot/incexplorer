@@ -173,25 +173,29 @@ export type ChainInfo = {
 };
 
 export type TxInBlock = {
-  Hash: String,
-  Locktime: number,
-  HexData: string,
-}
+  Hash: String;
+  Locktime: number;
+  HexData: string;
+};
 
 export type TokenInfo = {
-  TokenID: string,
-  Symbol: string,
-  PSymbol: string,
-  Name: string,
-  IsPrivacy: boolean,
-  Verified: boolean,
-  ExternalPriceUSD: number,
-  PriceUsd: number,
-  Network: string,
-  PercentChange24h: string,
-  ContractID: string,
-  PDecimals: number,
-  Decimals: number,
+  TokenID: string;
+  Symbol: string;
+  PSymbol: string;
+  Name: string;
+  IsPrivacy: boolean;
+  Verified: boolean;
+  ExternalPriceUSD: number;
+  PriceUsd: number;
+  Network: string;
+  PercentChange24h: string;
+  ContractID: string;
+  PDecimals: number;
+  Decimals: number;
+  CurrencyType: number;
+  ListUnifiedToken: [TokenInfo];
+  TokenTradingVolumeUSD24H: number;
+  TokenTradingVolumeUSDTotal: number;
   // "TokenID": "1054c3920754a182b60380bbdf64d3ace74746fe5b71d30a2d215b9e56599ef3",
   // "Name": "Binamon Energy",
   // "Symbol": "BNRG",
@@ -224,4 +228,4 @@ export type TokenInfo = {
   // "Network": "BSC",
   // "DefaultPoolPair": "",
   // "DefaultPairToken": ""
-}
+};

@@ -1,33 +1,46 @@
-import { Paper, Grid, Text, Space, ScrollArea, Box, MediaQuery, Badge, Avatar } from "@mantine/core";
+import {
+  Paper,
+  Grid,
+  Text,
+  Space,
+  ScrollArea,
+  Box,
+  MediaQuery,
+  Badge,
+  Avatar,
+  Center,
+} from "@mantine/core";
 import type { LoaderFunction } from "@remix-run/node";
 import { TokenInfo } from "~/types/types";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useNavigate } from "@remix-run/react";
 import SectionTitle from "~/components/sectiontitle/sectiontitle";
 import useStyles from "./styles";
-import { getTokenInfo } from "~/services/coinservice";
-import { CircleCheck } from 'tabler-icons-react';
+// import { getTokenInfo } from "~/services/coinservice";
+import { CircleCheck } from "tabler-icons-react";
 import { getTokenIcon } from "~/services/icons";
-
+import { currencyTypeToNetworkName } from "~/utils/currencytype";
+import { getTokenInfoNew } from "~/services/token";
 
 export const loader: LoaderFunction = async ({ params }) => {
   let tokenInfo: TokenInfo;
   var tokenid: any = params.tokenid;
-  const { Result, Error } = (await getTokenInfo(tokenid)) as any;
-  console.log(Result);
-  if (Result.length > 0) {
-    tokenInfo = Result[0];
+  try {
+    const { data, message } = (await getTokenInfoNew(tokenid)) as any;
+    console.log("message", message);
+    tokenInfo = data;
     return tokenInfo;
+  } catch (error: any) {
+    console.log("message", error);
+    return null;
   }
-  return null
 };
-
 
 function renderTokenDetailContent(
   loaderData: TokenInfo,
   classes: any,
   padding: string
 ) {
-
+  const customNetworkName = currencyTypeToNetworkName(loaderData.CurrencyType);
   return (
     <>
       <Paper
@@ -79,7 +92,11 @@ function renderTokenDetailContent(
             xl={20}
             className={classes.propertyValue}
           >
-            <Avatar size={32} src={getTokenIcon(loaderData.Symbol)} style={{ zIndex: 1, borderRadius: "100%" }} />
+            <Avatar
+              size={32}
+              src={getTokenIcon(loaderData.PSymbol)}
+              style={{ zIndex: 1, borderRadius: "100%" }}
+            />
           </Grid.Col>
         </Grid>
 
@@ -95,7 +112,7 @@ function renderTokenDetailContent(
             xl={20}
             className={classes.propertyValue}
           >
-            {loaderData.Symbol}
+            {loaderData.PSymbol.replace("p", "").toUpperCase()}
           </Grid.Col>
         </Grid>
         <Grid columns={25} className={classes.wrapper}>
@@ -143,22 +160,63 @@ function renderTokenDetailContent(
             {loaderData.PDecimals}
           </Grid.Col>
         </Grid>
-        <Grid columns={25} className={classes.wrapper}>
-          <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
-            <Text className={classes.propertyName}>ContractID</Text>
-          </Grid.Col>
-          <Grid.Col
-            xs={20}
-            sm={23}
-            md={23}
-            lg={20}
-            xl={20}
-            className={classes.propertyValue}
-          >
-            {loaderData.ContractID}
-          </Grid.Col>
-        </Grid>
-        <Grid columns={25} className={classes.wrapper} style={{ height: "auto" }}>
+        {loaderData.ContractID === "" ? null : loaderData.Network ===
+          "Unified" ? (
+          loaderData.ListUnifiedToken.map((element, idx) => {
+            const networkName = currencyTypeToNetworkName(element.CurrencyType);
+            const words = networkName.split(" ");
+
+            for (let i = 0; i < words.length; i++) {
+              words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+            }
+            return (
+              <Grid
+                columns={25}
+                className={classes.wrapper}
+                key={element.TokenID}
+              >
+                <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
+                  <Text className={classes.propertyName}>{words} ID</Text>
+                </Grid.Col>
+                <Grid.Col
+                  xs={20}
+                  sm={23}
+                  md={23}
+                  lg={20}
+                  xl={20}
+                  className={classes.propertyValue}
+                >
+                  {element.ContractID}
+                </Grid.Col>
+              </Grid>
+            );
+          })
+        ) : (
+          <Grid columns={25} className={classes.wrapper}>
+            <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
+              <Text className={classes.propertyName}>ContractID</Text>
+            </Grid.Col>
+            <Grid.Col
+              xs={20}
+              sm={23}
+              md={23}
+              lg={20}
+              xl={20}
+              className={classes.propertyValue}
+            >
+              {loaderData.ContractID ===
+              "0x0000000000000000000000000000000000000000"
+                ? "native token"
+                : loaderData.ContractID}
+            </Grid.Col>
+          </Grid>
+        )}
+
+        <Grid
+          columns={25}
+          className={classes.wrapper}
+          style={{ height: "auto" }}
+        >
           <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
             <Text className={classes.propertyName}>Network</Text>
           </Grid.Col>
@@ -170,14 +228,78 @@ function renderTokenDetailContent(
             xl={20}
             className={classes.propertyValue}
           >
-            {(loaderData.Network === "") ? "Incognito" : loaderData.Network}
+            {loaderData.Network === ""
+              ? "Incognito"
+              : loaderData.Network === "Unified"
+              ? "Incognito (Unified)"
+              : customNetworkName[0].toUpperCase() +
+                customNetworkName.substring(1)}
           </Grid.Col>
         </Grid>
-
+        <Grid
+          columns={25}
+          className={classes.wrapper}
+          style={{ height: "auto" }}
+        >
+          <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
+            <Text className={classes.propertyName}>Price (USD)</Text>
+          </Grid.Col>
+          <Grid.Col
+            xs={20}
+            sm={23}
+            md={23}
+            lg={20}
+            xl={20}
+            className={classes.propertyValue}
+          >
+            {Math.round((loaderData.PriceUsd + Number.EPSILON) * 100) / 100}
+          </Grid.Col>
+        </Grid>
+        <Grid
+          columns={25}
+          className={classes.wrapper}
+          style={{ height: "auto" }}
+        >
+          <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
+            <Text className={classes.propertyName}>24h Volume (USD)</Text>
+          </Grid.Col>
+          <Grid.Col
+            xs={20}
+            sm={23}
+            md={23}
+            lg={20}
+            xl={20}
+            className={classes.propertyValue}
+          >
+            {Math.round(
+              (loaderData.TokenTradingVolumeUSD24H + Number.EPSILON) * 100
+            ) / 100}
+          </Grid.Col>
+        </Grid>
+        <Grid
+          columns={25}
+          className={classes.wrapper}
+          style={{ height: "auto" }}
+        >
+          <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
+            <Text className={classes.propertyName}>Total volume (USD)</Text>
+          </Grid.Col>
+          <Grid.Col
+            xs={20}
+            sm={23}
+            md={23}
+            lg={20}
+            xl={20}
+            className={classes.propertyValue}
+          >
+            {Math.round(
+              (loaderData.TokenTradingVolumeUSDTotal + Number.EPSILON) * 100
+            ) / 100}
+          </Grid.Col>
+        </Grid>
       </Paper>
 
       <Space h="md" />
-
     </>
   );
 }
@@ -187,12 +309,28 @@ function renderTokenInfo(loaderData: TokenInfo, classes: any, padding: string) {
     <>
       <Box style={{ padding: padding }}>
         <SectionTitle text={"Token Info"} />
-        <Badge color="green" variant="filled" style={{ textTransform: 'none', fontSize: 10, fontWeight: 500, marginTop: 5 }} p={6} leftSection={<CircleCheck
-          size={14}
-          strokeWidth={2}
-          color={'white'}
-          style={{ marginTop: 5 }}
-        />} hidden={!loaderData.Verified}>Verified</Badge>
+        <Badge
+          color="green"
+          variant="filled"
+          style={{
+            textTransform: "none",
+            fontSize: 10,
+            fontWeight: 500,
+            marginTop: 5,
+          }}
+          p={6}
+          leftSection={
+            <CircleCheck
+              size={14}
+              strokeWidth={2}
+              color={"white"}
+              style={{ marginTop: 5 }}
+            />
+          }
+          hidden={!loaderData.Verified}
+        >
+          Verified
+        </Badge>
         <Space h="md" />
       </Box>
       {padding === "0px 16px" ? (
@@ -216,10 +354,10 @@ function renderTokenInfo(loaderData: TokenInfo, classes: any, padding: string) {
   );
 }
 
-
 function TokenInfoPage() {
   const loaderData: TokenInfo = useLoaderData();
   const { classes } = useStyles();
+  let navigate = useNavigate();
   console.log(loaderData);
   if (loaderData) {
     return (
@@ -238,9 +376,25 @@ function TokenInfoPage() {
       </>
     );
   } else {
-    return <></>
+    return (
+      <>
+        <Center style={{ width: "100%", height: "calc(100vh - 150px)" }}>
+          <Box>
+            <Text
+              style={{
+                fontWeight: 500,
+                fontSize: 20,
+                display: "block",
+                color: "#999",
+              }}
+            >
+              Oh no! Token not found
+            </Text>
+          </Box>
+        </Center>
+      </>
+    );
   }
-
 }
 
 export default TokenInfoPage;

@@ -10,10 +10,12 @@ import {
 } from "@mantine/core";
 import { useState, useEffect } from "react";
 import { getVerifyTokenList } from "~/services/coinservice";
+
 import SectionTitle from "~/components/sectiontitle/sectiontitle";
 import TokenMarketTable from "~/components/tokenmarkettable/tokenmarkettable";
 import Pagination from "~/components/pagination/pagination";
 import useStyles from "./styles";
+import { getMarketToken } from "~/services/token";
 
 function TokenMarketList() {
   const { classes } = useStyles();
@@ -22,9 +24,13 @@ function TokenMarketList() {
 
   const handleFetchData = async () => {
     setLoaded(false);
-    const { Result } = (await getVerifyTokenList()) as any;
-    console.log("data", Result);
-    setTokenListData(Result);
+    // getMarketToken()
+    const { data } = (await getMarketToken()) as any;
+    console.log("data", data);
+    data.sort((a: any, b: any) =>
+      a.TokenTradingVolumeUSD24H > b.TokenTradingVolumeUSD24H ? -1 : 1
+    );
+    setTokenListData(data);
     setLoaded(true);
   };
   useEffect(() => {
@@ -37,12 +43,12 @@ function TokenMarketList() {
 
       <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
         <Box style={{ padding: "0 30px" }}>
-          <SectionTitle text="List token" />
+          <SectionTitle text="Tokens" />
         </Box>
       </MediaQuery>
       <MediaQuery largerThan={1200} styles={{ display: "none" }}>
         <Box style={{ padding: "0 16px" }}>
-          <SectionTitle text="List token" />
+          <SectionTitle text="Tokens" />
         </Box>
       </MediaQuery>
       <Space h="md" />
@@ -93,7 +99,6 @@ function TokenMarketList() {
       </div>
 
       <Space h={30} />
-
     </>
   );
 }

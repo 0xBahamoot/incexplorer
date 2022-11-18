@@ -96,11 +96,11 @@ function ExchangeSection(onNav?: () => void, fontSize?: number) {
           link="/pdex/trades"
           fontSize={fontSize}
         ></NavbarBtn>
-        {/* <NavbarBtn
+        <NavbarBtn
           text="Tokens"
           link="/pdex/tokens"
           fontSize={fontSize}
-        ></NavbarBtn> */}
+        ></NavbarBtn>
       </Stack>
     </>
   );

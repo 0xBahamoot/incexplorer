@@ -6,6 +6,7 @@ import {
   ScrollArea,
   Box,
   MediaQuery,
+  Center,
 } from "@mantine/core";
 import { useState } from "react";
 import type { LoaderFunction } from "@remix-run/node";
@@ -28,10 +29,14 @@ const PrettyPrintJson = (data: any) => (
 export const loader: LoaderFunction = async ({ params }) => {
   let txdetail: TxDetail;
   var txhash: any = params.txhash;
-  const { Result, Error } = (await getDetailTx(txhash)) as any;
-  console.log(Result);
-  txdetail = Result;
-  return txdetail;
+  try {
+    const { Result, Error } = (await getDetailTx(txhash)) as any;
+    console.log(Result);
+    txdetail = Result;
+    return txdetail;
+  } catch (error) {
+    return null;
+  }
 };
 
 function renderTxDetailContent(
@@ -299,8 +304,11 @@ function renderTxDetailContent(
         className={classes.container}
         style={{ borderWidth: padding == "0px 16px" ? "1px 0px" : "1px" }}
       >
-        <Grid columns={25} className={classes.wrapper}
-          style={{ height: "auto" }}>
+        <Grid
+          columns={25}
+          className={classes.wrapper}
+          style={{ height: "auto" }}
+        >
           <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
             <Text className={classes.propertyName}>SigPubkey</Text>
           </Grid.Col>
@@ -339,7 +347,7 @@ function renderTxDetailContent(
           </Grid.Col>
           <Grid.Col xs={20} sm={23} md={23} lg={20} xl={20}>
             <ScrollArea style={{ height: 100 }} scrollbarSize={4}>
-              <Text style={{ wordBreak: 'break-all' }}>{loaderData.Proof}</Text>
+              <Text style={{ wordBreak: "break-all" }}>{loaderData.Proof}</Text>
             </ScrollArea>
           </Grid.Col>
         </Grid>
@@ -436,22 +444,42 @@ function renderTxDetail(loaderData: TxDetail, classes: any, padding: string) {
 function Tx() {
   const loaderData: TxDetail = useLoaderData();
   const { classes } = useStyles();
+  if (loaderData) {
+    return (
+      <>
+        <Space h={30} />
 
-  return (
-    <>
-      <Space h={30} />
+        <MediaQuery largerThan={1440} styles={{ display: "none" }}>
+          <div>{renderTxDetail(loaderData, classes, "0px 16px")}</div>
+        </MediaQuery>
 
-      <MediaQuery largerThan={1440} styles={{ display: "none" }}>
-        <div>{renderTxDetail(loaderData, classes, "0px 16px")}</div>
-      </MediaQuery>
+        <MediaQuery smallerThan={1440} styles={{ display: "none" }}>
+          <div>{renderTxDetail(loaderData, classes, "0px 30px")}</div>
+        </MediaQuery>
 
-      <MediaQuery smallerThan={1440} styles={{ display: "none" }}>
-        <div>{renderTxDetail(loaderData, classes, "0px 30px")}</div>
-      </MediaQuery>
-
-      <Space h="md" />
-    </>
-  );
+        <Space h="md" />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Center style={{ width: "100%", height: "calc(100vh - 150px)" }}>
+          <Box>
+            <Text
+              style={{
+                fontWeight: 500,
+                fontSize: 20,
+                display: "block",
+                color: "#999",
+              }}
+            >
+              Oh no! Tx not found
+            </Text>
+          </Box>
+        </Center>
+      </>
+    );
+  }
 }
 
 export default Tx;
