@@ -131,21 +131,24 @@ function renderTokenDetailContent(
             {loaderData.PSymbol}
           </Grid.Col>
         </Grid>
-        <Grid columns={25} className={classes.wrapper}>
-          <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
-            <Text className={classes.propertyName}>Decimals</Text>
-          </Grid.Col>
-          <Grid.Col
-            xs={20}
-            sm={23}
-            md={23}
-            lg={20}
-            xl={20}
-            className={classes.propertyValue}
-          >
-            {loaderData.Decimals}
-          </Grid.Col>
-        </Grid>
+        {loaderData.Decimals != -1 ? (
+          <Grid columns={25} className={classes.wrapper}>
+            <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
+              <Text className={classes.propertyName}>Decimals</Text>
+            </Grid.Col>
+            <Grid.Col
+              xs={20}
+              sm={23}
+              md={23}
+              lg={20}
+              xl={20}
+              className={classes.propertyValue}
+            >
+              {loaderData.Decimals}
+            </Grid.Col>
+          </Grid>
+        ) : null}
+
         <Grid columns={25} className={classes.wrapper}>
           <Grid.Col xs={5} sm={2} md={2} lg={5} xl={5}>
             <Text className={classes.propertyName}>pDecimals</Text>
