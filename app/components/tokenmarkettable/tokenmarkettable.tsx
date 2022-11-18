@@ -178,18 +178,18 @@ const TokenMarketTable: FunctionComponent<Props> = ({ tokenlist }) => {
           </Text>
         </td>
 
-        <td style={{ whiteSpace: "nowrap" }}>
-          {" "}
-          {Math.round(
-            (element.TokenTradingVolumeUSD24H + Number.EPSILON) * 100
-          ) / 100}
+        <td style={{ whiteSpace: "nowrap", color: "#fff" }}>
+          {format.formatAmount({
+            humanAmount: element.TokenTradingVolumeUSD24H,
+            decimals: 2,
+          })}
         </td>
 
-        <td style={{ whiteSpace: "nowrap" }}>
-          {" "}
-          {Math.round(
-            (element.TokenTradingVolumeUSDTotal + Number.EPSILON) * 100
-          ) / 100}
+        <td style={{ whiteSpace: "nowrap", color: "#fff" }}>
+          {format.formatAmount({
+            humanAmount: element.TokenTradingVolumeUSDTotal,
+            decimals: 2,
+          })}
         </td>
       </tr>
     );

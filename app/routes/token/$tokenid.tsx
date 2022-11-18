@@ -20,6 +20,7 @@ import { CircleCheck } from "tabler-icons-react";
 import { getTokenIcon } from "~/services/icons";
 import { currencyTypeToNetworkName } from "~/utils/currencytype";
 import { getTokenInfoNew } from "~/services/token";
+import format from "~/utils/format";
 
 export const loader: LoaderFunction = async ({ params }) => {
   let tokenInfo: TokenInfo;
@@ -271,9 +272,10 @@ function renderTokenDetailContent(
             xl={20}
             className={classes.propertyValue}
           >
-            {Math.round(
-              (loaderData.TokenTradingVolumeUSD24H + Number.EPSILON) * 100
-            ) / 100}
+            {format.formatAmount({
+              humanAmount: loaderData.TokenTradingVolumeUSD24H,
+              decimals: 2,
+            })}
           </Grid.Col>
         </Grid>
         <Grid
@@ -292,9 +294,10 @@ function renderTokenDetailContent(
             xl={20}
             className={classes.propertyValue}
           >
-            {Math.round(
-              (loaderData.TokenTradingVolumeUSDTotal + Number.EPSILON) * 100
-            ) / 100}
+            {format.formatAmount({
+              humanAmount: loaderData.TokenTradingVolumeUSDTotal,
+              decimals: 2,
+            })}
           </Grid.Col>
         </Grid>
       </Paper>
