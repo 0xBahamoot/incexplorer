@@ -75,6 +75,11 @@ export default function App() {
           rel="apple-touch-icon"
           href="https://incognito.org/static/media/logo-stroke.f5c70e7b.png"
         ></link>
+        <script
+          defer
+          data-domain="explorer.incognito.org"
+          src="https://plausible.incognito.org/js/plausible.js"
+        ></script>
       </head>
       <body>
         <ColorSchemeProvider
