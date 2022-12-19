@@ -74,6 +74,11 @@ function BlockChainSection(onNav?: () => void, fontSize?: number) {
           link="/pendingtxs"
           fontSize={fontSize}
         ></NavbarBtn>
+        <NavbarBtn
+          text="Tokens"
+          link="/pdex/tokens"
+          fontSize={fontSize}
+        ></NavbarBtn>
       </Stack>
     </>
   );
@@ -262,7 +267,7 @@ const MainNavbar: FunctionComponent<Props> = ({ onNav }) => {
               {BlockChainSection(onNav, 20)}
             </Accordion.Item>
 
-            <Accordion.Item
+            {/* <Accordion.Item
               label={
                 <AccordionLabel
                   label="Privacy Exchange"
@@ -278,7 +283,7 @@ const MainNavbar: FunctionComponent<Props> = ({ onNav }) => {
               }}
             >
               {ExchangeSection(onNav, 20)}
-            </Accordion.Item>
+            </Accordion.Item> */}
 
             <Accordion.Item
               label={
@@ -372,7 +377,7 @@ const MainNavbar: FunctionComponent<Props> = ({ onNav }) => {
               {BlockChainSection()}
             </Accordion.Item>
 
-            <Accordion.Item
+            {/* <Accordion.Item
               label={
                 <AccordionLabel
                   label="Privacy Exchange"
@@ -382,7 +387,7 @@ const MainNavbar: FunctionComponent<Props> = ({ onNav }) => {
               classNames={classes}
             >
               {ExchangeSection(onNav)}
-            </Accordion.Item>
+            </Accordion.Item> */}
 
             <Accordion.Item
               label={
