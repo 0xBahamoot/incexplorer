@@ -92,7 +92,7 @@ export const RenderMainContent: FunctionComponent<mainContentProps> = ({
           ></SummaryBox>
         </div>
       </div>
-
+      {/* 
       <Space h={contentPadding == "0px 16px" ? 24 : 40} />
       <Box style={{ padding: contentPadding }}>
         <Group position="apart">
@@ -114,8 +114,8 @@ export const RenderMainContent: FunctionComponent<mainContentProps> = ({
             </Text>
           </Button>
         </Group>
-      </Box>
-      <Space h={contentPadding == "0px 16px" ? 6 : "sm"} />
+      </Box> */}
+      {/* <Space h={contentPadding == "0px 16px" ? 6 : "sm"} />
 
       <Group position="center" style={{ height: !loaded ? 200 : 0 }}>
         <Loader color="gray" size={30} style={{ height: !loaded ? 200 : 0 }} />
@@ -142,7 +142,7 @@ export const RenderMainContent: FunctionComponent<mainContentProps> = ({
             contentSize="small"
           ></SummaryBox>
         </div>
-      </div>
+      </div> */}
 
       <Space h={contentPadding == "0px 16px" ? 24 : 40} />
       <Box style={{ padding: contentPadding }}>
