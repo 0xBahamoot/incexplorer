@@ -314,10 +314,10 @@ function Home() {
             item.Name = "Transactions";
             networkList.push(item);
             break;
-          case "TX_COUNT_24H":
-            item.Name = "24h Tx Count";
-            networkList.push(item);
-            break;
+          // case "TX_COUNT_24H":
+          //   item.Name = "24h Tx Count";
+          //   networkList.push(item);
+          //   break;
           case "ACTIVE_VALIDATORS_COUNT":
             item.Name = "Active Validators";
             networkList.push(item);
@@ -327,10 +327,10 @@ function Home() {
             networkList.push(item);
             break;
 
-          case "TX_COUNT_1H":
-            item.Name = "1h Tx Count";
-            networkList.push(item);
-            break;
+          // case "TX_COUNT_1H":
+          //   item.Name = "1h Tx Count";
+          //   networkList.push(item);
+          //   break;
 
           case "PRV_PRICE":
             item.Name = "Price";
