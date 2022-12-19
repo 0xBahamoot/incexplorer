@@ -297,10 +297,10 @@ function Home() {
             TradingVolumes.value += item.value;
             TradingVolumes.lastValue += item.lastValue;
             break;
-          case "LIQUIDITY":
-            item.Name = "Liquidity";
-            pdexList.push(item);
-            break;
+          // case "LIQUIDITY":
+          //   item.Name = "Liquidity";
+          //   pdexList.push(item);
+          //   break;
 
           // case "TOTAL_VOLUME_LOCK":
           //   item.Name = "Total Value Locked";
