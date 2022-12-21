@@ -9,6 +9,7 @@ import {
   Text,
   Space,
   MediaQuery,
+  Button,
 } from "@mantine/core";
 import { FunctionComponent, useState } from "react";
 import NavbarBtn from "~/components/navbarbtn/navbarbtn";
@@ -341,6 +342,24 @@ const MainNavbar: FunctionComponent<Props> = ({ onNav }) => {
                 }}>
                 </Accordion.Item> */}
           <Space h={16} />
+          <Button
+            component="a"
+            href="https://incognito.org/swap"
+            radius="md"
+            size="md"
+            styles={(theme) => ({
+              root: {
+                left: 10,
+                background: "rgb(26, 115, 232)",
+                "&:hover": {
+                  backgroundColor: "rgb(26, 115, 232)",
+                  opacity: 0.8,
+                },
+              },
+            })}
+          >
+            Get PRV
+          </Button>
         </Navbar.Section>
       </MediaQuery>
       <MediaQuery smallerThan={1200} styles={{ display: "none" }}>
@@ -435,6 +454,24 @@ const MainNavbar: FunctionComponent<Props> = ({ onNav }) => {
                 </Accordion.Item> */}
 
           <Space h={16} />
+          <Button
+            component="a"
+            href="https://incognito.org/swap"
+            fullWidth
+            radius="md"
+            size="md"
+            styles={(theme) => ({
+              root: {
+                background: "rgb(26, 115, 232)",
+                "&:hover": {
+                  backgroundColor: "rgb(26, 115, 232)",
+                  opacity: 0.8,
+                },
+              },
+            })}
+          >
+            Get PRV
+          </Button>
         </Navbar.Section>
       </MediaQuery>
     </>
