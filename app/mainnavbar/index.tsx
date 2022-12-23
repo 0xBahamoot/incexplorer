@@ -344,7 +344,7 @@ const MainNavbar: FunctionComponent<Props> = ({ onNav }) => {
           <Space h={16} />
           <Button
             component="a"
-            href="https://incognito.org/swap"
+            href="https://incognito.org/get-prv"
             radius="md"
             size="md"
             styles={(theme) => ({
@@ -456,7 +456,7 @@ const MainNavbar: FunctionComponent<Props> = ({ onNav }) => {
           <Space h={16} />
           <Button
             component="a"
-            href="https://incognito.org/swap"
+            href="https://incognito.org/get-prv"
             fullWidth
             radius="md"
             size="md"
