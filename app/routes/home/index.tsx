@@ -270,6 +270,12 @@ function Home() {
         lastValue: 0,
         valueChangePercentage: 0,
       };
+      let FullDilutedMarketCap = {
+        Name: "Fully Diluted Market Cap",
+        value: 0,
+      };
+
+      let prvPrice = 0;
 
       explData.map((item: any) => {
         switch (item.metricType) {
@@ -335,6 +341,7 @@ function Home() {
           case "PRV_PRICE":
             item.Name = "Price";
             prvList.push(item);
+            prvPrice = item.value;
             break;
           case "PRV_CIRCULATING_SUPPLY":
             item.Name = "Circulating Supply";
@@ -357,8 +364,10 @@ function Home() {
       TradingVolumes.valueChangePercentage =
         (TradingVolumes.value * 100) / TradingVolumes.lastValue - 100;
 
+      FullDilutedMarketCap.value = 100000000 * prvPrice;
       pdexList.push(TradingVolumes);
       pdexList.push(Trading24h);
+      prvList.push(FullDilutedMarketCap);
       setNetworkData(networkList);
       setPdexData(pdexList);
       setPRVData(prvList);
