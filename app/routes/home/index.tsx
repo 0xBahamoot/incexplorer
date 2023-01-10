@@ -350,6 +350,8 @@ function Home() {
           case "PRV_MARKET_CAP":
             item.Name = "Market Cap";
             prvList.push(item);
+            FullDilutedMarketCap.value = 100000000 * prvPrice;
+            prvList.push(FullDilutedMarketCap);
             break;
 
           default:
@@ -364,10 +366,8 @@ function Home() {
       TradingVolumes.valueChangePercentage =
         (TradingVolumes.value * 100) / TradingVolumes.lastValue - 100;
 
-      FullDilutedMarketCap.value = 100000000 * prvPrice;
       pdexList.push(TradingVolumes);
       pdexList.push(Trading24h);
-      prvList.push(FullDilutedMarketCap);
       setNetworkData(networkList);
       setPdexData(pdexList);
       setPRVData(prvList);
