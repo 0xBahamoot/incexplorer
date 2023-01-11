@@ -273,6 +273,8 @@ function Home() {
       let FullDilutedMarketCap = {
         Name: "Fully Diluted Market Cap",
         value: 0,
+        valueChangePercentage: 0,
+        isCurrency: true,
       };
 
       let prvPrice = 0;
@@ -351,6 +353,8 @@ function Home() {
             item.Name = "Market Cap";
             prvList.push(item);
             FullDilutedMarketCap.value = 100000000 * prvPrice;
+            FullDilutedMarketCap.valueChangePercentage =
+              item.valueChangePercentage;
             prvList.push(FullDilutedMarketCap);
             break;
 
