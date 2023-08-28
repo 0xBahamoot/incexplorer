@@ -11,7 +11,7 @@ import {
 } from "@mantine/core";
 import TxListCard from "~/components/txlistcard/txlistcard";
 import { useState, useEffect } from "react";
-import { getNormalTx } from "~/services/transactions";
+import { getNormalTx, getTxsFromCsv } from "~/services/transactions";
 import SectionTitle from "~/components/sectiontitle/sectiontitle";
 import Pagination from "~/components/pagination/pagination";
 import useStyles from "./styles";
@@ -27,10 +27,18 @@ function Txs() {
   const handleFetchData = async (page: number) => {
     setLoaded(false);
     setPage(page);
-    const { Result } = (await getNormalTx(page)) as any;
-    console.log("data", Result);
-    setTxListData(Result.Data);
-    setTotalPage(Math.floor(Result.Paging.Total / Result.Paging.Limit));
+    // const { Result } = (await getNormalTx(page)) as any;
+    // console.log("data", Result);
+    // setTxListData(Result.Data);
+    // setTotalPage(Math.floor(Result.Paging.Total / Result.Paging.Limit));
+    let txList: any[] = [];
+
+    const result = (await getTxsFromCsv(-1, 100)) as any;
+    console.log("result", result.Result);
+    result.Result.map((item: any) => {
+      txList.push(item.TxDetail);
+    });
+    setTxListData(txList);
     setLoaded(true);
   };
   useEffect(() => {

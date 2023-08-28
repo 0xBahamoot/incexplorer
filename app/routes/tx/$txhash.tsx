@@ -12,7 +12,7 @@ import { useState } from "react";
 import type { LoaderFunction } from "@remix-run/node";
 import { TxDetail } from "~/types/types";
 import { useLoaderData } from "@remix-run/react";
-import { getDetailTx } from "~/services/transactions";
+import { getDetailTx, getDetailTxFromCsv } from "~/services/transactions";
 import SectionTitle from "~/components/sectiontitle/sectiontitle";
 import useStyles from "./styles";
 import format from "~/utils/format";
@@ -30,9 +30,9 @@ export const loader: LoaderFunction = async ({ params }) => {
   let txdetail: TxDetail;
   var txhash: any = params.txhash;
   try {
-    const { Result, Error } = (await getDetailTx(txhash)) as any;
-    console.log(Result);
-    txdetail = Result;
+    const { Result, Error } = (await getDetailTxFromCsv(txhash)) as any;
+    console.log(Result[0]);
+    txdetail = Result[0].TxDetail;
     return txdetail;
   } catch (error) {
     return null;
@@ -194,7 +194,11 @@ function renderTxDetailContent(
             xl={20}
             className={classes.propertyValue}
           >
-            {loaderData.TransactionData.tx_fee} PRV
+            {format.formatAmount({
+              originalAmount: loaderData.Fee,
+              decimals: 9,
+            })}{" "}
+            PRV
           </Grid.Col>
         </Grid>
 
@@ -242,7 +246,7 @@ function renderTxDetailContent(
             xl={20}
             className={classes.propertyValue}
           >
-            {loaderData.TransactionData.meta_type_name}
+            {loaderData.Metatype}
           </Grid.Col>
         </Grid>
 

@@ -46,6 +46,18 @@ const SummaryCard: FunctionComponent<Props> = ({
           >
             {content}
           </Text>
+        ) : title.toLowerCase() === "epoch" ? (
+          <>
+            <Text
+              className={classes.content}
+              style={{
+                fontSize: contentSize === "small" ? 18 : 22,
+                margin: contentSize === "small" ? "12px 0 0" : "14px 0 5px",
+              }}
+            >
+              {format.formatAmount({ humanAmount: content.epoch, decimals: 4 })}
+            </Text>
+          </>
         ) : (
           <Text
             className={classes.content}
@@ -88,7 +100,12 @@ const SummaryCard: FunctionComponent<Props> = ({
             className={classes.subcontent}
             style={{ color: "#757575", paddingTop: 5 }}
           >
-            {moment().format("MM/DD/YYYY")}
+            {title.toLowerCase() == "epoch"
+              ? content.remain +
+                "/" +
+                content.block +
+                " blocks to the next epoch"
+              : moment().format("MM/DD/YYYY")}
           </Text>
         )}
 

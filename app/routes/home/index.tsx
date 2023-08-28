@@ -11,11 +11,12 @@ import {
 import SummaryBox from "~/components/summarybox/summarybox";
 import TxListCard from "~/components/txlistcard/txlistcard";
 import { useState, useEffect } from "react";
-import { getNormalTx } from "~/services/transactions";
+import { getNormalTx, getTxsFromCsv } from "~/services/transactions";
 import { Link } from "react-router-dom";
 import { getExplorerSummary } from "~/services/summary";
 import SectionTitle from "~/components/sectiontitle/sectiontitle";
 import React, { FunctionComponent } from "react";
+import { TxDetail } from "~/types/types";
 
 type mainContentProps = {
   loaded: boolean;
@@ -276,6 +277,15 @@ function Home() {
         valueChangePercentage: 0,
         isCurrency: true,
       };
+      let Epoch = {
+        Name: "Epoch",
+        value: {
+          epoch: 0,
+          block: 0,
+          remain: 0,
+        },
+        isCurrency: false,
+      };
 
       let prvPrice = 0;
 
@@ -334,7 +344,15 @@ function Home() {
             item.Name = "Beacon Height";
             networkList.push(item);
             break;
-
+          case "EPOCH":
+            Epoch.value.epoch = item.value;
+            break;
+          case "EPOCH_BLOCK":
+            Epoch.value.block = item.value;
+            break;
+          case "REMAINNING_BLOCK_EPOCH":
+            Epoch.value.remain = item.value;
+            break;
           // case "TX_COUNT_1H":
           //   item.Name = "1h Tx Count";
           //   networkList.push(item);
@@ -372,6 +390,7 @@ function Home() {
 
       pdexList.push(TradingVolumes);
       pdexList.push(Trading24h);
+      networkList.push(Epoch);
       setNetworkData(networkList);
       setPdexData(pdexList);
       setPRVData(prvList);
@@ -381,8 +400,17 @@ function Home() {
   }, [explData]);
 
   const handleFetchData = async () => {
-    const { Result } = (await getNormalTx(1)) as any;
-    setTxListData(Result.Data.slice(0, 10));
+    let txList: any[] = [];
+
+    const result = (await getTxsFromCsv(-1, 10)) as any;
+    console.log("result", result.Result);
+    result.Result.map((item: any) => {
+      txList.push(item.TxDetail);
+    });
+
+    setTxListData(txList.slice(0, 10));
+    // const { Result } = (await getNormalTx(1)) as any;
+    // setTxListData(Result.Data.slice(0, 10));
   };
 
   // useEffect(() => {

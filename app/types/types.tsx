@@ -70,7 +70,7 @@ export type TxDetail = {
   InputCoinPubKey: string;
   IsInMempool: boolean;
   IsPrivacy: boolean;
-  MetaTypeId: number;
+  Metatype: number;
   Metadata: string;
   PrivacyCustomTokenData: string;
   PrivacyCustomTokenFee: number;

@@ -1,4 +1,7 @@
-import { CreateHTTPAnalyticInstance } from "./http";
+import {
+  CreateHTTPAnalyticInstance,
+  CreateHTTPCoinserviceInstance,
+} from "./http";
 
 export const getNormalTx = async (page: number, network?: string) => {
   // https://churn-api-coinservice.incognito.org/txs/normal?from=2021-11-12 14:15:00&to=2021-11-15 15:15:00
@@ -29,4 +32,18 @@ export const getTradeTxs = async (page: number, network?: string) => {
   return inst.get(
     `/txs/pDex?from=${fromday.toISOString().slice(0, 10)}&page=${page}`
   );
+};
+
+export const getTxsFromCsv = async (
+  shardid: number,
+  limit: number,
+  network?: string
+) => {
+  const inst = CreateHTTPCoinserviceInstance(network || "mainnet");
+  return inst.get(`/getlatesttx?limit=${limit}&shardid=${shardid}`);
+};
+
+export const getDetailTxFromCsv = async (hash: string, network?: string) => {
+  const inst = CreateHTTPCoinserviceInstance(network || "mainnet");
+  return inst.get(`/gettxdetail/?txhash=${hash}`);
 };
