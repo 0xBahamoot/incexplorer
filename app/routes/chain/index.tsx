@@ -36,13 +36,19 @@ function ShardsOverview() {
       let beaconInfo: ChainInfo | undefined;
       let totalTxs: number = 0;
       let totalBlocks: number = 0;
-      let Epoch: number = 0;
+      let Epoch = {
+        epoch: 0,
+        block: 0,
+        remain: 0,
+      };
       if (Result !== undefined) {
         Object.keys(Result.BestBlocks).map((key) => {
           // last item is beacon chain
           totalBlocks += Result.BestBlocks[key].Height;
           if (key == "-1") {
-            Epoch = Result.BestBlocks[key].Epoch;
+            Epoch.epoch = Result.BestBlocks[key].Epoch;
+            Epoch.remain = Result.BestBlocks[key].RemainingBlockEpoch;
+            Epoch.block = Result.BestBlocks[key].EpochBlock;
             beaconInfo = Result.BestBlocks[key];
             return <></>;
           }
